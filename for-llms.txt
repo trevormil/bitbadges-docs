@@ -1,5 +1,5 @@
 # Gitbook Documentation Compilation
-Generated on Fri Apr 10 12:01:16 UTC 2026
+Generated on Tue Apr 14 18:58:49 UTC 2026
 
 
 
@@ -1953,7 +1953,7 @@ BitBadges addresses these fundamental issues through core design decisions:
       * [Tradable Collection Example](x-tokenization/examples/txs/msgcreatecollection/tradable-nft-collection.md)
     * [MsgUpdateUserApprovals Examples](x-tokenization/examples/txs/msgupdate-user-approvals/README.md)
       * [Updating Outgoing Approvals](x-tokenization/examples/txs/msgupdate-user-approvals/updating-outgoing-approvals.md)
-* [🤖 MCP Builder Skills](x-tokenization/examples/skills/README.md)
+* [🤖 Builder Skills](x-tokenization/examples/skills/README.md)
   * [Smart Token](x-tokenization/examples/skills/smart-token.md)
   * [Minting](x-tokenization/examples/skills/minting.md)
   * [Liquidity Pools](x-tokenization/examples/skills/liquidity-pools.md)
@@ -2007,11 +2007,12 @@ BitBadges addresses these fundamental issues through core design decisions:
   * [SDK Commands](for-developers/cli/sdk-commands.md)
   * [API Commands](for-developers/cli/api-commands.md)
   * [Chain Commands](for-developers/cli/chain-commands.md)
-  * [Build Commands](for-developers/cli/build-commands.md)
+  * [Builder Templates](for-developers/cli/builder-templates.md)
+  * [Builder Commands](for-developers/cli/builder-commands.md)
   * [CLI for AI Agents](for-developers/cli/for-ai-agents.md)
 * [🤖 AI Agents & Bots](for-developers/ai-agents/README.md)
   * [Testnet Faucet API](for-developers/ai-agents/testnet-faucet.md)
-  * [MCP Builder Tools Reference](for-developers/ai-agents/mcp-builder-tools.md)
+  * [Builder Tools Reference](for-developers/ai-agents/builder-tools.md)
   * [WebSocket Events](for-developers/ai-agents/websocket-events.md)
   * [Bot Examples](for-developers/ai-agents/bot-examples.md)
   * [E2E: AI Agent with USDC Vault](for-developers/ai-agents/openclaw-vault-tutorial.md)
@@ -8191,22 +8192,22 @@ console.log('TX Hash:', result.txHash);
 | Path | Best For | Install |
 |------|----------|---------|
 | **CLI & Chain Binary** | Terminal agents, shell scripts, any language | `curl -fsSL .../install.sh \| sh` — [guide](../cli/for-ai-agents.md) |
-| **MCP Builder Tools** | AI assistants (Claude, Cursor, etc.) | `npm i -g bitbadges-builder-mcp` |
+| **BitBadges Builder Tools** | AI assistants (Claude, Cursor, etc.) | `npm i -g bitbadgesjs-sdk` |
 | **SDK Signing Client** | Full-featured TypeScript bots | `npm i bitbadgesjs-sdk` |
 | **Direct HTTP** | Lightweight scripts, any language | REST calls to `api.bitbadges.io` |
 | **Agent Spending Authorization** | Set daily caps, time windows, and revocation | [guide](agent-spending-authorization.md) |
 
-### MCP Quick Setup
+### Quick Setup
 
 ```bash
 # Claude Code (one command)
-claude mcp add bitbadges-builder -- npx -y bitbadges-builder-mcp
+claude mcp add bitbadges-builder -- npx -y -p bitbadgesjs-sdk bitbadges-builder
 
 # Or install globally
-npm install -g bitbadges-builder-mcp
+npm install -g bitbadgesjs-sdk
 ```
 
-See the full [MCP Builder Tools Reference](mcp-builder-tools.md) for all 50+ tools (including session-based per-field builders), configuration for Claude Desktop / Cursor, and workflow guides.
+See the full [Builder Tools Reference](builder-tools.md) for all 50+ tools (including session-based per-field builders), configuration for Claude Desktop / Cursor, and workflow guides.
 
 ## Network Configuration
 
@@ -8226,7 +8227,7 @@ Additional endpoints (testnet):
 | Page | Description |
 |------|-------------|
 | [Testnet Faucet API](testnet-faucet.md) | Get free testnet BADGE tokens for your bot |
-| [MCP Builder Tools Reference](mcp-builder-tools.md) | All 50+ MCP tools for AI assistants |
+| [Builder Tools Reference](builder-tools.md) | All 50+ builder tools for AI assistants |
 | [WebSocket Events](websocket-events.md) | Subscribe to real-time blockchain events |
 | [Bot Examples](bot-examples.md) | Copy-paste examples for common bot patterns |
 | [E2E: AI Agent with USDC Vault](openclaw-vault-tutorial.md) | Full tutorial: wallet setup, vault rules, withdraw/deposit |
@@ -8466,9 +8467,9 @@ ws.on('close', () => {
 });
 ```
 
-## Example 5: MCP Agent Workflow
+## Example 5: Builder Agent Workflow
 
-When using the BitBadges MCP tools (e.g., in Claude Desktop or Claude Code), there are two build approaches:
+When using the BitBadges builder tools (e.g., in Claude Desktop or Claude Code), there are two build approaches:
 
 ### Session-Based Build (Recommended)
 
@@ -8491,7 +8492,7 @@ add_transfer({ from: "Mint", toAddresses: ["bb1youraddress..."], balances: [...]
 
 # 4. Verify (in parallel)
 validate_transaction()
-audit_collection()
+review_collection()
 simulate_transaction()
 
 # 5. Export the final transaction JSON
@@ -8504,10 +8505,10 @@ For quick collection creation from the terminal, use the CLI build commands:
 
 ```bash
 # Generate a vault token (outputs transaction JSON)
-bitbadges-cli build vault --backing-coin USDC --name "My Vault" --dry-run --explain
+bitbadges-cli builder templates vault --backing-coin USDC --name "My Vault" --explain
 
 # Generate a subscription collection
-bitbadges-cli build subscription --interval monthly --price 10 --denom USDC --recipient bb1...
+bitbadges-cli builder templates subscription --interval monthly --price 10 --denom USDC --recipient bb1...
 ```
 
 See [CLI Build Commands](../cli/build-commands.md) for the full list of 18 template builders.
@@ -8521,7 +8522,7 @@ search({ query: "my collection name" })
   → verify_ownership({ collectionId: "123", address: "bb1...", badgeIds: [...] })
 ```
 
-> **Note:** The MCP server builds and validates transactions but does not sign or broadcast. Use the BitBadges SDK signing client or the BitBadges frontend to sign and submit.
+> **Note:** The builder builds and validates transactions but does not sign or broadcast. Use the BitBadges SDK signing client or the BitBadges frontend to sign and submit.
 
 ## Tips for AI Agents
 
@@ -8531,6 +8532,254 @@ search({ query: "my collection name" })
 - **Handle errors gracefully.** Check `result.success` and `result.error` after every broadcast.
 - **Sequence management.** The signing client handles nonce/sequence automatically with retries.
 - **Store credentials securely.** Use environment variables (`BITBADGES_MNEMONIC`, `BITBADGES_API_KEY`) rather than hardcoding secrets.
+
+
+## File: ./for-developers/ai-agents/builder-tools.md
+
+# Builder Tools Reference
+
+The [BitBadges Builder](https://github.com/bitbadges/bitbadgesjs/tree/main/packages/bitbadgesjs-sdk/src/builder) provides 50+ tools for AI assistants to build, audit, and validate BitBadges transactions. It works with Claude Desktop, Claude Code, Cursor, and any MCP-compatible client.
+
+> For terminal-based workflows without an MCP client, use the [BitBadges CLI](../cli/) — it provides 104+ API routes, review/audit tools, and built-in docs from the command line. See [CLI for AI Agents](../cli/for-ai-agents.md).
+
+## Installation
+
+```bash
+# Install globally
+npm install -g bitbadgesjs-sdk
+
+# Or run directly (no install)
+npx -p bitbadgesjs-sdk bitbadges-builder
+```
+
+### Claude Desktop
+
+Add to your `claude_desktop_config.json`:
+
+```json
+{
+  "mcpServers": {
+    "bitbadges-builder": {
+      "command": "npx",
+      "args": ["-y", "-p", "bitbadgesjs-sdk", "bitbadges-builder"],
+      "env": {
+        "BITBADGES_API_KEY": "your-api-key",
+        "BITBADGES_MNEMONIC": "your mnemonic phrase"
+      }
+    }
+  }
+}
+```
+
+### Claude Code
+
+```bash
+claude mcp add bitbadges-builder -- npx -y -p bitbadgesjs-sdk bitbadges-builder
+```
+
+### Cursor
+
+Add to `.cursor/mcp.json`:
+
+```json
+{
+  "mcpServers": {
+    "bitbadges-builder": {
+      "command": "npx",
+      "args": ["-y", "-p", "bitbadgesjs-sdk", "bitbadges-builder"],
+      "env": {
+        "BITBADGES_API_KEY": "your-api-key"
+      }
+    }
+  }
+}
+```
+
+### Environment Variables
+
+| Variable | Required | Description |
+|----------|----------|-------------|
+| `BITBADGES_API_KEY` | For queries/broadcast | Your BitBadges API key ([get one here](https://bitbadges.io/developer)) |
+| `BITBADGES_MNEMONIC` | For signing | Mnemonic for server-side signing (testnet recommended) |
+| `BITBADGES_PRIVATE_KEY` | For signing | Alternative: hex private key |
+
+## Tools by Category
+
+### Session-Based Per-Field Builders (Recommended)
+
+The recommended way to build collections. Each tool sets one field on a session-scoped transaction, allowing incremental construction with full control. All tools can be called in parallel within the same round.
+
+| Tool | Description |
+|------|-------------|
+| `set_standards` | Set the collection's protocol standards (e.g., "Subscription", "Smart Token") |
+| `set_valid_token_ids` | Set which token IDs exist in the collection |
+| `set_default_balances` | Set default balance configuration and user-level auto-approve flags |
+| `set_permissions` | Set collection permissions (use presets like "locked-approvals" or custom) |
+| `set_invariants` | Set collection-level invariants (e.g., noCustomOwnershipTimes, maxSupplyPerId) |
+| `set_manager` | Set the collection manager address |
+| `set_collection_metadata` | Set collection-level metadata (name, description, image) |
+| `set_token_metadata` | Set per-token metadata URIs |
+| `set_custom_data` | Set custom data on the collection |
+| `add_approval` | Add a collection approval with approvalCriteria |
+| `remove_approval` | Remove a collection approval by approvalId |
+| `set_approval_metadata` | Set metadata for a specific approval |
+| `add_alias_path` | Add an alias path (for ICS20-backed smart tokens) |
+| `remove_alias_path` | Remove an alias path |
+| `add_cosmos_wrapper_path` | Add a Cosmos wrapper path |
+| `remove_cosmos_wrapper_path` | Remove a Cosmos wrapper path |
+| `set_is_archived` | Set whether the collection is archived |
+| `set_mint_escrow_coins` | Fund the mint escrow address at creation (for quest rewards, payment overrides) |
+| `add_transfer` | Append a MsgTransferTokens to the transaction (for auto-minting at creation) |
+| `remove_transfer` | Remove a transfer message from the transaction |
+| `get_transaction` | Return the current session transaction as JSON |
+
+### Helper Builders
+
+Standalone tools for building specific non-collection resources.
+
+| Tool | Description |
+|------|-------------|
+| `build_claim` | Build claim JSON for the API (code-gated, password-gated, whitelist-gated, open) |
+| `build_address_list` | Build an on-chain address list collection |
+| `build_transfer` | Build a MsgTransferTokens by auto-querying the collection and constructing the correct transaction |
+| `build_dynamic_store` | Build transaction JSON for dynamic store operations (create, update, delete, set values) |
+
+> **Note:** For building collections, use the session-based per-field tools above. They provide full control, support parallel calls, and are the recommended approach for all collection types.
+
+### Audit & Analysis
+
+| Tool | Description |
+|------|-------------|
+| `review_collection` | Unified review: audit, standards compliance, and UX findings in one call with audience filtering |
+| `explain_collection` | Human-readable collection report with Q&A mode (user/developer/auditor audiences) |
+| `analyze_collection` | Structured analysis of transferability, approvals, permissions, and how to obtain/transfer tokens |
+
+### Simulation & Validation
+
+| Tool | Description |
+|------|-------------|
+| `simulate_transaction` | Dry-run a transaction without broadcasting. Returns `parsedEvents` (coin, badge, and IBC transfers) and `netChanges` (per-address balance diffs) |
+| `validate_transaction` | Validate a transaction is well-formed before broadcasting |
+
+### Queries
+
+| Tool | Description |
+|------|-------------|
+| `query_collection` | Fetch collection details from the BitBadges API |
+| `query_balance` | Check token balance for an address |
+| `query_dynamic_store` | Query on-chain dynamic store data (get store details, check address values, list values) |
+| `verify_ownership` | Verify if an address meets ownership requirements |
+| `search` | Search collections, accounts, and tokens |
+| `search_plugins` | Search for off-chain claim plugins or fetch specific plugins by ID |
+| `lookup_token_info` | Look up token metadata and info |
+
+### Component Generators
+
+Helper tools that generate specific pieces of a collection (approvals, permissions, addresses) without managing session state.
+
+| Tool | Description |
+|------|-------------|
+| `generate_approval` | Generate approval structures by pattern (public-mint, manager-mint, smart-token-backing, subscription, etc.) |
+| `generate_permissions` | Generate permission presets (fully-immutable, manager-controlled, locked-approvals) |
+| `generate_backing_address` | Compute the deterministic IBC backing address for a given denom |
+| `generate_alias_path` | Generate alias path config for token display on DEX |
+| `generate_wrapper_address` | Compute the deterministic wrapper address for a custom denom |
+| `generate_unique_id` | Generate collision-free IDs for approvals (prefix + random hash) |
+
+### Utilities
+
+| Tool | Description |
+|------|-------------|
+| `validate_address` | Validate a BitBadges address |
+| `convert_address` | Convert between address formats (ETH, Cosmos, etc.) |
+| `get_current_timestamp` | Get the current timestamp (for time-based configs) |
+| `diagnose_error` | Diagnose BitBadges transaction errors and get suggested fixes |
+| `search_knowledge_base` | Search across all BitBadges knowledge — docs, learnings, recipes, error patterns, critical rules |
+
+### Instructions & Docs
+
+| Tool | Description |
+|------|-------------|
+| `get_skill_instructions` | Get detailed build instructions for specific skills (smart-token, fungible-token, subscription, etc.) |
+| `fetch_docs` | Fetch documentation pages |
+
+## Workflows
+
+### Session-Based Build (Recommended)
+
+The per-field tools build up a collection incrementally in a session. This is the recommended approach — it gives full control and supports parallel tool calls.
+
+```
+set_standards + set_valid_token_ids + set_invariants + add_approval + set_permissions + set_default_balances + set_collection_metadata + set_token_metadata
+  → (optional) add_transfer (for auto-mint at creation)
+  → validate_transaction + review_collection + simulate_transaction (in parallel)
+  → fix errors with remove_approval + re-add (max 3 attempts)
+  → get_transaction (final JSON)
+```
+
+**Step-by-step:**
+
+1. **Build** — Call per-field tools in parallel to define the collection: standards, token IDs, invariants, approvals, permissions, metadata, balances.
+2. **Auto-Mint** (optional) — If the user wants tokens minted to specific addresses at creation, call `add_transfer` to append a `MsgTransferTokens` alongside the collection creation.
+3. **Verify** — Call `validate_transaction`, `review_collection`, and `simulate_transaction` in parallel. Fix any errors with targeted `remove_approval` + re-add.
+4. **Export** — Call `get_transaction` to get the final transaction JSON for signing.
+
+### Query & Verification (No Signing)
+
+```
+query_collection → verify_ownership → (take action based on result)
+```
+
+> **Note:** The builder does not handle signing or broadcasting. Transaction signing must be done externally using the BitBadges SDK, a wallet, or the BitBadges frontend.
+
+## Auto-Mint at Creation
+
+The `add_transfer` tool lets you mint tokens to specific addresses at the same time as collection creation. This produces a transaction with two messages: `MsgUniversalUpdateCollection` + `MsgTransferTokens`.
+
+**When to use:** "Mint 100 tokens to myself", "distribute tokens to team members", "auto-mint at creation".
+
+**How it works:**
+1. Build the collection normally with a mint approval (e.g., `add_approval` with `fromListId: "Mint"`, `initiatedByListId: <creator address>`)
+2. Call `add_transfer` with the recipient addresses, balances, and `prioritizedApprovals` referencing the mint approval
+3. Verify and export as normal — the transaction will contain both messages
+
+Maximum 4 transfer messages per transaction.
+
+## Skills (Guided Workflows)
+
+The builder includes skill instructions accessible via `get_skill_instructions`. These guide AI agents through building specific collection types.
+
+For full instructions and examples for each skill, see the **[Builder Skills reference](../../x-tokenization/examples/skills/README.md)**.
+
+Common features like ownership requirements, codes, and passwords are built into the approval system directly and can be composed with any skill.
+
+## Related Tools
+
+| Tool | Install | Description |
+|------|---------|-------------|
+| **BitBadges SDK** | `npm i bitbadgesjs-sdk` | TypeScript SDK for direct blockchain interaction |
+| **GitBook MCP** | [docs.bitbadges.io/~gitbook/mcp](https://docs.bitbadges.io/~gitbook/mcp) | Search BitBadges documentation |
+| **BitBadges API** | [api.bitbadges.io](https://api.bitbadges.io) | REST API for queries and data |
+
+## Builder Resources
+
+The builder also exposes embedded documentation as resources:
+
+| Resource URI | Name | Description |
+|-------------|------|-------------|
+| `bitbadges://tokens/registry` | Token Registry | IBC denoms, symbols, decimals, and pre-generated backing addresses |
+| `bitbadges://rules/critical` | Critical Rules | Critical rules that must be followed when building transactions |
+| `bitbadges://skills/all` | Skill Instructions | Instructions for all builder skills |
+| `bitbadges://docs/concepts` | Core Concepts | Core BitBadges concepts: transferability, approvals, permissions, balances, and address lists |
+| `bitbadges://docs/examples` | Full Examples | Complete transaction JSON examples for NFT collections, fungible tokens, and Smart Tokens |
+| `bitbadges://recipes/all` | Code Recipes & Decision Matrices | Code snippets and decision matrices for common operations |
+| `bitbadges://learnings/all` | Learnings & Gotchas | Known gotchas, tips, and discoveries from building with BitBadges |
+| `bitbadges://errors/patterns` | Error Patterns | Common error messages mapped to diagnoses and fixes |
+| `bitbadges://docs/frontend` | Reference Frontend Patterns | Patterns from the BitBadges reference frontend (Next.js + Ant Design) |
+| `bitbadges://workflows/all` | Workflow Chains | Step-by-step tool chains for common multi-step operations |
+| `bitbadges://schema/token-builder` | Token Builder Schema | Annotated schema for per-field session builders: design axes, field reference, approval patterns, and validation checklist |
+
+Access these via your MCP client's resource reading capabilities.
 
 
 ## File: ./for-developers/ai-agents/claims-for-agents.md
@@ -8597,7 +8846,7 @@ await api.createClaim({
 });
 ```
 
-If you are using the BitBadges MCP tools or the AI builder, use the `build_claim` tool instead of constructing the payload manually (see MCP Tool Workflow below). The AI builder auto-generates `seedCode` and codes server-side for the `codes` plugin — you only need to specify `numCodes` in `publicParams`.
+If you are using the BitBadges Builder tools or the AI builder, use the `build_claim` tool instead of constructing the payload manually (see Builder Tool Workflow below). The AI builder auto-generates `seedCode` and codes server-side for the `codes` plugin — you only need to specify `numCodes` in `publicParams`.
 
 ## Completing a Claim
 
@@ -8697,9 +8946,9 @@ The `prioritizedApprovals` array tells the chain which approval to check. The `a
 - **Ownership-gated minting**: Use the `must-own-badges` plugin to gate minting based on existing token ownership. Users who hold token X can mint token Y.
 - **Time-windowed drops**: Add `transferTimes` constraints to limit when claims can be completed.
 
-## MCP Tool Workflow
+## Builder Tool Workflow
 
-If you are using the BitBadges MCP builder tools, the `build_claim` tool handles payload construction:
+If you are using the BitBadges Builder tools, the `build_claim` tool handles payload construction:
 
 ```
 build_claim({
@@ -8720,255 +8969,6 @@ From there, the agent follows the same complete -> get codes -> submit proof flo
 - Match `numUses` to the merkle tree leaf count for on-chain claims. A mismatch means some codes won't have valid proofs.
 - Use `_expectedVersion` in `completeClaim` to prevent race conditions when multiple agents or users compete for the same claim.
 - Poll `getClaimAttemptStatus` after submitting. Claims process asynchronously and typically resolve in 2-5 seconds.
-
-
-## File: ./for-developers/ai-agents/mcp-builder-tools.md
-
-# MCP Builder Tools Reference
-
-The [BitBadges Builder MCP server](https://github.com/BitBadges/bitbadges-builder-mcp) provides 50+ tools for AI assistants to build, audit, and validate BitBadges transactions. It works with Claude Desktop, Claude Code, Cursor, and any MCP-compatible client.
-
-> For terminal-based workflows without MCP, use the [BitBadges CLI](../cli/) — it provides 104+ API routes, review/audit tools, and built-in docs from the command line. See [CLI for AI Agents](../cli/for-ai-agents.md).
-
-## Installation
-
-```bash
-# Install globally
-npm install -g bitbadges-builder-mcp
-
-# Or run directly (no install)
-npx bitbadges-builder-mcp
-```
-
-### Claude Desktop
-
-Add to your `claude_desktop_config.json`:
-
-```json
-{
-  "mcpServers": {
-    "bitbadges-builder": {
-      "command": "npx",
-      "args": ["-y", "bitbadges-builder-mcp"],
-      "env": {
-        "BITBADGES_API_KEY": "your-api-key",
-        "BITBADGES_MNEMONIC": "your mnemonic phrase"
-      }
-    }
-  }
-}
-```
-
-### Claude Code
-
-```bash
-claude mcp add bitbadges-builder -- npx -y bitbadges-builder-mcp
-```
-
-### Cursor
-
-Add to `.cursor/mcp.json`:
-
-```json
-{
-  "mcpServers": {
-    "bitbadges-builder": {
-      "command": "npx",
-      "args": ["-y", "bitbadges-builder-mcp"],
-      "env": {
-        "BITBADGES_API_KEY": "your-api-key"
-      }
-    }
-  }
-}
-```
-
-### Environment Variables
-
-| Variable | Required | Description |
-|----------|----------|-------------|
-| `BITBADGES_API_KEY` | For queries/broadcast | Your BitBadges API key ([get one here](https://bitbadges.io/developer)) |
-| `BITBADGES_MNEMONIC` | For signing | Mnemonic for server-side signing (testnet recommended) |
-| `BITBADGES_PRIVATE_KEY` | For signing | Alternative: hex private key |
-
-## Tools by Category
-
-### Session-Based Per-Field Builders (Recommended)
-
-The recommended way to build collections. Each tool sets one field on a session-scoped transaction, allowing incremental construction with full control. All tools can be called in parallel within the same round.
-
-| Tool | Description |
-|------|-------------|
-| `set_standards` | Set the collection's protocol standards (e.g., "Subscription", "Smart Token") |
-| `set_valid_token_ids` | Set which token IDs exist in the collection |
-| `set_default_balances` | Set default balance configuration and user-level auto-approve flags |
-| `set_permissions` | Set collection permissions (use presets like "locked-approvals" or custom) |
-| `set_invariants` | Set collection-level invariants (e.g., noCustomOwnershipTimes, maxSupplyPerId) |
-| `set_manager` | Set the collection manager address |
-| `set_collection_metadata` | Set collection-level metadata (name, description, image) |
-| `set_token_metadata` | Set per-token metadata URIs |
-| `set_custom_data` | Set custom data on the collection |
-| `add_approval` | Add a collection approval with approvalCriteria |
-| `remove_approval` | Remove a collection approval by approvalId |
-| `set_approval_metadata` | Set metadata for a specific approval |
-| `add_alias_path` | Add an alias path (for ICS20-backed smart tokens) |
-| `remove_alias_path` | Remove an alias path |
-| `add_cosmos_wrapper_path` | Add a Cosmos wrapper path |
-| `remove_cosmos_wrapper_path` | Remove a Cosmos wrapper path |
-| `set_is_archived` | Set whether the collection is archived |
-| `set_mint_escrow_coins` | Fund the mint escrow address at creation (for quest rewards, payment overrides) |
-| `add_transfer` | Append a MsgTransferTokens to the transaction (for auto-minting at creation) |
-| `remove_transfer` | Remove a transfer message from the transaction |
-| `get_transaction` | Return the current session transaction as JSON |
-
-### Helper Builders
-
-Standalone tools for building specific non-collection resources.
-
-| Tool | Description |
-|------|-------------|
-| `build_claim` | Build claim JSON for the API (code-gated, password-gated, whitelist-gated, open) |
-| `build_address_list` | Build an on-chain address list collection |
-| `build_transfer` | Build a MsgTransferTokens by auto-querying the collection and constructing the correct transaction |
-| `build_dynamic_store` | Build transaction JSON for dynamic store operations (create, update, delete, set values) |
-
-> **Note:** For building collections, use the session-based per-field tools above. They provide full control, support parallel calls, and are the recommended approach for all collection types.
-
-### Audit & Analysis
-
-| Tool | Description |
-|------|-------------|
-| `audit_collection` | Security audit: centralization, supply inflation, approval flaws, common bugs (9 categories) |
-| `verify_standards` | Verify a collection transaction complies with BitBadges protocol standards. Returns violations with severity levels |
-| `explain_collection` | Human-readable collection report with Q&A mode (user/developer/auditor audiences) |
-| `analyze_collection` | Structured analysis of transferability, approvals, permissions, and how to obtain/transfer tokens |
-
-### Simulation & Validation
-
-| Tool | Description |
-|------|-------------|
-| `simulate_transaction` | Dry-run a transaction without broadcasting. Returns `parsedEvents` (coin, badge, and IBC transfers) and `netChanges` (per-address balance diffs) |
-| `validate_transaction` | Validate a transaction is well-formed before broadcasting |
-
-### Queries
-
-| Tool | Description |
-|------|-------------|
-| `query_collection` | Fetch collection details from the BitBadges API |
-| `query_balance` | Check token balance for an address |
-| `query_dynamic_store` | Query on-chain dynamic store data (get store details, check address values, list values) |
-| `verify_ownership` | Verify if an address meets ownership requirements |
-| `search` | Search collections, accounts, and tokens |
-| `search_plugins` | Search for off-chain claim plugins or fetch specific plugins by ID |
-| `lookup_token_info` | Look up token metadata and info |
-
-### Component Generators
-
-Helper tools that generate specific pieces of a collection (approvals, permissions, addresses) without managing session state.
-
-| Tool | Description |
-|------|-------------|
-| `generate_approval` | Generate approval structures by pattern (public-mint, manager-mint, smart-token-backing, subscription, etc.) |
-| `generate_permissions` | Generate permission presets (fully-immutable, manager-controlled, locked-approvals) |
-| `generate_backing_address` | Compute the deterministic IBC backing address for a given denom |
-| `generate_alias_path` | Generate alias path config for token display on DEX |
-| `generate_wrapper_address` | Compute the deterministic wrapper address for a custom denom |
-| `generate_unique_id` | Generate collision-free IDs for approvals (prefix + random hash) |
-
-### Utilities
-
-| Tool | Description |
-|------|-------------|
-| `validate_address` | Validate a BitBadges address |
-| `convert_address` | Convert between address formats (ETH, Cosmos, etc.) |
-| `get_current_timestamp` | Get the current timestamp (for time-based configs) |
-| `diagnose_error` | Diagnose BitBadges transaction errors and get suggested fixes |
-| `search_knowledge_base` | Search across all BitBadges knowledge — docs, learnings, recipes, error patterns, critical rules |
-
-### Instructions & Docs
-
-| Tool | Description |
-|------|-------------|
-| `get_skill_instructions` | Get detailed build instructions for specific skills (smart-token, fungible-token, subscription, etc.) |
-| `fetch_docs` | Fetch documentation pages |
-
-## Workflows
-
-### Session-Based Build (Recommended)
-
-The per-field tools build up a collection incrementally in a session. This is the recommended approach — it gives full control and supports parallel tool calls.
-
-```
-set_standards + set_valid_token_ids + set_invariants + add_approval + set_permissions + set_default_balances + set_collection_metadata + set_token_metadata
-  → (optional) add_transfer (for auto-mint at creation)
-  → validate_transaction + audit_collection + simulate_transaction (in parallel)
-  → fix errors with remove_approval + re-add (max 3 attempts)
-  → get_transaction (final JSON)
-```
-
-**Step-by-step:**
-
-1. **Build** — Call per-field tools in parallel to define the collection: standards, token IDs, invariants, approvals, permissions, metadata, balances.
-2. **Auto-Mint** (optional) — If the user wants tokens minted to specific addresses at creation, call `add_transfer` to append a `MsgTransferTokens` alongside the collection creation.
-3. **Verify** — Call `validate_transaction`, `audit_collection`, and `simulate_transaction` in parallel. Fix any errors with targeted `remove_approval` + re-add.
-4. **Export** — Call `get_transaction` to get the final transaction JSON for signing.
-
-### Query & Verification (No Signing)
-
-```
-query_collection → verify_ownership → (take action based on result)
-```
-
-> **Note:** The MCP server does not handle signing or broadcasting. Transaction signing must be done externally using the BitBadges SDK, a wallet, or the BitBadges frontend.
-
-## Auto-Mint at Creation
-
-The `add_transfer` tool lets you mint tokens to specific addresses at the same time as collection creation. This produces a transaction with two messages: `MsgUniversalUpdateCollection` + `MsgTransferTokens`.
-
-**When to use:** "Mint 100 tokens to myself", "distribute tokens to team members", "auto-mint at creation".
-
-**How it works:**
-1. Build the collection normally with a mint approval (e.g., `add_approval` with `fromListId: "Mint"`, `initiatedByListId: <creator address>`)
-2. Call `add_transfer` with the recipient addresses, balances, and `prioritizedApprovals` referencing the mint approval
-3. Verify and export as normal — the transaction will contain both messages
-
-Maximum 4 transfer messages per transaction.
-
-## Skills (Guided Workflows)
-
-The MCP server includes skill instructions accessible via `get_skill_instructions`. These guide AI agents through building specific collection types.
-
-For full instructions and examples for each skill, see the **[MCP Builder Skills reference](../../x-tokenization/examples/skills/README.md)**.
-
-Common features like ownership requirements, codes, and passwords are built into the approval system directly and can be composed with any skill.
-
-## Related Tools
-
-| Tool | Install | Description |
-|------|---------|-------------|
-| **BitBadges SDK** | `npm i bitbadgesjs-sdk` | TypeScript SDK for direct blockchain interaction |
-| **GitBook MCP** | [docs.bitbadges.io/~gitbook/mcp](https://docs.bitbadges.io/~gitbook/mcp) | Search BitBadges documentation |
-| **BitBadges API** | [api.bitbadges.io](https://api.bitbadges.io) | REST API for queries and data |
-
-## MCP Resources
-
-The MCP server also exposes embedded documentation as resources:
-
-| Resource URI | Name | Description |
-|-------------|------|-------------|
-| `bitbadges://tokens/registry` | Token Registry | IBC denoms, symbols, decimals, and pre-generated backing addresses |
-| `bitbadges://rules/critical` | Critical Rules | Critical rules that must be followed when building transactions |
-| `bitbadges://skills/all` | Skill Instructions | Instructions for all builder skills |
-| `bitbadges://docs/concepts` | Core Concepts | Core BitBadges concepts: transferability, approvals, permissions, balances, and address lists |
-| `bitbadges://docs/examples` | Full Examples | Complete transaction JSON examples for NFT collections, fungible tokens, and Smart Tokens |
-| `bitbadges://recipes/all` | Code Recipes & Decision Matrices | Code snippets and decision matrices for common operations |
-| `bitbadges://learnings/all` | Learnings & Gotchas | Known gotchas, tips, and discoveries from building with BitBadges |
-| `bitbadges://errors/patterns` | Error Patterns | Common error messages mapped to diagnoses and fixes |
-| `bitbadges://docs/frontend` | Reference Frontend Patterns | Patterns from the BitBadges reference frontend (Next.js + Ant Design) |
-| `bitbadges://workflows/all` | Workflow Chains | Step-by-step tool chains for common multi-step operations |
-| `bitbadges://schema/token-builder` | Token Builder Schema | Annotated schema for per-field session builders: design axes, field reference, approval patterns, and validation checklist |
-
-Access these via your MCP client's resource reading capabilities.
 
 
 ## File: ./for-developers/ai-agents/openclaw-vault-tutorial.md
@@ -9302,7 +9302,7 @@ Give your agent the prompt from the **AI Prompt** tab (Step 3) as part of its sy
 - [MsgTransferTokens](../../x-tokenization/messages/msg-transfer-tokens.md) - Transfer message details
 - [IBC Backed Paths](../../x-tokenization/concepts/ibc-backed-paths.md) - How backing works
 - [Bot Examples](bot-examples.md) - More agent patterns
-- [MCP Builder Tools](mcp-builder-tools.md) - If your agent uses MCP (Claude, etc.)
+- [BitBadges Builder Tools](builder-tools.md) - If your agent speaks MCP (Claude, etc.)
 - [Testnet Faucet](testnet-faucet.md) - Get testnet tokens for testing
 
 
@@ -10138,6 +10138,8 @@ const res = await BitBadgesApi.simulateTx(txBody); //Returned from signing steps
 
 This will return the gas used and success statuses on a dry run of the transaction.
 
+> **Payload shapes.** `/api/v0/simulate` accepts two payload shapes. Use the proto-encoded form (`{ mode, tx_bytes }`) shown above — this is the fully supported path and what the signing flows produce after signing. A second shape, `{ messages, memo?, fee, creatorAddress }` with unsigned JSON messages, is also accepted and proto-encoded server-side for internal agent/CLI tooling. The JSON path is still stabilizing and only covers the tokenization + baseline Cosmos message tiers, so external integrations should stick with the `tx_bytes` form.
+
 ```typescript
 export interface SimulateTxRouteSuccessResponse<T extends NumberType> {
     gas_info: {
@@ -10746,7 +10748,7 @@ console.log('Transaction hash:', result.txHash);
 
 ### Server-Side Signing (EVM Path — Recommended)
 
-> **Building an AI agent or bot?** See the [AI Agents & Bots](../../ai-agents/) section for end-to-end examples, testnet faucet, and MCP tool reference.
+> **Building an AI agent or bot?** See the [AI Agents & Bots](../../ai-agents/) section for end-to-end examples, testnet faucet, and builder tool reference.
 
 Server-side signing uses `GenericEvmAdapter` which connects to the EVM JSON-RPC endpoint and broadcasts via precompile calls. This is the recommended path for bots, agents, and backend services.
 
@@ -12507,9 +12509,11 @@ bitbadges-cli sdk review 42 --testnet
 echo '{"messages":[...]}' | bitbadges-cli sdk review -
 ```
 
-If `BITBADGES_API_KEY` is set, transactions are sent to the enriched simulate endpoint. Falls back to local analysis (`validateTransaction` + `auditCollection` + `verifyStandardsCompliance`) if the API is unavailable.
+If `BITBADGES_API_KEY` is set, transactions are sent to the enriched simulate endpoint. Falls back to local analysis via the unified `reviewCollection()` entry point if the API is unavailable.
 
-For collection JSON (no `messages` field), runs `auditCollection` and `verifyStandardsCompliance` locally.
+For collection JSON (no `messages` field), runs `reviewCollection()` locally.
+
+`reviewCollection()` composes three check families — `audit` (permission/supply/centralization), `standards` (protocol conformance), and `ux` (the deterministic UX checks ported from the frontend review sidebar) — into a single `Finding[]`. Each finding carries an `audience` field (`'agent' | 'human' | 'both'`) so consumers can filter: agents get everything; the frontend sidebar passes `audienceFilter: 'human'` via `ReviewContext` to hide audit findings the MCP validators already surface during construction.
 
 ### interpret-tx
 
@@ -12591,7 +12595,7 @@ bitbadges-cli sdk gen-list-id bb1abc... --blacklist
 
 ### skills
 
-List available MCP Builder skills or fetch a specific skill's instructions from the bundled docs.
+List available Builder skills or fetch a specific skill's instructions from the bundled docs.
 
 ```bash
 bitbadges-cli sdk skills               # list all skills
@@ -12711,7 +12715,7 @@ Add that line to your `.bashrc` or `.zshrc` for persistent completions.
 
 ## Build Commands
 
-Token building (creating collections, generating approvals, etc.) is handled by the [MCP Builder Tools](../ai-agents/mcp-builder-tools.md), not the CLI directly. The CLI focuses on analysis, review, and API access.
+Token building (creating collections, generating approvals, etc.) is handled by the [BitBadges Builder Tools](../ai-agents/builder-tools.md), not the CLI directly. The CLI focuses on analysis, review, and API access.
 
 ## bitbadgeschaind Delegation
 
@@ -12956,7 +12960,7 @@ Returns a single amount. Defaults to the current time if `time` is omitted.
 
 ---
 
-## MCP Tools
+## Builder Tools
 
 ### Full flow
 
@@ -13212,7 +13216,7 @@ The function automatically strips sensitive claim parameters (`seedCode`, `preim
 
 ## Also Available Via
 
-- **MCP**: The `explain_collection` tool uses this under the hood
+- **Builder**: The `explain_collection` tool uses this under the hood
 - **Frontend**: Displayed on collection overview pages
 
 
@@ -13364,7 +13368,7 @@ const netChanges = calculateNetChanges(parsed, fee, signerAddress);
 
 ## Also Available Via
 
-- **MCP**: The `simulate_transaction` tool returns structured `parsedEvents` and `netChanges`
+- **Builder**: The `simulate_transaction` tool returns structured `parsedEvents` and `netChanges`
 - **Frontend**: The TxModal "Net Changes" tab uses this under the hood
 
 
@@ -14168,7 +14172,7 @@ To lookup claim state or recent claim attempts by address or other claim informa
 
 # Leveraging AI
 
-> **Building an AI agent or bot that interacts with BitBadges directly?** See the [AI Agents & Bots](../ai-agents/) section for signing, broadcasting, MCP tools, and bot examples.
+> **Building an AI agent or bot that interacts with BitBadges directly?** See the [AI Agents & Bots](../ai-agents/) section for signing, broadcasting, builder tools, and bot examples.
 
 A great way to implement both criteria and utility is through AI models and agents. This can be done through custom plugins created in the [developer portal](https://bitbadges.io/developer).
 
@@ -14206,7 +14210,7 @@ If you need to see the resulting claim JSON (for advanced implementations), you 
 
 # Overview
 
-> 💡 **Note:** This documentation is intended to provide developer documentation for more advanced use cases. Most of the time, you can directly do everything in-site. Or if you need custom functionality, it is oftentimes a better approach to just self-implement the functionality you need rather than deal with the complexities of connecting with claims. LLMs, especially with MCP, are great for implementing all of this stuff. We just provide claims as an out of the box tool in-site.
+> 💡 **Note:** This documentation is intended to provide developer documentation for more advanced use cases. Most of the time, you can directly do everything in-site. Or if you need custom functionality, it is oftentimes a better approach to just self-implement the functionality you need rather than deal with the complexities of connecting with claims. LLMs, especially with builder tools, are great for implementing all of this stuff. We just provide claims as an out of the box tool in-site.
 
 BitBadges claims are designed to be a comprehensive tool directly within the site or via the API for you to custom gate your utility. Claims can be simply thought of as: **Meet criteria? -> Offer utility / rewards.** The implementation process aims to be super flexible, allowing you maximum customization.
 
@@ -15967,7 +15971,7 @@ Claims integrate with BitBadges' points system. Award points on successful claim
 
 ### AI-Powered Criteria
 
-With AI x MCP x LLMs and services like Zapier or Pipedream, you really have endless possibilities for checking criteria and implementing rewards on your own. It is all just one prompt away.
+With AI x Builder x LLMs and services like Zapier or Pipedream, you really have endless possibilities for checking criteria and implementing rewards on your own. It is all just one prompt away.
 
 **Criteria side:** Pre-evaluate users with your AI model and add eligible addresses to a dynamic store. This avoids long wait times during claim execution and provides better UX.
 
@@ -16906,7 +16910,7 @@ The CLI is the recommended interface for AI agents and automation. It provides:
 
 See [CLI for AI Agents](for-ai-agents.md) for end-to-end agent workflows.
 
-For building token collections with AI assistants (Claude, Cursor, etc.), see the [MCP Builder Tools](../ai-agents/mcp-builder-tools.md) which provide 50+ tools on top of the CLI.
+For building token collections with AI assistants (Claude, Cursor, etc.), see the [BitBadges Builder Tools](../ai-agents/builder-tools.md) which provide 50+ tools on top of the CLI.
 
 ## Next Steps
 
@@ -16914,6 +16918,8 @@ For building token collections with AI assistants (Claude, Cursor, etc.), see th
 - [SDK Commands](sdk-commands.md) — review, interpret, address tools, docs, skills
 - [API Commands](api-commands.md) — 104+ API routes from your terminal
 - [Chain Commands](chain-commands.md) — keys, transactions, on-chain queries
+- [Builder Templates](builder-templates.md) — flag-based generators for vault, subscription, bounty, auction, and 14 other token types
+- [Builder Commands](builder-commands.md) — tools, review, verify, simulate, preview, doctor, session, resources
 - [CLI for AI Agents](for-ai-agents.md) — agent workflows and automation patterns
 
 
@@ -17001,11 +17007,257 @@ bitbadges-cli api tokens get-collections --help
 | `--help` | Standard help output |
 
 
-## File: ./for-developers/cli/build-commands.md
+## File: ./for-developers/cli/builder-commands.md
+
+# Builder Commands
+
+The `bitbadges-cli builder` command group is the umbrella for every non-template builder subcommand: the fine-grained tool registry, the review / verify / simulate / validate check family, the preview uploader, the environment doctor, the persisted session store, and the static resource registry.
+
+If you are looking for flag-based template generators (`vault`, `nft`, `subscription`, …), see [Builder Templates](builder-templates.md). Everything else lives here.
+
+All commands are also available via `bitbadgeschaind builder …` — the chain binary forwards `builder` subcommands to the Node.js CLI in-process, so there is no functional difference between `bitbadges-cli builder review tx.json` and `bitbadgeschaind builder review tx.json`.
+
+## Overview
+
+| Command | Purpose |
+|---------|---------|
+| [`builder tools list`](#builder-tools-list) | List every builder tool with its JSON schema |
+| [`builder tools call <tool>`](#builder-tools-call) | Invoke a builder tool by name |
+| [`builder review <input>`](#builder-review) | Run `reviewCollection()` over a tx or collection |
+| [`builder verify <input>`](#builder-verify) | Aggregate validate + review + metadata coverage |
+| [`builder validate <input>`](#builder-validate) | Offline structural validation only |
+| [`builder simulate <input>`](#builder-simulate) | Dry-run a tx against the BitBadges API simulate endpoint |
+| [`builder explain <input>`](#builder-explain) | Plain-English explanation of a tx or collection |
+| [`builder preview <input>`](#builder-preview) | Upload a tx and print a shareable `bitbadges.io` preview URL |
+| [`builder doctor`](#builder-doctor) | Environment + session health check |
+| [`builder session list / show / reset`](#builder-session) | Inspect, dump, or delete persisted builder sessions |
+| [`builder resources list / read`](#builder-resources) | Browse the static resource registry (recipes, skills, docs, …) |
+
+Every command that takes an `<input>` accepts the same five shapes:
+
+- A file path (`tx.json`)
+- A `@file.json` path token
+- Inline JSON (`'{"messages":[...]}'`)
+- A numeric collection ID (for `review` and `explain` only — fetched from the API)
+- `-` to read from stdin
+
+## builder tools
+
+The `tools` subcommand is the in-process twin of the BitBadges Builder MCP stdio server. Every tool the `bitbadges-builder-mcp` bin exposes to Claude Desktop is reachable here as a plain function call — no subprocess, no MCP protocol round-trip.
+
+### builder tools list
+
+List every builder tool with its full JSON schema.
+
+```bash
+bitbadges-cli builder tools list                  # full schemas, as JSON
+bitbadges-cli builder tools list --names          # just the tool names, one per line
+```
+
+### builder tools call
+
+Invoke a builder tool by name. Arguments come from `--args` (inline JSON) or `--args-file` (path to a JSON file).
+
+```bash
+bitbadges-cli builder tools call get_current_timestamp
+bitbadges-cli builder tools call get_skill_instructions --args '{"skill":"smart-token"}'
+bitbadges-cli builder tools call set_collection_metadata \
+  --args-file ./metadata.json \
+  --session demo
+```
+
+**Options:**
+
+| Flag | Description |
+|------|-------------|
+| `--args <json>` | Tool arguments as an inline JSON string |
+| `--args-file <path>` | Tool arguments read from a JSON file |
+| `--session <id>` | Session id for stateful tools. Persisted to `~/.bitbadges/sessions/<id>.json`. Defaults to `--args.sessionId`, or the built-in default session. |
+| `--raw` | Print the structured result instead of the formatted text block |
+
+Stateful tools (`set_*`, `add_*`, `remove_*`, `get_transaction`, …) read from and write to the named session. Sessions survive across invocations, so agents can compose a collection across many CLI calls:
+
+```bash
+SESSION=demo
+bitbadges-cli builder tools call set_standards --session $SESSION --args '{"standards":["SmartToken"]}'
+bitbadges-cli builder tools call set_collection_metadata --session $SESSION --args @meta.json
+bitbadges-cli builder tools call add_approval --session $SESSION --args @approval.json
+bitbadges-cli builder tools call get_transaction --session $SESSION  # emit final JSON
+```
+
+Unknown tool names exit 1 and print the available tool list on stderr.
+
+## builder review
+
+Top-level alias for `sdk review`. Runs `reviewCollection()` over a transaction, collection, or on-chain collection ID and prints the grouped findings.
+
+```bash
+bitbadges-cli builder review tx.json
+bitbadges-cli builder review collection.json --strict
+bitbadges-cli builder review 42 --testnet               # fetch by collection id
+echo '{"messages":[...]}' | bitbadges-cli builder review -
+```
+
+`reviewCollection()` composes three check families — `audit` (permission / supply / centralization), `standards` (protocol conformance), and `ux` (the deterministic UX checks ported from the frontend review sidebar) — into a single `Finding[]`. The CLI, the MCP `review_collection` tool, the indexer validation gate, and the frontend review sidebar all dispatch through this exact same entry point.
+
+**Options:**
+
+| Flag | Description |
+|------|-------------|
+| `--json` | Output the full `ReviewResult` as JSON |
+| `--strict` | Exit 1 on warnings. Critical findings always exit 2. |
+| `--output-file <path>` | Write the rendered output to a file instead of stdout |
+| `--network <mainnet\|testnet\|local>` | Target network for numeric-id fetches |
+| `--testnet` / `--local` / `--url <url>` | Shorthands for `--network` and base URL overrides |
+
+## builder verify
+
+One-stop diligence command. Runs `validate` + `review` + metadata coverage scan in a single pass and renders all three sections with the same terminal renderer the templates use. Saves agents 3+ separate calls per build.
+
+```bash
+bitbadges-cli builder verify tx.json
+bitbadges-cli builder verify tx.json --json             # single structured payload
+bitbadges-cli builder verify tx.json --strict           # exit 1 on any warnings
+bitbadges-cli builder verify tx.json --no-metadata      # skip the metadata section
+```
+
+For transactions whose first collection message isn't at `messages[0]` (e.g. `[MsgTransferTokens, MsgCreateCollection]`, emitted by `add_transfer` + post-fact create), `verify` finds the collection message by walking the array. The `review` and metadata sections only run when a collection message is present — for user-level approvals, transfers, or dynamic store messages, only `validate` + `simulate` are useful signal and `review` stays silent.
+
+**Options:**
+
+| Flag | Description |
+|------|-------------|
+| `--json` | Output a structured aggregate JSON instead of rendered sections |
+| `--strict` | Exit 1 on warnings; criticals always exit 2 |
+| `--no-validate` | Skip the structural validation section |
+| `--no-review` | Skip the design review section |
+| `--no-metadata` | Skip the metadata coverage section |
+| `--output-file <path>` | Write the rendered sections to a file instead of stdout |
+
+Exit codes: `0` clean, `1` when `--strict` and warnings are present, `2` when there are critical findings or validation errors.
+
+## builder validate
+
+Offline structural validation only — no API calls, no design review, no metadata scan. Checks JSON structure, uint ranges, approval criteria shape, and every other invariant that can be verified statically.
+
+```bash
+bitbadges-cli builder validate tx.json
+bitbadges-cli builder validate tx.json --json
+```
+
+Use `validate` when you want the fastest possible pre-commit gate (no network, no API key), and `verify` when you want the full diligence report.
+
+## builder simulate
+
+Dry-run a built tx against the BitBadges API `/api/v0/simulate` endpoint. Returns gas estimates and per-address net balance changes. Requires an API key — set `BITBADGES_API_KEY`, run `bitbadges-cli config set apiKey <key>`, or target a key-less local indexer with `--network local`.
+
+```bash
+bitbadges-cli builder simulate tx.json
+bitbadges-cli builder simulate tx.json --json
+bitbadges-cli builder simulate tx.json --events              # include raw chain events
+bitbadges-cli builder simulate tx.json --creator bb1...      # override the sim context address
+```
+
+**Options:**
+
+| Flag | Description |
+|------|-------------|
+| `--json` | Output the structured `SimulateResult` as JSON instead of a rendered section |
+| `--creator <address>` | Override the simulation context address (default: `bb1simulation`) |
+| `--events` | Dump the full raw chain events array in the rendered output (default: just the count) |
+| `--network` / `--testnet` / `--local` / `--url` | Network targeting |
+
+User-level approval messages (`MsgUpdateUserApprovals`, `MsgSetIncomingApproval`, `MsgSetOutgoingApproval`, `MsgDeleteIncomingApproval`, `MsgDeleteOutgoingApproval`, `MsgPurgeApprovals`) are **not simulable** — they describe a state mutation on an existing user approval list, not a self-contained tx. Use `builder validate` + `builder review` on those instead.
+
+## builder explain
+
+Human-readable explanation of a transaction body or a raw collection. Auto-detects which shape was passed: a `MsgCreateCollection` / `MsgUpdateCollection` / `MsgUniversalUpdateCollection` tx goes through `interpretTransaction()`, a raw collection goes through `interpretCollection()`. Numeric input is fetched from the indexer as a collection id.
+
+```bash
+bitbadges-cli builder explain tx.json
+bitbadges-cli builder explain 42 --testnet
+bitbadges-cli builder explain tx.json --output-file summary.txt
+```
+
+## builder preview
+
+Upload a built tx to the indexer and print a shareable `bitbadges.io` preview URL. Lets agents and humans hand off a tx to a non-CLI reviewer for visual inspection without giving them edit or submit rights.
+
+```bash
+bitbadges-cli builder preview tx.json
+bitbadges-cli builder preview tx.json --json
+bitbadges-cli builder preview tx.json --frontend-url https://testnet.bitbadges.io
+```
+
+The endpoint (`/api/v0/builder/preview`) is open — no API key required. The unguessable code baked into the returned URL is the secret. Uploaded previews live in the indexer's Redis cache for one hour.
+
+**Options:**
+
+| Flag | Description |
+|------|-------------|
+| `--json` | Output the structured upload result (code, URL, expiry) as JSON |
+| `--frontend-url <url>` | Override the `bitbadges.io` base for the printed URL (default: `https://bitbadges.io`) |
+| `--network` / `--testnet` / `--local` / `--url` | Indexer target for the upload |
+
+## builder doctor
+
+One-shot environment + session health check. Runs six independent probes:
+
+1. **Node version** — must be ≥ 18
+2. **SDK package + version** — loaded from `bitbadgesjs-sdk`'s own `package.json`
+3. **CLI config file** — `~/.bitbadges/config.json`
+4. **API key reachability** — pings `/api/v0/simulate` with a no-op request
+5. **MCP stdio bin presence** — smoke launch of the `bitbadges-builder-mcp` entry
+6. **Persisted sessions** — every file under `~/.bitbadges/sessions/` parses
+
+Each probe reports `PASS` / `FAIL` / `WARN` / `SKIP`. The command exits non-zero only if any probe is a hard `FAIL`; warnings and skips are informational.
+
+```bash
+bitbadges-cli builder doctor
+bitbadges-cli builder doctor --json
+bitbadges-cli builder doctor --with-preview   # adds a preview round-trip probe
+```
+
+`--with-preview` adds a seventh probe: builds a minimal tx, posts it to `/api/v0/builder/preview`, fetches it back by code, and asserts the round trip is byte-equivalent. Catches indexer, Redis, and preview-route regressions.
+
+## builder session
+
+Persisted builder sessions live at `~/.bitbadges/sessions/<id>.json`. They are the storage backend for the stateful `builder tools call` flow and the in-process MCP session dispatcher.
+
+```bash
+bitbadges-cli builder session list          # list every persisted session id
+bitbadges-cli builder session show demo     # dump a session as JSON
+bitbadges-cli builder session reset demo    # delete a session file
+```
+
+Sessions are plain JSON — you can inspect or edit them by hand if needed. Corrupted session files are surfaced by `builder doctor` on the next run.
+
+## builder resources
+
+The resource registry is the static half of the builder surface: the token registry, collection recipes, skill instructions, bundled docs, error patterns, and every other content resource the MCP server exposes via `bitbadges://` URIs.
+
+```bash
+bitbadges-cli builder resources list                       # full metadata, as JSON
+bitbadges-cli builder resources list --uris                # URIs only, one per line
+bitbadges-cli builder resources read bitbadges://skills/all
+bitbadges-cli builder resources read bitbadges://recipes/all
+```
+
+Every resource URI exposed by the MCP server is readable through this command. Agents that want to pre-load skill instructions or recipe catalogues into a prompt can stream them directly from the CLI instead of spawning the MCP stdio bin.
+
+## See Also
+
+- [Builder Templates](builder-templates.md) — the `bitbadges-cli builder templates *` tree for flag-based template generators
+- [SDK Commands](sdk-commands.md) — address, alias, lookup, and docs utilities under `bitbadges-cli sdk`
+- [Builder Tools Reference](../ai-agents/builder-tools.md) — the full tool registry reference, including input schemas and workflows
+- [CLI for AI Agents](for-ai-agents.md) — end-to-end agent workflows and automation patterns
+
+
+## File: ./for-developers/cli/builder-templates.md
 
 # CLI Build Commands
 
-The `bitbadges-cli build` command provides 18 template builders that generate ready-to-sign transaction JSON. Each builder creates a complete collection or approval configuration from simple, human-readable parameters.
+The `bitbadges-cli builder templates` command provides 18 template builders that generate ready-to-sign transaction JSON. Each builder creates a complete collection or approval configuration from simple, human-readable parameters.
 
 All build commands accept friendly inputs -- use coin symbols like `USDC` instead of raw IBC denominations, and duration shorthands like `30d` instead of millisecond timestamps. The output is a fully-formed transaction message that can be signed and broadcast using the SDK, the BitBadges frontend, or the chain binary.
 
@@ -17032,11 +17284,11 @@ These commands generate `MsgUniversalUpdateCollection` transaction JSON for crea
 Create an IBC-backed vault token with optional withdrawal limits, 2FA gating, and emergency recovery.
 
 ```bash
-bitbadges-cli build vault --backing-coin USDC \
+bitbadges-cli builder templates vault --backing-coin USDC \
   --name "My Vault" \
   --symbol vUSDC \
   --daily-withdraw-limit 1000 \
-  --dry-run --explain
+  --explain
 ```
 
 | Flag | Required | Description |
@@ -17055,7 +17307,7 @@ bitbadges-cli build vault --backing-coin USDC \
 Create a recurring subscription collection with configurable intervals, pricing, and optional multi-tier support.
 
 ```bash
-bitbadges-cli build subscription --interval monthly \
+bitbadges-cli builder templates subscription --interval monthly \
   --price 10 --denom USDC --recipient bb1... \
   --tiers 3 --transferable
 ```
@@ -17076,7 +17328,7 @@ bitbadges-cli build subscription --interval monthly \
 Create a bounty with escrowed funds, a verifier who approves completion, and a designated recipient.
 
 ```bash
-bitbadges-cli build bounty --amount 500 --denom USDC \
+bitbadges-cli builder templates bounty --amount 500 --denom USDC \
   --verifier bb1... --recipient bb1... --expiration 30d
 ```
 
@@ -17094,7 +17346,7 @@ bitbadges-cli build bounty --amount 500 --denom USDC \
 Create a crowdfunding collection with a funding goal and deadline.
 
 ```bash
-bitbadges-cli build crowdfund --goal 10000 --denom USDC \
+bitbadges-cli builder templates crowdfund --goal 10000 --denom USDC \
   --crowdfunder bb1... --deadline 30d
 ```
 
@@ -17111,8 +17363,9 @@ bitbadges-cli build crowdfund --goal 10000 --denom USDC \
 Create an auction collection with configurable bidding and acceptance windows.
 
 ```bash
-bitbadges-cli build auction --bid-deadline 7d --accept-window 7d \
-  --name "Rare Item" --description "Limited edition collectible"
+bitbadges-cli builder templates auction --bid-deadline 7d --accept-window 7d \
+  --name "Rare Item" --description "Limited edition collectible" \
+  --seller bb1seller...
 ```
 
 | Flag | Required | Description |
@@ -17122,13 +17375,14 @@ bitbadges-cli build auction --bid-deadline 7d --accept-window 7d \
 | `--name <name>` | No | Item name (default: "Auction") |
 | `--description <text>` | No | Item description |
 | `--image <url>` | No | Item image URL |
+| `--seller <address>` | No | Seller address — only this address can accept the winning bid (defaults to `--creator`) |
 
 ### `build product-catalog`
 
 Create a product catalog collection with multiple products, each having its own price and optional supply limit.
 
 ```bash
-bitbadges-cli build product-catalog \
+bitbadges-cli builder templates product-catalog \
   --products '[{"name":"Widget","price":25,"denom":"USDC","maxSupply":100}]' \
   --store-address bb1...
 ```
@@ -17144,7 +17398,7 @@ bitbadges-cli build product-catalog \
 Create a binary prediction market (YES/NO outcome tokens) with a designated resolver.
 
 ```bash
-bitbadges-cli build prediction-market --verifier bb1... \
+bitbadges-cli builder templates prediction-market --verifier bb1... \
   --denom USDC --name "Will X happen by 2027?"
 ```
 
@@ -17161,7 +17415,7 @@ bitbadges-cli build prediction-market --verifier bb1... \
 Create an IBC-backed smart account with optional trading and AI agent vault support.
 
 ```bash
-bitbadges-cli build smart-account --backing-coin USDC \
+bitbadges-cli builder templates smart-account --backing-coin USDC \
   --symbol sUSDC --tradable --ai-agent-vault
 ```
 
@@ -17178,7 +17432,7 @@ bitbadges-cli build smart-account --backing-coin USDC \
 Create a credit or prepaid token where users pay to receive a configurable number of tokens.
 
 ```bash
-bitbadges-cli build credit-token --payment-denom USDC \
+bitbadges-cli builder templates credit-token --payment-denom USDC \
   --recipient bb1... --symbol CREDIT --tokens-per-unit 100
 ```
 
@@ -17195,7 +17449,7 @@ bitbadges-cli build credit-token --payment-denom USDC \
 Create a custom 2FA token collection for use as a second authentication factor in other collections.
 
 ```bash
-bitbadges-cli build custom-2fa --name "My 2FA Token" --burnable
+bitbadges-cli builder templates custom-2fa --name "My 2FA Token" --burnable
 ```
 
 | Flag | Required | Description |
@@ -17211,7 +17465,7 @@ bitbadges-cli build custom-2fa --name "My 2FA Token" --burnable
 Create a quest or reward collection where users claim token rewards up to a maximum number of claims.
 
 ```bash
-bitbadges-cli build quests --reward 10 --denom USDC --max-claims 1000
+bitbadges-cli builder templates quests --reward 10 --denom USDC --max-claims 1000
 ```
 
 | Flag | Required | Description |
@@ -17226,7 +17480,7 @@ bitbadges-cli build quests --reward 10 --denom USDC --max-claims 1000
 Create an on-chain address list (not a token collection -- uses a separate message type).
 
 ```bash
-bitbadges-cli build address-list --name "Allowlist" --description "Approved addresses"
+bitbadges-cli builder templates address-list --name "Allowlist" --description "Approved addresses"
 ```
 
 | Flag | Required | Description |
@@ -17244,7 +17498,7 @@ These commands generate user-level approval messages for marketplace listings, b
 Create an OTC swap intent (user outgoing approval) on the Intent Exchange.
 
 ```bash
-bitbadges-cli build intent --address bb1... \
+bitbadges-cli builder templates intent --address bb1... \
   --collection-id 5 \
   --pay-denom USDC --pay-amount 100 \
   --receive-denom BADGE --receive-amount 500 \
@@ -17266,7 +17520,7 @@ bitbadges-cli build intent --address bb1... \
 Create a recurring payment approval (user incoming approval) for subscription collections.
 
 ```bash
-bitbadges-cli build recurring-payment --collection-id 10 \
+bitbadges-cli builder templates recurring-payment --collection-id 10 \
   --amount 25 --denom USDC --interval monthly \
   --recipient bb1... --expiration 365d
 ```
@@ -17285,7 +17539,7 @@ bitbadges-cli build recurring-payment --collection-id 10 \
 Create a marketplace listing (user outgoing approval) to sell tokens from a collection.
 
 ```bash
-bitbadges-cli build listing --address bb1... \
+bitbadges-cli builder templates listing --address bb1... \
   --collection-id 7 --token-ids "1-5" \
   --price 50 --denom USDC --max-sales 1 --expiration 30d
 ```
@@ -17305,7 +17559,7 @@ bitbadges-cli build listing --address bb1... \
 Create a marketplace bid (user incoming approval) to buy tokens from a collection.
 
 ```bash
-bitbadges-cli build bid --address bb1... \
+bitbadges-cli builder templates bid --address bb1... \
   --collection-id 7 --token-ids "1-5" \
   --price 40 --denom USDC --expiration 7d
 ```
@@ -17324,7 +17578,7 @@ bitbadges-cli build bid --address bb1... \
 Create a prediction market sell intent (user outgoing approval) to sell outcome tokens.
 
 ```bash
-bitbadges-cli build pm-sell-intent --address bb1... \
+bitbadges-cli builder templates pm-sell-intent --address bb1... \
   --collection-id 12 --token yes \
   --amount 10 --price 50 --denom USDC
 ```
@@ -17344,7 +17598,7 @@ bitbadges-cli build pm-sell-intent --address bb1... \
 Create a prediction market buy intent (user incoming approval) to buy outcome tokens.
 
 ```bash
-bitbadges-cli build pm-buy-intent --address bb1... \
+bitbadges-cli builder templates pm-buy-intent --address bb1... \
   --collection-id 12 --token no \
   --amount 10 --price 50 --denom USDC
 ```
@@ -17365,13 +17619,13 @@ All commands support `--json` for passing parameters as a JSON object. This is u
 
 ```bash
 # Inline JSON
-bitbadges-cli build vault --json '{"backingCoin":"USDC","name":"My Vault"}'
+bitbadges-cli builder templates vault --json '{"backingCoin":"USDC","name":"My Vault"}'
 
 # From a file
-bitbadges-cli build vault --json ./params.json
+bitbadges-cli builder templates vault --json ./params.json
 
 # From stdin
-echo '{"backingCoin":"USDC"}' | bitbadges-cli build vault --json -
+echo '{"backingCoin":"USDC"}' | bitbadges-cli builder templates vault --json -
 ```
 
 ## Output
@@ -17693,14 +17947,14 @@ bitbadgeschaind tx tokenization create-collection ./collection.json \
 bitbadges-cli api tx broadcast-tx --body @signed-tx.json
 ```
 
-## Combining with MCP Builder Tools
+## Combining with BitBadges Builder Tools
 
-For AI assistants that support MCP (Claude, Cursor, etc.), the [MCP Builder Tools](../ai-agents/mcp-builder-tools.md) provide 50+ higher-level tools for building token collections. The CLI and MCP tools are complementary:
+For AI assistants that speak MCP (Claude, Cursor, etc.), the [BitBadges Builder Tools](../ai-agents/builder-tools.md) provide 50+ higher-level tools for building token collections. The CLI and builder tools are complementary:
 
 | Use Case | Tool |
 |----------|------|
 | Query data, browse docs, review transactions | **CLI** (`bitbadges-cli`) |
-| Build token collections with guided workflows | **MCP Builder Tools** |
+| Build token collections with guided workflows | **BitBadges Builder Tools** |
 | Sign and broadcast transactions | **Chain binary** (`bitbadgeschaind`) or **SDK Signing Client** |
 | Key management | **Chain binary** (`bitbadgeschaind`) |
 
@@ -17740,7 +17994,7 @@ fi
 
 - [Bot Examples](../ai-agents/bot-examples.md) — TypeScript bot patterns
 - [Agent Spending Authorization](../ai-agents/agent-spending-authorization.md) — on-chain spending limits for agents
-- [MCP Builder Tools](../ai-agents/mcp-builder-tools.md) — 50+ tools for AI assistants
+- [BitBadges Builder Tools](../ai-agents/builder-tools.md) — 50+ tools for AI assistants
 - [Claims for Agents](../ai-agents/claims-for-agents.md) — automated minting via claims
 
 
@@ -17916,9 +18170,11 @@ bitbadges-cli sdk review 42 --testnet
 echo '{"messages":[...]}' | bitbadges-cli sdk review -
 ```
 
-If `BITBADGES_API_KEY` is set, transactions are sent to the enriched simulate endpoint. Falls back to local analysis (`validateTransaction` + `auditCollection` + `verifyStandardsCompliance`) if the API is unavailable.
+If `BITBADGES_API_KEY` is set, transactions are sent to the enriched simulate endpoint. Falls back to local analysis via the unified `reviewCollection()` entry point if the API is unavailable.
 
-For collection JSON (no `messages` field), runs `auditCollection` and `verifyStandardsCompliance` locally.
+For collection JSON (no `messages` field), runs `reviewCollection()` locally.
+
+`reviewCollection()` composes three check families — `audit` (permission/supply/centralization), `standards` (protocol conformance), and `ux` (the deterministic UX checks ported from the frontend review sidebar) — into a single `Finding[]`. Each finding carries an `audience` field (`'agent' | 'human' | 'both'`) so consumers can filter: agents get everything (audit + standards + ux); the frontend sidebar passes `audienceFilter: 'human'` via `ReviewContext` to hide audit findings the MCP validators already surface during construction.
 
 ## interpret-tx
 
@@ -18000,7 +18256,7 @@ bitbadges-cli sdk gen-list-id bb1abc... --blacklist
 
 ## skills
 
-List available MCP Builder skills or fetch a specific skill's instructions from the bundled docs.
+List available Builder skills or fetch a specific skill's instructions from the bundled docs.
 
 ```bash
 bitbadges-cli sdk skills               # list all skills
@@ -18464,7 +18720,7 @@ bitbadges-cli api tokens get-collection 1   # query any collection
 bitbadges-cli sdk docs                      # browse docs from terminal
 ```
 
-> **For AI agents:** The CLI is the recommended interface. See [CLI for AI Agents](cli/for-ai-agents.md) for end-to-end workflows, or use the [MCP Builder Tools](ai-agents/mcp-builder-tools.md) for building tokens with Claude/Cursor.
+> **For AI agents:** The CLI is the recommended interface. See [CLI for AI Agents](cli/for-ai-agents.md) for end-to-end workflows, or use the [BitBadges Builder Tools](ai-agents/builder-tools.md) for building tokens with Claude/Cursor.
 
 ---
 
@@ -18520,16 +18776,16 @@ const api = new BitBadgesAPI({
 await BitBadgesAPI.getCollection(...);
 ```
 
-## Quick Start - MCP Builder Tools (AI)
+## Quick Start - BitBadges Builder Tools (AI)
 
-The BitBadges MCP server gives any AI assistant (Claude, Cursor, etc.) 30+ tools to build, audit, sign, and broadcast BitBadges transactions — no manual JSON required.
+The BitBadges Builder gives any AI assistant (Claude, Cursor, etc.) 30+ tools to build, audit, sign, and broadcast BitBadges transactions — no manual JSON required.
 
 ```bash
 # Install globally
-npm install -g bitbadges-builder-mcp
+npm install -g bitbadgesjs-sdk
 
 # Or run directly with npx
-npx bitbadges-builder-mcp
+npx -p bitbadgesjs-sdk bitbadges-builder
 ```
 
 **Claude Desktop** — add to `claude_desktop_config.json`:
@@ -18539,7 +18795,7 @@ npx bitbadges-builder-mcp
   "mcpServers": {
     "bitbadges-builder": {
       "command": "npx",
-      "args": ["-y", "bitbadges-builder-mcp"],
+      "args": ["-y", "-p", "bitbadgesjs-sdk", "bitbadges-builder"],
       "env": {
         "BITBADGES_API_KEY": "your-api-key"
       }
@@ -18551,10 +18807,10 @@ npx bitbadges-builder-mcp
 **Claude Code:**
 
 ```bash
-claude mcp add bitbadges-builder -- npx -y bitbadges-builder-mcp
+claude mcp add bitbadges-builder -- npx -y -p bitbadgesjs-sdk bitbadges-builder
 ```
 
-See the full [MCP Builder Tools Reference](ai-agents/mcp-builder-tools.md) for all tools, schemas, and workflows. For bot/agent guides, see [AI Agents & Bots](ai-agents/).
+See the full [Builder Tools Reference](ai-agents/builder-tools.md) for all tools, schemas, and workflows. For bot/agent guides, see [AI Agents & Bots](ai-agents/).
 
 ## Developing with AI
 
@@ -18562,7 +18818,7 @@ Below, we provide some resources that may be helpful for developing with AI. If 
 
 | Resource | Link |
 |----------|------|
-| **MCP Builder Tools** | `npm i -g bitbadges-builder-mcp` — [Reference](ai-agents/mcp-builder-tools.md) |
+| **BitBadges Builder Tools** | `npm i -g bitbadgesjs-sdk` — [Reference](ai-agents/builder-tools.md) |
 | **BitBadges SDK** | `npm i bitbadgesjs-sdk` — [Docs](bitbadges-sdk/overview.md) |
 | **AI Quickstarter Repo** | [github.com/BitBadges/bitbadges-quickstarter-ai](https://github.com/BitBadges/bitbadges-quickstarter-ai) |
 | **GitBook MCP** | [docs.bitbadges.io/~gitbook/mcp](https://docs.bitbadges.io/~gitbook/mcp) — searchDocumentation tool |
@@ -22348,7 +22604,7 @@ Looking to understand how BitBadges and ERC-3643 (T-REX) relate? They are not co
 |---------|-----------|----------|
 | **Enforcement layer** | Protocol-level -- rules are enforced by the chain itself | Contract-level -- rules are enforced by Solidity smart contracts |
 | **Smart contracts required** | No -- collections are configured through structured transaction messages | Yes -- each token requires deploying multiple Solidity contracts (token, identity registry, compliance module, claim topics) |
-| **Deployment experience** | No-code UI, CLI template builders, or AI-assisted MCP tools | Developer-only -- requires Solidity expertise and contract deployment |
+| **Deployment experience** | No-code UI, CLI template builders, or AI-assisted builder tools | Developer-only -- requires Solidity expertise and contract deployment |
 | **Multi-chain support** | Native IBC (Inter-Blockchain Communication) to all Cosmos chains | Bridge-dependent for cross-chain transfers (unless deployed on BitBadges, which has native IBC) |
 | **Identity and compliance** | Built-in approval criteria with configurable checks (ownership requirements, merkle proofs, signature challenges, on-chain queries) | ONCHAINID identity framework with claim topics and trusted issuers |
 | **Transfer restrictions** | Configurable per-approval rules: address allowlists, time windows, amount limits, tracker-based caps, 2FA gating, coin payment requirements | Compliance modules with modular rule contracts (country restrictions, investor limits, time locks) |
@@ -22369,7 +22625,7 @@ Looking to understand how BitBadges and ERC-3643 (T-REX) relate? They are not co
 - **No smart contract development** -- Creating a compliant token requires zero code; everything is configured through transaction parameters or the no-code UI
 - **Protocol-level guarantees** -- Transfer rules cannot be bypassed by contract bugs or upgradeable proxy exploits because they are enforced by the chain itself
 - **Broader token types** -- The same standard handles subscriptions, prediction markets, vaults, auctions, bounties, NFTs, and more -- not just equity tokens
-- **AI and automation friendly** -- MCP tools and CLI template builders allow AI agents to create and manage compliant tokens programmatically
+- **AI and automation friendly** -- builder tools and CLI template builders allow AI agents to create and manage compliant tokens programmatically
 - **Cosmos ecosystem** -- Native IBC connectivity to 50+ Cosmos chains without bridges
 - **Lower barrier to entry** -- No Solidity expertise, gas optimization, or contract auditing required
 
@@ -22381,7 +22637,7 @@ This means:
 
 - **ERC-3643 as a familiar interface** -- Solidity developers can interact with BitBadges tokens using the ERC-3643 function signatures they already know, while the actual compliance enforcement happens at the protocol level
 - **Protocol-level enforcement under the hood** -- Transfer rules, identity checks, and compliance logic are enforced by the chain itself, not by the Solidity contract. The precompile bridges the call into the native standard
-- **No-code path still available** -- You don't need to use the ERC-3643 interface at all. The no-code UI, CLI template builders, and MCP tools interact with the protocol standard directly
+- **No-code path still available** -- You don't need to use the ERC-3643 interface at all. The no-code UI, CLI template builders, and builder tools interact with the protocol standard directly
 - **Best of both worlds** -- Get the institutional familiarity and tooling compatibility of ERC-3643 with the protocol-level guarantees and broader token type support of BitBadges
 
 ## Further Reading
@@ -22568,7 +22824,7 @@ Supports Linux, macOS (Intel + Apple Silicon), and Windows (Git Bash / WSL). See
 
 * [Chain Binary Releases](https://github.com/BitBadges/bitbadgeschain/releases)
 * [SDK CLI (npm)](https://www.npmjs.com/package/bitbadgesjs-sdk) — `npm install -g bitbadgesjs-sdk`
-* [MCP Builder Tools (npm)](https://www.npmjs.com/package/bitbadges-builder-mcp) — `npm install -g bitbadges-builder-mcp`
+* [BitBadges Builder Tools (npm)](https://www.npmjs.com/package/bitbadgesjs-sdk) — `npm install -g bitbadgesjs-sdk`
 
 ### Get Featured
 
@@ -23096,7 +23352,7 @@ Mint the appropriate token ID to each user. Check with `$or` for "any tier" or s
 ## How to Create
 
 Collections can be created:
-- **On-site** at [bitbadges.io](https://bitbadges.io) — recommended for most cases. You can also use an LLM with the [BitBadges Builder MCP](https://github.com/BitBadges/bitbadges-plugins/tree/main/packages/bitbadges-builder-mcp) to help configure collections.
+- **On-site** at [bitbadges.io](https://bitbadges.io) — recommended for most cases. You can also use an LLM with the [BitBadges Builder](https://github.com/bitbadges/bitbadgesjs/tree/main/packages/bitbadgesjs-sdk/src/builder) to help configure collections.
 - **Via SDK** using `MsgUniversalUpdateCollection` from `bitbadgesjs-sdk`
 - **Via chain CLI** using `bitbadgeschaind tx tokenization`
 
@@ -26571,7 +26827,7 @@ Enable proportional transfers where users can transfer any integer multiple of t
 - **`maxScalingMultiplier` is enforced per transfer, not cumulatively.** A user can execute multiple transfers each up to the max. To cap total exposure, pair scaling with `maxNumTransfers` (limit number of uses) or `approvalAmounts` (limit total token quantity). Without these, the only limit is the escrow/approver's available balance.
 - When `coinTransfers` use `overrideFromWithApproverAddress: true`, the escrow/approver pays `multiplier * baseAmount` per transfer — set `maxScalingMultiplier` conservatively and always set `maxNumTransfers` or `approvalAmounts` to bound total payout
 - Amount scaling is **incompatible** with Quest, Subscription, Invoice, Product, Bid/Listing, and Scheduled Payment standards (these require fixed amounts per transfer)
-- The `audit_collection` tool flags `allowAmountScaling + overrideFromWithApproverAddress` as a warning for review
+- The `review_collection` tool flags `allowAmountScaling + overrideFromWithApproverAddress` as a warning for review
 
 ## Precalculating Balances
 
@@ -32196,11 +32452,11 @@ const createCollection = {
 
 ## File: ./x-tokenization/examples/skills/README.md
 
-# 🤖 MCP Builder Skills
+# 🤖 Builder Skills
 
-These pages document every guided build skill available in the [BitBadges MCP Builder](https://github.com/bitbadges/bitbadges-builder-mcp). Each skill provides step-by-step instructions for building a specific type of token or configuring a specific feature.
+These pages document every guided build skill available in the BitBadges Builder (shipped as part of [bitbadgesjs-sdk](https://github.com/BitBadges/bitbadgesjs)). Each skill provides step-by-step instructions for building a specific type of token or configuring a specific feature.
 
-> **Tip:** If you're using the MCP builder in Claude, Cursor, or another AI tool, these instructions are loaded automatically when you select a skill. These pages are provided as a human-readable reference.
+> **Tip:** If you're using the BitBadges builder in Claude, Cursor, or another AI tool via the MCP server (`npx bitbadgesjs-sdk-mcp`) or the `bitbadges-cli builder` command surface, these instructions are loaded automatically when you select a skill. These pages are provided as a human-readable reference.
 
 ## Token Types
 
@@ -32373,10 +32629,14 @@ Required standards: ["Auction"]
 - initiatedByListId on mint-to-winner = seller address (only seller can accept)
 - maxNumTransfers = 1 on all approvals (one-shot)
 - overridesToIncomingApprovals: false on mint-to-winner (bidder's incoming approval handles payment)
+- Burn approval has NO override flags — relies on defaultBalances autoApproveSelfInitiatedOutgoingTransfers + burn destination
+- noForcefulPostMintTransfers: true in invariants (permanently locks out forceful transfers post-mint)
+- After settlement, the mint-to-winner approval is auto-deleted via afterOneUse — protocol validators treat a missing mint-to-winner as a valid post-settlement state, not an error
 - All permissions frozen after creation
 - DON'T use coinTransfers on collection approvals — payment happens via intent matching
 - DON'T set initiatedByListId to "All" on mint-to-winner — must be seller
 - DON'T set transferTimes to forever — must be bounded to accept window
+- DON'T put override flags on the burn approval — auction has noForcefulPostMintTransfers: true, so non-mint override flags would be invariant violations
 - DO use autoDeletionOptions.afterOneUse: true on mint-to-winner
 
 ## Instructions
@@ -32392,7 +32652,8 @@ A single-item auction where the seller creates a collection, bidders place inten
 - Token ID 1 = The auctioned item
 - Standard: "Auction"
 - validTokenIds: [{ start: "1", end: "1" }]
-- invariants: { noCustomOwnershipTimes: true }
+- invariants: \`{ noCustomOwnershipTimes: true, maxSupplyPerId: "0", noForcefulPostMintTransfers: true, disablePoolCreation: true }\`
+- \`noForcefulPostMintTransfers: true\` locks the collection so no non-mint approval can ever use \`overridesFromOutgoingApprovals\` or \`overridesToIncomingApprovals\` — the burn approval below relies on \`defaultBalances\` auto-approve flags instead
 - All permissions frozen after creation
 
 ### Bidding Mechanism
@@ -32440,16 +32701,11 @@ Bids must have transferTimes that stay valid through the END of the accept windo
   "toListId": "<BURN_ADDRESS>",
   "initiatedByListId": "All",
   "tokenIds": [{ "start": "1", "end": "1" }],
-  "transferTimes": [{ "start": "1", "end": "18446744073709551615" }],
-  "approvalCriteria": {
-    "overridesFromOutgoingApprovals": true,
-    "overridesToIncomingApprovals": true,
-    "coinTransfers": [],
-    "maxNumTransfers": { "overallMaxNumTransfers": "1" },
-    "autoDeletionOptions": { "afterOneUse": true, "afterOverallMaxNumTransfers": true }
-  }
+  "transferTimes": [{ "start": "1", "end": "18446744073709551615" }]
 }
 \`\`\`
+
+> **No \`approvalCriteria\` overrides:** because the invariants lock \`noForcefulPostMintTransfers: true\`, the burn approval MUST NOT set \`overridesFromOutgoingApprovals\` or \`overridesToIncomingApprovals\`. It relies on \`defaultBalances.autoApproveSelfInitiatedOutgoingTransfers: true\` for the outgoing side and on the burn destination for the incoming side.
 
 ### Auction Flow
 
@@ -32462,7 +32718,7 @@ Bids must have transferTimes that stay valid through the END of the accept windo
 
 1. \`set_valid_token_ids\` — set [{ start: "1", end: "1" }]
 2. \`set_standards\` — set ["Auction"]
-3. \`set_invariants\` — set { noCustomOwnershipTimes: true }
+3. \`set_invariants\` — set \`{ noCustomOwnershipTimes: true, maxSupplyPerId: "0", noForcefulPostMintTransfers: true, disablePoolCreation: true }\`
 4. \`add_approval\` x2 — mint-to-winner, burn
 5. \`set_collection_metadata\` — auction title, description, image
 6. \`set_token_metadata\` — token 1 metadata (the item being auctioned)
@@ -32476,6 +32732,8 @@ Bids must have transferTimes that stay valid through the END of the accept windo
 - DON'T set initiatedByListId to "All" on mint-to-winner — only the seller can accept bids
 - DON'T set transferTimes to forever — MUST be bounded to accept window (bidDeadline → bidDeadline + acceptWindow)
 - DON'T set overridesToIncomingApprovals to true on mint-to-winner — must be false so the bidder's incoming approval (payment intent) is checked
+- DON'T add override flags to the burn approval — the invariant \`noForcefulPostMintTransfers: true\` rejects \`overridesFromOutgoingApprovals\` or \`overridesToIncomingApprovals\` on any non-mint approval
+- DON'T worry if the mint-to-winner approval is absent after settlement — \`autoDeletionOptions.afterOneUse: true\` removes it after the first successful mint, and the protocol validator accepts that as a valid post-settlement state
 - DON'T create a separate mint-to-seller approval — the token should not exist until the seller accepts a bid
 - DON'T forget autoDeletionOptions on mint-to-winner — without afterOneUse: true, the seller could mint to multiple bidders
 - DON'T forget that bids must have transferTimes valid through the END of the accept window, not just the bid deadline
@@ -33038,7 +33296,7 @@ MUST include an alias path so tokens display nicely:
   },
   "symbol": "<SYMBOL>",
   "denomUnits": [],
-  "metadata": { "uri": "", "customData": "", "image": "https://example.com/token-logo.png" }
+  "metadata": { "uri": "ipfs://METADATA_ALIAS_u<symbol_lowercase>", "customData": "" }
 }]
 ```
 
@@ -33156,6 +33414,7 @@ Required standards: ["Crowdfund"]
 - maxScalingMultiplier: MAX_UINT for unrestricted scaling
 - Deposit coinTransfer.to = "Mint" (auto-resolves to escrow)
 - requireToEqualsInitiatedBy: true on deposit-refund (contributor receives their own refund token)
+- invariants: \`noForcefulPostMintTransfers: true\` — the refund approval (non-mint) MUST NOT set \`overridesFromOutgoingApprovals\` or \`overridesToIncomingApprovals\` (both must be false or omitted). It relies on \`defaultBalances.autoApproveSelfInitiatedOutgoingTransfers: true\` for the outgoing side and on the burn destination for the incoming side. The deposit-refund / deposit-progress / success approvals ARE Mint-side and keep \`overridesFromOutgoingApprovals: true\` as the chain requires, with \`overridesToIncomingApprovals: false\`
 - All permissions frozen after creation
 - DON'T use votingChallenges — goal tracking is via mustOwnTokens, not voting
 - DON'T forget allowAmountScaling on ALL 4 approvals
@@ -33787,9 +34046,9 @@ When enabling liquidity pools for a collection, follow these requirements:
          "decimals": "6",
          "symbol": "vATOM",
          "isDefaultDisplay": true,
-         "metadata": { "uri": "", "customData": "", "image": "https://example.com/token-logo.png" }
+         "metadata": { "uri": "ipfs://METADATA_ALIAS_uvatom_UNIT", "customData": "" }
        }],
-       "metadata": { "uri": "", "customData": "", "image": "https://example.com/token-logo.png" }
+       "metadata": { "uri": "ipfs://METADATA_ALIAS_uvatom", "customData": "" }
      }]
    }
    ```
@@ -33798,7 +34057,7 @@ When enabling liquidity pools for a collection, follow these requirements:
 
 - disablePoolCreation MUST be false (not true)
 - MUST configure at least one alias path (required for liquidity pools)
-- All alias path and denomUnit metadata MUST include an `image` field with a valid URL (token logo)
+- PathMetadata (on every aliasPath and denomUnit) is ONLY `{ uri, customData }`. Put the token logo in the off-chain JSON at the placeholder URI and register a matching entry in `metadataPlaceholders` — never put `image` on the proto.
 - Merkle challenges are NOT compatible with liquidity pools
 - This enables decentralized exchange (DEX) trading interfaces
 
@@ -34512,6 +34771,7 @@ Required standards: ["Prediction Market"]
 - Binary prediction market: "Will X happen by Y?" Users deposit USDC to mint paired YES+NO tokens. Trade YES↔NO on a liquidity pool. Verifier settles by voting. Winner redeems 1:1.
 - Token ID 1 = YES, Token ID 2 = NO (via alias paths with 6 decimals)
 - mintEscrowAddress holds all deposited USDC
+- invariants: \`noForcefulPostMintTransfers: true\` — locks non-mint approvals (redeem, settlement, transferable) from using \`overridesFromOutgoingApprovals\` or \`overridesToIncomingApprovals\`. Non-mint approvals rely on \`defaultBalances.autoApproveSelfInitiatedOutgoingTransfers: true\` for outgoing-side auth and on the burn destination for incoming-side auth
 - All permissions frozen after creation
 - 7 approvals: paired mint, freely transferable, pre-settlement redeem, yes-wins, no-wins, push-yes, push-no
 - Alias paths for YES (token 1) and NO (token 2) with 6 decimals
@@ -34973,7 +35233,7 @@ Required standards: ["Products"]
 - Each purchase approval: fromListId="Mint", toListId="All" (or burn address if burn-on-purchase), 1 coinTransfer paying the store address
 - Payment goes directly to store address (NOT to escrow) — overrideFromWithApproverAddress: false
 - Each product has independent price, supply limit (maxNumTransfers), and burn-on-purchase toggle
-- predeterminedBalances.startBalances: 1x of that product's token ID
+- predeterminedBalances.incrementedBalances.startBalances: 1x of that product's token ID
 - Optional burn approval: !Mint → burn address, no coinTransfers
 - invariants: { noCustomOwnershipTimes: true }
 - All permissions frozen after creation
@@ -35227,8 +35487,8 @@ Required standards: ["Smart Token"]
 - Unbacking fromListId uses "!Mint:backingAddress" syntax (excludes both Mint and backing address — meaning only regular holders can unback)
 - Backing address is deterministic — use generate_backing_address tool
 - Optional: Add "AI Agent Vault" to standards for AI Prompt tab (display-only)
-- Alias path: symbol = base unit (e.g. "uvatom"), denomUnits = display units with decimals > 0 only, each denomUnit MUST have metadata with an image
-- All alias path and denomUnit metadata MUST include an `image` field (token logo URL)
+- Alias path: symbol = base unit (e.g. "uvatom"), denomUnits = display units with decimals > 0 only, each denomUnit MUST have PathMetadata with a placeholder uri
+- PathMetadata ONLY has `{ uri, customData }` — do NOT include image/name/description fields. Set metadata.uri to a placeholder like `"ipfs://METADATA_ALIAS_<denom>"` and register the image/name/description in the metadataPlaceholders sidecar keyed by that URI
 
 ## Instructions
 
@@ -35389,9 +35649,9 @@ MUST configure at least one alias path. Structure:
       "decimals": "6",
       "symbol": "vATOM",
       "isDefaultDisplay": true,
-      "metadata": { "uri": "ipfs://...", "customData": "" }
+      "metadata": { "uri": "ipfs://METADATA_ALIAS_uvatom_UNIT", "customData": "" }
     }],
-    "metadata": { "uri": "", "customData": "", "image": "https://example.com/token-logo.png" }
+    "metadata": { "uri": "ipfs://METADATA_ALIAS_uvatom", "customData": "" }
   }]
 }
 ```
@@ -35399,10 +35659,9 @@ MUST configure at least one alias path. Structure:
 Rules:
 - symbol = base unit symbol (e.g., "uvatom")
 - denomUnits = display units with decimals > 0 ONLY (base decimals 0 is implicit)
-- Each denomUnit MUST have metadata with an image field (often the same image as the base alias path)
-- The alias path itself MUST have metadata with an image field — this is the token logo shown in the UI
+- Each denomUnit and the path itself MUST have PathMetadata of the form `{ uri, customData }`. Use a placeholder URI like `"ipfs://METADATA_ALIAS_<denom>"` / `"ipfs://METADATA_ALIAS_<denom>_UNIT"`.
 - isDefaultDisplay: true for the primary display unit
-- **CRITICAL**: All metadata objects (alias path, denomUnits, cosmosCoinWrapperPaths) MUST include an `image` field with a valid URL. Missing images will be auto-fixed to a default but you should always provide a descriptive image.
+- **CRITICAL**: PathMetadata has EXACTLY two fields — `uri` and `customData`. Never add `image`, `name`, or `description` here. Register the name, description, and image for each placeholder URI in the `metadataPlaceholders` sidecar returned alongside the transaction — the metadata auto-apply flow uploads the off-chain JSON and substitutes the placeholder URIs with real IPFS URIs after deploy.
 
 ### Cosmos Coin Wrapper (Optional)
 
@@ -35416,8 +35675,8 @@ For wrapping native Cosmos SDK coins, use `allowSpecialWrapping: true` and `cosm
       "sideA": { "amount": "1" },
       "sideB": [{ "amount": "1", "tokenIds": [{ "start": "1", "end": "1" }], "ownershipTimes": [{ "start": "1", "end": "18446744073709551615" }] }]
     },
-    "denomUnits": [{ "decimals": "6", "symbol": "ATOM", "isDefaultDisplay": true, "metadata": { "uri": "", "customData": "", "image": "https://example.com/token-logo.png" } }],
-    "metadata": { "uri": "", "customData": "", "image": "https://example.com/token-logo.png" },
+    "denomUnits": [{ "decimals": "6", "symbol": "ATOM", "isDefaultDisplay": true, "metadata": { "uri": "ipfs://METADATA_WRAPPER_uatom_UNIT", "customData": "" } }],
+    "metadata": { "uri": "ipfs://METADATA_WRAPPER_uatom", "customData": "" },
     "allowOverrideWithAnyValidToken": false
   }]
 }
@@ -35478,8 +35737,8 @@ Require ownership of a 2FA token to withdraw. Add mustOwnTokens to the unbacking
 
 ### Metadata Guidance
 
-- Collection metadata, token metadata, alias path metadata, and denomUnit metadata should all have descriptive names/descriptions and images
-- Do NOT use lazy placeholder names like "Backing Approval" — write real user-facing descriptions explaining what each approval does
+- Collection, token, alias path, and denomUnit metadata proto fields are ALL shaped as `{ uri, customData }`. Use placeholder URIs (`ipfs://METADATA_COLLECTION`, `ipfs://METADATA_TOKEN_<id>`, `ipfs://METADATA_ALIAS_<denom>`, etc.) and register the real names, descriptions, and images in the `metadataPlaceholders` sidecar keyed by those URIs. The auto-apply flow uploads the off-chain JSON and substitutes the placeholder URIs with real uploaded URIs after deploy.
+- Do NOT use lazy placeholder names like "Backing Approval" — write real user-facing descriptions inside the metadataPlaceholders entries explaining what each approval / collection / token does.
 
 ### Key Rules Summary
 
