@@ -13,7 +13,7 @@ Required standards: ["Products"]
 - Each purchase approval: fromListId="Mint", toListId="All" (or burn address if burn-on-purchase), 1 coinTransfer paying the store address
 - Payment goes directly to store address (NOT to escrow) — overrideFromWithApproverAddress: false
 - Each product has independent price, supply limit (maxNumTransfers), and burn-on-purchase toggle
-- predeterminedBalances.startBalances: 1x of that product's token ID
+- predeterminedBalances.incrementedBalances.startBalances: 1x of that product's token ID
 - Optional burn approval: !Mint → burn address, no coinTransfers
 - invariants: { noCustomOwnershipTimes: true }
 - All permissions frozen after creation

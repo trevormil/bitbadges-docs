@@ -18,7 +18,7 @@ bitbadges-cli api tokens get-collection 1   # query any collection
 bitbadges-cli sdk docs                      # browse docs from terminal
 ```
 
-> **For AI agents:** The CLI is the recommended interface. See [CLI for AI Agents](cli/for-ai-agents.md) for end-to-end workflows, or use the [MCP Builder Tools](ai-agents/mcp-builder-tools.md) for building tokens with Claude/Cursor.
+> **For AI agents:** The CLI is the recommended interface. See [CLI for AI Agents](cli/for-ai-agents.md) for end-to-end workflows, or use the [BitBadges Builder Tools](ai-agents/builder-tools.md) for building tokens with Claude/Cursor.
 
 ---
 
@@ -74,16 +74,16 @@ const api = new BitBadgesAPI({
 await BitBadgesAPI.getCollection(...);
 ```
 
-## Quick Start - MCP Builder Tools (AI)
+## Quick Start - BitBadges Builder Tools (AI)
 
-The BitBadges MCP server gives any AI assistant (Claude, Cursor, etc.) 30+ tools to build, audit, sign, and broadcast BitBadges transactions — no manual JSON required.
+The BitBadges Builder gives any AI assistant (Claude, Cursor, etc.) 30+ tools to build, audit, sign, and broadcast BitBadges transactions — no manual JSON required.
 
 ```bash
 # Install globally
-npm install -g bitbadges-builder-mcp
+npm install -g bitbadgesjs-sdk
 
 # Or run directly with npx
-npx bitbadges-builder-mcp
+npx -p bitbadgesjs-sdk bitbadges-builder
 ```
 
 **Claude Desktop** — add to `claude_desktop_config.json`:
@@ -93,7 +93,7 @@ npx bitbadges-builder-mcp
   "mcpServers": {
     "bitbadges-builder": {
       "command": "npx",
-      "args": ["-y", "bitbadges-builder-mcp"],
+      "args": ["-y", "-p", "bitbadgesjs-sdk", "bitbadges-builder"],
       "env": {
         "BITBADGES_API_KEY": "your-api-key"
       }
@@ -105,10 +105,10 @@ npx bitbadges-builder-mcp
 **Claude Code:**
 
 ```bash
-claude mcp add bitbadges-builder -- npx -y bitbadges-builder-mcp
+claude mcp add bitbadges-builder -- npx -y -p bitbadgesjs-sdk bitbadges-builder
 ```
 
-See the full [MCP Builder Tools Reference](ai-agents/mcp-builder-tools.md) for all tools, schemas, and workflows. For bot/agent guides, see [AI Agents & Bots](ai-agents/).
+See the full [Builder Tools Reference](ai-agents/builder-tools.md) for all tools, schemas, and workflows. For bot/agent guides, see [AI Agents & Bots](ai-agents/).
 
 ## Developing with AI
 
@@ -116,7 +116,7 @@ Below, we provide some resources that may be helpful for developing with AI. If 
 
 | Resource | Link |
 |----------|------|
-| **MCP Builder Tools** | `npm i -g bitbadges-builder-mcp` — [Reference](ai-agents/mcp-builder-tools.md) |
+| **BitBadges Builder Tools** | `npm i -g bitbadgesjs-sdk` — [Reference](ai-agents/builder-tools.md) |
 | **BitBadges SDK** | `npm i bitbadgesjs-sdk` — [Docs](bitbadges-sdk/overview.md) |
 | **AI Quickstarter Repo** | [github.com/BitBadges/bitbadges-quickstarter-ai](https://github.com/BitBadges/bitbadges-quickstarter-ai) |
 | **GitBook MCP** | [docs.bitbadges.io/~gitbook/mcp](https://docs.bitbadges.io/~gitbook/mcp) — searchDocumentation tool |

@@ -172,9 +172,9 @@ ws.on('close', () => {
 });
 ```
 
-## Example 5: MCP Agent Workflow
+## Example 5: Builder Agent Workflow
 
-When using the BitBadges MCP tools (e.g., in Claude Desktop or Claude Code), there are two build approaches:
+When using the BitBadges builder tools (e.g., in Claude Desktop or Claude Code), there are two build approaches:
 
 ### Session-Based Build (Recommended)
 
@@ -197,7 +197,7 @@ add_transfer({ from: "Mint", toAddresses: ["bb1youraddress..."], balances: [...]
 
 # 4. Verify (in parallel)
 validate_transaction()
-audit_collection()
+review_collection()
 simulate_transaction()
 
 # 5. Export the final transaction JSON
@@ -210,10 +210,10 @@ For quick collection creation from the terminal, use the CLI build commands:
 
 ```bash
 # Generate a vault token (outputs transaction JSON)
-bitbadges-cli build vault --backing-coin USDC --name "My Vault" --dry-run --explain
+bitbadges-cli builder templates vault --backing-coin USDC --name "My Vault" --explain
 
 # Generate a subscription collection
-bitbadges-cli build subscription --interval monthly --price 10 --denom USDC --recipient bb1...
+bitbadges-cli builder templates subscription --interval monthly --price 10 --denom USDC --recipient bb1...
 ```
 
 See [CLI Build Commands](../cli/build-commands.md) for the full list of 18 template builders.
@@ -227,7 +227,7 @@ search({ query: "my collection name" })
   → verify_ownership({ collectionId: "123", address: "bb1...", badgeIds: [...] })
 ```
 
-> **Note:** The MCP server builds and validates transactions but does not sign or broadcast. Use the BitBadges SDK signing client or the BitBadges frontend to sign and submit.
+> **Note:** The builder builds and validates transactions but does not sign or broadcast. Use the BitBadges SDK signing client or the BitBadges frontend to sign and submit.
 
 ## Tips for AI Agents
 

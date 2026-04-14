@@ -33,5 +33,5 @@ The function automatically strips sensitive claim parameters (`seedCode`, `preim
 
 ## Also Available Via
 
-- **MCP**: The `explain_collection` tool uses this under the hood
+- **Builder**: The `explain_collection` tool uses this under the hood
 - **Frontend**: Displayed on collection overview pages

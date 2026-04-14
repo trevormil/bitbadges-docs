@@ -14,7 +14,7 @@ Looking to understand how BitBadges and ERC-3643 (T-REX) relate? They are not co
 |---------|-----------|----------|
 | **Enforcement layer** | Protocol-level -- rules are enforced by the chain itself | Contract-level -- rules are enforced by Solidity smart contracts |
 | **Smart contracts required** | No -- collections are configured through structured transaction messages | Yes -- each token requires deploying multiple Solidity contracts (token, identity registry, compliance module, claim topics) |
-| **Deployment experience** | No-code UI, CLI template builders, or AI-assisted MCP tools | Developer-only -- requires Solidity expertise and contract deployment |
+| **Deployment experience** | No-code UI, CLI template builders, or AI-assisted builder tools | Developer-only -- requires Solidity expertise and contract deployment |
 | **Multi-chain support** | Native IBC (Inter-Blockchain Communication) to all Cosmos chains | Bridge-dependent for cross-chain transfers (unless deployed on BitBadges, which has native IBC) |
 | **Identity and compliance** | Built-in approval criteria with configurable checks (ownership requirements, merkle proofs, signature challenges, on-chain queries) | ONCHAINID identity framework with claim topics and trusted issuers |
 | **Transfer restrictions** | Configurable per-approval rules: address allowlists, time windows, amount limits, tracker-based caps, 2FA gating, coin payment requirements | Compliance modules with modular rule contracts (country restrictions, investor limits, time locks) |
@@ -35,7 +35,7 @@ Looking to understand how BitBadges and ERC-3643 (T-REX) relate? They are not co
 - **No smart contract development** -- Creating a compliant token requires zero code; everything is configured through transaction parameters or the no-code UI
 - **Protocol-level guarantees** -- Transfer rules cannot be bypassed by contract bugs or upgradeable proxy exploits because they are enforced by the chain itself
 - **Broader token types** -- The same standard handles subscriptions, prediction markets, vaults, auctions, bounties, NFTs, and more -- not just equity tokens
-- **AI and automation friendly** -- MCP tools and CLI template builders allow AI agents to create and manage compliant tokens programmatically
+- **AI and automation friendly** -- builder tools and CLI template builders allow AI agents to create and manage compliant tokens programmatically
 - **Cosmos ecosystem** -- Native IBC connectivity to 50+ Cosmos chains without bridges
 - **Lower barrier to entry** -- No Solidity expertise, gas optimization, or contract auditing required
 
@@ -47,7 +47,7 @@ This means:
 
 - **ERC-3643 as a familiar interface** -- Solidity developers can interact with BitBadges tokens using the ERC-3643 function signatures they already know, while the actual compliance enforcement happens at the protocol level
 - **Protocol-level enforcement under the hood** -- Transfer rules, identity checks, and compliance logic are enforced by the chain itself, not by the Solidity contract. The precompile bridges the call into the native standard
-- **No-code path still available** -- You don't need to use the ERC-3643 interface at all. The no-code UI, CLI template builders, and MCP tools interact with the protocol standard directly
+- **No-code path still available** -- You don't need to use the ERC-3643 interface at all. The no-code UI, CLI template builders, and builder tools interact with the protocol standard directly
 - **Best of both worlds** -- Get the institutional familiarity and tooling compatibility of ERC-3643 with the protocol-level guarantees and broader token type support of BitBadges
 
 ## Further Reading

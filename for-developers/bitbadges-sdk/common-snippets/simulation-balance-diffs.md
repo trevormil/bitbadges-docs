@@ -52,5 +52,5 @@ const netChanges = calculateNetChanges(parsed, fee, signerAddress);
 
 ## Also Available Via
 
-- **MCP**: The `simulate_transaction` tool returns structured `parsedEvents` and `netChanges`
+- **Builder**: The `simulate_transaction` tool returns structured `parsedEvents` and `netChanges`
 - **Frontend**: The TxModal "Net Changes" tab uses this under the hood

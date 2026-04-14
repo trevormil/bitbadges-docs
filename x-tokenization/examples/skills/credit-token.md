@@ -111,7 +111,7 @@ MUST include an alias path so tokens display nicely:
   },
   "symbol": "<SYMBOL>",
   "denomUnits": [],
-  "metadata": { "uri": "", "customData": "", "image": "https://example.com/token-logo.png" }
+  "metadata": { "uri": "ipfs://METADATA_ALIAS_u<symbol_lowercase>", "customData": "" }
 }]
 ```
 

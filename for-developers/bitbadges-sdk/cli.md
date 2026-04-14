@@ -88,9 +88,11 @@ bitbadges-cli sdk review 42 --testnet
 echo '{"messages":[...]}' | bitbadges-cli sdk review -
 ```
 
-If `BITBADGES_API_KEY` is set, transactions are sent to the enriched simulate endpoint. Falls back to local analysis (`validateTransaction` + `auditCollection` + `verifyStandardsCompliance`) if the API is unavailable.
+If `BITBADGES_API_KEY` is set, transactions are sent to the enriched simulate endpoint. Falls back to local analysis via the unified `reviewCollection()` entry point if the API is unavailable.
 
-For collection JSON (no `messages` field), runs `auditCollection` and `verifyStandardsCompliance` locally.
+For collection JSON (no `messages` field), runs `reviewCollection()` locally.
+
+`reviewCollection()` composes three check families — `audit` (permission/supply/centralization), `standards` (protocol conformance), and `ux` (the deterministic UX checks ported from the frontend review sidebar) — into a single `Finding[]`. Each finding carries an `audience` field (`'agent' | 'human' | 'both'`) so consumers can filter: agents get everything; the frontend sidebar passes `audienceFilter: 'human'` via `ReviewContext` to hide audit findings the MCP validators already surface during construction.
 
 ### interpret-tx
 
@@ -172,7 +174,7 @@ bitbadges-cli sdk gen-list-id bb1abc... --blacklist
 
 ### skills
 
-List available MCP Builder skills or fetch a specific skill's instructions from the bundled docs.
+List available Builder skills or fetch a specific skill's instructions from the bundled docs.
 
 ```bash
 bitbadges-cli sdk skills               # list all skills
@@ -292,7 +294,7 @@ Add that line to your `.bashrc` or `.zshrc` for persistent completions.
 
 ## Build Commands
 
-Token building (creating collections, generating approvals, etc.) is handled by the [MCP Builder Tools](../ai-agents/mcp-builder-tools.md), not the CLI directly. The CLI focuses on analysis, review, and API access.
+Token building (creating collections, generating approvals, etc.) is handled by the [BitBadges Builder Tools](../ai-agents/builder-tools.md), not the CLI directly. The CLI focuses on analysis, review, and API access.
 
 ## bitbadgeschaind Delegation
 

@@ -60,7 +60,7 @@ The CLI is the recommended interface for AI agents and automation. It provides:
 
 See [CLI for AI Agents](for-ai-agents.md) for end-to-end agent workflows.
 
-For building token collections with AI assistants (Claude, Cursor, etc.), see the [MCP Builder Tools](../ai-agents/mcp-builder-tools.md) which provide 50+ tools on top of the CLI.
+For building token collections with AI assistants (Claude, Cursor, etc.), see the [BitBadges Builder Tools](../ai-agents/builder-tools.md) which provide 50+ tools on top of the CLI.
 
 ## Next Steps
 
@@ -68,4 +68,6 @@ For building token collections with AI assistants (Claude, Cursor, etc.), see th
 - [SDK Commands](sdk-commands.md) — review, interpret, address tools, docs, skills
 - [API Commands](api-commands.md) — 104+ API routes from your terminal
 - [Chain Commands](chain-commands.md) — keys, transactions, on-chain queries
+- [Builder Templates](builder-templates.md) — flag-based generators for vault, subscription, bounty, auction, and 14 other token types
+- [Builder Commands](builder-commands.md) — tools, review, verify, simulate, preview, doctor, session, resources
 - [CLI for AI Agents](for-ai-agents.md) — agent workflows and automation patterns

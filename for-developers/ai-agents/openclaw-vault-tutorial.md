@@ -327,5 +327,5 @@ Give your agent the prompt from the **AI Prompt** tab (Step 3) as part of its sy
 - [MsgTransferTokens](../../x-tokenization/messages/msg-transfer-tokens.md) - Transfer message details
 - [IBC Backed Paths](../../x-tokenization/concepts/ibc-backed-paths.md) - How backing works
 - [Bot Examples](bot-examples.md) - More agent patterns
-- [MCP Builder Tools](mcp-builder-tools.md) - If your agent uses MCP (Claude, etc.)
+- [BitBadges Builder Tools](builder-tools.md) - If your agent speaks MCP (Claude, etc.)
 - [Testnet Faucet](testnet-faucet.md) - Get testnet tokens for testing

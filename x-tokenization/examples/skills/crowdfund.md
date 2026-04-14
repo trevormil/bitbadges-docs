@@ -17,6 +17,7 @@ Required standards: ["Crowdfund"]
 - maxScalingMultiplier: MAX_UINT for unrestricted scaling
 - Deposit coinTransfer.to = "Mint" (auto-resolves to escrow)
 - requireToEqualsInitiatedBy: true on deposit-refund (contributor receives their own refund token)
+- invariants: \`noForcefulPostMintTransfers: true\` — the refund approval (non-mint) MUST NOT set \`overridesFromOutgoingApprovals\` or \`overridesToIncomingApprovals\` (both must be false or omitted). It relies on \`defaultBalances.autoApproveSelfInitiatedOutgoingTransfers: true\` for the outgoing side and on the burn destination for the incoming side. The deposit-refund / deposit-progress / success approvals ARE Mint-side and keep \`overridesFromOutgoingApprovals: true\` as the chain requires, with \`overridesToIncomingApprovals: false\`
 - All permissions frozen after creation
 - DON'T use votingChallenges — goal tracking is via mustOwnTokens, not voting
 - DON'T forget allowAmountScaling on ALL 4 approvals

@@ -1,17 +1,17 @@
-# MCP Builder Tools Reference
+# Builder Tools Reference
 
-The [BitBadges Builder MCP server](https://github.com/BitBadges/bitbadges-builder-mcp) provides 50+ tools for AI assistants to build, audit, and validate BitBadges transactions. It works with Claude Desktop, Claude Code, Cursor, and any MCP-compatible client.
+The [BitBadges Builder](https://github.com/bitbadges/bitbadgesjs/tree/main/packages/bitbadgesjs-sdk/src/builder) provides 50+ tools for AI assistants to build, audit, and validate BitBadges transactions. It works with Claude Desktop, Claude Code, Cursor, and any MCP-compatible client.
 
-> For terminal-based workflows without MCP, use the [BitBadges CLI](../cli/) — it provides 104+ API routes, review/audit tools, and built-in docs from the command line. See [CLI for AI Agents](../cli/for-ai-agents.md).
+> For terminal-based workflows without an MCP client, use the [BitBadges CLI](../cli/) — it provides 104+ API routes, review/audit tools, and built-in docs from the command line. See [CLI for AI Agents](../cli/for-ai-agents.md).
 
 ## Installation
 
 ```bash
 # Install globally
-npm install -g bitbadges-builder-mcp
+npm install -g bitbadgesjs-sdk
 
 # Or run directly (no install)
-npx bitbadges-builder-mcp
+npx -p bitbadgesjs-sdk bitbadges-builder
 ```
 
 ### Claude Desktop
@@ -23,7 +23,7 @@ Add to your `claude_desktop_config.json`:
   "mcpServers": {
     "bitbadges-builder": {
       "command": "npx",
-      "args": ["-y", "bitbadges-builder-mcp"],
+      "args": ["-y", "-p", "bitbadgesjs-sdk", "bitbadges-builder"],
       "env": {
         "BITBADGES_API_KEY": "your-api-key",
         "BITBADGES_MNEMONIC": "your mnemonic phrase"
@@ -36,7 +36,7 @@ Add to your `claude_desktop_config.json`:
 ### Claude Code
 
 ```bash
-claude mcp add bitbadges-builder -- npx -y bitbadges-builder-mcp
+claude mcp add bitbadges-builder -- npx -y -p bitbadgesjs-sdk bitbadges-builder
 ```
 
 ### Cursor
@@ -48,7 +48,7 @@ Add to `.cursor/mcp.json`:
   "mcpServers": {
     "bitbadges-builder": {
       "command": "npx",
-      "args": ["-y", "bitbadges-builder-mcp"],
+      "args": ["-y", "-p", "bitbadgesjs-sdk", "bitbadges-builder"],
       "env": {
         "BITBADGES_API_KEY": "your-api-key"
       }
@@ -112,8 +112,7 @@ Standalone tools for building specific non-collection resources.
 
 | Tool | Description |
 |------|-------------|
-| `audit_collection` | Security audit: centralization, supply inflation, approval flaws, common bugs (9 categories) |
-| `verify_standards` | Verify a collection transaction complies with BitBadges protocol standards. Returns violations with severity levels |
+| `review_collection` | Unified review: audit, standards compliance, and UX findings in one call with audience filtering |
 | `explain_collection` | Human-readable collection report with Q&A mode (user/developer/auditor audiences) |
 | `analyze_collection` | Structured analysis of transferability, approvals, permissions, and how to obtain/transfer tokens |
 
@@ -175,7 +174,7 @@ The per-field tools build up a collection incrementally in a session. This is th
 ```
 set_standards + set_valid_token_ids + set_invariants + add_approval + set_permissions + set_default_balances + set_collection_metadata + set_token_metadata
   → (optional) add_transfer (for auto-mint at creation)
-  → validate_transaction + audit_collection + simulate_transaction (in parallel)
+  → validate_transaction + review_collection + simulate_transaction (in parallel)
   → fix errors with remove_approval + re-add (max 3 attempts)
   → get_transaction (final JSON)
 ```
@@ -184,7 +183,7 @@ set_standards + set_valid_token_ids + set_invariants + add_approval + set_permis
 
 1. **Build** — Call per-field tools in parallel to define the collection: standards, token IDs, invariants, approvals, permissions, metadata, balances.
 2. **Auto-Mint** (optional) — If the user wants tokens minted to specific addresses at creation, call `add_transfer` to append a `MsgTransferTokens` alongside the collection creation.
-3. **Verify** — Call `validate_transaction`, `audit_collection`, and `simulate_transaction` in parallel. Fix any errors with targeted `remove_approval` + re-add.
+3. **Verify** — Call `validate_transaction`, `review_collection`, and `simulate_transaction` in parallel. Fix any errors with targeted `remove_approval` + re-add.
 4. **Export** — Call `get_transaction` to get the final transaction JSON for signing.
 
 ### Query & Verification (No Signing)
@@ -193,7 +192,7 @@ set_standards + set_valid_token_ids + set_invariants + add_approval + set_permis
 query_collection → verify_ownership → (take action based on result)
 ```
 
-> **Note:** The MCP server does not handle signing or broadcasting. Transaction signing must be done externally using the BitBadges SDK, a wallet, or the BitBadges frontend.
+> **Note:** The builder does not handle signing or broadcasting. Transaction signing must be done externally using the BitBadges SDK, a wallet, or the BitBadges frontend.
 
 ## Auto-Mint at Creation
 
@@ -210,9 +209,9 @@ Maximum 4 transfer messages per transaction.
 
 ## Skills (Guided Workflows)
 
-The MCP server includes skill instructions accessible via `get_skill_instructions`. These guide AI agents through building specific collection types.
+The builder includes skill instructions accessible via `get_skill_instructions`. These guide AI agents through building specific collection types.
 
-For full instructions and examples for each skill, see the **[MCP Builder Skills reference](../../x-tokenization/examples/skills/README.md)**.
+For full instructions and examples for each skill, see the **[Builder Skills reference](../../x-tokenization/examples/skills/README.md)**.
 
 Common features like ownership requirements, codes, and passwords are built into the approval system directly and can be composed with any skill.
 
@@ -224,9 +223,9 @@ Common features like ownership requirements, codes, and passwords are built into
 | **GitBook MCP** | [docs.bitbadges.io/~gitbook/mcp](https://docs.bitbadges.io/~gitbook/mcp) | Search BitBadges documentation |
 | **BitBadges API** | [api.bitbadges.io](https://api.bitbadges.io) | REST API for queries and data |
 
-## MCP Resources
+## Builder Resources
 
-The MCP server also exposes embedded documentation as resources:
+The builder also exposes embedded documentation as resources:
 
 | Resource URI | Name | Description |
 |-------------|------|-------------|

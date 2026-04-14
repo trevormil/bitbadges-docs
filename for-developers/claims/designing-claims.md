@@ -89,7 +89,7 @@ Claims integrate with BitBadges' points system. Award points on successful claim
 
 ### AI-Powered Criteria
 
-With AI x MCP x LLMs and services like Zapier or Pipedream, you really have endless possibilities for checking criteria and implementing rewards on your own. It is all just one prompt away.
+With AI x Builder x LLMs and services like Zapier or Pipedream, you really have endless possibilities for checking criteria and implementing rewards on your own. It is all just one prompt away.
 
 **Criteria side:** Pre-evaluate users with your AI model and add eligible addresses to a dynamic store. This avoids long wait times during claim execution and provides better UX.
 

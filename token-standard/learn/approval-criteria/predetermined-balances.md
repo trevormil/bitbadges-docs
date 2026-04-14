@@ -215,7 +215,7 @@ Enable proportional transfers where users can transfer any integer multiple of t
 - **`maxScalingMultiplier` is enforced per transfer, not cumulatively.** A user can execute multiple transfers each up to the max. To cap total exposure, pair scaling with `maxNumTransfers` (limit number of uses) or `approvalAmounts` (limit total token quantity). Without these, the only limit is the escrow/approver's available balance.
 - When `coinTransfers` use `overrideFromWithApproverAddress: true`, the escrow/approver pays `multiplier * baseAmount` per transfer — set `maxScalingMultiplier` conservatively and always set `maxNumTransfers` or `approvalAmounts` to bound total payout
 - Amount scaling is **incompatible** with Quest, Subscription, Invoice, Product, Bid/Listing, and Scheduled Payment standards (these require fixed amounts per transfer)
-- The `audit_collection` tool flags `allowAmountScaling + overrideFromWithApproverAddress` as a warning for review
+- The `review_collection` tool flags `allowAmountScaling + overrideFromWithApproverAddress` as a warning for review
 
 ## Precalculating Balances
 

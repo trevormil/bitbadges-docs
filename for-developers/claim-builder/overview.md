@@ -1,6 +1,6 @@
 # Overview
 
-> 💡 **Note:** This documentation is intended to provide developer documentation for more advanced use cases. Most of the time, you can directly do everything in-site. Or if you need custom functionality, it is oftentimes a better approach to just self-implement the functionality you need rather than deal with the complexities of connecting with claims. LLMs, especially with MCP, are great for implementing all of this stuff. We just provide claims as an out of the box tool in-site.
+> 💡 **Note:** This documentation is intended to provide developer documentation for more advanced use cases. Most of the time, you can directly do everything in-site. Or if you need custom functionality, it is oftentimes a better approach to just self-implement the functionality you need rather than deal with the complexities of connecting with claims. LLMs, especially with builder tools, are great for implementing all of this stuff. We just provide claims as an out of the box tool in-site.
 
 BitBadges claims are designed to be a comprehensive tool directly within the site or via the API for you to custom gate your utility. Claims can be simply thought of as: **Meet criteria? -> Offer utility / rewards.** The implementation process aims to be super flexible, allowing you maximum customization.
 
