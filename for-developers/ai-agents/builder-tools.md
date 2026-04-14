@@ -174,7 +174,7 @@ The per-field tools build up a collection incrementally in a session. This is th
 ```
 set_standards + set_valid_token_ids + set_invariants + add_approval + set_permissions + set_default_balances + set_collection_metadata + set_token_metadata
   → (optional) add_transfer (for auto-mint at creation)
-  → validate_transaction + audit_collection + simulate_transaction (in parallel)
+  → validate_transaction + review_collection + simulate_transaction (in parallel)
   → fix errors with remove_approval + re-add (max 3 attempts)
   → get_transaction (final JSON)
 ```
@@ -183,7 +183,7 @@ set_standards + set_valid_token_ids + set_invariants + add_approval + set_permis
 
 1. **Build** — Call per-field tools in parallel to define the collection: standards, token IDs, invariants, approvals, permissions, metadata, balances.
 2. **Auto-Mint** (optional) — If the user wants tokens minted to specific addresses at creation, call `add_transfer` to append a `MsgTransferTokens` alongside the collection creation.
-3. **Verify** — Call `validate_transaction`, `audit_collection`, and `simulate_transaction` in parallel. Fix any errors with targeted `remove_approval` + re-add.
+3. **Verify** — Call `validate_transaction`, `review_collection`, and `simulate_transaction` in parallel. Fix any errors with targeted `remove_approval` + re-add.
 4. **Export** — Call `get_transaction` to get the final transaction JSON for signing.
 
 ### Query & Verification (No Signing)

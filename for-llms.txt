@@ -8489,7 +8489,7 @@ add_transfer({ from: "Mint", toAddresses: ["bb1youraddress..."], balances: [...]
 
 # 4. Verify (in parallel)
 validate_transaction()
-audit_collection()
+review_collection()
 simulate_transaction()
 
 # 5. Export the final transaction JSON
@@ -8893,7 +8893,7 @@ The per-field tools build up a collection incrementally in a session. This is th
 ```
 set_standards + set_valid_token_ids + set_invariants + add_approval + set_permissions + set_default_balances + set_collection_metadata + set_token_metadata
   → (optional) add_transfer (for auto-mint at creation)
-  → validate_transaction + audit_collection + simulate_transaction (in parallel)
+  → validate_transaction + review_collection + simulate_transaction (in parallel)
   → fix errors with remove_approval + re-add (max 3 attempts)
   → get_transaction (final JSON)
 ```
@@ -8902,7 +8902,7 @@ set_standards + set_valid_token_ids + set_invariants + add_approval + set_permis
 
 1. **Build** — Call per-field tools in parallel to define the collection: standards, token IDs, invariants, approvals, permissions, metadata, balances.
 2. **Auto-Mint** (optional) — If the user wants tokens minted to specific addresses at creation, call `add_transfer` to append a `MsgTransferTokens` alongside the collection creation.
-3. **Verify** — Call `validate_transaction`, `audit_collection`, and `simulate_transaction` in parallel. Fix any errors with targeted `remove_approval` + re-add.
+3. **Verify** — Call `validate_transaction`, `review_collection`, and `simulate_transaction` in parallel. Fix any errors with targeted `remove_approval` + re-add.
 4. **Export** — Call `get_transaction` to get the final transaction JSON for signing.
 
 ### One-Shot Build
@@ -8910,7 +8910,7 @@ set_standards + set_valid_token_ids + set_invariants + add_approval + set_permis
 For simple collections, use `build_token` to generate everything in one call, then verify:
 
 ```
-build_token → audit_collection → validate_transaction → simulate_transaction → (user signs via SDK/frontend)
+build_token → review_collection → validate_transaction → simulate_transaction → (user signs via SDK/frontend)
 ```
 
 ### Query & Verification (No Signing)
@@ -26121,7 +26121,7 @@ Enable proportional transfers where users can transfer any integer multiple of t
 - **`maxScalingMultiplier` is enforced per transfer, not cumulatively.** A user can execute multiple transfers each up to the max. To cap total exposure, pair scaling with `maxNumTransfers` (limit number of uses) or `approvalAmounts` (limit total token quantity). Without these, the only limit is the escrow/approver's available balance.
 - When `coinTransfers` use `overrideFromWithApproverAddress: true`, the escrow/approver pays `multiplier * baseAmount` per transfer — set `maxScalingMultiplier` conservatively and always set `maxNumTransfers` or `approvalAmounts` to bound total payout
 - Amount scaling is **incompatible** with Quest, Subscription, Invoice, Product, Bid/Listing, and Scheduled Payment standards (these require fixed amounts per transfer)
-- The `audit_collection` tool flags `allowAmountScaling + overrideFromWithApproverAddress` as a warning for review
+- The `review_collection` tool flags `allowAmountScaling + overrideFromWithApproverAddress` as a warning for review
 
 ## Precalculating Balances
 

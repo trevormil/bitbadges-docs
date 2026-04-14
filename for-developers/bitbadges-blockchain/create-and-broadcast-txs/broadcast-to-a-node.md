@@ -11,6 +11,8 @@ const res = await BitBadgesApi.simulateTx(txBody); //Returned from signing steps
 
 This will return the gas used and success statuses on a dry run of the transaction.
 
+> **Payload shapes.** `/api/v0/simulate` accepts two payload shapes. Use the proto-encoded form (`{ mode, tx_bytes }`) shown above — this is the fully supported path and what the signing flows produce after signing. A second shape, `{ messages, memo?, fee, creatorAddress }` with unsigned JSON messages, is also accepted and proto-encoded server-side for internal agent/CLI tooling. The JSON path is still stabilizing and only covers the tokenization + baseline Cosmos message tiers, so external integrations should stick with the `tx_bytes` form.
+
 ```typescript
 export interface SimulateTxRouteSuccessResponse<T extends NumberType> {
     gas_info: {

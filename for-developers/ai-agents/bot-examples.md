@@ -197,7 +197,7 @@ add_transfer({ from: "Mint", toAddresses: ["bb1youraddress..."], balances: [...]
 
 # 4. Verify (in parallel)
 validate_transaction()
-audit_collection()
+review_collection()
 simulate_transaction()
 
 # 5. Export the final transaction JSON
