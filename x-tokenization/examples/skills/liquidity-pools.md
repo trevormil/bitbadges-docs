@@ -50,9 +50,9 @@ When enabling liquidity pools for a collection, follow these requirements:
          "decimals": "6",
          "symbol": "vATOM",
          "isDefaultDisplay": true,
-         "metadata": { "uri": "", "customData": "", "image": "https://example.com/token-logo.png" }
+         "metadata": { "uri": "ipfs://METADATA_ALIAS_uvatom_UNIT", "customData": "" }
        }],
-       "metadata": { "uri": "", "customData": "", "image": "https://example.com/token-logo.png" }
+       "metadata": { "uri": "ipfs://METADATA_ALIAS_uvatom", "customData": "" }
      }]
    }
    ```
@@ -61,6 +61,6 @@ When enabling liquidity pools for a collection, follow these requirements:
 
 - disablePoolCreation MUST be false (not true)
 - MUST configure at least one alias path (required for liquidity pools)
-- All alias path and denomUnit metadata MUST include an `image` field with a valid URL (token logo)
+- PathMetadata (on every aliasPath and denomUnit) is ONLY `{ uri, customData }`. Put the token logo in the off-chain JSON at the placeholder URI and register a matching entry in `metadataPlaceholders` — never put `image` on the proto.
 - Merkle challenges are NOT compatible with liquidity pools
 - This enables decentralized exchange (DEX) trading interfaces
