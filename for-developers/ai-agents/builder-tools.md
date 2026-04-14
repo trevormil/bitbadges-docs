@@ -112,8 +112,7 @@ Standalone tools for building specific non-collection resources.
 
 | Tool | Description |
 |------|-------------|
-| `audit_collection` | Security audit: centralization, supply inflation, approval flaws, common bugs (9 categories) |
-| `verify_standards` | Verify a collection transaction complies with BitBadges protocol standards. Returns violations with severity levels |
+| `review_collection` | Unified review: audit, standards compliance, and UX findings in one call with audience filtering |
 | `explain_collection` | Human-readable collection report with Q&A mode (user/developer/auditor audiences) |
 | `analyze_collection` | Structured analysis of transferability, approvals, permissions, and how to obtain/transfer tokens |
 
