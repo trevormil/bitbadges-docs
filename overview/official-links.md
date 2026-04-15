@@ -16,8 +16,8 @@ curl -fsSL https://raw.githubusercontent.com/BitBadges/bitbadgeschain/master/ins
 Supports Linux, macOS (Intel + Apple Silicon), and Windows (Git Bash / WSL). See [CLI & Chain Binary](../for-developers/cli/) for full documentation.
 
 * [Chain Binary Releases](https://github.com/BitBadges/bitbadgeschain/releases)
-* [SDK CLI (npm)](https://www.npmjs.com/package/bitbadgesjs-sdk) — `npm install -g bitbadgesjs-sdk`
-* [BitBadges Builder Tools (npm)](https://www.npmjs.com/package/bitbadgesjs-sdk) — `npm install -g bitbadgesjs-sdk`
+* [SDK CLI (npm)](https://www.npmjs.com/package/bitbadges) — `npm install -g bitbadges`
+* [BitBadges Builder Tools (npm)](https://www.npmjs.com/package/bitbadges) — `npm install -g bitbadges`
 
 ### Get Featured
 
@@ -42,17 +42,17 @@ Supports Linux, macOS (Intel + Apple Silicon), and Windows (Git Bash / WSL). See
 
 ### API & SDK
 
-* [NPM API / SDK Package](https://www.npmjs.com/package/bitbadgesjs-sdk) ([Docs](../for-developers/bitbadges-sdk/))
+* [NPM API / SDK Package](https://www.npmjs.com/package/bitbadges) ([Docs](../for-developers/bitbadges-sdk/))
 * [API Documentation](https://bitbadges.stoplight.io/docs/bitbadges) ([Docs](../for-developers/bitbadges-api/))
 
 ```bash
 # Using npm
-npm install bitbadgesjs-sdk
+npm install bitbadges
 
 # Using pnpm
-pnpm add bitbadgesjs-sdk
+pnpm add bitbadges
 
 # Using bun
-bun add bitbadgesjs-sdk
+bun add bitbadges
 ```
 

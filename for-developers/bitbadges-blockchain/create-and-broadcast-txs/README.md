@@ -33,7 +33,7 @@ The **[BitBadgesSigningClient](./signing-client.md)** provides a simple, all-in-
 - Automatic sequence retry on mismatch
 
 ```typescript
-import { BitBadgesSigningClient, GenericCosmosAdapter } from 'bitbadgesjs-sdk';
+import { BitBadgesSigningClient, GenericCosmosAdapter } from 'bitbadges';
 
 const adapter = await GenericCosmosAdapter.fromKeplr('bitbadges-1');
 const client = new BitBadgesSigningClient({ adapter });

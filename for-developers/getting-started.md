@@ -61,11 +61,11 @@ Most of your setup and management (and oftentimes all) will be done directly in-
 {% endcontent-ref %}
 
 ```bash
-npm i bitbadgesjs-sdk
+npm i bitbadges
 ```
 
 ```ts
-import { BitBadgesAPI } from 'bitbadgesjs-sdk';
+import { BitBadgesAPI } from 'bitbadges';
 
 const api = new BitBadgesAPI({
   ...
@@ -80,10 +80,10 @@ The BitBadges Builder gives any AI assistant (Claude, Cursor, etc.) 30+ tools to
 
 ```bash
 # Install globally
-npm install -g bitbadgesjs-sdk
+npm install -g bitbadges
 
 # Or run directly with npx
-npx -p bitbadgesjs-sdk bitbadges-builder
+npx -p bitbadges bitbadges-builder
 ```
 
 **Claude Desktop** — add to `claude_desktop_config.json`:
@@ -93,7 +93,7 @@ npx -p bitbadgesjs-sdk bitbadges-builder
   "mcpServers": {
     "bitbadges-builder": {
       "command": "npx",
-      "args": ["-y", "-p", "bitbadgesjs-sdk", "bitbadges-builder"],
+      "args": ["-y", "-p", "bitbadges", "bitbadges-builder"],
       "env": {
         "BITBADGES_API_KEY": "your-api-key"
       }
@@ -105,7 +105,7 @@ npx -p bitbadgesjs-sdk bitbadges-builder
 **Claude Code:**
 
 ```bash
-claude mcp add bitbadges-builder -- npx -y -p bitbadgesjs-sdk bitbadges-builder
+claude mcp add bitbadges-builder -- npx -y -p bitbadges bitbadges-builder
 ```
 
 See the full [Builder Tools Reference](ai-agents/builder-tools.md) for all tools, schemas, and workflows. For bot/agent guides, see [AI Agents & Bots](ai-agents/).
@@ -116,8 +116,8 @@ Below, we provide some resources that may be helpful for developing with AI. If 
 
 | Resource | Link |
 |----------|------|
-| **BitBadges Builder Tools** | `npm i -g bitbadgesjs-sdk` — [Reference](ai-agents/builder-tools.md) |
-| **BitBadges SDK** | `npm i bitbadgesjs-sdk` — [Docs](bitbadges-sdk/overview.md) |
+| **BitBadges Builder Tools** | `npm i -g bitbadges` — [Reference](ai-agents/builder-tools.md) |
+| **BitBadges SDK** | `npm i bitbadges` — [Docs](bitbadges-sdk/overview.md) |
 | **AI Quickstarter Repo** | [github.com/BitBadges/bitbadges-quickstarter-ai](https://github.com/BitBadges/bitbadges-quickstarter-ai) |
 | **GitBook MCP** | [docs.bitbadges.io/~gitbook/mcp](https://docs.bitbadges.io/~gitbook/mcp) — searchDocumentation tool |
 | **API OpenAPI Spec** | [openapi.json](https://raw.githubusercontent.com/bitbadges/bitbadgesjs/main/packages/bitbadgesjs-sdk/openapi-hosted/openapi.json) |

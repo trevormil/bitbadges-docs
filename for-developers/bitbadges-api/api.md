@@ -39,7 +39,7 @@ Note that this testnet API is an entirely separate service from normal API. Noth
 If you are using JavaScript / TypeScript, consider using the typed API SDK for convenience. This will give you typed routes, provide quality checks, and also auto-convert all responses to your desired number type (bigint, Number, etc).
 
 ```typescript
-import { BigIntify, BitBadgesAPI } from 'bitbadgesjs-sdk';
+import { BigIntify, BitBadgesAPI } from 'bitbadges';
 
 export type DesiredNumberType = bigint;
 export const ConvertFunction = BigIntify;

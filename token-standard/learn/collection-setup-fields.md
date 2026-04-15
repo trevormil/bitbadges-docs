@@ -7,7 +7,7 @@ Most fields are updatable over time, according to their corresponding permission
 ## Complete Example
 
 ```typescript
-import { MsgCreateCollection } from 'bitbadgesjs-sdk';
+import { MsgCreateCollection } from 'bitbadges';
 
 const msg: MsgCreateCollection = {
     creator: 'bb1kj9kt5y64n5a8677fhjqnmcc24ht2vy9atmdls',

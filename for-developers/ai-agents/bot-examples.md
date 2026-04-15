@@ -7,7 +7,7 @@ Copy-paste examples for common bot and AI agent patterns. All examples use testn
 Create a new fungible token collection with server-side signing.
 
 ```typescript
-import { BitBadgesSigningClient, GenericEvmAdapter, NETWORK_CONFIGS, MsgCreateCollection } from 'bitbadgesjs-sdk';
+import { BitBadgesSigningClient, GenericEvmAdapter, NETWORK_CONFIGS, MsgCreateCollection } from 'bitbadges';
 
 const adapter = await GenericEvmAdapter.fromMnemonic(
   process.env.BOT_MNEMONIC!,
@@ -39,7 +39,7 @@ if (result.success) {
 Check a user's token balance and transfer tokens based on a condition.
 
 ```typescript
-import { BitBadgesAPI, BitBadgesSigningClient, GenericEvmAdapter, NETWORK_CONFIGS, MsgTransferTokens } from 'bitbadgesjs-sdk';
+import { BitBadgesAPI, BitBadgesSigningClient, GenericEvmAdapter, NETWORK_CONFIGS, MsgTransferTokens } from 'bitbadges';
 
 const api = new BitBadgesAPI({ apiUrl: 'https://api.bitbadges.io/testnet' });
 
@@ -88,7 +88,7 @@ if (/* condition based on balance */) {
 Verify that a user owns a specific badge before granting access.
 
 ```typescript
-import { BitBadgesAPI } from 'bitbadgesjs-sdk';
+import { BitBadgesAPI } from 'bitbadges';
 
 const api = new BitBadgesAPI({ apiUrl: 'https://api.bitbadges.io' });
 
@@ -128,7 +128,7 @@ Listen for transfers on a specific collection and take action.
 
 ```typescript
 import WebSocket from 'ws';
-import { BitBadgesSigningClient, GenericEvmAdapter, NETWORK_CONFIGS } from 'bitbadgesjs-sdk';
+import { BitBadgesSigningClient, GenericEvmAdapter, NETWORK_CONFIGS } from 'bitbadges';
 
 const ws = new WebSocket('wss://rpc-testnet.bitbadges.io/websocket');
 

@@ -44,10 +44,10 @@ If you only need the SDK CLI (API access, review tools, docs) without the chain 
 
 ```bash
 # npm
-npm install -g bitbadgesjs-sdk
+npm install -g bitbadges
 
 # bun
-bun install -g bitbadgesjs-sdk
+bun install -g bitbadges
 ```
 
 Verify:

@@ -237,7 +237,7 @@ const msg = {
 Provide enough context for the example to be useful:
 
 ```typescript
-import { MsgCreateCollection } from 'bitbadgesjs-sdk';
+import { MsgCreateCollection } from 'bitbadges';
 
 // Create a collection with 100 token IDs
 const collection = {
@@ -451,11 +451,11 @@ const address = '0x...'; // Ethereum format
 
 ### SDK Package
 
-Use `bitbadgesjs-sdk` (not `@bitbadges/bitbadgesjs`):
+Use `bitbadges` (not `@bitbadges/bitbadgesjs`):
 
 ```typescript
 // ✅ Correct
-import { BitBadgesAPI, BigIntify, Balance } from 'bitbadgesjs-sdk';
+import { BitBadgesAPI, BigIntify, Balance } from 'bitbadges';
 
 // ❌ Incorrect
 import { BitBadgesAPI } from '@bitbadges/bitbadgesjs';

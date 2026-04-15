@@ -8,10 +8,10 @@ The [BitBadges Builder](https://github.com/bitbadges/bitbadgesjs/tree/main/packa
 
 ```bash
 # Install globally
-npm install -g bitbadgesjs-sdk
+npm install -g bitbadges
 
 # Or run directly (no install)
-npx -p bitbadgesjs-sdk bitbadges-builder
+npx -p bitbadges bitbadges-builder
 ```
 
 ### Claude Desktop
@@ -23,7 +23,7 @@ Add to your `claude_desktop_config.json`:
   "mcpServers": {
     "bitbadges-builder": {
       "command": "npx",
-      "args": ["-y", "-p", "bitbadgesjs-sdk", "bitbadges-builder"],
+      "args": ["-y", "-p", "bitbadges", "bitbadges-builder"],
       "env": {
         "BITBADGES_API_KEY": "your-api-key",
         "BITBADGES_MNEMONIC": "your mnemonic phrase"
@@ -36,7 +36,7 @@ Add to your `claude_desktop_config.json`:
 ### Claude Code
 
 ```bash
-claude mcp add bitbadges-builder -- npx -y -p bitbadgesjs-sdk bitbadges-builder
+claude mcp add bitbadges-builder -- npx -y -p bitbadges bitbadges-builder
 ```
 
 ### Cursor
@@ -48,7 +48,7 @@ Add to `.cursor/mcp.json`:
   "mcpServers": {
     "bitbadges-builder": {
       "command": "npx",
-      "args": ["-y", "-p", "bitbadgesjs-sdk", "bitbadges-builder"],
+      "args": ["-y", "-p", "bitbadges", "bitbadges-builder"],
       "env": {
         "BITBADGES_API_KEY": "your-api-key"
       }
@@ -219,7 +219,7 @@ Common features like ownership requirements, codes, and passwords are built into
 
 | Tool | Install | Description |
 |------|---------|-------------|
-| **BitBadges SDK** | `npm i bitbadgesjs-sdk` | TypeScript SDK for direct blockchain interaction |
+| **BitBadges SDK** | `npm i bitbadges` | TypeScript SDK for direct blockchain interaction |
 | **GitBook MCP** | [docs.bitbadges.io/~gitbook/mcp](https://docs.bitbadges.io/~gitbook/mcp) | Search BitBadges documentation |
 | **BitBadges API** | [api.bitbadges.io](https://api.bitbadges.io) | REST API for queries and data |
 

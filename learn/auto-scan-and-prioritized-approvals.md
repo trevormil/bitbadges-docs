@@ -35,7 +35,7 @@ const msg: MsgTransferTokens = {
 ## Prioritized Approvals Mode
 
 ```typescript
-import { MsgTransferTokens } from 'bitbadgesjs-sdk';
+import { MsgTransferTokens } from 'bitbadges';
 
 const msg: MsgTransferTokens = {
     creator: 'bb1initiator...',
@@ -196,7 +196,7 @@ const approval: CollectionApproval<bigint> = {
 
 // Transfer must specify version '1' to use updated approval
 // If mismatched version, transfer will fail / ignore that approval
-import { MsgTransferTokens } from 'bitbadgesjs-sdk';
+import { MsgTransferTokens } from 'bitbadges';
 
 const msg: MsgTransferTokens = {
     creator: 'bb1initiator...',
@@ -370,7 +370,7 @@ const collectionApproval: CollectionApproval<bigint> = {
 ### Auto-Scan Compatible Transfer
 
 ```typescript
-import { MsgTransferTokens } from 'bitbadgesjs-sdk';
+import { MsgTransferTokens } from 'bitbadges';
 
 // Simple transfer - no side effects
 const msg: MsgTransferTokens = {

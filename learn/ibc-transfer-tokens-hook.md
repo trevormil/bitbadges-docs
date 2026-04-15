@@ -110,7 +110,7 @@ The `creator` of the `MsgTransferTokens` is **not** the original sender on the s
 You can derive this address ahead of time to configure your approvals:
 
 ```typescript
-import { deriveIntermediateSender } from 'bitbadgesjs-sdk';
+import { deriveIntermediateSender } from 'bitbadges';
 
 // Derive the intermediate sender for a given channel + source address
 const creator = deriveIntermediateSender('channel-0', 'osmo1...', 'bb');

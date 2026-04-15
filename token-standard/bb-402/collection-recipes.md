@@ -166,7 +166,7 @@ Mint the appropriate token ID to each user. Check with `$or` for "any tier" or s
 
 Collections can be created:
 - **On-site** at [bitbadges.io](https://bitbadges.io) — recommended for most cases. You can also use an LLM with the [BitBadges Builder](https://github.com/bitbadges/bitbadgesjs/tree/main/packages/bitbadgesjs-sdk/src/builder) to help configure collections.
-- **Via SDK** using `MsgUniversalUpdateCollection` from `bitbadgesjs-sdk`
+- **Via SDK** using `MsgUniversalUpdateCollection` from `bitbadges`
 - **Via chain CLI** using `bitbadgeschaind tx tokenization`
 
 Most providers will create their collection on-site and then use the SDK or API to mint/revoke programmatically.

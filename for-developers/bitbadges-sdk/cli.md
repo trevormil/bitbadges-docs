@@ -7,7 +7,7 @@ The BitBadges CLI provides SDK utilities and API access from your terminal. It s
 ## Installation
 
 ```bash
-npm install -g bitbadgesjs-sdk
+npm install -g bitbadges
 ```
 
 This installs the `bitbadges-cli` command globally. Verify:
@@ -29,7 +29,7 @@ Discovery order:
 
 1. `BITBADGES_SDK_CLI_PATH` environment variable
 2. `bitbadges-cli` on PATH
-3. `npx -p bitbadgesjs-sdk bitbadges-cli` as fallback
+3. `npx -p bitbadges bitbadges-cli` as fallback
 
 ## Configuration
 
@@ -313,6 +313,6 @@ The binary looks for the CLI in this order:
 
 1. `BITBADGES_SDK_CLI_PATH` environment variable
 2. `bitbadges-cli` on PATH
-3. `npx -p bitbadgesjs-sdk bitbadges-cli` as fallback
+3. `npx -p bitbadges bitbadges-cli` as fallback
 
 If the CLI is not found, the chain binary prints an install message but does not error -- chain operations (keys, tx, query) continue to work.

@@ -307,10 +307,10 @@ Using files is recommended for complex transactions. The JSON schema for each me
 
 ## For Developers (SDK Alternative)
 
-If you prefer programmatic signing over the CLI, use the [BitBadgesSigningClient](./signing-client.md) from `bitbadgesjs-sdk`. It provides TypeScript functions for all transaction types with automatic gas estimation, sequence management, and broadcasting.
+If you prefer programmatic signing over the CLI, use the [BitBadgesSigningClient](./signing-client.md) from `bitbadges`. It provides TypeScript functions for all transaction types with automatic gas estimation, sequence management, and broadcasting.
 
 ```typescript
-import { BitBadgesSigningClient, GenericCosmosAdapter } from 'bitbadgesjs-sdk';
+import { BitBadgesSigningClient, GenericCosmosAdapter } from 'bitbadges';
 
 const adapter = await GenericCosmosAdapter.fromMnemonic('your mnemonic here', 'bitbadges-1');
 const client = new BitBadgesSigningClient({ adapter });

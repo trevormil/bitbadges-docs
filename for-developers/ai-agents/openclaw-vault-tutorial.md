@@ -37,7 +37,7 @@ Your AI agent needs a wallet to sign transactions. You can use either a Cosmos (
 Generate a mnemonic and derive a BitBadges address:
 
 ```typescript
-import { BitBadgesSigningClient, GenericEvmAdapter, NETWORK_CONFIGS } from 'bitbadgesjs-sdk';
+import { BitBadgesSigningClient, GenericEvmAdapter, NETWORK_CONFIGS } from 'bitbadges';
 
 // Store this mnemonic securely (env var, secret manager, etc.)
 const adapter = await GenericEvmAdapter.fromMnemonic(
@@ -56,7 +56,7 @@ console.log('Agent address:', client.address); // 0x...
 ### Option B: EVM Wallet from Private Key
 
 ```typescript
-import { GenericEvmAdapter, NETWORK_CONFIGS } from 'bitbadgesjs-sdk';
+import { GenericEvmAdapter, NETWORK_CONFIGS } from 'bitbadges';
 
 const adapter = await GenericEvmAdapter.fromPrivateKey(
   process.env.AGENT_PRIVATE_KEY!, // hex private key (with or without 0x prefix)
@@ -69,7 +69,7 @@ const client = new BitBadgesSigningClient({ adapter });
 ### Option C: Cosmos Wallet
 
 ```typescript
-import { BitBadgesSigningClient, GenericCosmosAdapter } from 'bitbadgesjs-sdk';
+import { BitBadgesSigningClient, GenericCosmosAdapter } from 'bitbadges';
 
 const adapter = await GenericCosmosAdapter.fromMnemonic(
   process.env.AGENT_MNEMONIC!,
@@ -109,7 +109,7 @@ Your vault's transferability rules determine what the agent can and can't do. Th
 ### Reading Rules Programmatically
 
 ```typescript
-import { BitBadgesAPI } from 'bitbadgesjs-sdk';
+import { BitBadgesAPI } from 'bitbadges';
 
 const api = new BitBadgesAPI({ apiUrl: 'https://api.bitbadges.io' });
 
@@ -156,7 +156,7 @@ Withdrawing converts vault tokens back to USDC. The agent sends its vault tokens
 ### Building the Withdraw Transaction
 
 ```typescript
-import { MsgTransferTokens } from 'bitbadgesjs-sdk';
+import { MsgTransferTokens } from 'bitbadges';
 
 const COLLECTION_ID = 'YOUR_COLLECTION_ID';
 const BACKING_ADDRESS = 'bb1...'; // The vault's backing address (from AI Prompt tab)

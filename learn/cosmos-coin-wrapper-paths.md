@@ -170,7 +170,7 @@ Used for compatibility with existing Cosmos SDK interfaces without actual wrappi
 Wrapper addresses are auto-generated based on the denom:
 
 ```typescript
-import { generateAliasAddressForDenom } from 'bitbadgesjs-sdk';
+import { generateAliasAddressForDenom } from 'bitbadges';
 
 const denom = 'utoken';
 const wrapperAddress = generateAliasAddressForDenom(denom);

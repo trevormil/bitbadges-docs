@@ -37,7 +37,7 @@ console.log(res.balance); // e.g. 100n
 const res = await api.getBalanceByAddressSpecificToken('1', '5', 'bb1...', undefined, { time: 1700000000000n });
 
 // If you already have a balances array, use the helpers directly
-import { getBalanceForIdNow, getBalanceForIdAndTime } from 'bitbadgesjs-sdk';
+import { getBalanceForIdNow, getBalanceForIdAndTime } from 'bitbadges';
 
 const amount = getBalanceForIdNow(5n, balances);
 const historicalAmount = getBalanceForIdAndTime(5n, 1700000000000n, balances);

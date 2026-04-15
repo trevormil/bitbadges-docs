@@ -13,11 +13,11 @@ This installs the chain binary and SDK CLI. For CLI-based agent workflows (query
 ## 5-Minute Quickstart (TypeScript)
 
 ```bash
-npm install bitbadgesjs-sdk
+npm install bitbadges
 ```
 
 ```typescript
-import { BitBadgesSigningClient, GenericEvmAdapter, MsgTransferTokens, NETWORK_CONFIGS } from 'bitbadgesjs-sdk';
+import { BitBadgesSigningClient, GenericEvmAdapter, MsgTransferTokens, NETWORK_CONFIGS } from 'bitbadges';
 
 // 1. Create adapter from mnemonic (server-side)
 const adapter = await GenericEvmAdapter.fromMnemonic(
@@ -55,8 +55,8 @@ console.log('TX Hash:', result.txHash);
 | Path | Best For | Install |
 |------|----------|---------|
 | **CLI & Chain Binary** | Terminal agents, shell scripts, any language | `curl -fsSL .../install.sh \| sh` — [guide](../cli/for-ai-agents.md) |
-| **BitBadges Builder Tools** | AI assistants (Claude, Cursor, etc.) | `npm i -g bitbadgesjs-sdk` |
-| **SDK Signing Client** | Full-featured TypeScript bots | `npm i bitbadgesjs-sdk` |
+| **BitBadges Builder Tools** | AI assistants (Claude, Cursor, etc.) | `npm i -g bitbadges` |
+| **SDK Signing Client** | Full-featured TypeScript bots | `npm i bitbadges` |
 | **Direct HTTP** | Lightweight scripts, any language | REST calls to `api.bitbadges.io` |
 | **Agent Spending Authorization** | Set daily caps, time windows, and revocation | [guide](agent-spending-authorization.md) |
 
@@ -64,10 +64,10 @@ console.log('TX Hash:', result.txHash);
 
 ```bash
 # Claude Code (one command)
-claude mcp add bitbadges-builder -- npx -y -p bitbadgesjs-sdk bitbadges-builder
+claude mcp add bitbadges-builder -- npx -y -p bitbadges bitbadges-builder
 
 # Or install globally
-npm install -g bitbadgesjs-sdk
+npm install -g bitbadges
 ```
 
 See the full [Builder Tools Reference](builder-tools.md) for all 50+ tools (including session-based per-field builders), configuration for Claude Desktop / Cursor, and workflow guides.

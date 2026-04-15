@@ -16,7 +16,7 @@ Use the BitBadges API SDK to create claims. The example below creates a code-gat
 
 ```typescript
 import crypto from 'crypto';
-import { BitBadgesAPI } from 'bitbadgesjs-sdk';
+import { BitBadgesAPI } from 'bitbadges';
 
 const api = new BitBadgesAPI({ apiUrl: 'https://api.bitbadges.io' });
 

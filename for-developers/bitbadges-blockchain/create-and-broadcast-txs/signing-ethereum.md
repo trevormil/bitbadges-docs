@@ -21,7 +21,7 @@ The `createTransactionPayload` function now supports optional EVM precompile con
 ### Basic Usage
 
 ```typescript
-import { createTransactionPayload, TxContext, MsgTransferTokens } from 'bitbadgesjs-sdk';
+import { createTransactionPayload, TxContext, MsgTransferTokens } from 'bitbadges';
 
 // Create your messages
 const msg = new MsgTransferTokens({
@@ -313,7 +313,7 @@ import {
   TxContext,
   MsgTransferTokens,
   TransactionPayload
-} from 'bitbadgesjs-sdk';
+} from 'bitbadges';
 import { useSendTransaction } from '@privy-io/react-auth';
 
 function useEthereumSigning() {
