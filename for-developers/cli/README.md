@@ -37,6 +37,7 @@ Use whichever you prefer. The chain binary adds key management, transaction sign
 
 | Capability | Command | Example |
 |-----------|---------|---------|
+| **Create a collection with no wallet setup** | `bitbadges-cli builder create-with-burner` | `bitbadges-cli builder templates subscription … \| bitbadges-cli builder create-with-burner --msg-stdin --manager bb1… --local` |
 | **Query any collection** | `bitbadges-cli api tokens get-collection` | `bitbadges-cli api tokens get-collection 1` |
 | **Review and audit tokens** | `bitbadges-cli sdk review` | `bitbadges-cli sdk review tx.json` |
 | **Browse 104+ API routes** | `bitbadges-cli api` | `bitbadges-cli api tokens --help` |
@@ -69,5 +70,6 @@ For building token collections with AI assistants (Claude, Cursor, etc.), see th
 - [API Commands](api-commands.md) — 104+ API routes from your terminal
 - [Chain Commands](chain-commands.md) — keys, transactions, on-chain queries
 - [Builder Templates](builder-templates.md) — flag-based generators for vault, subscription, bounty, auction, and 14 other token types
+- [Create With Burner](create-with-burner.md) — ship a create-collection tx without bringing your own wallet
 - [Builder Commands](builder-commands.md) — tools, review, verify, simulate, preview, doctor, session, resources
 - [CLI for AI Agents](for-ai-agents.md) — agent workflows and automation patterns
