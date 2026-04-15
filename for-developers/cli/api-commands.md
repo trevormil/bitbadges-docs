@@ -1,6 +1,6 @@
 # API Commands
 
-The `api` subcommand provides access to all 104+ indexer API routes, auto-generated from the OpenAPI spec. Routes are grouped by category. Available via both `bitbadges-cli api` and `bitbadgeschaind api`.
+The `api` subcommand provides access to all 104+ indexer API routes, auto-generated from the OpenAPI spec. Routes are grouped by category. Available via both `bitbadges-cli api` and `bitbadgeschaind cli api`.
 
 ## Route Groups
 

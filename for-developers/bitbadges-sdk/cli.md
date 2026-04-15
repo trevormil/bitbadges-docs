@@ -21,8 +21,8 @@ bitbadges-cli --help
 The chain binary delegates `sdk` and `api` subcommands to the Node.js CLI automatically:
 
 ```bash
-bitbadgeschaind sdk review tx.json
-bitbadgeschaind api tokens get-collection 1
+bitbadgeschaind cli sdk review tx.json
+bitbadgeschaind cli api tokens get-collection 1
 ```
 
 Discovery order:
@@ -302,10 +302,10 @@ The Go chain binary includes `sdk` and `api` subcommands that delegate to the No
 
 ```bash
 # These are equivalent:
-bitbadgeschaind sdk review tx.json
+bitbadgeschaind cli sdk review tx.json
 bitbadges-cli sdk review tx.json
 
-bitbadgeschaind api tokens get-collection 1
+bitbadgeschaind cli api tokens get-collection 1
 bitbadges-cli api tokens get-collection 1
 ```
 

@@ -21,13 +21,13 @@ bitbadges-cli sdk status
 
 ## How They Work Together
 
-The chain binary delegates `sdk` and `api` subcommands to the Node.js CLI. These are equivalent:
+The chain binary delegates every `bitbadges-cli` subcommand to the Node.js CLI via a single `cli` forwarder. These are equivalent:
 
 ```bash
-bitbadgeschaind sdk review tx.json
+bitbadgeschaind cli sdk review tx.json
 bitbadges-cli sdk review tx.json
 
-bitbadgeschaind api tokens get-collection 1
+bitbadgeschaind cli api tokens get-collection 1
 bitbadges-cli api tokens get-collection 1
 ```
 
