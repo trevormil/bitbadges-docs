@@ -4,7 +4,7 @@ The `bitbadges-cli builder templates` command provides 18 template builders that
 
 All build commands accept friendly inputs -- use coin symbols like `USDC` instead of raw IBC denominations, and duration shorthands like `30d` instead of millisecond timestamps. The output is a fully-formed transaction message that can be signed and broadcast using the SDK, the BitBadges frontend, or the chain binary.
 
-> **Tip — don't want to bring your own wallet?** Pipe the output of any collection template straight into [`broadcast-with-hot-wallet`](broadcast-with-hot-wallet.md). The CLI generates a throwaway signer, funds it from the faucet, broadcasts the create-collection tx, and hands ownership to the address you pass as `--manager`. No keys to set up.
+> **Tip — don't want to bring your own wallet?** Pipe the output of any collection template straight into [`create-with-burner`](create-with-burner.md). The CLI generates a throwaway signer, funds it from the faucet, broadcasts the create-collection tx, and hands ownership to the address you pass as `--manager`. No keys to set up.
 
 ## Common Flags
 
