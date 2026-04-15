@@ -32,7 +32,7 @@ Every command that takes an `<input>` accepts the same five shapes:
 
 ## builder tools
 
-The `tools` subcommand is the in-process twin of the BitBadges Builder MCP stdio server. Every tool the `bitbadges-builder-mcp` bin exposes to Claude Desktop is reachable here as a plain function call — no subprocess, no MCP protocol round-trip.
+The `tools` subcommand is the in-process surface for every builder tool the SDK exposes — the same set the legacy `bitbadges-builder-mcp` stdio server used to ship to Claude Desktop, now reachable as a plain function call with no subprocess and no MCP protocol round-trip. The builder tools are bundled inside `bitbadgesjs-sdk` (`dist/cjs/builder/`) and are shared by the CLI, the chain binary's `builder` forwarder, and any Node host that imports the SDK directly.
 
 ### builder tools list
 
@@ -178,7 +178,7 @@ bitbadges-cli builder preview tx.json --json
 bitbadges-cli builder preview tx.json --frontend-url https://testnet.bitbadges.io
 ```
 
-The endpoint (`/api/v0/builder/preview`) is open — no API key required. The unguessable code baked into the returned URL is the secret. Uploaded previews live in the indexer's Redis cache for one hour.
+The CLI posts the tx to the indexer's `/api/v0/builder/preview` route, which is **premium-gated** — requests without a valid premium API key return 402 Payment Required. Uploaded previews live in the indexer's Redis cache for one hour, and the unguessable code baked into the returned URL is what keeps unauthorized viewers out.
 
 **Options:**
 
@@ -188,6 +188,97 @@ The endpoint (`/api/v0/builder/preview`) is open — no API key required. The un
 | `--frontend-url <url>` | Override the `bitbadges.io` base for the printed URL (default: `https://bitbadges.io`) |
 | `--network` / `--testnet` / `--local` / `--url` | Indexer target for the upload |
 
+### Preview API reference
+
+The CLI is a thin wrapper over two indexer routes. You can call them directly — for example, from a non-Node service that still wants to hand a built tx off to a reviewer.
+
+Both routes are gated by the premium-only auth handler. An anonymous caller, or a caller whose API key does not carry a premium entitlement, will receive `402 Payment Required`. The same API key you use for `builder simulate` works here.
+
+#### POST /api/v0/builder/preview
+
+Upload a built transaction and receive a short code plus expiry metadata.
+
+```bash
+curl -X POST https://api.bitbadges.io/api/v0/builder/preview \
+  -H "Content-Type: application/json" \
+  -H "x-api-key: $BITBADGES_API_KEY" \
+  -d '{
+        "transaction": {
+          "messages": [ /* tx messages, with per-msg _meta.metadataPlaceholders if any */ ]
+        }
+      }'
+```
+
+Request body:
+
+| Field | Type | Required | Description |
+|-------|------|----------|-------------|
+| `transaction` | object | yes | The built tx. Must contain a non-empty `messages` array. |
+| `transaction.messages[i].value._meta.metadataPlaceholders` | object | no | Per-message placeholder sidecar. This is the only supported location for placeholders — a top-level `metadataPlaceholders` field on the request is rejected with 400. |
+
+Response `200 OK`:
+
+```json
+{
+  "success": true,
+  "code": "prv_ab12cd34",
+  "expiresAt": 1712345678901,
+  "expiresIn": "1 hour"
+}
+```
+
+| Field | Type | Description |
+|-------|------|-------------|
+| `success` | boolean | Always `true` on 200. |
+| `code` | string | Preview code. Shape: `prv_<8 lowercase alphanumeric>`. Plug into `https://bitbadges.io/builder/preview?code=<code>` to share. |
+| `expiresAt` | number | Unix epoch milliseconds at which the entry will be evicted from the Redis cache. |
+| `expiresIn` | string | Human-readable TTL (currently `1 hour`). |
+
+Error responses:
+
+| Status | When |
+|--------|------|
+| `400` | Missing `transaction`, missing/empty `messages`, or a deprecated top-level `metadataPlaceholders` field was sent. |
+| `402` | Caller is not on a premium plan. |
+| `500` | Code collision after retries, or the indexer failed to write to Redis. |
+
+#### GET /api/v0/builder/preview?code=\<code>
+
+Fetch a previously uploaded preview by code.
+
+```bash
+curl "https://api.bitbadges.io/api/v0/builder/preview?code=prv_ab12cd34" \
+  -H "x-api-key: $BITBADGES_API_KEY"
+```
+
+Query parameters:
+
+| Name | Type | Required | Description |
+|------|------|----------|-------------|
+| `code` | string | yes | Preview code returned by the POST. Must match `prv_[a-z0-9]{8}`. |
+
+Response `200 OK`:
+
+```json
+{
+  "success": true,
+  "transaction": { "messages": [ /* … */ ] }
+}
+```
+
+| Field | Type | Description |
+|-------|------|-------------|
+| `success` | boolean | Always `true` on 200. |
+| `transaction` | object | The exact transaction body that was uploaded, including any per-message `_meta.metadataPlaceholders`. |
+
+Error responses:
+
+| Status | When |
+|--------|------|
+| `400` | `code` query parameter missing or fails the `prv_[a-z0-9]{8}` shape check. |
+| `402` | Caller is not on a premium plan. |
+| `404` | Code is valid-shaped but not in the cache — either it never existed or the 1-hour TTL has lapsed. |
+
 ## builder doctor
 
 One-shot environment + session health check. Runs six independent probes:
@@ -196,7 +287,7 @@ One-shot environment + session health check. Runs six independent probes:
 2. **SDK package + version** — loaded from `bitbadgesjs-sdk`'s own `package.json`
 3. **CLI config file** — `~/.bitbadges/config.json`
 4. **API key reachability** — pings `/api/v0/simulate` with a no-op request
-5. **MCP stdio bin presence** — smoke launch of the `bitbadges-builder-mcp` entry
+5. **SDK builder module presence** — locates the installed `bitbadgesjs-sdk` package and checks that the built builder entry (`dist/cjs/builder/index.js` or the ESM equivalent) is on disk. Catches installs that forgot `npm run build` in the SDK.
 6. **Persisted sessions** — every file under `~/.bitbadges/sessions/` parses
 
 Each probe reports `PASS` / `FAIL` / `WARN` / `SKIP`. The command exits non-zero only if any probe is a hard `FAIL`; warnings and skips are informational.
@@ -223,7 +314,7 @@ Sessions are plain JSON — you can inspect or edit them by hand if needed. Corr
 
 ## builder resources
 
-The resource registry is the static half of the builder surface: the token registry, collection recipes, skill instructions, bundled docs, error patterns, and every other content resource the MCP server exposes via `bitbadges://` URIs.
+The resource registry is the static half of the builder surface: the token registry, collection recipes, skill instructions, bundled docs, error patterns, and every other content resource the SDK builder module exposes via `bitbadges://` URIs.
 
 ```bash
 bitbadges-cli builder resources list                       # full metadata, as JSON
@@ -232,7 +323,7 @@ bitbadges-cli builder resources read bitbadges://skills/all
 bitbadges-cli builder resources read bitbadges://recipes/all
 ```
 
-Every resource URI exposed by the MCP server is readable through this command. Agents that want to pre-load skill instructions or recipe catalogues into a prompt can stream them directly from the CLI instead of spawning the MCP stdio bin.
+Every resource URI exposed by the SDK builder module is readable through this command. Agents that want to pre-load skill instructions or recipe catalogues into a prompt can stream them directly from the CLI instead of importing the SDK by hand.
 
 ## See Also
 
