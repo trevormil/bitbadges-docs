@@ -4,7 +4,7 @@ The `bitbadges-cli builder` command group is the umbrella for every non-template
 
 If you are looking for flag-based template generators (`vault`, `nft`, `subscription`, …), see [Builder Templates](builder-templates.md). Everything else lives here.
 
-All commands are also available via `bitbadgeschaind builder …` — the chain binary forwards `builder` subcommands to the Node.js CLI in-process, so there is no functional difference between `bitbadges-cli builder review tx.json` and `bitbadgeschaind builder review tx.json`.
+All commands are also available via `bitbadgeschaind cli builder …` — the chain binary forwards `builder` subcommands to the Node.js CLI in-process, so there is no functional difference between `bitbadges-cli builder review tx.json` and `bitbadgeschaind cli builder review tx.json`.
 
 ## Overview
 

@@ -1,6 +1,6 @@
 # SDK Commands
 
-The `sdk` subcommand provides utilities for reviewing, interpreting, and working with BitBadges data. All commands are available via both `bitbadges-cli sdk` and `bitbadgeschaind sdk`.
+The `sdk` subcommand provides utilities for reviewing, interpreting, and working with BitBadges data. All commands are available via both `bitbadges-cli sdk` and `bitbadgeschaind cli sdk`.
 
 ## review
 
