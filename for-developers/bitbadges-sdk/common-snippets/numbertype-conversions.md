@@ -23,7 +23,7 @@ const stringifiedMetadata: TokenMetadata<string> = new TokenMetadata({ uri: ... 
 To convert between different number types, all types come with a converter function (**.convert()**). This allows you to convert all the stringified numbers to another format (such as JS number or JS bigint). To convert, you can simply do the following:
 
 ```typescript
-import { BigIntify, TokenMetadata, JSPrimitiveNumberType, NumberType } from "bitbadgesjs-sdk";
+import { BigIntify, TokenMetadata, JSPrimitiveNumberType, NumberType } from "bitbadges";
 
 const stringifiedMetadata: TokenMetadata<string> = new TokenMetadata({ uri: ... });
 const bigIntifiedMetadata = stringifiedMetadata.convert(BigIntify);

@@ -65,7 +65,7 @@ if (!response.ok) {
 ### Bot Pattern
 
 ```typescript
-import { GenericEvmAdapter, NETWORK_CONFIGS } from 'bitbadgesjs-sdk';
+import { GenericEvmAdapter, NETWORK_CONFIGS } from 'bitbadges';
 
 // Generate a new bot wallet
 const adapter = await GenericEvmAdapter.fromMnemonic(

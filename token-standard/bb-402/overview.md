@@ -139,7 +139,7 @@ AccessCondition = { "$and": AccessCondition[] }
 ```typescript
 import express from 'express';
 import crypto from 'crypto';
-import { BitBadgesApi, verifySignature, convertToBitBadgesAddress } from 'bitbadgesjs-sdk';
+import { BitBadgesApi, verifySignature, convertToBitBadgesAddress } from 'bitbadges';
 
 const app = express();
 app.use(express.json());

@@ -5,8 +5,8 @@ The `interpretCollection` function generates a thorough, human-readable explanat
 ## Usage
 
 ```typescript
-import { interpretCollection } from 'bitbadgesjs-sdk';
-import { BitBadgesApi } from 'bitbadgesjs-sdk';
+import { interpretCollection } from 'bitbadges';
+import { BitBadgesApi } from 'bitbadges';
 
 // After fetching a collection
 const collection = await BitBadgesApi.getCollections({

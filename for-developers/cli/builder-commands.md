@@ -32,7 +32,7 @@ Every command that takes an `<input>` accepts the same five shapes:
 
 ## builder tools
 
-The `tools` subcommand is the in-process surface for every builder tool the SDK exposes — the same set the legacy `bitbadges-builder-mcp` stdio server used to ship to Claude Desktop, now reachable as a plain function call with no subprocess and no MCP protocol round-trip. The builder tools are bundled inside `bitbadgesjs-sdk` (`dist/cjs/builder/`) and are shared by the CLI, the chain binary's `builder` forwarder, and any Node host that imports the SDK directly.
+The `tools` subcommand is the in-process surface for every builder tool the SDK exposes — the same set the legacy `bitbadges-builder-mcp` stdio server used to ship to Claude Desktop, now reachable as a plain function call with no subprocess and no MCP protocol round-trip. The builder tools are bundled inside `bitbadges` (`dist/cjs/builder/`) and are shared by the CLI, the chain binary's `builder` forwarder, and any Node host that imports the SDK directly.
 
 ### builder tools list
 
@@ -284,10 +284,10 @@ Error responses:
 One-shot environment + session health check. Runs six independent probes:
 
 1. **Node version** — must be ≥ 18
-2. **SDK package + version** — loaded from `bitbadgesjs-sdk`'s own `package.json`
+2. **SDK package + version** — loaded from `bitbadges`'s own `package.json`
 3. **CLI config file** — `~/.bitbadges/config.json`
 4. **API key reachability** — pings `/api/v0/simulate` with a no-op request
-5. **SDK builder module presence** — locates the installed `bitbadgesjs-sdk` package and checks that the built builder entry (`dist/cjs/builder/index.js` or the ESM equivalent) is on disk. Catches installs that forgot `npm run build` in the SDK.
+5. **SDK builder module presence** — locates the installed `bitbadges` package and checks that the built builder entry (`dist/cjs/builder/index.js` or the ESM equivalent) is on disk. Catches installs that forgot `npm run build` in the SDK.
 6. **Persisted sessions** — every file under `~/.bitbadges/sessions/` parses
 
 Each probe reports `PASS` / `FAIL` / `WARN` / `SKIP`. The command exits non-zero only if any probe is a hard `FAIL`; warnings and skips are informational.

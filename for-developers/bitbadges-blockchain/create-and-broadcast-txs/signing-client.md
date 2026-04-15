@@ -23,7 +23,7 @@ The `BitBadgesSigningClient` provides a streamlined, wallet-agnostic interface f
 The signing client is included in the main SDK:
 
 ```bash
-npm install bitbadgesjs-sdk
+npm install bitbadges
 ```
 
 ## Quick Start
@@ -35,7 +35,7 @@ import {
     BitBadgesSigningClient,
     GenericCosmosAdapter,
     MsgTransferTokens,
-} from 'bitbadgesjs-sdk';
+} from 'bitbadges';
 
 // Create adapter from browser wallet
 const adapter = await GenericCosmosAdapter.fromKeplr('bitbadges-1');
@@ -70,7 +70,7 @@ import {
     BitBadgesSigningClient,
     GenericEvmAdapter,
     MsgTransferTokens,
-} from 'bitbadgesjs-sdk';
+} from 'bitbadges';
 import { BrowserProvider } from 'ethers';
 
 // Create adapter from ethers.js signer
@@ -109,7 +109,7 @@ import {
     BitBadgesSigningClient,
     GenericEvmAdapter,
     NETWORK_CONFIGS,
-} from 'bitbadgesjs-sdk';
+} from 'bitbadges';
 
 // From mnemonic (secure server-side only!)
 const adapter = await GenericEvmAdapter.fromMnemonic(
@@ -134,7 +134,7 @@ const result = await client.signAndBroadcast([
 The Cosmos path uses `GenericCosmosAdapter` with Cosmos-derived addresses and standard signDirect broadcasting. This produces a **different address** from the same key (Cosmos derivation vs ETH derivation).
 
 ```typescript
-import { BitBadgesSigningClient, GenericCosmosAdapter } from 'bitbadgesjs-sdk';
+import { BitBadgesSigningClient, GenericCosmosAdapter } from 'bitbadges';
 
 const adapter = await GenericCosmosAdapter.fromMnemonic(
     'word1 word2 word3 ...', // 12 or 24 word mnemonic
@@ -174,7 +174,7 @@ interface SigningClientOptions {
 The SDK provides built-in network configurations via `NETWORK_CONFIGS`:
 
 ```typescript
-import { NETWORK_CONFIGS, type NetworkMode } from 'bitbadgesjs-sdk';
+import { NETWORK_CONFIGS, type NetworkMode } from 'bitbadges';
 
 // Available presets
 const mainnet = NETWORK_CONFIGS['mainnet'];
@@ -288,7 +288,7 @@ GenericEvmAdapter.fromBrowserWallet(options?: EvmAdapterOptions)
 You can validate that the wallet is connected to the correct EVM network:
 
 ```typescript
-import { GenericEvmAdapter, NETWORK_CONFIGS } from 'bitbadgesjs-sdk';
+import { GenericEvmAdapter, NETWORK_CONFIGS } from 'bitbadges';
 
 // Validate chain ID when creating adapter
 const adapter = await GenericEvmAdapter.fromSigner(signer, {

@@ -92,7 +92,7 @@ async function myHandler(req: NextApiRequest, res: NextApiResponse) {
 **Putting It Together**
 
 ```typescript
-import { BitBadgesApi } from 'bitbadgesjs-sdk';
+import { BitBadgesApi } from 'bitbadges';
 
 // 32 byte hex string
 async function myHandler(req: NextApiRequest, res: NextApiResponse) {

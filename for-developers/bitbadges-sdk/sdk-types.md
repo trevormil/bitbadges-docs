@@ -70,19 +70,19 @@ The blockchain behind the scenes uses the Protocol Buffer type language. Within 
 Some might have duplicates between the two types.
 
 ```typescript
-import { Balance } from "bitbadgesjs-sdk/dist/proto/balances";
-import { Balance } from "bitbadgesjs-sdk";
+import { Balance } from "bitbadges/dist/proto/balances";
+import { Balance } from "bitbadges";
 ```
 
 The Proto types are exported via the following
 
 ```typescript
-import { proto } from "bitbadgesjs-sdk";
+import { proto } from "bitbadges";
 const MsgCreateProtocol = proto.protocols.MsgCreateProtocol;
 ```
 
 If you ever end up with something like the following, this is also the proto definition. We recommend using the proto.abc.xyz method to avoid confusion.
 
 ```typescript
-import { MsgUpdateCollection } from "bitbadgesjs-sdk/dist/proto/tokenization";
+import { MsgUpdateCollection } from "bitbadges/dist/proto/tokenization";
 ```

@@ -42,7 +42,7 @@ The module derives an intermediate sender address from the IBC channel and origi
 
 Use here for generation if needed
 
-<pre class="language-typescript"><code class="lang-typescript"><strong>import { deriveIntermediateSender } from 'bitbadgesjs-sdk';
+<pre class="language-typescript"><code class="lang-typescript"><strong>import { deriveIntermediateSender } from 'bitbadges';
 </strong>
 // deriveIntermediateSender('channel-0', 'osmo1...', 'bb');
 export function deriveIntermediateSender(channel: string, originalSender: string, bech32Prefix: string)

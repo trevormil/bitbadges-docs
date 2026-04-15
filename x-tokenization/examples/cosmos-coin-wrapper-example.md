@@ -20,7 +20,7 @@ const cosmosCoinWrapperPaths = [ ... ];
 When you create a collection with cosmos coin wrapper paths, the system automatically generates a special address for each wrapper. This address acts as the bridge between tokens and cosmos coins. This will also be available on the BitBadges site if you want to go that route.
 
 ```typescript
-import { generateAliasAddressForDenom } from 'bitbadgesjs-sdk';
+import { generateAliasAddressForDenom } from 'bitbadges';
 
 const denom = 'utoken1';
 const wrapperAddress = generateAliasAddressForDenom(denom);

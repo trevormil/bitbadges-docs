@@ -5,7 +5,7 @@
 ## Usage
 
 ```typescript
-import { interpretTransaction } from 'bitbadgesjs-sdk';
+import { interpretTransaction } from 'bitbadges';
 
 // New collection creation
 const explanation = interpretTransaction(txBody);

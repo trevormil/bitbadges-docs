@@ -72,7 +72,7 @@ The functions provided offer a comprehensive toolkit for managing and querying u
 
 
 ```typescript
-import { GO_MAX_UINT_64, UintRange, UintRangeArray } from 'bitbadgesjs-sdk'
+import { GO_MAX_UINT_64, UintRange, UintRangeArray } from 'bitbadges'
 
 //Singular range functions
 const range = new UintRange<bigint>({ start: 1n, end: 10n })

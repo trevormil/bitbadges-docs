@@ -21,7 +21,7 @@ You can use [https://bitbadges.io/auth/linkgen](https://bitbadges.io/auth/linkge
 
 **Snippets**
 
-<pre class="language-typescript"><code class="lang-typescript"><strong>import { generateBitBadgesAuthUrl, CodeGenQueryParams } from 'bitbadgesjs-sdk';
+<pre class="language-typescript"><code class="lang-typescript"><strong>import { generateBitBadgesAuthUrl, CodeGenQueryParams } from 'bitbadges';
 </strong>
 const popupParams: CodeGenQueryParams {
     ...

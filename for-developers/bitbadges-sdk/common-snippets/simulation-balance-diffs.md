@@ -5,7 +5,7 @@ Parse chain simulation events into structured balance changes — see exactly wh
 ## Quick Start: simulateAndReview()
 
 ```typescript
-import { BitBadgesSigningClient } from 'bitbadgesjs-sdk';
+import { BitBadgesSigningClient } from 'bitbadges';
 
 const client = new BitBadgesSigningClient({ adapter });
 const review = await client.simulateAndReview(messages);
@@ -29,7 +29,7 @@ if (agentApprovesChanges(review.netChanges)) {
 ## Low-Level: parseSimulationEvents + calculateNetChanges
 
 ```typescript
-import { parseSimulationEvents, calculateNetChanges } from 'bitbadgesjs-sdk';
+import { parseSimulationEvents, calculateNetChanges } from 'bitbadges';
 
 // If you have raw simulation events (e.g., from the API)
 const parsed = parseSimulationEvents(events, txMessageInfos);

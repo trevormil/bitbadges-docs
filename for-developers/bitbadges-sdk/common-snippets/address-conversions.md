@@ -7,7 +7,7 @@ Documentation Link: [Here](https://bitbadges.github.io/bitbadgesjs/packages/bitb
 BitBadges supports both Ethereum addresses (0x-prefixed hex) and Cosmos addresses (bb-prefixed bech32). You can convert between these formats using the address converter functions.
 
 ```ts
-import { convertToBitBadgesAddress, convertToEthAddress } from "bitbadgesjs-sdk"
+import { convertToBitBadgesAddress, convertToEthAddress } from "bitbadges"
 
 // Convert Ethereum address to BitBadges address
 let bitbadgesAddress = convertToBitBadgesAddress("0x14574a6DFF2Ddf9e07828b4345d3040919AF5652")
@@ -23,7 +23,7 @@ let ethAddress = convertToEthAddress("bb1z3t55m0l9h0eupuz3dp5t5cypyv674jj7mz2jw"
 You can also use the `convertToBitBadgesAddress()` function to validate BitBadges addresses, or use `isAddressValid()` to check if an address is valid.
 
 ```ts
-import { convertToBitBadgesAddress, isAddressValid } from 'bitbadgesjs-sdk';
+import { convertToBitBadgesAddress, isAddressValid } from 'bitbadges';
 
 let address = convertToBitBadgesAddress('bb1z3t55m0l9h0eupuz3dp5t5cypyv674jj7mz2jw');
 if (!!address) {

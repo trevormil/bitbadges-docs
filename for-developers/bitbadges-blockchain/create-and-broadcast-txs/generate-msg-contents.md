@@ -5,7 +5,7 @@
 You can build out the transaction from the exported Proto type definitions from our SDK. This allows you to create transactions with multiple Msg types in one tx. See [here](https://github.com/BitBadges/bitbadgesjs/tree/main/packages/bitbadgesjs-sdk/src/proto) for all proto Msg definitions.
 
 ```typescript
-import { proto } from 'bitbadgesjs-sdk';
+import { proto } from 'bitbadges';
 
 //proto.cosmos.module for standard Cosmos
 //proto.tokenization for BitBadges x/tokenization
@@ -23,7 +23,7 @@ const protoMsgs = [
 ### Building the Transaction
 
 ```typescript
-import { TxContext, createTransactionPayload } from 'bitbadgesjs-sdk';
+import { TxContext, createTransactionPayload } from 'bitbadges';
 
 const txContext: TxContext = { ... } //See prior page
 

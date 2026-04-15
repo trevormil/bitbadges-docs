@@ -1,8 +1,8 @@
 # 🤖 Builder Skills
 
-These pages document every guided build skill available in the BitBadges Builder (shipped as part of [bitbadgesjs-sdk](https://github.com/BitBadges/bitbadgesjs)). Each skill provides step-by-step instructions for building a specific type of token or configuring a specific feature.
+These pages document every guided build skill available in the BitBadges Builder (shipped as part of [bitbadges](https://github.com/BitBadges/bitbadgesjs)). Each skill provides step-by-step instructions for building a specific type of token or configuring a specific feature.
 
-> **Tip:** If you're using the BitBadges builder in Claude, Cursor, or another AI tool via the MCP server (`npx bitbadgesjs-sdk-mcp`) or the `bitbadges-cli builder` command surface, these instructions are loaded automatically when you select a skill. These pages are provided as a human-readable reference.
+> **Tip:** If you're using the BitBadges builder in Claude, Cursor, or another AI tool via the `bitbadges` CLI (`bitbadges build`) or its MCP stdio server (`npx -p bitbadges bitbadges-builder`), these instructions are loaded automatically when you select a skill. These pages are provided as a human-readable reference.
 
 ## Token Types
 

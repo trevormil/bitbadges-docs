@@ -51,7 +51,7 @@ const collection: MsgCreateCollection = {
 Each IBC backed path has a **special address** automatically generated from the IBC denomination in `conversion.sideA.denom`:
 
 ```typescript
-import { generateAliasAddressForIBCBackedDenom } from 'bitbadgesjs-sdk';
+import { generateAliasAddressForIBCBackedDenom } from 'bitbadges';
 
 const ibcDenom = 'ibc/1234567890ABCDEF';
 const specialAddress = generateAliasAddressForIBCBackedDenom(ibcDenom);
