@@ -2366,7 +2366,7 @@ const msg = {
 Provide enough context for the example to be useful:
 
 ```typescript
-import { MsgCreateCollection } from 'bitbadgesjs-sdk';
+import { MsgCreateCollection } from 'bitbadges';
 
 // Create a collection with 100 token IDs
 const collection = {
@@ -2580,11 +2580,11 @@ const address = '0x...'; // Ethereum format
 
 ### SDK Package
 
-Use `bitbadgesjs-sdk` (not `@bitbadges/bitbadgesjs`):
+Use `bitbadges` (not `@bitbadges/bitbadgesjs`):
 
 ```typescript
 // ✅ Correct
-import { BitBadgesAPI, BigIntify, Balance } from 'bitbadgesjs-sdk';
+import { BitBadgesAPI, BigIntify, Balance } from 'bitbadges';
 
 // ❌ Incorrect
 import { BitBadgesAPI } from '@bitbadges/bitbadgesjs';
@@ -8150,11 +8150,11 @@ This installs the chain binary and SDK CLI. For CLI-based agent workflows (query
 ## 5-Minute Quickstart (TypeScript)
 
 ```bash
-npm install bitbadgesjs-sdk
+npm install bitbadges
 ```
 
 ```typescript
-import { BitBadgesSigningClient, GenericEvmAdapter, MsgTransferTokens, NETWORK_CONFIGS } from 'bitbadgesjs-sdk';
+import { BitBadgesSigningClient, GenericEvmAdapter, MsgTransferTokens, NETWORK_CONFIGS } from 'bitbadges';
 
 // 1. Create adapter from mnemonic (server-side)
 const adapter = await GenericEvmAdapter.fromMnemonic(
@@ -8192,8 +8192,8 @@ console.log('TX Hash:', result.txHash);
 | Path | Best For | Install |
 |------|----------|---------|
 | **CLI & Chain Binary** | Terminal agents, shell scripts, any language | `curl -fsSL .../install.sh \| sh` — [guide](../cli/for-ai-agents.md) |
-| **BitBadges Builder Tools** | AI assistants (Claude, Cursor, etc.) | `npm i -g bitbadgesjs-sdk` |
-| **SDK Signing Client** | Full-featured TypeScript bots | `npm i bitbadgesjs-sdk` |
+| **BitBadges Builder Tools** | AI assistants (Claude, Cursor, etc.) | `npm i -g bitbadges` |
+| **SDK Signing Client** | Full-featured TypeScript bots | `npm i bitbadges` |
 | **Direct HTTP** | Lightweight scripts, any language | REST calls to `api.bitbadges.io` |
 | **Agent Spending Authorization** | Set daily caps, time windows, and revocation | [guide](agent-spending-authorization.md) |
 
@@ -8201,10 +8201,10 @@ console.log('TX Hash:', result.txHash);
 
 ```bash
 # Claude Code (one command)
-claude mcp add bitbadges-builder -- npx -y -p bitbadgesjs-sdk bitbadges-builder
+claude mcp add bitbadges-builder -- npx -y -p bitbadges bitbadges-builder
 
 # Or install globally
-npm install -g bitbadgesjs-sdk
+npm install -g bitbadges
 ```
 
 See the full [Builder Tools Reference](builder-tools.md) for all 50+ tools (including session-based per-field builders), configuration for Claude Desktop / Cursor, and workflow guides.
@@ -8302,7 +8302,7 @@ Copy-paste examples for common bot and AI agent patterns. All examples use testn
 Create a new fungible token collection with server-side signing.
 
 ```typescript
-import { BitBadgesSigningClient, GenericEvmAdapter, NETWORK_CONFIGS, MsgCreateCollection } from 'bitbadgesjs-sdk';
+import { BitBadgesSigningClient, GenericEvmAdapter, NETWORK_CONFIGS, MsgCreateCollection } from 'bitbadges';
 
 const adapter = await GenericEvmAdapter.fromMnemonic(
   process.env.BOT_MNEMONIC!,
@@ -8334,7 +8334,7 @@ if (result.success) {
 Check a user's token balance and transfer tokens based on a condition.
 
 ```typescript
-import { BitBadgesAPI, BitBadgesSigningClient, GenericEvmAdapter, NETWORK_CONFIGS, MsgTransferTokens } from 'bitbadgesjs-sdk';
+import { BitBadgesAPI, BitBadgesSigningClient, GenericEvmAdapter, NETWORK_CONFIGS, MsgTransferTokens } from 'bitbadges';
 
 const api = new BitBadgesAPI({ apiUrl: 'https://api.bitbadges.io/testnet' });
 
@@ -8383,7 +8383,7 @@ if (/* condition based on balance */) {
 Verify that a user owns a specific badge before granting access.
 
 ```typescript
-import { BitBadgesAPI } from 'bitbadgesjs-sdk';
+import { BitBadgesAPI } from 'bitbadges';
 
 const api = new BitBadgesAPI({ apiUrl: 'https://api.bitbadges.io' });
 
@@ -8423,7 +8423,7 @@ Listen for transfers on a specific collection and take action.
 
 ```typescript
 import WebSocket from 'ws';
-import { BitBadgesSigningClient, GenericEvmAdapter, NETWORK_CONFIGS } from 'bitbadgesjs-sdk';
+import { BitBadgesSigningClient, GenericEvmAdapter, NETWORK_CONFIGS } from 'bitbadges';
 
 const ws = new WebSocket('wss://rpc-testnet.bitbadges.io/websocket');
 
@@ -8546,10 +8546,10 @@ The [BitBadges Builder](https://github.com/bitbadges/bitbadgesjs/tree/main/packa
 
 ```bash
 # Install globally
-npm install -g bitbadgesjs-sdk
+npm install -g bitbadges
 
 # Or run directly (no install)
-npx -p bitbadgesjs-sdk bitbadges-builder
+npx -p bitbadges bitbadges-builder
 ```
 
 ### Claude Desktop
@@ -8561,7 +8561,7 @@ Add to your `claude_desktop_config.json`:
   "mcpServers": {
     "bitbadges-builder": {
       "command": "npx",
-      "args": ["-y", "-p", "bitbadgesjs-sdk", "bitbadges-builder"],
+      "args": ["-y", "-p", "bitbadges", "bitbadges-builder"],
       "env": {
         "BITBADGES_API_KEY": "your-api-key",
         "BITBADGES_MNEMONIC": "your mnemonic phrase"
@@ -8574,7 +8574,7 @@ Add to your `claude_desktop_config.json`:
 ### Claude Code
 
 ```bash
-claude mcp add bitbadges-builder -- npx -y -p bitbadgesjs-sdk bitbadges-builder
+claude mcp add bitbadges-builder -- npx -y -p bitbadges bitbadges-builder
 ```
 
 ### Cursor
@@ -8586,7 +8586,7 @@ Add to `.cursor/mcp.json`:
   "mcpServers": {
     "bitbadges-builder": {
       "command": "npx",
-      "args": ["-y", "-p", "bitbadgesjs-sdk", "bitbadges-builder"],
+      "args": ["-y", "-p", "bitbadges", "bitbadges-builder"],
       "env": {
         "BITBADGES_API_KEY": "your-api-key"
       }
@@ -8757,7 +8757,7 @@ Common features like ownership requirements, codes, and passwords are built into
 
 | Tool | Install | Description |
 |------|---------|-------------|
-| **BitBadges SDK** | `npm i bitbadgesjs-sdk` | TypeScript SDK for direct blockchain interaction |
+| **BitBadges SDK** | `npm i bitbadges` | TypeScript SDK for direct blockchain interaction |
 | **GitBook MCP** | [docs.bitbadges.io/~gitbook/mcp](https://docs.bitbadges.io/~gitbook/mcp) | Search BitBadges documentation |
 | **BitBadges API** | [api.bitbadges.io](https://api.bitbadges.io) | REST API for queries and data |
 
@@ -8802,7 +8802,7 @@ Use the BitBadges API SDK to create claims. The example below creates a code-gat
 
 ```typescript
 import crypto from 'crypto';
-import { BitBadgesAPI } from 'bitbadgesjs-sdk';
+import { BitBadgesAPI } from 'bitbadges';
 
 const api = new BitBadgesAPI({ apiUrl: 'https://api.bitbadges.io' });
 
@@ -9012,7 +9012,7 @@ Your AI agent needs a wallet to sign transactions. You can use either a Cosmos (
 Generate a mnemonic and derive a BitBadges address:
 
 ```typescript
-import { BitBadgesSigningClient, GenericEvmAdapter, NETWORK_CONFIGS } from 'bitbadgesjs-sdk';
+import { BitBadgesSigningClient, GenericEvmAdapter, NETWORK_CONFIGS } from 'bitbadges';
 
 // Store this mnemonic securely (env var, secret manager, etc.)
 const adapter = await GenericEvmAdapter.fromMnemonic(
@@ -9031,7 +9031,7 @@ console.log('Agent address:', client.address); // 0x...
 ### Option B: EVM Wallet from Private Key
 
 ```typescript
-import { GenericEvmAdapter, NETWORK_CONFIGS } from 'bitbadgesjs-sdk';
+import { GenericEvmAdapter, NETWORK_CONFIGS } from 'bitbadges';
 
 const adapter = await GenericEvmAdapter.fromPrivateKey(
   process.env.AGENT_PRIVATE_KEY!, // hex private key (with or without 0x prefix)
@@ -9044,7 +9044,7 @@ const client = new BitBadgesSigningClient({ adapter });
 ### Option C: Cosmos Wallet
 
 ```typescript
-import { BitBadgesSigningClient, GenericCosmosAdapter } from 'bitbadgesjs-sdk';
+import { BitBadgesSigningClient, GenericCosmosAdapter } from 'bitbadges';
 
 const adapter = await GenericCosmosAdapter.fromMnemonic(
   process.env.AGENT_MNEMONIC!,
@@ -9084,7 +9084,7 @@ Your vault's transferability rules determine what the agent can and can't do. Th
 ### Reading Rules Programmatically
 
 ```typescript
-import { BitBadgesAPI } from 'bitbadgesjs-sdk';
+import { BitBadgesAPI } from 'bitbadges';
 
 const api = new BitBadgesAPI({ apiUrl: 'https://api.bitbadges.io' });
 
@@ -9131,7 +9131,7 @@ Withdrawing converts vault tokens back to USDC. The agent sends its vault tokens
 ### Building the Withdraw Transaction
 
 ```typescript
-import { MsgTransferTokens } from 'bitbadgesjs-sdk';
+import { MsgTransferTokens } from 'bitbadges';
 
 const COLLECTION_ID = 'YOUR_COLLECTION_ID';
 const BACKING_ADDRESS = 'bb1...'; // The vault's backing address (from AI Prompt tab)
@@ -9375,7 +9375,7 @@ if (!response.ok) {
 ### Bot Pattern
 
 ```typescript
-import { GenericEvmAdapter, NETWORK_CONFIGS } from 'bitbadgesjs-sdk';
+import { GenericEvmAdapter, NETWORK_CONFIGS } from 'bitbadges';
 
 // Generate a new bot wallet
 const adapter = await GenericEvmAdapter.fromMnemonic(
@@ -9624,7 +9624,7 @@ Note that this testnet API is an entirely separate service from normal API. Noth
 If you are using JavaScript / TypeScript, consider using the typed API SDK for convenience. This will give you typed routes, provide quality checks, and also auto-convert all responses to your desired number type (bigint, Number, etc).
 
 ```typescript
-import { BigIntify, BitBadgesAPI } from 'bitbadgesjs-sdk';
+import { BigIntify, BitBadgesAPI } from 'bitbadges';
 
 export type DesiredNumberType = bigint;
 export const ConvertFunction = BigIntify;
@@ -10072,7 +10072,7 @@ The **[BitBadgesSigningClient](./signing-client.md)** provides a simple, all-in-
 - Automatic sequence retry on mismatch
 
 ```typescript
-import { BitBadgesSigningClient, GenericCosmosAdapter } from 'bitbadgesjs-sdk';
+import { BitBadgesSigningClient, GenericCosmosAdapter } from 'bitbadges';
 
 const adapter = await GenericCosmosAdapter.fromKeplr('bitbadges-1');
 const client = new BitBadgesSigningClient({ adapter });
@@ -10559,10 +10559,10 @@ Using files is recommended for complex transactions. The JSON schema for each me
 
 ## For Developers (SDK Alternative)
 
-If you prefer programmatic signing over the CLI, use the [BitBadgesSigningClient](./signing-client.md) from `bitbadgesjs-sdk`. It provides TypeScript functions for all transaction types with automatic gas estimation, sequence management, and broadcasting.
+If you prefer programmatic signing over the CLI, use the [BitBadgesSigningClient](./signing-client.md) from `bitbadges`. It provides TypeScript functions for all transaction types with automatic gas estimation, sequence management, and broadcasting.
 
 ```typescript
-import { BitBadgesSigningClient, GenericCosmosAdapter } from 'bitbadgesjs-sdk';
+import { BitBadgesSigningClient, GenericCosmosAdapter } from 'bitbadges';
 
 const adapter = await GenericCosmosAdapter.fromMnemonic('your mnemonic here', 'bitbadges-1');
 const client = new BitBadgesSigningClient({ adapter });
@@ -10579,7 +10579,7 @@ const result = await client.signAndBroadcast([msg]);
 You can build out the transaction from the exported Proto type definitions from our SDK. This allows you to create transactions with multiple Msg types in one tx. See [here](https://github.com/BitBadges/bitbadgesjs/tree/main/packages/bitbadgesjs-sdk/src/proto) for all proto Msg definitions.
 
 ```typescript
-import { proto } from 'bitbadgesjs-sdk';
+import { proto } from 'bitbadges';
 
 //proto.cosmos.module for standard Cosmos
 //proto.tokenization for BitBadges x/tokenization
@@ -10597,7 +10597,7 @@ const protoMsgs = [
 ### Building the Transaction
 
 ```typescript
-import { TxContext, createTransactionPayload } from 'bitbadgesjs-sdk';
+import { TxContext, createTransactionPayload } from 'bitbadges';
 
 const txContext: TxContext = { ... } //See prior page
 
@@ -10671,7 +10671,7 @@ The `BitBadgesSigningClient` provides a streamlined, wallet-agnostic interface f
 The signing client is included in the main SDK:
 
 ```bash
-npm install bitbadgesjs-sdk
+npm install bitbadges
 ```
 
 ## Quick Start
@@ -10683,7 +10683,7 @@ import {
     BitBadgesSigningClient,
     GenericCosmosAdapter,
     MsgTransferTokens,
-} from 'bitbadgesjs-sdk';
+} from 'bitbadges';
 
 // Create adapter from browser wallet
 const adapter = await GenericCosmosAdapter.fromKeplr('bitbadges-1');
@@ -10718,7 +10718,7 @@ import {
     BitBadgesSigningClient,
     GenericEvmAdapter,
     MsgTransferTokens,
-} from 'bitbadgesjs-sdk';
+} from 'bitbadges';
 import { BrowserProvider } from 'ethers';
 
 // Create adapter from ethers.js signer
@@ -10757,7 +10757,7 @@ import {
     BitBadgesSigningClient,
     GenericEvmAdapter,
     NETWORK_CONFIGS,
-} from 'bitbadgesjs-sdk';
+} from 'bitbadges';
 
 // From mnemonic (secure server-side only!)
 const adapter = await GenericEvmAdapter.fromMnemonic(
@@ -10782,7 +10782,7 @@ const result = await client.signAndBroadcast([
 The Cosmos path uses `GenericCosmosAdapter` with Cosmos-derived addresses and standard signDirect broadcasting. This produces a **different address** from the same key (Cosmos derivation vs ETH derivation).
 
 ```typescript
-import { BitBadgesSigningClient, GenericCosmosAdapter } from 'bitbadgesjs-sdk';
+import { BitBadgesSigningClient, GenericCosmosAdapter } from 'bitbadges';
 
 const adapter = await GenericCosmosAdapter.fromMnemonic(
     'word1 word2 word3 ...', // 12 or 24 word mnemonic
@@ -10822,7 +10822,7 @@ interface SigningClientOptions {
 The SDK provides built-in network configurations via `NETWORK_CONFIGS`:
 
 ```typescript
-import { NETWORK_CONFIGS, type NetworkMode } from 'bitbadgesjs-sdk';
+import { NETWORK_CONFIGS, type NetworkMode } from 'bitbadges';
 
 // Available presets
 const mainnet = NETWORK_CONFIGS['mainnet'];
@@ -10936,7 +10936,7 @@ GenericEvmAdapter.fromBrowserWallet(options?: EvmAdapterOptions)
 You can validate that the wallet is connected to the correct EVM network:
 
 ```typescript
-import { GenericEvmAdapter, NETWORK_CONFIGS } from 'bitbadgesjs-sdk';
+import { GenericEvmAdapter, NETWORK_CONFIGS } from 'bitbadges';
 
 // Validate chain ID when creating adapter
 const adapter = await GenericEvmAdapter.fromSigner(signer, {
@@ -11179,7 +11179,7 @@ The `createTransactionPayload` function now supports optional EVM precompile con
 ### Basic Usage
 
 ```typescript
-import { createTransactionPayload, TxContext, MsgTransferTokens } from 'bitbadgesjs-sdk';
+import { createTransactionPayload, TxContext, MsgTransferTokens } from 'bitbadges';
 
 // Create your messages
 const msg = new MsgTransferTokens({
@@ -11471,7 +11471,7 @@ import {
   TxContext,
   MsgTransferTokens,
   TransactionPayload
-} from 'bitbadgesjs-sdk';
+} from 'bitbadges';
 import { useSendTransaction } from '@privy-io/react-auth';
 
 function useEthereumSigning() {
@@ -12428,7 +12428,7 @@ The BitBadges CLI provides SDK utilities and API access from your terminal. It s
 ## Installation
 
 ```bash
-npm install -g bitbadgesjs-sdk
+npm install -g bitbadges
 ```
 
 This installs the `bitbadges-cli` command globally. Verify:
@@ -12450,7 +12450,7 @@ Discovery order:
 
 1. `BITBADGES_SDK_CLI_PATH` environment variable
 2. `bitbadges-cli` on PATH
-3. `npx -p bitbadgesjs-sdk bitbadges-cli` as fallback
+3. `npx -p bitbadges bitbadges-cli` as fallback
 
 ## Configuration
 
@@ -12734,7 +12734,7 @@ The binary looks for the CLI in this order:
 
 1. `BITBADGES_SDK_CLI_PATH` environment variable
 2. `bitbadges-cli` on PATH
-3. `npx -p bitbadgesjs-sdk bitbadges-cli` as fallback
+3. `npx -p bitbadges bitbadges-cli` as fallback
 
 If the CLI is not found, the chain binary prints an install message but does not error -- chain operations (keys, tx, query) continue to work.
 
@@ -12757,7 +12757,7 @@ Documentation Link: [Here](https://bitbadges.github.io/bitbadgesjs/packages/bitb
 BitBadges supports both Ethereum addresses (0x-prefixed hex) and Cosmos addresses (bb-prefixed bech32). You can convert between these formats using the address converter functions.
 
 ```ts
-import { convertToBitBadgesAddress, convertToEthAddress } from "bitbadgesjs-sdk"
+import { convertToBitBadgesAddress, convertToEthAddress } from "bitbadges"
 
 // Convert Ethereum address to BitBadges address
 let bitbadgesAddress = convertToBitBadgesAddress("0x14574a6DFF2Ddf9e07828b4345d3040919AF5652")
@@ -12773,7 +12773,7 @@ let ethAddress = convertToEthAddress("bb1z3t55m0l9h0eupuz3dp5t5cypyv674jj7mz2jw"
 You can also use the `convertToBitBadgesAddress()` function to validate BitBadges addresses, or use `isAddressValid()` to check if an address is valid.
 
 ```ts
-import { convertToBitBadgesAddress, isAddressValid } from 'bitbadgesjs-sdk';
+import { convertToBitBadgesAddress, isAddressValid } from 'bitbadges';
 
 let address = convertToBitBadgesAddress('bb1z3t55m0l9h0eupuz3dp5t5cypyv674jj7mz2jw');
 if (!!address) {
@@ -12927,7 +12927,7 @@ console.log(res.balance); // e.g. 100n
 const res = await api.getBalanceByAddressSpecificToken('1', '5', 'bb1...', undefined, { time: 1700000000000n });
 
 // If you already have a balances array, use the helpers directly
-import { getBalanceForIdNow, getBalanceForIdAndTime } from 'bitbadgesjs-sdk';
+import { getBalanceForIdNow, getBalanceForIdAndTime } from 'bitbadges';
 
 const amount = getBalanceForIdNow(5n, balances);
 const historicalAmount = getBalanceForIdAndTime(5n, 1700000000000n, balances);
@@ -13188,8 +13188,8 @@ The `interpretCollection` function generates a thorough, human-readable explanat
 ## Usage
 
 ```typescript
-import { interpretCollection } from 'bitbadgesjs-sdk';
-import { BitBadgesApi } from 'bitbadgesjs-sdk';
+import { interpretCollection } from 'bitbadges';
+import { BitBadgesApi } from 'bitbadges';
 
 // After fetching a collection
 const collection = await BitBadgesApi.getCollections({
@@ -13229,7 +13229,7 @@ The function automatically strips sensitive claim parameters (`seedCode`, `preim
 ## Usage
 
 ```typescript
-import { interpretTransaction } from 'bitbadgesjs-sdk';
+import { interpretTransaction } from 'bitbadges';
 
 // New collection creation
 const explanation = interpretTransaction(txBody);
@@ -13286,7 +13286,7 @@ const stringifiedMetadata: TokenMetadata<string> = new TokenMetadata({ uri: ... 
 To convert between different number types, all types come with a converter function (**.convert()**). This allows you to convert all the stringified numbers to another format (such as JS number or JS bigint). To convert, you can simply do the following:
 
 ```typescript
-import { BigIntify, TokenMetadata, JSPrimitiveNumberType, NumberType } from "bitbadgesjs-sdk";
+import { BigIntify, TokenMetadata, JSPrimitiveNumberType, NumberType } from "bitbadges";
 
 const stringifiedMetadata: TokenMetadata<string> = new TokenMetadata({ uri: ... });
 const bigIntifiedMetadata = stringifiedMetadata.convert(BigIntify);
@@ -13321,7 +13321,7 @@ Parse chain simulation events into structured balance changes — see exactly wh
 ## Quick Start: simulateAndReview()
 
 ```typescript
-import { BitBadgesSigningClient } from 'bitbadgesjs-sdk';
+import { BitBadgesSigningClient } from 'bitbadges';
 
 const client = new BitBadgesSigningClient({ adapter });
 const review = await client.simulateAndReview(messages);
@@ -13345,7 +13345,7 @@ if (agentApprovesChanges(review.netChanges)) {
 ## Low-Level: parseSimulationEvents + calculateNetChanges
 
 ```typescript
-import { parseSimulationEvents, calculateNetChanges } from 'bitbadgesjs-sdk';
+import { parseSimulationEvents, calculateNetChanges } from 'bitbadges';
 
 // If you have raw simulation events (e.g., from the API)
 const parsed = parseSimulationEvents(events, txMessageInfos);
@@ -13489,7 +13489,7 @@ The functions provided offer a comprehensive toolkit for managing and querying u
 
 
 ```typescript
-import { GO_MAX_UINT_64, UintRange, UintRangeArray } from 'bitbadgesjs-sdk'
+import { GO_MAX_UINT_64, UintRange, UintRangeArray } from 'bitbadges'
 
 //Singular range functions
 const range = new UintRange<bigint>({ start: 1n, end: 10n })
@@ -13534,7 +13534,7 @@ GitHub: [https://github.com/bitbadges/bitbadgesjs](https://github.com/bitbadges/
 Full Documentation: [https://bitbadges.github.io/bitbadgesjs/](https://bitbadges.github.io/bitbadgesjs/)
 
 ```
-npm install bitbadgesjs-sdk
+npm install bitbadges
 ```
 
 This library provides miscellaneous functionality to help you interact with BitBadges, such as types, API routes, managing metadata requests, logic with ID ranges and balances, etc.
@@ -13544,7 +13544,7 @@ This library provides miscellaneous functionality to help you interact with BitB
 The SDK includes address conversion utilities to convert between Ethereum addresses (0x-prefixed) and BitBadges addresses (bb-prefixed). See [Address Conversions](common-snippets/address-conversions.md) for more details.
 
 ```typescript
-import { convertToBitBadgesAddress, convertToEthAddress } from 'bitbadgesjs-sdk';
+import { convertToBitBadgesAddress, convertToEthAddress } from 'bitbadges';
 
 const bitbadgesAddress = convertToBitBadgesAddress(address);
 const ethAddress = convertToEthAddress(bitbadgesAddress);
@@ -13625,21 +13625,21 @@ The blockchain behind the scenes uses the Protocol Buffer type language. Within 
 Some might have duplicates between the two types.
 
 ```typescript
-import { Balance } from "bitbadgesjs-sdk/dist/proto/balances";
-import { Balance } from "bitbadgesjs-sdk";
+import { Balance } from "bitbadges/dist/proto/balances";
+import { Balance } from "bitbadges";
 ```
 
 The Proto types are exported via the following
 
 ```typescript
-import { proto } from "bitbadgesjs-sdk";
+import { proto } from "bitbadges";
 const MsgCreateProtocol = proto.protocols.MsgCreateProtocol;
 ```
 
 If you ever end up with something like the following, this is also the proto definition. We recommend using the proto.abc.xyz method to avoid confusion.
 
 ```typescript
-import { MsgUpdateCollection } from "bitbadgesjs-sdk/dist/proto/tokenization";
+import { MsgUpdateCollection } from "bitbadges/dist/proto/tokenization";
 ```
 
 
@@ -17043,7 +17043,7 @@ Every command that takes an `<input>` accepts the same five shapes:
 
 ## builder tools
 
-The `tools` subcommand is the in-process surface for every builder tool the SDK exposes — the same set the legacy `bitbadges-builder-mcp` stdio server used to ship to Claude Desktop, now reachable as a plain function call with no subprocess and no MCP protocol round-trip. The builder tools are bundled inside `bitbadgesjs-sdk` (`dist/cjs/builder/`) and are shared by the CLI, the chain binary's `builder` forwarder, and any Node host that imports the SDK directly.
+The `tools` subcommand is the in-process surface for every builder tool the SDK exposes — the same set the legacy `bitbadges-builder-mcp` stdio server used to ship to Claude Desktop, now reachable as a plain function call with no subprocess and no MCP protocol round-trip. The builder tools are bundled inside `bitbadges` (`dist/cjs/builder/`) and are shared by the CLI, the chain binary's `builder` forwarder, and any Node host that imports the SDK directly.
 
 ### builder tools list
 
@@ -17295,10 +17295,10 @@ Error responses:
 One-shot environment + session health check. Runs six independent probes:
 
 1. **Node version** — must be ≥ 18
-2. **SDK package + version** — loaded from `bitbadgesjs-sdk`'s own `package.json`
+2. **SDK package + version** — loaded from `bitbadges`'s own `package.json`
 3. **CLI config file** — `~/.bitbadges/config.json`
 4. **API key reachability** — pings `/api/v0/simulate` with a no-op request
-5. **SDK builder module presence** — locates the installed `bitbadgesjs-sdk` package and checks that the built builder entry (`dist/cjs/builder/index.js` or the ESM equivalent) is on disk. Catches installs that forgot `npm run build` in the SDK.
+5. **SDK builder module presence** — locates the installed `bitbadges` package and checks that the built builder entry (`dist/cjs/builder/index.js` or the ESM equivalent) is on disk. Catches installs that forgot `npm run build` in the SDK.
 6. **Persisted sessions** — every file under `~/.bitbadges/sessions/` parses
 
 Each probe reports `PASS` / `FAIL` / `WARN` / `SKIP`. The command exits non-zero only if any probe is a hard `FAIL`; warnings and skips are informational.
@@ -18137,10 +18137,10 @@ If you only need the SDK CLI (API access, review tools, docs) without the chain 
 
 ```bash
 # npm
-npm install -g bitbadgesjs-sdk
+npm install -g bitbadges
 
 # bun
-bun install -g bitbadgesjs-sdk
+bun install -g bitbadges
 ```
 
 Verify:
@@ -18407,7 +18407,7 @@ We typically refer to the native address as simply **address** and the correspon
 For user experience, you should always display the user's native address. Just note, certain behind the scenes state will be using the mapped Cosmos address.
 
 ```typescript
-import { convertToBitBadgesAddress, convertToEthAddress } from 'bitbadgesjs-sdk';
+import { convertToBitBadgesAddress, convertToEthAddress } from 'bitbadges';
 
 const bitbadgesAddress = convertToBitBadgesAddress(address);
 const ethAddress = convertToEthAddress(bitbadgesAddress);
@@ -18854,11 +18854,11 @@ Most of your setup and management (and oftentimes all) will be done directly in-
 {% endcontent-ref %}
 
 ```bash
-npm i bitbadgesjs-sdk
+npm i bitbadges
 ```
 
 ```ts
-import { BitBadgesAPI } from 'bitbadgesjs-sdk';
+import { BitBadgesAPI } from 'bitbadges';
 
 const api = new BitBadgesAPI({
   ...
@@ -18873,10 +18873,10 @@ The BitBadges Builder gives any AI assistant (Claude, Cursor, etc.) 30+ tools to
 
 ```bash
 # Install globally
-npm install -g bitbadgesjs-sdk
+npm install -g bitbadges
 
 # Or run directly with npx
-npx -p bitbadgesjs-sdk bitbadges-builder
+npx -p bitbadges bitbadges-builder
 ```
 
 **Claude Desktop** — add to `claude_desktop_config.json`:
@@ -18886,7 +18886,7 @@ npx -p bitbadgesjs-sdk bitbadges-builder
   "mcpServers": {
     "bitbadges-builder": {
       "command": "npx",
-      "args": ["-y", "-p", "bitbadgesjs-sdk", "bitbadges-builder"],
+      "args": ["-y", "-p", "bitbadges", "bitbadges-builder"],
       "env": {
         "BITBADGES_API_KEY": "your-api-key"
       }
@@ -18898,7 +18898,7 @@ npx -p bitbadgesjs-sdk bitbadges-builder
 **Claude Code:**
 
 ```bash
-claude mcp add bitbadges-builder -- npx -y -p bitbadgesjs-sdk bitbadges-builder
+claude mcp add bitbadges-builder -- npx -y -p bitbadges bitbadges-builder
 ```
 
 See the full [Builder Tools Reference](ai-agents/builder-tools.md) for all tools, schemas, and workflows. For bot/agent guides, see [AI Agents & Bots](ai-agents/).
@@ -18909,8 +18909,8 @@ Below, we provide some resources that may be helpful for developing with AI. If 
 
 | Resource | Link |
 |----------|------|
-| **BitBadges Builder Tools** | `npm i -g bitbadgesjs-sdk` — [Reference](ai-agents/builder-tools.md) |
-| **BitBadges SDK** | `npm i bitbadgesjs-sdk` — [Docs](bitbadges-sdk/overview.md) |
+| **BitBadges Builder Tools** | `npm i -g bitbadges` — [Reference](ai-agents/builder-tools.md) |
+| **BitBadges SDK** | `npm i bitbadges` — [Docs](bitbadges-sdk/overview.md) |
 | **AI Quickstarter Repo** | [github.com/BitBadges/bitbadges-quickstarter-ai](https://github.com/BitBadges/bitbadges-quickstarter-ai) |
 | **GitBook MCP** | [docs.bitbadges.io/~gitbook/mcp](https://docs.bitbadges.io/~gitbook/mcp) — searchDocumentation tool |
 | **API OpenAPI Spec** | [openapi.json](https://raw.githubusercontent.com/bitbadges/bitbadgesjs/main/packages/bitbadgesjs-sdk/openapi-hosted/openapi.json) |
@@ -19058,7 +19058,7 @@ You can use [https://bitbadges.io/auth/linkgen](https://bitbadges.io/auth/linkge
 
 **Snippets**
 
-<pre class="language-typescript"><code class="lang-typescript"><strong>import { generateBitBadgesAuthUrl, CodeGenQueryParams } from 'bitbadgesjs-sdk';
+<pre class="language-typescript"><code class="lang-typescript"><strong>import { generateBitBadgesAuthUrl, CodeGenQueryParams } from 'bitbadges';
 </strong>
 const popupParams: CodeGenQueryParams {
     ...
@@ -19597,7 +19597,7 @@ async function myHandler(req: NextApiRequest, res: NextApiResponse) {
 **Putting It Together**
 
 ```typescript
-import { BitBadgesApi } from 'bitbadgesjs-sdk';
+import { BitBadgesApi } from 'bitbadges';
 
 // 32 byte hex string
 async function myHandler(req: NextApiRequest, res: NextApiResponse) {
@@ -19911,7 +19911,7 @@ const msg: MsgTransferTokens = {
 ## Prioritized Approvals Mode
 
 ```typescript
-import { MsgTransferTokens } from 'bitbadgesjs-sdk';
+import { MsgTransferTokens } from 'bitbadges';
 
 const msg: MsgTransferTokens = {
     creator: 'bb1initiator...',
@@ -20072,7 +20072,7 @@ const approval: CollectionApproval<bigint> = {
 
 // Transfer must specify version '1' to use updated approval
 // If mismatched version, transfer will fail / ignore that approval
-import { MsgTransferTokens } from 'bitbadgesjs-sdk';
+import { MsgTransferTokens } from 'bitbadges';
 
 const msg: MsgTransferTokens = {
     creator: 'bb1initiator...',
@@ -20246,7 +20246,7 @@ const collectionApproval: CollectionApproval<bigint> = {
 ### Auto-Scan Compatible Transfer
 
 ```typescript
-import { MsgTransferTokens } from 'bitbadgesjs-sdk';
+import { MsgTransferTokens } from 'bitbadges';
 
 // Simple transfer - no side effects
 const msg: MsgTransferTokens = {
@@ -20523,7 +20523,7 @@ Used for compatibility with existing Cosmos SDK interfaces without actual wrappi
 Wrapper addresses are auto-generated based on the denom:
 
 ```typescript
-import { generateAliasAddressForDenom } from 'bitbadgesjs-sdk';
+import { generateAliasAddressForDenom } from 'bitbadges';
 
 const denom = 'utoken';
 const wrapperAddress = generateAliasAddressForDenom(denom);
@@ -21063,7 +21063,7 @@ const collection: MsgCreateCollection = {
 Each IBC backed path has a **special address** automatically generated from the IBC denomination in `conversion.sideA.denom`:
 
 ```typescript
-import { generateAliasAddressForIBCBackedDenom } from 'bitbadgesjs-sdk';
+import { generateAliasAddressForIBCBackedDenom } from 'bitbadges';
 
 const ibcDenom = 'ibc/1234567890ABCDEF';
 const specialAddress = generateAliasAddressForIBCBackedDenom(ibcDenom);
@@ -21428,7 +21428,7 @@ The `creator` of the `MsgTransferTokens` is **not** the original sender on the s
 You can derive this address ahead of time to configure your approvals:
 
 ```typescript
-import { deriveIntermediateSender } from 'bitbadgesjs-sdk';
+import { deriveIntermediateSender } from 'bitbadges';
 
 // Derive the intermediate sender for a given channel + source address
 const creator = deriveIntermediateSender('channel-0', 'osmo1...', 'bb');
@@ -22914,8 +22914,8 @@ curl -fsSL https://raw.githubusercontent.com/BitBadges/bitbadgeschain/master/ins
 Supports Linux, macOS (Intel + Apple Silicon), and Windows (Git Bash / WSL). See [CLI & Chain Binary](../for-developers/cli/) for full documentation.
 
 * [Chain Binary Releases](https://github.com/BitBadges/bitbadgeschain/releases)
-* [SDK CLI (npm)](https://www.npmjs.com/package/bitbadgesjs-sdk) — `npm install -g bitbadgesjs-sdk`
-* [BitBadges Builder Tools (npm)](https://www.npmjs.com/package/bitbadgesjs-sdk) — `npm install -g bitbadgesjs-sdk`
+* [SDK CLI (npm)](https://www.npmjs.com/package/bitbadges) — `npm install -g bitbadges`
+* [BitBadges Builder Tools (npm)](https://www.npmjs.com/package/bitbadges) — `npm install -g bitbadges`
 
 ### Get Featured
 
@@ -22940,18 +22940,18 @@ Supports Linux, macOS (Intel + Apple Silicon), and Windows (Git Bash / WSL). See
 
 ### API & SDK
 
-* [NPM API / SDK Package](https://www.npmjs.com/package/bitbadgesjs-sdk) ([Docs](../for-developers/bitbadges-sdk/))
+* [NPM API / SDK Package](https://www.npmjs.com/package/bitbadges) ([Docs](../for-developers/bitbadges-sdk/))
 * [API Documentation](https://bitbadges.stoplight.io/docs/bitbadges) ([Docs](../for-developers/bitbadges-api/))
 
 ```bash
 # Using npm
-npm install bitbadgesjs-sdk
+npm install bitbadges
 
 # Using pnpm
-pnpm add bitbadgesjs-sdk
+pnpm add bitbadges
 
 # Using bun
-bun add bitbadgesjs-sdk
+bun add bitbadges
 ```
 
 
@@ -23444,7 +23444,7 @@ Mint the appropriate token ID to each user. Check with `$or` for "any tier" or s
 
 Collections can be created:
 - **On-site** at [bitbadges.io](https://bitbadges.io) — recommended for most cases. You can also use an LLM with the [BitBadges Builder](https://github.com/bitbadges/bitbadgesjs/tree/main/packages/bitbadgesjs-sdk/src/builder) to help configure collections.
-- **Via SDK** using `MsgUniversalUpdateCollection` from `bitbadgesjs-sdk`
+- **Via SDK** using `MsgUniversalUpdateCollection` from `bitbadges`
 - **Via chain CLI** using `bitbadgeschaind tx tokenization`
 
 Most providers will create their collection on-site and then use the SDK or API to mint/revoke programmatically.
@@ -23760,7 +23760,7 @@ AccessCondition = { "$and": AccessCondition[] }
 ```typescript
 import express from 'express';
 import crypto from 'crypto';
-import { BitBadgesApi, verifySignature, convertToBitBadgesAddress } from 'bitbadgesjs-sdk';
+import { BitBadgesApi, verifySignature, convertToBitBadgesAddress } from 'bitbadges';
 
 const app = express();
 app.use(express.json());
@@ -28025,7 +28025,7 @@ Most fields are updatable over time, according to their corresponding permission
 ## Complete Example
 
 ```typescript
-import { MsgCreateCollection } from 'bitbadgesjs-sdk';
+import { MsgCreateCollection } from 'bitbadges';
 
 const msg: MsgCreateCollection = {
     creator: 'bb1kj9kt5y64n5a8677fhjqnmcc24ht2vy9atmdls',
@@ -28535,7 +28535,7 @@ The module derives an intermediate sender address from the IBC channel and origi
 
 Use here for generation if needed
 
-<pre class="language-typescript"><code class="lang-typescript"><strong>import { deriveIntermediateSender } from 'bitbadgesjs-sdk';
+<pre class="language-typescript"><code class="lang-typescript"><strong>import { deriveIntermediateSender } from 'bitbadges';
 </strong>
 // deriveIntermediateSender('channel-0', 'osmo1...', 'bb');
 export function deriveIntermediateSender(channel: string, originalSender: string, bech32Prefix: string)
@@ -31524,7 +31524,7 @@ const cosmosCoinWrapperPaths = [ ... ];
 When you create a collection with cosmos coin wrapper paths, the system automatically generates a special address for each wrapper. This address acts as the bridge between tokens and cosmos coins. This will also be available on the BitBadges site if you want to go that route.
 
 ```typescript
-import { generateAliasAddressForDenom } from 'bitbadgesjs-sdk';
+import { generateAliasAddressForDenom } from 'bitbadges';
 
 const denom = 'utoken1';
 const wrapperAddress = generateAliasAddressForDenom(denom);
@@ -32545,9 +32545,9 @@ const createCollection = {
 
 # 🤖 Builder Skills
 
-These pages document every guided build skill available in the BitBadges Builder (shipped as part of [bitbadgesjs-sdk](https://github.com/BitBadges/bitbadgesjs)). Each skill provides step-by-step instructions for building a specific type of token or configuring a specific feature.
+These pages document every guided build skill available in the BitBadges Builder (shipped as part of [bitbadges](https://github.com/BitBadges/bitbadgesjs)). Each skill provides step-by-step instructions for building a specific type of token or configuring a specific feature.
 
-> **Tip:** If you're using the BitBadges builder in Claude, Cursor, or another AI tool via the MCP server (`npx bitbadgesjs-sdk-mcp`) or the `bitbadges-cli builder` command surface, these instructions are loaded automatically when you select a skill. These pages are provided as a human-readable reference.
+> **Tip:** If you're using the BitBadges builder in Claude, Cursor, or another AI tool via the MCP server (`npx bitbadges-mcp`) or the `bitbadges-cli builder` command surface, these instructions are loaded automatically when you select a skill. These pages are provided as a human-readable reference.
 
 ## Token Types
 
