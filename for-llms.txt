@@ -1,5 +1,5 @@
 # Gitbook Documentation Compilation
-Generated on Wed Apr 15 14:30:32 UTC 2026
+Generated on Wed Apr 15 14:32:27 UTC 2026
 
 
 
@@ -12442,8 +12442,8 @@ bitbadges-cli --help
 The chain binary delegates `sdk` and `api` subcommands to the Node.js CLI automatically:
 
 ```bash
-bitbadgeschaind sdk review tx.json
-bitbadgeschaind api tokens get-collection 1
+bitbadgeschaind cli sdk review tx.json
+bitbadgeschaind cli api tokens get-collection 1
 ```
 
 Discovery order:
@@ -12723,10 +12723,10 @@ The Go chain binary includes `sdk` and `api` subcommands that delegate to the No
 
 ```bash
 # These are equivalent:
-bitbadgeschaind sdk review tx.json
+bitbadgeschaind cli sdk review tx.json
 bitbadges-cli sdk review tx.json
 
-bitbadgeschaind api tokens get-collection 1
+bitbadgeschaind cli api tokens get-collection 1
 bitbadges-cli api tokens get-collection 1
 ```
 
@@ -16871,13 +16871,13 @@ bitbadges-cli sdk status
 
 ## How They Work Together
 
-The chain binary delegates `sdk` and `api` subcommands to the Node.js CLI. These are equivalent:
+The chain binary delegates every `bitbadges-cli` subcommand to the Node.js CLI via a single `cli` forwarder. These are equivalent:
 
 ```bash
-bitbadgeschaind sdk review tx.json
+bitbadgeschaind cli sdk review tx.json
 bitbadges-cli sdk review tx.json
 
-bitbadgeschaind api tokens get-collection 1
+bitbadgeschaind cli api tokens get-collection 1
 bitbadges-cli api tokens get-collection 1
 ```
 
@@ -16929,7 +16929,7 @@ For building token collections with AI assistants (Claude, Cursor, etc.), see th
 
 # API Commands
 
-The `api` subcommand provides access to all 104+ indexer API routes, auto-generated from the OpenAPI spec. Routes are grouped by category. Available via both `bitbadges-cli api` and `bitbadgeschaind api`.
+The `api` subcommand provides access to all 104+ indexer API routes, auto-generated from the OpenAPI spec. Routes are grouped by category. Available via both `bitbadges-cli api` and `bitbadgeschaind cli api`.
 
 ## Route Groups
 
@@ -17017,7 +17017,7 @@ The `bitbadges-cli builder` command group is the umbrella for every non-template
 
 If you are looking for flag-based template generators (`vault`, `nft`, `subscription`, …), see [Builder Templates](builder-templates.md). Everything else lives here.
 
-All commands are also available via `bitbadgeschaind builder …` — the chain binary forwards `builder` subcommands to the Node.js CLI in-process, so there is no functional difference between `bitbadges-cli builder review tx.json` and `bitbadgeschaind builder review tx.json`.
+All commands are also available via `bitbadgeschaind cli builder …` — the chain binary forwards `builder` subcommands to the Node.js CLI in-process, so there is no functional difference between `bitbadges-cli builder review tx.json` and `bitbadgeschaind cli builder review tx.json`.
 
 ## Overview
 
@@ -18424,7 +18424,7 @@ Add that line to your `.bashrc` or `.zshrc` for persistent completions.
 
 # SDK Commands
 
-The `sdk` subcommand provides utilities for reviewing, interpreting, and working with BitBadges data. All commands are available via both `bitbadges-cli sdk` and `bitbadgeschaind sdk`.
+The `sdk` subcommand provides utilities for reviewing, interpreting, and working with BitBadges data. All commands are available via both `bitbadges-cli sdk` and `bitbadgeschaind cli sdk`.
 
 ## review
 
