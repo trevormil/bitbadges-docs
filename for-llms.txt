@@ -1,5 +1,5 @@
 # Gitbook Documentation Compilation
-Generated on Wed Apr 15 14:32:27 UTC 2026
+Generated on Fri Apr 17 11:32:34 UTC 2026
 
 
 
@@ -2009,6 +2009,7 @@ BitBadges addresses these fundamental issues through core design decisions:
   * [Chain Commands](for-developers/cli/chain-commands.md)
   * [Builder Templates](for-developers/cli/builder-templates.md)
   * [Builder Commands](for-developers/cli/builder-commands.md)
+  * [Create With Burner](for-developers/cli/create-with-burner.md)
   * [CLI for AI Agents](for-developers/cli/for-ai-agents.md)
 * [🤖 AI Agents & Bots](for-developers/ai-agents/README.md)
   * [Testnet Faucet API](for-developers/ai-agents/testnet-faucet.md)
@@ -17062,7 +17063,7 @@ Invoke a builder tool by name. Arguments come from `--args` (inline JSON) or `--
 
 ```bash
 bitbadges-cli builder tools call get_current_timestamp
-bitbadges-cli builder tools call get_skill_instructions --args '{"skill":"smart-token"}'
+bitbadges-cli builder tools call get_skill_instructions --args '{"skillId":"smart-token"}'
 bitbadges-cli builder tools call set_collection_metadata \
   --args-file ./metadata.json \
   --session demo
