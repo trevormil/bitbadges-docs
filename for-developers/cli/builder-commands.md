@@ -49,7 +49,7 @@ Invoke a builder tool by name. Arguments come from `--args` (inline JSON) or `--
 
 ```bash
 bitbadges-cli builder tools call get_current_timestamp
-bitbadges-cli builder tools call get_skill_instructions --args '{"skill":"smart-token"}'
+bitbadges-cli builder tools call get_skill_instructions --args '{"skillId":"smart-token"}'
 bitbadges-cli builder tools call set_collection_metadata \
   --args-file ./metadata.json \
   --session demo
