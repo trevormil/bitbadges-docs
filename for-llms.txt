@@ -1,5 +1,5 @@
 # Gitbook Documentation Compilation
-Generated on Fri Apr 17 11:32:34 UTC 2026
+Generated on Sat Apr 18 21:58:00 UTC 2026
 
 
 
@@ -8478,7 +8478,7 @@ Use per-field tools to build the collection incrementally, then verify:
 
 ```
 # 1. Get skill instructions
-get_skill_instructions({ skill: "fungible-token" })
+get_skill_instructions({ skillId: "fungible-token" })
 
 # 2. Build with per-field tools (all in parallel)
 set_standards({ standards: ["Fungible Token"] })
@@ -8520,7 +8520,7 @@ See [CLI Build Commands](../cli/build-commands.md) for the full list of 18 templ
 search({ query: "my collection name" })
   → query_collection({ collectionId: "123" })
   → query_balance({ collectionId: "123", address: "bb1..." })
-  → verify_ownership({ collectionId: "123", address: "bb1...", badgeIds: [...] })
+  → verify_ownership({ address: "bb1...", collectionId: "123", tokenId: "1" })
 ```
 
 > **Note:** The builder builds and validates transactions but does not sign or broadcast. Use the BitBadges SDK signing client or the BitBadges frontend to sign and submit.
