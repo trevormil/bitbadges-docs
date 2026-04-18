@@ -224,7 +224,7 @@ See [CLI Build Commands](../cli/build-commands.md) for the full list of 18 templ
 search({ query: "my collection name" })
   → query_collection({ collectionId: "123" })
   → query_balance({ collectionId: "123", address: "bb1..." })
-  → verify_ownership({ collectionId: "123", address: "bb1...", badgeIds: [...] })
+  → verify_ownership({ address: "bb1...", collectionId: "123", tokenId: "1" })
 ```
 
 > **Note:** The builder builds and validates transactions but does not sign or broadcast. Use the BitBadges SDK signing client or the BitBadges frontend to sign and submit.
