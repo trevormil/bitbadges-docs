@@ -182,7 +182,7 @@ Use per-field tools to build the collection incrementally, then verify:
 
 ```
 # 1. Get skill instructions
-get_skill_instructions({ skill: "fungible-token" })
+get_skill_instructions({ skillId: "fungible-token" })
 
 # 2. Build with per-field tools (all in parallel)
 set_standards({ standards: ["Fungible Token"] })
