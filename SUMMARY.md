@@ -207,6 +207,7 @@
     * [Blockin Docs](https://blockin.gitbook.io/blockin)
 * [⚒️ BitBadges JS / SDK](for-developers/bitbadges-sdk/README.md)
   * [Overview](for-developers/bitbadges-sdk/overview.md)
+  * [React & Next.js Quickstart](for-developers/bitbadges-sdk/react-quickstart.md)
   * [CLI Reference](for-developers/bitbadges-sdk/cli.md)
   * [SDK Types](for-developers/bitbadges-sdk/sdk-types.md)
   * [Common Snippets](for-developers/bitbadges-sdk/common-snippets/README.md)
