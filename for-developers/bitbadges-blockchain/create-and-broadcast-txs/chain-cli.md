@@ -169,7 +169,7 @@ Example `transfer.json`:
       "balances": [
         {
           "amount": "1",
-          "badgeIds": [{ "start": "1", "end": "1" }],
+          "tokenIds": [{ "start": "1", "end": "1" }],
           "ownershipTimes": [{ "start": "1", "end": "18446744073709551615" }]
         }
       ]
