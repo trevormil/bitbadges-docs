@@ -71,7 +71,7 @@ if (/* condition based on balance */) {
         from: client.address,
         toAddresses: ['bb1targetaddress...'],
         balances: [{
-          badgeIds: [{ start: 1n, end: 1n }],
+          tokenIds: [{ start: 1n, end: 1n }],
           ownershipTimes: [{ start: 1n, end: 18446744073709551615n }],
           amount: 1n
         }]
@@ -99,10 +99,10 @@ async function checkAccess(userAddress: string): Promise<boolean> {
       address: userAddress
     });
 
-    // Check if user owns badge ID 1
+    // Check if user owns token ID 1
     // The balance object contains detailed ownership info
     const hasAccess = balanceRes.balance.balances.some(b =>
-      b.badgeIds.some(range => range.start <= 1n && range.end >= 1n) &&
+      b.tokenIds.some(range => range.start <= 1n && range.end >= 1n) &&
       b.amount > 0n
     );
 
