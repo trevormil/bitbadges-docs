@@ -65,13 +65,15 @@ npm i bitbadges
 ```
 
 ```ts
-import { BitBadgesAPI } from 'bitbadges';
+import { BitBadgesAPI, BigIntify } from 'bitbadges';
 
 const api = new BitBadgesAPI({
-  ...
+  convertFunction: BigIntify,
+  apiKey: 'YOUR_API_KEY' // get one at bitbadges.io/developer
 });
 
-await BitBadgesAPI.getCollection(...);
+const res = await api.getCollection('1');
+console.log(res);
 ```
 
 ## Quick Start - BitBadges Builder Tools (AI)

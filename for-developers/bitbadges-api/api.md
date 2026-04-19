@@ -50,7 +50,7 @@ export const ConvertFunction = BigIntify;
 const BitBadgesApi = new BitBadgesAPI({
     apiKey: '...',
     //converts responses to your desired number type (bigint, Number, etc)
-    convertFunction: ConvertFunction //Can also do Numberify, Stringify, etc
+    convertFunction: ConvertFunction, //Can also do Numberify, Stringify, etc
     apiUrl: '...' //defaults to official one if empty
 });
 
