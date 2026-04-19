@@ -1,5 +1,5 @@
 # Gitbook Documentation Compilation
-Generated on Sat Apr 18 21:58:00 UTC 2026
+Generated on Sun Apr 19 11:32:10 UTC 2026
 
 
 
@@ -8367,7 +8367,7 @@ if (/* condition based on balance */) {
         from: client.address,
         toAddresses: ['bb1targetaddress...'],
         balances: [{
-          badgeIds: [{ start: 1n, end: 1n }],
+          tokenIds: [{ start: 1n, end: 1n }],
           ownershipTimes: [{ start: 1n, end: 18446744073709551615n }],
           amount: 1n
         }]
@@ -8395,10 +8395,10 @@ async function checkAccess(userAddress: string): Promise<boolean> {
       address: userAddress
     });
 
-    // Check if user owns badge ID 1
+    // Check if user owns token ID 1
     // The balance object contains detailed ownership info
     const hasAccess = balanceRes.balance.balances.some(b =>
-      b.badgeIds.some(range => range.start <= 1n && range.end >= 1n) &&
+      b.tokenIds.some(range => range.start <= 1n && range.end >= 1n) &&
       b.amount > 0n
     );
 
@@ -8908,7 +8908,7 @@ const result = await client.signAndBroadcast([
         toAddresses: [client.address],
         balances: [
           {
-            badgeIds: [{ start: '1', end: '1' }],
+            tokenIds: [{ start: '1', end: '1' }],
             amount: '1',
             ownershipTimes: [{ start: '1', end: '18446744073709551615' }]
           }
@@ -9636,7 +9636,7 @@ export const ConvertFunction = BigIntify;
 const BitBadgesApi = new BitBadgesAPI({
     apiKey: '...',
     //converts responses to your desired number type (bigint, Number, etc)
-    convertFunction: ConvertFunction //Can also do Numberify, Stringify, etc
+    convertFunction: ConvertFunction, //Can also do Numberify, Stringify, etc
     apiUrl: '...' //defaults to official one if empty
 });
 
@@ -10422,7 +10422,7 @@ Example `transfer.json`:
       "balances": [
         {
           "amount": "1",
-          "badgeIds": [{ "start": "1", "end": "1" }],
+          "tokenIds": [{ "start": "1", "end": "1" }],
           "ownershipTimes": [{ "start": "1", "end": "18446744073709551615" }]
         }
       ]
@@ -17844,7 +17844,7 @@ Example `transfer.json`:
       "balances": [
         {
           "amount": "1",
-          "badgeIds": [{ "start": "1", "end": "1" }],
+          "tokenIds": [{ "start": "1", "end": "1" }],
           "ownershipTimes": [{ "start": "1", "end": "18446744073709551615" }]
         }
       ]
@@ -19035,13 +19035,15 @@ npm i bitbadges
 ```
 
 ```ts
-import { BitBadgesAPI } from 'bitbadges';
+import { BitBadgesAPI, BigIntify } from 'bitbadges';
 
 const api = new BitBadgesAPI({
-  ...
+  convertFunction: BigIntify,
+  apiKey: 'YOUR_API_KEY' // get one at bitbadges.io/developer
 });
 
-await BitBadgesAPI.getCollection(...);
+const res = await api.getCollection('1');
+console.log(res);
 ```
 
 ## Quick Start - BitBadges Builder Tools (AI)
