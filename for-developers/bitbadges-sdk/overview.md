@@ -12,6 +12,8 @@ npm install bitbadges
 
 This library provides miscellaneous functionality to help you interact with BitBadges, such as types, API routes, managing metadata requests, logic with ID ranges and balances, etc.
 
+> **Building a frontend?** Start with the [React & Next.js Quickstart](react-quickstart.md) — it walks through install → connect wallet → query a collection → sign and broadcast in one page.
+
 ## Address Conversion
 
 The SDK includes address conversion utilities to convert between Ethereum addresses (0x-prefixed) and BitBadges addresses (bb-prefixed). See [Address Conversions](common-snippets/address-conversions.md) for more details.
