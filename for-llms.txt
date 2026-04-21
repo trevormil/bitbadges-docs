@@ -1,5 +1,5 @@
 # Gitbook Documentation Compilation
-Generated on Sun Apr 19 11:51:10 UTC 2026
+Generated on Tue Apr 21 13:26:25 UTC 2026
 
 
 
@@ -30688,9 +30688,9 @@ interface AltTimeChecks {
     offlineMonths?: UintRange[];
     /** Days of the month (1-31) when transfers should be denied. */
     offlineDaysOfMonth?: UintRange[];
-    /** ISO 8601 weeks of the year (1-52) when transfers should be denied. */
+    /** ISO 8601 weeks of the year (1-53) when transfers should be denied. */
     offlineWeeksOfYear?: UintRange[];
-    /** Timezone offset magnitude in minutes from UTC. Combined with timezoneOffsetNegative to determine direction. */
+    /** Timezone offset magnitude in minutes from UTC, in the range 0-840 (±14 hours). Combined with timezoneOffsetNegative to determine direction. */
     timezoneOffsetMinutes?: Uint;
     /** If true, the timezone offset is west of UTC (negative). If false or unset, east of UTC (positive). */
     timezoneOffsetNegative?: boolean;
@@ -30751,7 +30751,7 @@ The `offlineDaysOfMonth` field specifies ranges of days within a month (1-31) wh
 
 ### Offline Weeks of Year
 
-The `offlineWeeksOfYear` field specifies ranges of ISO 8601 weeks (1-52) when transfers should be denied. ISO 8601 defines week 1 as the week containing the first Thursday of the year. Most years have 52 weeks; some have 53.
+The `offlineWeeksOfYear` field specifies ranges of ISO 8601 weeks (1-53) when transfers should be denied. ISO 8601 defines week 1 as the week containing the first Thursday of the year. Most years have 52 weeks; some have 53 (the next 53-week year is 2026).
 
 ## Evaluation Logic
 
@@ -30840,8 +30840,8 @@ If either condition fails, the approval is denied.
 -   Day-of-week values must be in the range **0-6** (inclusive), where 0=Sunday, 6=Saturday
 -   Month values must be in the range **1-12** (inclusive), where 1=January, 12=December
 -   Day-of-month values must be in the range **1-31** (inclusive)
--   Week-of-year values must be in the range **1-52** (inclusive), following ISO 8601
--   `timezoneOffsetMinutes` must be a non-negative integer (magnitude only; use `timezoneOffsetNegative` for direction)
+-   Week-of-year values must be in the range **1-53** (inclusive), following ISO 8601 (most years end at 52; some end at 53)
+-   `timezoneOffsetMinutes` must be a non-negative integer in the range **0-840** (magnitude only; 840 minutes = 14 hours, the widest real-world UTC offset; use `timezoneOffsetNegative` for direction)
 -   Ranges within the same array should not overlap (though overlapping ranges will still work, they may be redundant)
 -   If multiple offline fields are specified, the approval is denied if **any** condition matches
 
