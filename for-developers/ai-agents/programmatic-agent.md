@@ -71,14 +71,23 @@ const agent = new BitBadgesAgent({
   fixLoopMaxRounds: 3,                   // validation fix cap
   sessionStore: new MemoryStore(),       // MemoryStore | FileStore | your own KVStore
   hooks: {
-    onTokenUsage:  (u) => console.log(`$${u.cumulativeCostUsd.toFixed(4)}`),
-    onToolCall:    (e) => console.log(`[${e.name}] ${e.durationMs}ms`),
-    onCompletion:  (trace) => saveTraceToDb(trace) // for analytics, fine-tuning data collection
+    onTokenUsage:   (u) => console.log(`$${u.cumulativeCostUsd.toFixed(4)}`),
+    onToolCall:     (e) => console.log(`[${e.name}] ${e.durationMs}ms`),
+    onStatusUpdate: (s) => showToUser(s),   // "Building…", "Validating…", etc.
+    onLog:          (e) => writeToLogSink(e), // info / ai_text / validation / error
+    onCompletion:   (trace) => saveTraceToDb(trace)
   },
   defaultCreatorAddress: 'bb1…',
   debug: false                           // set true to dump prompt/responses to stderr
 });
 ```
+
+### Hook contract
+
+- **`onTokenUsage`** is **load-bearing**: it's awaited, and rejections propagate out of `build()`. Throw from it to enforce per-build quotas (the BitBadges indexer does this with its TokenLedger).
+- **`onCompletion`** fires exactly once per `build()` — on success AND on error paths — so cleanup logic runs either way.
+- **`onToolCall`** / **`onStatusUpdate`** / **`onLog`** are fire-and-forget observability hooks; rejections are swallowed so a misbehaving logger can't hang a build.
+- **`onLog`** receives `{ type: 'info' | 'ai_text' | 'validation' | 'error', label, data }` entries — round boundaries, the LLM's text responses, validation-gate pass/fail. Useful for live-tail dev consoles and audit log persistence.
 
 ### Validation modes
 
@@ -142,6 +151,23 @@ await agent.build(prompt, {
 Fetcher calls `GET /api/v0/builder/community-skills?ids=...` and silently
 returns an empty array on any failure (missing key, network error, timeout) —
 your build still runs, it just loses the community injection.
+
+**Local dev:** when `bitbadgesApiUrl` points at `localhost`, `127.0.0.1`, or
+`*.localhost`, the fetcher skips the API-key requirement. Mirrors the
+indexer's own relaxed auth for local development — iterate against a
+local BitBadges indexer without a production key.
+
+### Prompt-injection guard on the system-prompt slots
+
+`systemPromptAppend` (additive) and `systemPrompt` (full replace) both
+run through an injection-pattern check at agent construction. If
+either contains obvious "ignore all previous instructions" / "you are
+now a…" style payloads, the constructor throws a
+`BitBadgesAgentError` with code `INVALID_SYSTEM_PROMPT_APPEND` or
+`INVALID_SYSTEM_PROMPT`. Hosted/server deployments that accept
+end-user input into these slots should still run their own
+`containsInjection` check at the trust boundary — the SDK's check is
+a defense-in-depth, not a replacement.
 
 ### Custom tools
 
