@@ -216,6 +216,52 @@ setTimeout(() => controller.abort(), 30_000);
 - **Cancellation**: supported via `abortSignal` or `agent.abort()`.
 - **Streaming**: not in v1. The agent returns when the build completes or throws; use `onTokenUsage` / `onToolCall` hooks for live progress.
 
+## Prompt caching (automatic)
+
+The agent uses Anthropic's prompt caching on the stable prefix — system
+prompt, tool schemas, and inlined skill instructions — so subsequent
+builds inside a 5-minute window read those tokens from cache at ~10% of
+the regular input-token cost. Cache-creation tokens cost ~1.25x regular
+input on the miss; one hit afterwards pays the miss back and every
+hit after that is profit.
+
+Caching is on by default. There's nothing to configure. Skill ordering
+is canonicalized (alphabetical) so `['nft', 'subscription']` and
+`['subscription', 'nft']` hit the same cache key.
+
+### Observability
+
+The `onTokenUsage` hook reports cache counters per round:
+
+```ts
+new BitBadgesAgent({
+  anthropicKey,
+  hooks: {
+    onTokenUsage: (u) => {
+      console.log(
+        `round ${u.round}: ${u.inputTokens} in, ${u.outputTokens} out, ` +
+        `cache ${u.cacheReadTokens} read / ${u.cacheCreationTokens} write, ` +
+        `cumulative $${u.cumulativeCostUsd.toFixed(4)}`
+      );
+    }
+  }
+});
+```
+
+`result.trace.cacheReadTokens` and `result.trace.cacheCreationTokens`
+also carry cumulative counts for the whole build. A healthy steady-
+state setup has `cacheReadTokens >> inputTokens`.
+
+### What invalidates the cache
+
+- 5-minute TTL since the last hit.
+- Any change to the system prompt (e.g. `systemPromptAppend` edit).
+- Any change to the tool set (`tools.add` / `tools.remove`).
+- Any change to the canonical skill set.
+
+The per-request tail (request header, metadata, prompt text, refinement
+history) is never cached — it's expected to vary.
+
 ## `/internals` — unstable primitives
 
 For users who want to run their own loop (different LLM, custom strategy, fine-tuning data collection):
