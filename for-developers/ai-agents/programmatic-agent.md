@@ -1,4 +1,4 @@
-# Programmatic Agent (`BitBadgesAgent`)
+# Programmatic Agent (`BitBadgesBuilderAgent`)
 
 Build BitBadges collections from natural-language prompts in Node/TypeScript — **you bring your own Anthropic API key**. BitBadges never sees your key, never proxies your requests.
 
@@ -27,14 +27,14 @@ export BITBADGES_API_KEY=bb-...
 ## Zero-config
 
 ```ts
-import { BitBadgesAgent } from 'bitbadges/builder/agent';
+import { BitBadgesBuilderAgent } from 'bitbadges/builder/agent';
 
-const agent = new BitBadgesAgent({ anthropicKey: process.env.ANTHROPIC_API_KEY });
+const agent = new BitBadgesBuilderAgent({ anthropicKey: process.env.ANTHROPIC_API_KEY });
 
 const result = await agent.build('create a subscription token for $10/month, max 500 subscribers');
 
 console.log(result.toString());
-// BitBadgesAgent build: 2 message(s), valid, 18,204 tokens, $0.0732, 5 round(s)
+// BitBadgesBuilderAgent build: 2 message(s), valid, 18,204 tokens, $0.0732, 5 round(s)
 
 console.log(result.transaction);
 ```
@@ -45,14 +45,14 @@ All three are interchangeable — pick whichever matches your deployment:
 
 ```ts
 // 1. API key (most common)
-new BitBadgesAgent({ anthropicKey: 'sk-ant-…' });
+new BitBadgesBuilderAgent({ anthropicKey: 'sk-ant-…' });
 
 // 2. OAuth token — for Claude Code / Claude Pro flows
-new BitBadgesAgent({ anthropicAuthToken: 'oauth-…' });
+new BitBadgesBuilderAgent({ anthropicAuthToken: 'oauth-…' });
 
 // 3. Pre-built Anthropic client — for custom retry/interceptor logic
 import Anthropic from '@anthropic-ai/sdk';
-new BitBadgesAgent({ anthropicClient: new Anthropic({ apiKey, baseURL: proxy }) });
+new BitBadgesBuilderAgent({ anthropicClient: new Anthropic({ apiKey, baseURL: proxy }) });
 ```
 
 Env vars are auto-read when no explicit creds are passed: `ANTHROPIC_API_KEY`, `ANTHROPIC_OAUTH_TOKEN`, `ANTHROPIC_AUTH_TOKEN`, `BITBADGES_API_KEY`, `BITBADGES_API_URL`.
@@ -60,7 +60,7 @@ Env vars are auto-read when no explicit creds are passed: `ANTHROPIC_API_KEY`, `
 ## Customization
 
 ```ts
-const agent = new BitBadgesAgent({
+const agent = new BitBadgesBuilderAgent({
   anthropicKey: process.env.ANTHROPIC_API_KEY,
   bitbadgesApiKey: process.env.BITBADGES_API_KEY,
   model: 'sonnet',                       // 'haiku' | 'sonnet' (default) | 'opus'
@@ -100,7 +100,7 @@ const agent = new BitBadgesAgent({
 Two inputs, two levels:
 
 ```ts
-new BitBadgesAgent({
+new BitBadgesBuilderAgent({
   anthropicKey,
   skills: ['nft', 'smart-token']          // whitelist — constructor-level filter
 });
@@ -134,9 +134,9 @@ No discovery UI ships — callers bring their own IDs (shared via URL, Discord,
 internal registry). Requires a BitBadges API key.
 
 ```ts
-import { BitBadgesAgent, createBitBadgesCommunitySkillsFetcher } from 'bitbadges/builder/agent';
+import { BitBadgesBuilderAgent, createBitBadgesCommunitySkillsFetcher } from 'bitbadges/builder/agent';
 
-const agent = new BitBadgesAgent({
+const agent = new BitBadgesBuilderAgent({
   anthropicKey,
   bitbadgesApiKey: process.env.BITBADGES_API_KEY,
   communitySkillsFetcher: createBitBadgesCommunitySkillsFetcher()
@@ -163,7 +163,7 @@ local BitBadges indexer without a production key.
 run through an injection-pattern check at agent construction. If
 either contains obvious "ignore all previous instructions" / "you are
 now a…" style payloads, the constructor throws a
-`BitBadgesAgentError` with code `INVALID_SYSTEM_PROMPT_APPEND` or
+`BitBadgesBuilderAgentError` with code `INVALID_SYSTEM_PROMPT_APPEND` or
 `INVALID_SYSTEM_PROMPT`. Hosted/server deployments that accept
 end-user input into these slots should still run their own
 `containsInjection` check at the trust boundary — the SDK's check is
@@ -174,7 +174,7 @@ a defense-in-depth, not a replacement.
 Add tools on top of the builtins, or filter them out:
 
 ```ts
-new BitBadgesAgent({
+new BitBadgesBuilderAgent({
   anthropicKey,
   tools: {
     remove: ['build_claim'],
@@ -198,10 +198,10 @@ Conversation messages + token counters are persisted so refinement works across 
 import { MemoryStore, FileStore } from 'bitbadges/builder/agent';
 
 // Default — single-process, in-memory
-new BitBadgesAgent({ anthropicKey, sessionStore: new MemoryStore() });
+new BitBadgesBuilderAgent({ anthropicKey, sessionStore: new MemoryStore() });
 
 // Disk-backed — survives process restarts (default dir: ~/.bitbadges/agent-sessions)
-new BitBadgesAgent({ anthropicKey, sessionStore: new FileStore({ dir: '/var/lib/bb' }) });
+new BitBadgesBuilderAgent({ anthropicKey, sessionStore: new FileStore({ dir: '/var/lib/bb' }) });
 
 // BYO — any object matching the KVStore interface works
 class RedisStore implements KVStore {
@@ -209,7 +209,7 @@ class RedisStore implements KVStore {
   async set(key, value)   { /* ... */ }
   async delete(key)       { /* ... */ }
 }
-new BitBadgesAgent({ anthropicKey, sessionStore: new RedisStore() });
+new BitBadgesBuilderAgent({ anthropicKey, sessionStore: new RedisStore() });
 ```
 
 Pass the same `sessionId` across `.build()` calls to continue a session (e.g., for refinement).
@@ -239,7 +239,7 @@ Errors dispatch on `instanceof`:
 
 ```ts
 import {
-  BitBadgesAgentError,
+  BitBadgesBuilderAgentError,
   ValidationFailedError,
   QuotaExceededError,
   AnthropicAuthError,
@@ -385,7 +385,7 @@ use.
 The `onTokenUsage` hook reports cache counters per round:
 
 ```ts
-new BitBadgesAgent({
+new BitBadgesBuilderAgent({
   anthropicKey,
   hooks: {
     onTokenUsage: (u) => {
