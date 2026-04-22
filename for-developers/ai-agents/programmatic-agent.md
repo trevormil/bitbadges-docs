@@ -127,6 +127,26 @@ If you're hitting the agent for an update and seeing over-aggressive rewriting,
 this is the dial to turn — drop skills from the per-build call entirely and the
 agent falls back to generic `DOMAIN_KNOWLEDGE` guidance.
 
+#### Smart token-type inference (auto-pick)
+
+When the caller doesn't supply a token-type skill, the agent classifies the prompt and prepends one high-confidence pick — or builds freestyle if nothing is confidently a match. See the dedicated **[Smart Token-Type Detection](smart-token-type-detection.md)** page for the full contract.
+
+Quick shape:
+
+```ts
+new BitBadgesBuilderAgent({
+  anthropicKey,
+  autoInferTokenType: true           // default — flip to false to disable
+});
+
+const result = await agent.build('monthly subscription for $10/mo');
+result.inferredTokenType;            // 'subscription' — or null (freestyle), or undefined (skipped)
+result.inferredTokenTypeSource;      // 'standards' (existing-collection fast-path) | 'llm'
+result.inferredTokenTypeReasoning;   // one-sentence rationale
+```
+
+Inference is skipped entirely when `selectedSkills` already has a token-type entry — explicit picks win. Non-token-type skills (community, additional-context) don't block inference.
+
 #### Community skills (power-user)
 
 `promptSkillIds` injects community-contributed skill docs stored on BitBadges.
