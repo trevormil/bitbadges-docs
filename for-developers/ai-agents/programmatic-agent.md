@@ -88,13 +88,60 @@ const agent = new BitBadgesAgent({
 
 ### Skills
 
-Narrow the skill set injected into the system prompt:
+Two inputs, two levels:
 
 ```ts
-new BitBadgesAgent({ anthropicKey, skills: ['nft', 'smart-token'] });
+new BitBadgesAgent({
+  anthropicKey,
+  skills: ['nft', 'smart-token']          // whitelist — constructor-level filter
+});
+
+await agent.build('mint 100 nfts', {
+  selectedSkills: ['nft']                  // actual injection for this build
+});
 ```
 
-Full list: call `getAllSkillInstructions()` from `bitbadges/builder/skills` or see [Skill Instructions](#).
+`agent.listSkills()` returns every available skill (filtered by the constructor
+whitelist when set). `agent.describeSkill(id)` returns one by ID. Discovery is
+code-only — there's no public marketplace endpoint. If you pass an unknown ID
+to `selectedSkills`, it's dropped silently (no build failure); enable `debug:
+true` to log dropped IDs.
+
+#### How skill content is injected by mode
+
+| Build mode | What gets injected |
+|---|---|
+| `create` | **Full** skill instructions with build recipes — the LLM follows them to construct a new collection from scratch. |
+| `update` / `refine` | **Summaries only**, with an explicit "don't rebuild the collection to match the skill" warning. The collection already exists on-chain; skills are reference context, not a blueprint. |
+
+If you're hitting the agent for an update and seeing over-aggressive rewriting,
+this is the dial to turn — drop skills from the per-build call entirely and the
+agent falls back to generic `DOMAIN_KNOWLEDGE` guidance.
+
+#### Community skills (power-user)
+
+`promptSkillIds` injects community-contributed skill docs stored on BitBadges.
+No discovery UI ships — callers bring their own IDs (shared via URL, Discord,
+internal registry). Requires a BitBadges API key.
+
+```ts
+import { BitBadgesAgent, createBitBadgesCommunitySkillsFetcher } from 'bitbadges/builder/agent';
+
+const agent = new BitBadgesAgent({
+  anthropicKey,
+  bitbadgesApiKey: process.env.BITBADGES_API_KEY,
+  communitySkillsFetcher: createBitBadgesCommunitySkillsFetcher()
+});
+
+await agent.build(prompt, {
+  selectedSkills:  ['subscription'],
+  promptSkillIds:  ['community-skill-xyz-123']
+});
+```
+
+Fetcher calls `GET /api/v0/builder/community-skills?ids=...` and silently
+returns an empty array on any failure (missing key, network error, timeout) —
+your build still runs, it just loses the community injection.
 
 ### Custom tools
 
@@ -178,14 +225,48 @@ import {
 
 ## Image placeholders
 
-The agent emits `IMAGE_N` placeholders inside `metadataPlaceholders` sidecars. Substitute them with your own bytes/URLs:
+The agent has two image-handling modes. Pick whichever fits your pipeline.
+
+### 1. Real URLs in the prompt (simplest)
+
+If you already have hosted images, just tell the agent the URLs in the prompt.
+The LLM emits them verbatim into `metadataPlaceholders` entries.
 
 ```ts
-const final = agent.substituteImages(result.transaction, {
-  IMAGE_1: 'https://cdn.example.com/hero.png',
-  IMAGE_2: 'data:image/png;base64,…'
+await agent.build(
+  `Create an NFT collection with hero image https://cdn.example.com/hero.png and
+   token art https://cdn.example.com/t1.png`
+);
+```
+
+No post-processing needed. Downside: the LLM has to faithfully copy the URLs,
+so keep them short and well-formed.
+
+### 2. Placeholders + post-build substitution (for dynamically-uploaded images)
+
+When the user is still choosing/uploading images at build time, use symbolic
+placeholders and swap them in after the build:
+
+```ts
+const result = await agent.build(prompt, {
+  availableImagePlaceholders: ['IMAGE_1', 'IMAGE_2']
+});
+
+const finalTx = agent.substituteImages(result.transaction, {
+  IMAGE_1: 'https://cdn.example.com/hero.png',   // or a data: URL
+  IMAGE_2: 'ipfs://bafy…'
 });
 ```
+
+The LLM wires `IMAGE_N` tokens into the metadata; you resolve them at the end.
+Matches the hosted frontend's flow exactly.
+
+### Detecting stragglers
+
+`agent.collectImageReferences(tx)` returns every `IMAGE_N` token still in the
+transaction. Useful as a pre-broadcast sanity check — anything that comes back
+from this call is a placeholder that never got a real value and will land
+on-chain as-is.
 
 ## Health check
 
@@ -201,6 +282,28 @@ const report = await agent.healthCheck();
 const existing = loadTxFromDisk();
 const { valid, errors, simulation } = await agent.validate(existing);
 ```
+
+## Export as a single prompt for no-tools LLMs
+
+When you want to hand the build to Claude.ai, ChatGPT, or Gemini (no tools
+available there), use `agent.exportPrompt()` to assemble the no-tools
+variant of the system prompt concatenated with the user message. The LLM
+emits the final transaction JSON directly.
+
+```ts
+const { prompt, communitySkillsIncluded } = await agent.exportPrompt(
+  'create a subscription token for $10/mo',
+  { selectedSkills: ['subscription'] }
+);
+
+// Paste `prompt` into Claude.ai / ChatGPT / Gemini — the output will be
+// a { messages: [{ typeUrl, value }] } JSON object ready to paste into
+// the frontend's Paste Transaction step.
+```
+
+No Anthropic call is made. No validation, no simulation, no fix loop — this
+is a pure prompt-assembly helper. Best-effort path; the SDK-agent `build()`
+flow remains the quality-gated path.
 
 ## Abort
 
@@ -228,6 +331,28 @@ hit after that is profit.
 Caching is on by default. There's nothing to configure. Skill ordering
 is canonicalized (alphabetical) so `['nft', 'subscription']` and
 `['subscription', 'nft']` hit the same cache key.
+
+### When caching actually pays off
+
+The stable prefix (system prompt + tool schemas + inlined skills) is typically
+10–15% of the per-build token count — the rest is dynamic user context and the
+tool-calling round trips. Numbers to keep in mind:
+
+- **First build with a new skill set**: cache miss. You pay 1.25x on the
+  prefix tokens and nothing comes back. Net: slightly more expensive than
+  no-cache, by a few cents at most for a typical build.
+- **Second build within 5 minutes with the same skill set**: cache hit.
+  The prefix tokens now cost 10% of full rate. Break-even against the miss
+  hits roughly here.
+- **Steady-state** (several builds / hour with overlapping skill sets):
+  cache-read tokens dominate the input count on `result.trace`. Real-world
+  savings are 40–60% on the total input-token bill, not 90% (because the
+  prefix is only part of the request).
+
+For one-off scripts that run a single build and exit, you pay the 1.25x write
+premium with no recovery. The absolute cost delta is small (cents), so leave
+caching on — but don't count on it as a headline optimization for low-volume
+use.
 
 ### Observability
 
