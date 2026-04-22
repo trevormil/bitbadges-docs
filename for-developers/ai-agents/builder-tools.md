@@ -2,6 +2,8 @@
 
 The [BitBadges Builder](https://github.com/bitbadges/bitbadgesjs/tree/main/packages/bitbadgesjs-sdk/src/builder) provides 50+ tools for AI assistants to build, audit, and validate BitBadges transactions. It works with Claude Desktop, Claude Code, Cursor, and any MCP-compatible client.
 
+> **Building from your own code (Node/TypeScript)?** Use the [Programmatic Agent](programmatic-agent.md) — same tools + system prompt + validation loop, BYO Anthropic key, no MCP client required. One-liner: `new BitBadgesAgent({ anthropicKey }).build('…')`.
+
 > For terminal-based workflows without an MCP client, use the [BitBadges CLI](../cli/) — it provides 104+ API routes, review/audit tools, and built-in docs from the command line. See [CLI for AI Agents](../cli/for-ai-agents.md).
 
 ## Installation
