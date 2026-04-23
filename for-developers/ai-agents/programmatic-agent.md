@@ -69,6 +69,7 @@ const agent = new BitBadgesBuilderAgent({
   systemPromptAppend: 'Always use locked-approvals permissions.', // adds to base prompt
   maxRounds: 8,                          // agent loop cap
   fixLoopMaxRounds: 3,                   // validation fix cap
+  autoInferTokenType: true,              // default — smart token-type detection; set false to disable
   sessionStore: new MemoryStore(),       // MemoryStore | FileStore | your own KVStore
   hooks: {
     onTokenUsage:   (u) => console.log(`$${u.cumulativeCostUsd.toFixed(4)}`),
