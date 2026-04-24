@@ -84,7 +84,9 @@ The recommended way to build collections. Each tool sets one field on a session-
 | `set_collection_metadata` | Set collection-level metadata (name, description, image) |
 | `set_token_metadata` | Set per-token metadata URIs |
 | `set_custom_data` | Set custom data on the collection |
-| `add_approval` | Add a collection approval with approvalCriteria |
+| `add_approval` | Add a collection approval with approvalCriteria (raw — full control over every field) |
+| `add_preset_approval` | Add a canonical approval from a named preset (smaller payload, preferred when a preset fits). Output is structurally identical to `add_approval` |
+| `list_presets` | Discover preset IDs + params schemas, filtered by skill (e.g. `{skill: "prediction-market"}`) |
 | `remove_approval` | Remove a collection approval by approvalId |
 | `set_approval_metadata` | Set metadata for a specific approval |
 | `add_alias_path` | Add an alias path (for ICS20-backed smart tokens) |
@@ -159,6 +161,7 @@ Helper tools that generate specific pieces of a collection (approvals, permissio
 | `get_current_timestamp` | Get the current timestamp (for time-based configs) |
 | `diagnose_error` | Diagnose BitBadges transaction errors and get suggested fixes |
 | `search_knowledge_base` | Search across all BitBadges knowledge — docs, learnings, recipes, error patterns, critical rules |
+| `flag_review_item` | Flag a decision the user should review before broadcast (assumptions, substitutions, ambiguity resolutions, defaults picked without user input). Surfaces as `BuildResult.reviewFlags`. Always on — no feature flag |
 
 ### Instructions & Docs
 
