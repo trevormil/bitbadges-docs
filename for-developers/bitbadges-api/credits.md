@@ -24,6 +24,28 @@ The same card shows your current balance and a low-balance warning when you're c
 
 Each account can send up to **10,000 requests per minute**. Well above normal use — mainly exists to cap damage from runaway loops. If you need a higher ceiling, reach out.
 
+## Accounting semantics (for advanced integrators)
+
+API credit accounting runs through a Redis hot-path with a background
+Mongo reconcile — similar to Stripe, Twilio, and Cloudflare's metering
+patterns. Practical implications:
+
+- **Budget checks are real-time** (Redis INCR + compare, atomic). A
+  request that would exceed your balance is rejected immediately.
+- **Usage counters (account-level `used`, per-key `totalRequests` /
+  `totalCreditsSpent` / `lastRequestAt`) are eventually consistent** —
+  they sync every ~5 seconds. Dashboards lag by that much; budget
+  enforcement does not.
+- **Small overshoot is possible and safe.** To avoid blocking on
+  flush-to-Mongo, the budget check tolerates up to a small slack
+  amount (~500 credits) past your on-chain balance. You will never be
+  charged more than you paid for; you just occasionally get a few
+  extra credits' worth of service before the next 402.
+- **Top-up propagation:** the dev portal invalidates the cache on a
+  successful top-up, so new balance is visible immediately. If you
+  top up via another path (direct chain transfer, CLI), budget
+  refreshes within 5 minutes.
+
 ## When you run out
 
 If your balance hits zero mid-request, the API returns `402 Payment Required` with a link back to the developer portal. Your API key stays valid — just top up and keep going.
