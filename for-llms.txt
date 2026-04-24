@@ -1,5 +1,5 @@
 # Gitbook Documentation Compilation
-Generated on Fri Apr 24 10:55:52 UTC 2026
+Generated on Fri Apr 24 11:49:38 UTC 2026
 
 
 
@@ -12774,55 +12774,146 @@ For detailed information about EVM RPC endpoints, see [EVM RPC Endpoints](evm-rp
 
 # Run a Mainnet Node
 
-Running a node is the same as any other Cosmos SDK chain. If you encounter any issues during the setup process, you can also refer to other Cosmos SDK node documentation, such as "[Cosmos SDK - Running a Node](https://docs.cosmos.network/main/user/run-node/run-node)" or "[Cosmos Tutorials - Run in Production documentation](https://tutorials.cosmos.network/tutorials/9-path-to-prod/1-overview.html)."&#x20;
+This page walks you through starting a BitBadges mainnet validator or full node from scratch. Follow the steps in order; each one is a command you can copy and run.
 
-Below are some links to get you started. If you are unfamiliar with setup, I'd recommend following a guide and/or asking for help in the #validators channel of our Discord. We have plenty of great validators maintaining the network, and many have detailed guides to help you get started. LLMs are also a good resource and can help you get set up.
+If you already run Cosmos SDK chains, the flow will feel familiar. If you get stuck, ask in the `#validators` channel of our [Discord](https://discord.com/invite/TJMaEd9Kar) — ping `@trevormil` for the Validator role.
 
-Note that as a validator, you are responsible for the security of the network. Take necessary precautions for uptime and security in order to avoid slashing or losing staked funds.
+> As a validator you are responsible for the security and uptime of the network. Take normal production precautions (firewalls, monitoring, sentry nodes, key management) to avoid slashing or losing staked funds.
 
-**Discord**
+## 1. Install the binary
 
-Our main communication method is via Discord:
+See the [CLI Installation guide](../cli/installation.md) for the one-line installer and build-from-source instructions. When you are done you should have `bitbadgeschaind` on your `PATH`:
 
-* \#validators channel is a great resource for help. Ping @trevormil to give you the Validator role.
-* \#announcements and #chain-upgrades are where we announce the latest plans to upgrade. We use the x/upgrade module from Cosmos SDK. We recommend Cosmovisor for handling upgrades.
+```bash
+bitbadgeschaind version
+```
 
-**Guides + Setup w/ Snapshots**
+## 2. Initialize your node
 
-* [https://docs.provewithryd.xyz/mainnet/bitbadges/network-overview](https://docs.provewithryd.xyz/mainnet/bitbadges/network-overview)
-* [https://nodestake.org/bitbadges](https://nodestake.org/bitbadges)
-* Note that most validators have their own guides. Choose whichever one works best for you.
+Pick a moniker (the public name of your node) and run `init`. This creates `~/.bitbadgeschain/` with a default `config/config.toml`, `config/app.toml`, and a placeholder `config/genesis.json`.
 
-**Releases / Instructions**
+```bash
+bitbadgeschaind init <moniker> --chain-id bitbadges-1
+```
 
-* [https://github.com/BitBadges/bitbadgeschain/releases](https://github.com/BitBadges/bitbadgeschain/releases)
+## 3. Download the canonical genesis file
 
-**Genesis File**
+Replace the freshly-generated placeholder genesis with the pinned mainnet genesis (post-711316 hard fork):
 
-* [https://github.com/BitBadges/bitbadgeschain/blob/master/genesis-711316.json](https://github.com/BitBadges/bitbadgeschain/blob/master/genesis-711316.json) (Note this is post 711316 hard fork)
+```bash
+curl -L https://raw.githubusercontent.com/BitBadges/bitbadgeschain/master/genesis-711316.json \
+  -o ~/.bitbadgeschain/config/genesis.json
+```
 
-**Explorer**
+Sanity-check the file is non-empty and parses as JSON before continuing.
 
-* [https://explorer.bitbadges.io/BitBadges%20Mainnet/staking](https://explorer.bitbadges.io/BitBadges%20Mainnet/staking)
+## 4. Configure peers
 
-**BitBadges RPC**
+Open `~/.bitbadgeschain/config/config.toml` and set `persistent_peers` (and/or `seeds`) to the addresses of known-good mainnet nodes. You need at least one working peer for your node to find the rest of the network.
 
-* https://rpc.bitbadges.io
+```toml
+# ~/.bitbadgeschain/config/config.toml
+persistent_peers = "<nodeID>@<host>:<port>,<nodeID>@<host>:<port>"
+```
 
-**Running a Relayer?**
+> **First-party peer list:** Pending — reach out in the `#validators` Discord channel to request current peer addresses while a canonical list is being prepared. Most active validators also publish their own peer IDs in their setup guides (see the community guides linked at the bottom of this page).
 
-* See the official IBC connections in the Cosmos chain registry that we support.
+## 5. Set the required consensus parameter
 
-**Configuration**
+`timeout_commit` must match the rest of the network or your node will fall out of sync. The default from `init` is `5s`; mainnet uses `2s`.
 
-Most node parameters are flexible and you can set up according to your preferences. Here are some that should be the same as the rest of the network.&#x20;
+In `~/.bitbadgeschain/config/config.toml`:
 
-* chain\_id: bitbadges-1
-* timeout\_commit: 2s
+```toml
+# ~/.bitbadgeschain/config/config.toml
+timeout_commit = "2s"
+```
+
+You can also do this non-interactively:
+
+```bash
+sed -i 's/^timeout_commit = "5s"/timeout_commit = "2s"/' \
+  ~/.bitbadgeschain/config/config.toml
+```
+
+## 6. Set the EVM chain ID
+
+BitBadges exposes Ethereum-compatible JSON-RPC. The `evm-chain-id` in `app.toml` must match the network. Mainnet is `50024`; testnet is `50025`. The default after `init` is wrong for both.
+
+In `~/.bitbadgeschain/config/app.toml`:
+
+```toml
+[evm]
+evm-chain-id = 50024
+```
+
+If you do not set this correctly, wallets such as MetaMask will reject transactions with `incorrect chain-id`. See [EVM JSON-RPC Configuration](#evm-json-rpc-configuration) below for the full set of EVM-related settings.
+
+## 7. Start the node
+
+```bash
+bitbadgeschaind start
+```
+
+Watch the logs. You should see block heights ticking up within a minute or two once peers are connected. If you stay at height `0` or log `No addresses added` for more than a few minutes, your peer list is wrong — revisit step 4.
+
+## 8. Verify sync
+
+Query the local node for its current block height and catch-up status:
+
+```bash
+bitbadgeschaind status 2>&1 | jq '.sync_info'
+```
+
+`catching_up: false` means you are fully synced with the rest of the network. Compare `latest_block_height` against the [block explorer](https://explorer.bitbadges.io/BitBadges%20Mainnet/staking) to confirm.
+
+## 9. (Optional) Speed things up with a snapshot
+
+A full sync from genesis can take hours. To shortcut it, restore a state snapshot from a community validator:
+
+- [provewithryd — Network Overview and snapshots](https://docs.provewithryd.xyz/mainnet/bitbadges/network-overview)
+- [nodestake — BitBadges snapshot](https://nodestake.org/bitbadges)
+
+Most validators also publish their own guides; pick whichever one matches your OS and preferences. Restore the snapshot **after** steps 1–6 but **before** step 7 (`start`).
+
+## 10. (Optional) Run under Cosmovisor
+
+We announce upgrades in the `#chain-upgrades` Discord channel and use the Cosmos SDK `x/upgrade` module. Running under [Cosmovisor](https://docs.cosmos.network/main/tooling/cosmovisor) lets upgrades happen automatically at the scheduled block height. A minimal setup:
+
+```bash
+export DAEMON_HOME=$HOME/.bitbadgeschain
+export DAEMON_NAME=bitbadgeschaind
+cosmovisor init $(which bitbadgeschaind)
+cosmovisor run start
+```
+
+For anything more advanced (download-upgrade, backup policy), follow the [official Cosmovisor docs](https://docs.cosmos.network/main/tooling/cosmovisor) with `bitbadgeschaind` substituted in for the example daemon.
+
+## Useful references
+
+- [Binary releases (GitHub)](https://github.com/BitBadges/bitbadgeschain/releases)
+- [Canonical genesis file](https://github.com/BitBadges/bitbadgeschain/blob/master/genesis-711316.json)
+- [Block explorer](https://explorer.bitbadges.io/BitBadges%20Mainnet/staking)
+- [BitBadges public RPC](https://rpc.bitbadges.io)
+- [Cosmos SDK — Running a Node](https://docs.cosmos.network/main/user/run-node/run-node)
+- [Cosmos Tutorials — Path to Production](https://tutorials.cosmos.network/tutorials/9-path-to-prod/1-overview.html)
+
+## Community guides
+
+If you want a second reference while setting up, these community validator guides cover similar ground:
+
+- [provewithryd — BitBadges network overview](https://docs.provewithryd.xyz/mainnet/bitbadges/network-overview)
+- [nodestake — BitBadges](https://nodestake.org/bitbadges)
+
+Most active validators in the `#validators` Discord channel have their own write-ups as well.
+
+## Running a Relayer?
+
+See the official IBC connections in the Cosmos chain registry that we support.
 
 ## EVM JSON-RPC Configuration
 
-If you want to expose Ethereum-compatible JSON-RPC endpoints (for MetaMask, ethers.js, etc.), you need to configure the EVM settings in your `app.toml`:
+If you want to expose Ethereum-compatible JSON-RPC endpoints (for MetaMask, ethers.js, etc.), configure the EVM settings in your `app.toml`:
 
 ### Critical: EVM Chain ID
 
@@ -12833,11 +12924,11 @@ If you want to expose Ethereum-compatible JSON-RPC endpoints (for MetaMask, ethe
 # CRITICAL: Set this to match your network's EVM chain ID
 # Mainnet: 50024
 # Testnet: 50025
-# The default value (90123) is the local-dev chain ID and will cause wallet transaction failures on mainnet/testnet!
+# The default value (90123) will cause wallet transaction failures!
 evm-chain-id = 50024
 ```
 
-**Why this matters:** The `evm-chain-id` setting is used by the `net_version` RPC method for EIP-155 signature verification. If this doesn't match `eth_chainId` (which reads from chain state), MetaMask and other wallets will fail with an error like: `incorrect chain-id; expected 90123, got 50024` (the exact "expected" value is whatever you left `evm-chain-id` set to — `90123` is the local-dev default emitted by `bitbadgeschaind init`).
+**Why this matters:** The `evm-chain-id` setting is used by the `net_version` RPC method for EIP-155 signature verification. If this doesn't match `eth_chainId` (which reads from chain state), MetaMask and other wallets will fail with error: `incorrect chain-id; expected 50024, got 90123`.
 
 ### JSON-RPC Server Options
 
@@ -12928,7 +13019,7 @@ For production nodes serving EVM RPC:
 2. **Set appropriate gas/fee caps** to prevent resource exhaustion
 3. **Enable the indexer** (`--json-rpc.enable-indexer`) for better query performance
 4. **Configure WebSocket origins** if accepting external WS connections
-5. **Monitor resource usage** - JSON-RPC can be resource-intensive under load
+5. **Monitor resource usage** — JSON-RPC can be resource-intensive under load
 
 
 ## File: ./for-developers/bitbadges-blockchain/supported-denoms.md
