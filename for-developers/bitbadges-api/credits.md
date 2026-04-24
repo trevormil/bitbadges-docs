@@ -32,18 +32,36 @@ If your balance hits zero mid-request, the API returns `402 Payment Required` wi
 
 AI Builder charges per model call, based on how many tokens the model reads and writes. The builder quotes the exact cost up front so there's no surprise burn. Credits spent on AI Builder come from the same balance as API credits — one pool, two products.
 
-## Checking your balance from the API
+## Handling 402 responses
+
+When an account has no API credits remaining, every API request responds with HTTP `402 Payment Required`:
+
+```json
+{
+  "error": "Insufficient credits",
+  "errorMessage": "Insufficient API credits. Top up at /developer?tab=apiKeys.",
+  "topUpUrl": "/developer?tab=apiKeys",
+  "onChainTotal": 0,
+  "used": 12345,
+  "remaining": 0
+}
+```
+
+Your API key stays valid — catch the `402`, prompt the account owner to top up in the Developer Portal, and retry once the balance confirms on-chain.
+
+## Checking your balance
+
+The Developer Portal's **API Keys** tab shows your live balance and inline top-up. For programmatic checks of the on-chain balance, use the standard balance-lookup method against the API Credits collection:
 
 ```typescript
-const { balance } = await BitBadgesApi.getCreditBalance();
-// { onChainTotal: number, used: number, remaining: number }
+import { BitBadgesApi } from 'bitbadges';
+
+// API_CREDITS_COLLECTION_ID: '80' on mainnet, '23' on local dev.
+const res = await BitBadgesApi.getBalanceByAddress('80', yourBitBadgesAddress, {});
+const onChainTotal = (res.balances ?? []).reduce((sum, b) => sum + BigInt(b.amount), 0n);
 ```
 
-Or via HTTP:
-
-```
-GET https://api.bitbadges.io/api/v0/credits/balance
-```
+This returns the total APITOKEN ever purchased by that address. The off-chain `used` counter (and therefore `remaining`) is only exposed to the signed-in account owner — the 402 response is the simplest way to surface it programmatically.
 
 ## FAQ
 
