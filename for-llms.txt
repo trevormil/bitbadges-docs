@@ -1,5 +1,5 @@
 # Gitbook Documentation Compilation
-Generated on Fri Apr 24 11:49:38 UTC 2026
+Generated on Fri Apr 24 17:00:57 UTC 2026
 
 
 
@@ -2027,7 +2027,7 @@ BitBadges addresses these fundamental issues through core design decisions:
   * [Standard API Reference](https://bitbadges.stoplight.io/docs/bitbadges)
   * [Blockchain API Reference](https://lcd.bitbadges.io/)
   * [Typed SDK Types](https://bitbadges.github.io/bitbadgesjs/classes/BitBadgesAPI.html)
-  * [Upgrading an API Key Tier](for-developers/bitbadges-api/upgrading-an-api-key-tier.md)
+  * [API Credits](for-developers/bitbadges-api/credits.md)
   * [Concepts](for-developers/bitbadges-api/concepts/README.md)
     * [Refresh / Claim Completion Queue](for-developers/bitbadges-api/concepts/refresh-queue.md)
     * [Limits / Restrictions](for-developers/bitbadges-api/concepts/limits-restrictions.md)
@@ -10218,11 +10218,13 @@ Or unsubscribe from all:
 
 ## Getting Started - API Keys
 
-By default, select routes are available publicly in a rate limited manner with no API key. However, API keys allow you access to all routes with higher limits.
+By default, select routes are available publicly in a rate-limited way with no API key. API keys give you access to all routes with higher limits.
 
-1. Sign in on and create an API key by going to [https://bitbadges.io/developer](https://bitbadges.io/developer) -> API Keys tab.
-2. Start sending requests to the base URL of [https://api.bitbadges.io/](https://api.bitbadges.io/) with the HTTP header x-api-key. All routes require an API key.
-3. For higher tiers / paid plans, visit [https://bitbadges.io/pricing](https://bitbadges.io/pricing). To actually upgrade, see the Upgrading an API Key Tier demo.
+1. Sign in and create an API key at [https://bitbadges.io/developer](https://bitbadges.io/developer) -> API Keys tab.
+2. Send requests to [https://api.bitbadges.io/](https://api.bitbadges.io/) with the HTTP header `x-api-key`.
+3. Top up API credits inline in the **API Keys** tab of the developer portal. Each request costs 1 API credit, and 1 USDC = 100,000 API credits.
+
+See [API Credits](credits.md) for the full pricing and rate-limit breakdown.
 
 <figure><img src="../../.gitbook/assets/image (189).png" alt=""><figcaption></figcaption></figure>
 
@@ -10503,6 +10505,84 @@ await BitBadgesApi.getRefreshStatus()
 ```
 
 
+## File: ./for-developers/bitbadges-api/credits.md
+
+# API Credits
+
+BitBadges uses **API credits** (on-chain symbol `APITOKEN`) to pay for API requests and AI Builder runs. One balance, two products.
+
+## How you pay
+
+- **API requests:** 1 API credit per request. Flat rate, every route.
+- **AI Builder:** varies by model. The builder shows the cost before you run it.
+- **Exchange rate:** 1 USDC = 100,000 APITOKEN, so 100,000 API requests costs about $1.
+
+No tiers. No monthly subscription. No credit card on file.
+
+## Top up
+
+The top-up flow lives inline in the Developer Portal:
+
+1. Go to [https://bitbadges.io/developer](https://bitbadges.io/developer) → **API Keys** tab.
+2. Enter a USDC amount, confirm the on-chain transaction.
+3. Your balance updates once the on-chain transfer confirms.
+
+The same card shows your current balance and a low-balance warning when you're close to running out. API credits are soulbound to the account that buys them — they power both your API calls and the AI Builder from one balance, but they cannot be transferred, sold, or moved to another account.
+
+## Rate limit
+
+Each account can send up to **10,000 requests per minute**. Well above normal use — mainly exists to cap damage from runaway loops. If you need a higher ceiling, reach out.
+
+## When you run out
+
+If your balance hits zero mid-request, the API returns `402 Payment Required` with a link back to the developer portal. Your API key stays valid — just top up and keep going.
+
+## AI Builder pricing
+
+AI Builder charges per model call, based on how many tokens the model reads and writes. The builder quotes the exact cost up front so there's no surprise burn. Credits spent on AI Builder come from the same balance as API credits — one pool, two products.
+
+## Handling 402 responses
+
+When an account has no API credits remaining, every API request responds with HTTP `402 Payment Required`:
+
+```json
+{
+  "error": "Insufficient credits",
+  "errorMessage": "Insufficient API credits. Top up at /developer?tab=apiKeys.",
+  "topUpUrl": "/developer?tab=apiKeys",
+  "onChainTotal": 0,
+  "used": 12345,
+  "remaining": 0
+}
+```
+
+Your API key stays valid — catch the `402`, prompt the account owner to top up in the Developer Portal, and retry once the balance confirms on-chain.
+
+## Checking your balance
+
+The Developer Portal's **API Keys** tab shows your live balance and inline top-up. For programmatic checks of the on-chain balance, use the standard balance-lookup method against the API Credits collection:
+
+```typescript
+import { BitBadgesApi } from 'bitbadges';
+
+// API_CREDITS_COLLECTION_ID: '80' on mainnet, '23' on local dev.
+const res = await BitBadgesApi.getBalanceByAddress('80', yourBitBadgesAddress, {});
+const onChainTotal = (res.balances ?? []).reduce((sum, b) => sum + BigInt(b.amount), 0n);
+```
+
+This returns the total APITOKEN ever purchased by that address. The off-chain `used` counter (and therefore `remaining`) is only exposed to the signed-in account owner — the 402 response is the simplest way to surface it programmatically.
+
+## FAQ
+
+**Can I refund unused credits?** No — API credits are non-refundable.
+
+**Can I transfer credits to another account?** No. API credits are soulbound to the account that buys them — they cannot be transferred, sold, or moved.
+
+**Do credits expire?** No.
+
+**Is there a free tier?** Select read-only routes are public without an API key, rate-limited per IP. Bring your own key and credits for everything else.
+
+
 ## File: ./for-developers/bitbadges-api/estimating-swaps.md
 
 # Estimating Swaps
@@ -10635,29 +10715,6 @@ Below are the supported customization options. Some may be applicable. Some may 
 
 {% @github-files/github-code-block url="https://github.com/BitBadges/bitbadges-indexer/blob/master/environment.d.ts" %}
 
-
-
-## File: ./for-developers/bitbadges-api/upgrading-an-api-key-tier.md
-
-# Upgrading an API Key Tier
-
-1. Sign in and create your API key in the [developer portal -> API Keys tab](https://bitbadges.io/developer).
-
-<figure><img src="../../.gitbook/assets/image (97) (1).png" alt=""><figcaption></figcaption></figure>
-
-2. Once you've created it and copied it somewhere safe, select "Update Tier".
-
-<figure><img src="../../.gitbook/assets/image (98) (1).png" alt=""><figcaption></figcaption></figure>
-
-3. This will take you to the billing page. Select your desired tier. Note that if you have a coupon code, it will typically only apply to a specific tier.
-
-<figure><img src="../../.gitbook/assets/image (99) (1).png" alt=""><figcaption></figcaption></figure>
-
-4. Lastly, complete the form, selecting your newly created API key. Enter your email, enter promo code (if applicable), and complete the rest of the form.
-
-<figure><img src="../../.gitbook/assets/image (101) (1).png" alt=""><figcaption></figcaption></figure>
-
-5. Once that form is submitted, you're ready to start building! See the [BitBadges API documentation](https://docs.bitbadges.io) for more information on how to use the BitBadges API. The new tier may take 5-10 minutes to register, so please allow some time for the changes to take effect.
 
 
 ## File: ./for-developers/bitbadges-blockchain/README.md
@@ -34453,9 +34510,9 @@ When a user mints credit tokens, the payment (coinTransfers) goes directly to a 
 
 Credit tokens are designed for systems that track consumption off-chain. The on-chain token balance represents `totalCreditsPaidFor` — the total credits ever purchased. An off-chain system tracks `totalUsed`. The remaining budget is simply `balance - totalUsed`.
 
-**Example: BitBadges AI Builder (Collection 23, AITOKEN)**
-- User purchases 10 USDC → receives 1,000,000 AITOKEN (on-chain balance = 1,000,000)
-- User makes AI builder requests → backend tracks `totalUsed` (e.g., 250,000 tokens used)
+**Example: BitBadges API Credits (Collection 23 / 80, APITOKEN)**
+- User purchases 10 USDC → receives 1,000,000 APITOKEN (on-chain balance = 1,000,000)
+- User makes API calls (including the AI Builder) → backend tracks `totalUsed` (e.g., 250,000 APITOKEN used)
 - Remaining budget = on-chain balance (1,000,000) - totalUsed (250,000) = 750,000
 - User purchases 5 more USDC → on-chain balance increments to 2,000,000
 - Remaining budget = 2,000,000 - 250,000 = 1,750,000
