@@ -272,11 +272,11 @@ If you need higher rate limits or want full control, you can run your own node w
 # CRITICAL: Set this to match your network's EVM chain ID
 # Mainnet: 50024
 # Testnet: 50025
-# The default (262144) will cause MetaMask transaction failures!
+# The default (90123) is the local-dev chain ID and will cause MetaMask transaction failures on mainnet/testnet!
 evm-chain-id = 50024
 ```
 
-This setting is used by `net_version` for EIP-155 signature verification. If it doesn't match `eth_chainId`, wallets will fail with: `incorrect chain-id; expected 262144, got 50024`.
+This setting is used by `net_version` for EIP-155 signature verification. If it doesn't match `eth_chainId`, wallets will fail with an error like: `incorrect chain-id; expected 90123, got 50024` (the "expected" value reflects whatever `evm-chain-id` is currently set to — `90123` is the local-dev default emitted by `bitbadgeschaind init`).
 
 ### Enable JSON-RPC
 
