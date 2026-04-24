@@ -59,11 +59,11 @@ If you want to expose Ethereum-compatible JSON-RPC endpoints (for MetaMask, ethe
 # CRITICAL: Set this to match your network's EVM chain ID
 # Mainnet: 50024
 # Testnet: 50025
-# The default value (262144) will cause wallet transaction failures!
+# The default value (90123) is the local-dev chain ID and will cause wallet transaction failures on mainnet/testnet!
 evm-chain-id = 50024
 ```
 
-**Why this matters:** The `evm-chain-id` setting is used by the `net_version` RPC method for EIP-155 signature verification. If this doesn't match `eth_chainId` (which reads from chain state), MetaMask and other wallets will fail with error: `incorrect chain-id; expected 262144, got 50024`.
+**Why this matters:** The `evm-chain-id` setting is used by the `net_version` RPC method for EIP-155 signature verification. If this doesn't match `eth_chainId` (which reads from chain state), MetaMask and other wallets will fail with an error like: `incorrect chain-id; expected 90123, got 50024` (the exact "expected" value is whatever you left `evm-chain-id` set to — `90123` is the local-dev default emitted by `bitbadgeschaind init`).
 
 ### JSON-RPC Server Options
 
