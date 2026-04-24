@@ -243,18 +243,27 @@ interface BuildResult {
   transaction: any;              // parsed object — not a JSON string
   errors: StructuredError[];     // code, message, path?, fixHint?
   warnings: Warning[];           // non-fatal advisory notes
+  hardErrors: string[];          // raw hard-error strings (backwards-compat)
   advisoryNotes: string[];       // raw review findings
   validation: any;               // SDK validator result
   simulation: any | null;        // null when no simulator configured
   audit: any | null;             // review findings + summary
+  designDecisions: DesignDecisionsResult | null; // ✓/✗/n-a informational checks about what the collection IS
+  reviewFlags: ReviewFlag[];     // items the agent self-surfaced via flag_review_item
   tokensUsed: number;
   costUsd: number;               // always computed per selected model
   rounds: number;
   fixRounds: number;
+  durationMs: number;            // wall-clock duration of the build
+  inferredTokenType?: string | null;                // auto-picked token-type skill, or null for freestyle. undefined when inference was skipped
+  inferredTokenTypeSource?: 'standards' | 'llm';    // provenance of the pick
+  inferredTokenTypeReasoning?: string;              // one-sentence explanation
   trace: BuildTrace;             // full messages + tool calls + prompt hash
   toString(): string;            // human-readable one-liner
 }
 ```
+
+`reviewFlags` and `designDecisions` are always populated when the build produces a collection-shape message (regardless of whether the LLM auditor was enabled). See [Smart Token-Type Detection](smart-token-type-detection.md) for the three `inferredTokenType*` fields.
 
 Errors dispatch on `instanceof`:
 
