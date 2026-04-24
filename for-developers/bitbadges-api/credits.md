@@ -1,30 +1,32 @@
-# Credits
+# API Credits
 
-BitBadges uses **BADGE CREDITS** to pay for API requests and AI Builder runs. Credits are an on-chain token you hold in your BitBadges account.
+BitBadges uses **API credits** (on-chain symbol `APITOKEN`) to pay for API requests and AI Builder runs. One balance, two products.
 
 ## How you pay
 
-- **API requests:** 1 credit per request. Flat rate, every route.
+- **API requests:** 1 API credit per request. Flat rate, every route.
 - **AI Builder:** varies by model. The builder shows the cost before you run it.
-- **Exchange rate:** 1 USDC = 100,000 credits, so 100,000 API requests costs about $1.
+- **Exchange rate:** 1 USDC = 100,000 APITOKEN, so 100,000 API requests costs about $1.
 
 No tiers. No monthly subscription. No credit card on file.
 
 ## Top up
 
-1. Go to [https://bitbadges.io/credits](https://bitbadges.io/credits).
-2. Buy credits or receive a transfer from another account.
+The top-up flow lives inline in the Developer Portal:
+
+1. Go to [https://bitbadges.io/developer](https://bitbadges.io/developer) → **API Keys** tab.
+2. Enter a USDC amount, confirm the on-chain transaction.
 3. Your balance updates once the on-chain transfer confirms.
 
-The `/credits` page also shows your current balance, your recent usage, and a low-balance warning when you're close to running out.
+The same card shows your current balance and a low-balance warning when you're close to running out. API credits are soulbound to the account that buys them — they power both your API calls and the AI Builder from one balance, but they cannot be transferred, sold, or moved to another account.
 
 ## Rate limit
 
-Each account can send up to **10,000 requests per minute**. This is well above normal use and mainly exists to cap damage from runaway loops. If you need a higher ceiling, reach out.
+Each account can send up to **10,000 requests per minute**. Well above normal use — mainly exists to cap damage from runaway loops. If you need a higher ceiling, reach out.
 
 ## When you run out
 
-If your balance hits zero mid-request, the API returns `402 Payment Required` with a link to the top-up page. Your API key stays valid — just top up and keep going.
+If your balance hits zero mid-request, the API returns `402 Payment Required` with a link back to the developer portal. Your API key stays valid — just top up and keep going.
 
 ## AI Builder pricing
 
@@ -45,7 +47,9 @@ GET https://api.bitbadges.io/api/v0/credits/balance
 
 ## FAQ
 
-**Can I refund unused credits?** No — credits are non-refundable on-chain tokens. You can transfer them to another account you control.
+**Can I refund unused credits?** No — API credits are non-refundable.
+
+**Can I transfer credits to another account?** No. API credits are soulbound to the account that buys them — they cannot be transferred, sold, or moved.
 
 **Do credits expire?** No.
 

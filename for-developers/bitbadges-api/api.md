@@ -6,9 +6,9 @@ By default, select routes are available publicly in a rate-limited way with no A
 
 1. Sign in and create an API key at [https://bitbadges.io/developer](https://bitbadges.io/developer) -> API Keys tab.
 2. Send requests to [https://api.bitbadges.io/](https://api.bitbadges.io/) with the HTTP header `x-api-key`.
-3. Top up your account with BADGE CREDITS at [https://bitbadges.io/credits](https://bitbadges.io/credits) to pay for requests. Each request costs 1 credit, and 1 USDC = 100,000 credits.
+3. Top up API credits inline in the **API Keys** tab of the developer portal. Each request costs 1 API credit, and 1 USDC = 100,000 API credits.
 
-See [Credits](credits.md) for the full pricing and rate-limit breakdown.
+See [API Credits](credits.md) for the full pricing and rate-limit breakdown.
 
 <figure><img src="../../.gitbook/assets/image (189).png" alt=""><figcaption></figcaption></figure>
 
