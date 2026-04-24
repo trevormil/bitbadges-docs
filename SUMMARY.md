@@ -183,7 +183,7 @@
   * [Standard API Reference](https://bitbadges.stoplight.io/docs/bitbadges)
   * [Blockchain API Reference](https://lcd.bitbadges.io/)
   * [Typed SDK Types](https://bitbadges.github.io/bitbadgesjs/classes/BitBadgesAPI.html)
-  * [Upgrading an API Key Tier](for-developers/bitbadges-api/upgrading-an-api-key-tier.md)
+  * [Credits](for-developers/bitbadges-api/credits.md)
   * [Concepts](for-developers/bitbadges-api/concepts/README.md)
     * [Refresh / Claim Completion Queue](for-developers/bitbadges-api/concepts/refresh-queue.md)
     * [Limits / Restrictions](for-developers/bitbadges-api/concepts/limits-restrictions.md)
