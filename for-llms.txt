@@ -1,5 +1,5 @@
 # Gitbook Documentation Compilation
-Generated on Fri Apr 24 17:48:22 UTC 2026
+Generated on Sat Apr 25 13:03:09 UTC 2026
 
 
 
@@ -2012,7 +2012,7 @@ BitBadges addresses these fundamental issues through core design decisions:
   * [Create With Burner](for-developers/cli/create-with-burner.md)
   * [CLI for AI Agents](for-developers/cli/for-ai-agents.md)
 * [🤖 AI Agents & Bots](for-developers/ai-agents/README.md)
-  * [Testnet Faucet API](for-developers/ai-agents/testnet-faucet.md)
+  * [Testnet Faucet API (offline)](for-developers/ai-agents/testnet-faucet.md)
   * [Programmatic Agent (BYO Anthropic key)](for-developers/ai-agents/programmatic-agent.md)
   * [Smart Token-Type Detection](for-developers/ai-agents/smart-token-type-detection.md)
   * [Builder Tools Reference](for-developers/ai-agents/builder-tools.md)
@@ -2085,7 +2085,7 @@ BitBadges addresses these fundamental issues through core design decisions:
   * [Supported IBC Connections](https://github.com/cosmos/chain-registry/tree/master/_IBC)
   * [Supported Denoms](for-developers/bitbadges-blockchain/supported-denoms.md)
   * [Run a Mainnet Node](for-developers/bitbadges-blockchain/run-a-mainnet-node.md)
-  * [Testnet Mode](for-developers/bitbadges-blockchain/testnet-mode.md)
+  * [Testnet Mode (offline)](for-developers/bitbadges-blockchain/testnet-mode.md)
   * [EVM RPC Endpoints](for-developers/bitbadges-blockchain/evm-rpc-endpoints.md)
   * [Cross-Chain Queries (ICQ)](for-developers/bitbadges-blockchain/cross-chain-queries.md)
 * [🎁 BitBadges Claims](for-developers/claims/README.md)
@@ -9941,6 +9941,14 @@ Response (additive, all three fields optional):
 
 # Testnet Faucet API
 
+{% hint style="warning" %}
+**Testnet is temporarily offline as of 2026-04-25.** The faucet endpoint described below is currently unreachable.
+
+In the meantime, BitBadges **mainnet operates as a chaosnet** — fully live, but safe to experiment on. Network gas fees can be set to zero while activity is low, and you can transact with worthless tokens like CHAOS instead of real-value assets. So you can test contracts, transactions, and integrations on the live network without spending anything real. Just choose your assets accordingly.
+
+If you'd like to see us relaunch a dedicated testnet (and the faucet), please [reach out](https://bitbadges.io/contact). See [Testnet Mode](../bitbadges-blockchain/testnet-mode.md) for the full picture.
+{% endhint %}
+
 The testnet faucet provides free BADGE tokens for testing. No API key is required on testnet, and CORS restrictions are relaxed.
 
 ## Endpoint
@@ -13142,6 +13150,14 @@ export const MAINNET_COINS_REGISTRY: Record<string, CoinDetails> = {
 ## File: ./for-developers/bitbadges-blockchain/testnet-mode.md
 
 # Testnet Mode
+
+{% hint style="warning" %}
+**Testnet is temporarily offline as of 2026-04-25** to reduce hosting costs while it sees minimal usage.
+
+In the meantime, BitBadges **mainnet operates as a chaosnet** — fully live, but safe to experiment on. Network gas fees can be set to zero while activity is low, and you can transact with worthless tokens like CHAOS instead of real-value assets. So you can test contracts, transactions, and integrations on the live network without spending anything real. Just choose your assets accordingly.
+
+If you'd like to see us relaunch a dedicated testnet, please [reach out](https://bitbadges.io/contact). The rest of this page is retained for reference and will become accurate again when testnet is reactivated.
+{% endhint %}
 
 Testnet mode provides a separate environment for testing purposes. Simply turn on the switch (or go to [testnet.bitbadges.io](https://testnet.bitbadges.io)). It is isolated from the production environment of BitBadges and uses its own resources, such as a testnet blockchain, database, API, and more.
 
