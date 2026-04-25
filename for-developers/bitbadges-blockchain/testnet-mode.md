@@ -1,5 +1,13 @@
 # Testnet Mode
 
+{% hint style="warning" %}
+**Testnet is temporarily offline as of 2026-04-25** to reduce hosting costs while it sees minimal usage.
+
+In the meantime, BitBadges **mainnet operates as a chaosnet** — fully live, but safe to experiment on. Network gas fees can be set to zero while activity is low, and you can transact with worthless tokens like CHAOS instead of real-value assets. So you can test contracts, transactions, and integrations on the live network without spending anything real. Just choose your assets accordingly.
+
+If you'd like to see us relaunch a dedicated testnet, please [reach out](https://bitbadges.io/contact). The rest of this page is retained for reference and will become accurate again when testnet is reactivated.
+{% endhint %}
+
 Testnet mode provides a separate environment for testing purposes. Simply turn on the switch (or go to [testnet.bitbadges.io](https://testnet.bitbadges.io)). It is isolated from the production environment of BitBadges and uses its own resources, such as a testnet blockchain, database, API, and more.
 
 <pre><code><strong>Note: Third-party integrations (e.g. claim plugins) are the exact same. 

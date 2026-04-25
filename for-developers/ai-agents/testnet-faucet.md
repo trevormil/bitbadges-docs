@@ -1,5 +1,13 @@
 # Testnet Faucet API
 
+{% hint style="warning" %}
+**Testnet is temporarily offline as of 2026-04-25.** The faucet endpoint described below is currently unreachable.
+
+In the meantime, BitBadges **mainnet operates as a chaosnet** — fully live, but safe to experiment on. Network gas fees can be set to zero while activity is low, and you can transact with worthless tokens like CHAOS instead of real-value assets. So you can test contracts, transactions, and integrations on the live network without spending anything real. Just choose your assets accordingly.
+
+If you'd like to see us relaunch a dedicated testnet (and the faucet), please [reach out](https://bitbadges.io/contact). See [Testnet Mode](../bitbadges-blockchain/testnet-mode.md) for the full picture.
+{% endhint %}
+
 The testnet faucet provides free BADGE tokens for testing. No API key is required on testnet, and CORS restrictions are relaxed.
 
 ## Endpoint
