@@ -1,5 +1,9 @@
 # Testnet Faucet API
 
+{% hint style="warning" %}
+**Testnet is temporarily offline** (as of 2026-04-25) to reduce hosting costs while it sees minimal usage. Mainnet ([https://bitbadges.io](https://bitbadges.io)) is the only currently live network. This page is retained for reference and will become accurate again when testnet is reactivated.
+{% endhint %}
+
 The testnet faucet provides free BADGE tokens for testing. No API key is required on testnet, and CORS restrictions are relaxed.
 
 ## Endpoint

@@ -32,6 +32,10 @@ POST https://api.bitbadges.io/api/v0/routeFn
 
 ## Testnet Mode
 
+{% hint style="warning" %}
+**Testnet is temporarily offline** (as of 2026-04-25) to reduce hosting costs while it sees minimal usage. Mainnet ([https://bitbadges.io](https://bitbadges.io)) is the only currently live network. This page is retained for reference and will become accurate again when testnet is reactivated.
+{% endhint %}
+
 A testnet version of the API is available with the base URL [https://api.bitbadges.io/testnet](https://api.bitbadges.io/testnet). Everything else is the same, just add the /testnet before all paths.
 
 Note that this testnet API is an entirely separate service from normal API. Nothing carries over. It commmunicates with the frontend with testnet mode turned on and uses the testnet BitBadges blockchain.

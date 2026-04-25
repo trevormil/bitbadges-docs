@@ -68,6 +68,10 @@ To add BitBadges mainnet to MetaMask:
 
 ## Testnet Endpoints
 
+{% hint style="warning" %}
+**Testnet is temporarily offline** (as of 2026-04-25) to reduce hosting costs while it sees minimal usage. Mainnet ([https://bitbadges.io](https://bitbadges.io)) is the only currently live network. This page is retained for reference and will become accurate again when testnet is reactivated.
+{% endhint %}
+
 ### EVM JSON-RPC
 
 **Endpoint**: `https://evm-rpc-testnet.bitbadges.io`

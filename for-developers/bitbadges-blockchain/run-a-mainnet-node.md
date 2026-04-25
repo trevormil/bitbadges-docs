@@ -143,6 +143,10 @@ If you want to expose Ethereum-compatible JSON-RPC endpoints (for MetaMask, ethe
 
 ### Critical: EVM Chain ID
 
+{% hint style="warning" %}
+**Testnet is temporarily offline** (as of 2026-04-25) to reduce hosting costs while it sees minimal usage. Mainnet ([https://bitbadges.io](https://bitbadges.io)) is the only currently live network. The testnet chain ID (`50025`) shown below is retained for reference and will become accurate again when testnet is reactivated.
+{% endhint %}
+
 ⚠️ **IMPORTANT**: You **must** set the `evm-chain-id` in `app.toml` to match the network:
 
 ```toml

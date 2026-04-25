@@ -1,5 +1,9 @@
 # Create With Burner
 
+{% hint style="warning" %}
+**Testnet is temporarily offline** (as of 2026-04-25) to reduce hosting costs while it sees minimal usage. Mainnet ([https://bitbadges.io](https://bitbadges.io)) is the only currently live network. The `--testnet` flag examples on this page are retained for reference and will become accurate again when testnet is reactivated.
+{% endhint %}
+
 `bitbadges-cli builder create-with-burner` lets you create a new collection **without bringing your own Cosmos wallet**. The CLI generates a throwaway signer on demand, funds it (via the faucet or manually), signs the create-collection tx, and hands ownership of the new collection to an address you specify. The throwaway signer is discarded right after.
 
 This is the easiest way for agents, one-shot scripts, and anyone who just wants to try BitBadges without the usual wallet-setup ceremony to ship a collection on-chain.

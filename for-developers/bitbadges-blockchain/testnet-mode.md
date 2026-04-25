@@ -1,5 +1,9 @@
 # Testnet Mode
 
+{% hint style="warning" %}
+**Testnet is temporarily offline** (as of 2026-04-25) to reduce hosting costs while it sees minimal usage. Mainnet ([https://bitbadges.io](https://bitbadges.io)) is the only currently live network. This page is retained for reference and will become accurate again when testnet is reactivated.
+{% endhint %}
+
 Testnet mode provides a separate environment for testing purposes. Simply turn on the switch (or go to [testnet.bitbadges.io](https://testnet.bitbadges.io)). It is isolated from the production environment of BitBadges and uses its own resources, such as a testnet blockchain, database, API, and more.
 
 <pre><code><strong>Note: Third-party integrations (e.g. claim plugins) are the exact same. 

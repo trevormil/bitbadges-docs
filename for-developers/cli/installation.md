@@ -1,5 +1,9 @@
 # Installation
 
+{% hint style="warning" %}
+**Testnet is temporarily offline** (as of 2026-04-25) to reduce hosting costs while it sees minimal usage. Mainnet ([https://bitbadges.io](https://bitbadges.io)) is the only currently live network. The `--testnet` flag examples on this page are retained for reference and will become accurate again when testnet is reactivated.
+{% endhint %}
+
 ## One-Liner (Recommended)
 
 The fastest way to install everything. Detects your OS and architecture automatically, downloads the chain binary, and installs the SDK CLI.

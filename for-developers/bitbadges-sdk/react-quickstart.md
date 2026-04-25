@@ -1,5 +1,9 @@
 # React & Next.js Quickstart
 
+{% hint style="warning" %}
+**Testnet is temporarily offline** (as of 2026-04-25) to reduce hosting costs while it sees minimal usage. Mainnet ([https://bitbadges.io](https://bitbadges.io)) is the only currently live network. The testnet examples (`bitbadges-2`, EVM chain `50025`) shown on this page are retained for reference and will become accurate again when testnet is reactivated — for now, swap `'testnet'` for `'mainnet'` and `bitbadges-2` for `bitbadges-1`.
+{% endhint %}
+
 Wire BitBadges into a scratch React or Next.js app in under 10 minutes. This page walks through the canonical frontend flow: **install → connect wallet → query a collection → sign + broadcast a transaction** as one copy-pasteable set of snippets.
 
 > **Framing this page assumes:** Next.js 14+ with the **App Router**, **Keplr** as the featured wallet (BitBadges is a Cosmos chain, so Keplr is the native choice), and the **testnet** (`bitbadges-2`, EVM chain `50025`) for examples. Plain React (Vite/CRA) works identically — only the `"use client"` directive is Next.js-specific. Pages Router users should add the same snippets to a component rendered inside `_app.tsx`.
