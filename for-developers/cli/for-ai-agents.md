@@ -15,7 +15,7 @@ The BitBadges CLI is the recommended interface for AI agents, bots, and automate
 
 ```bash
 # 1. Install everything
-curl -fsSL https://raw.githubusercontent.com/BitBadges/bitbadgeschain/master/install.sh | sh
+curl -fsSL https://install.bitbadges.io | sh
 
 # 2. Configure API key
 bitbadges-cli config set apiKey YOUR_KEY
