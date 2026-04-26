@@ -1,15 +1,28 @@
 # 🧩 Claude Code Plugin
 
-The BitBadges Claude Code plugin is the fastest way to build, review, simulate, and query BitBadges tokens from Claude Code. It wires the `bitbadges-builder` MCP server in automatically and ships ~29 curated skills covering every token type, plus operational workflows.
+The BitBadges Claude Code plugin is a convenience layer on top of the BitBadges chain binary + CLI for Claude Code users specifically. It auto-wires the `bitbadges-builder` MCP server and ships ~29 curated skills covering every token type plus operational workflows.
 
-## Install
+## Prerequisites
+
+The chain binary + CLI install is the canonical entrypoint for everything BitBadges:
+
+```sh
+curl -fsSL https://install.bitbadges.io | sh
+bitbadges-cli config set apiKey YOUR_KEY
+```
+
+This installs `bitbadgeschaind` and `bitbadges-cli` (which includes the `bitbadges-builder` MCP bin). The plugin uses these — without them, the plugin falls back to running the MCP via `npx -y -p bitbadges bitbadges-builder`, which works but is slower and less reliable than a globally installed CLI.
+
+## Install the plugin
+
+After the prerequisites above:
 
 ```
 /plugin marketplace add BitBadges/bitbadges-plugin
 /plugin install bitbadges
 ```
 
-That's it. Run `/bitbadges:status` to verify everything is wired.
+Run `/bitbadges:setup` once to confirm everything's wired and `/bitbadges:status` whenever you want a health check.
 
 ## What you get
 

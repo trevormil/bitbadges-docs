@@ -38,16 +38,16 @@ curl -fsSL https://install.bitbadges.io | sh -s -- --no-sudo
 | macOS | Apple Silicon (arm64) | Supported |
 | Windows | x86_64 (via Git Bash, MSYS2, WSL) | Supported |
 
-## Claude Code Plugin
+## Optional add-on: Claude Code plugin
 
-If you only use Claude Code, the [BitBadges plugin](../ai-agents/claude-code-plugin.md) is the cleanest install — it auto-wires the MCP server and ships ~29 curated skills, no separate `npm install` needed:
+After the install above, Claude Code users can optionally install the [BitBadges plugin](../ai-agents/claude-code-plugin.md) for auto-wired MCP and ~29 curated skills:
 
 ```
 /plugin marketplace add BitBadges/bitbadges-plugin
 /plugin install bitbadges
 ```
 
-The plugin uses `npx -y -p bitbadges bitbadges-builder` under the hood, so the latest published `bitbadges` is fetched on first MCP call. You only need the chain binary install above if you want to broadcast transactions locally — most LLM workflows don't.
+The plugin is a convenience layer that builds on the CLI install above — it does not replace it.
 
 ## SDK CLI Only (npm / bun)
 
