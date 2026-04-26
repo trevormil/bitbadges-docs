@@ -40,7 +40,7 @@ curl -fsSL https://install.bitbadges.io | sh -s -- --no-sudo
 
 ## Optional add-on: Claude Code plugin
 
-After the install above, Claude Code users can optionally install the [BitBadges plugin](../ai-agents/claude-code-plugin.md) for auto-wired MCP and ~29 curated skills:
+After the install above, Claude Code users can optionally install the [BitBadges plugin](../ai-agents/claude-code-plugin.md) for auto-wired MCP and 8 curated workflow skills:
 
 ```
 /plugin marketplace add BitBadges/bitbadges-plugin

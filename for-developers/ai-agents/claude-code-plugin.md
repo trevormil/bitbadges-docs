@@ -1,6 +1,8 @@
 # 🧩 Claude Code Plugin
 
-The BitBadges Claude Code plugin is a convenience layer on top of the BitBadges chain binary + CLI for Claude Code users specifically. It auto-wires the `bitbadges-builder` MCP server and ships ~29 curated skills covering every token type plus operational workflows.
+The BitBadges Claude Code plugin is a convenience layer on top of the BitBadges chain binary + CLI for Claude Code users specifically. It auto-wires the `bitbadges-builder` MCP server and ships 8 skills that teach Claude how to leverage the CLI + MCP + docs for common BitBadges workflows.
+
+The plugin is **a thin harness, not a knowledge base**. Token-type-specific instructions live in the SDK and are surfaced via `bitbadges-cli sdk skills <id>`, the `get_skill_instructions` MCP tool, and the [Gitbook skill pages](../../x-tokenization/examples/skills/). The plugin's job is to teach Claude where to find them and how to compose them — not to ship one routing wrapper per token type.
 
 ## Prerequisites
 
@@ -36,24 +38,22 @@ npx -y -p bitbadges bitbadges-builder
 
 `npx` resolves the locally installed `bitbadges` package from the prerequisites step above. If you skipped that install, npx falls back to fetching the package from the npm registry on first call — slower and less reliable, but it works.
 
-### Skills (~29 total)
+### Skills (8 total)
 
-**Token creation (22 skills, generated from the SDK):**
-Smart Token, Fungible Token, NFT Collection, Subscription, Liquidity Pools, BB-402 Token-Gated Access, Burnable, Multi-Sig / Voting, Payment Protocol, Tradable NFTs, Credit Token, Auto-Mint, Address List, Quest, Prediction Market, Bounty, Crowdfund, Auction, Products, Custom 2FA, Minting, Transferability & Update Rules.
+Each skill is a guide that routes Claude to the right CLI command, MCP tool, or docs page for one workflow. None of them duplicate token-type knowledge from the SDK.
 
-Each skill is a thin routing wrapper. The full instructions live in the SDK and are loaded on demand via the `get_skill_instructions` MCP tool.
-
-**Operational (7 hand-written skills):**
-
-| Skill | Purpose |
+| Skill | What it teaches |
 |---|---|
-| `review` | Audit a transaction file or live collection for correctness, standards compliance, foot-guns. |
-| `simulate` | Dry-run a transaction. Returns events + balance diffs. Always before broadcast. |
-| `explain` | Plain-English description, audience-aware (user / developer / auditor). |
+| `build` | Meta-guide for constructing any token type (smart-token, fungible, NFT, subscription, vault, claim, quest, auction, payment, crowdfund, prediction-market, …). Discovers via `bitbadges-cli sdk skills`, loads canonical instructions via the `get_skill_instructions` MCP tool, then constructs via the per-field MCP session tools. |
+| `review` | Audit a transaction file or live collection for correctness, standards compliance, foot-guns. Wraps `bitbadges-cli sdk review` and `review_collection`. |
+| `simulate` | Dry-run a transaction. Returns events + balance diffs. Always before broadcast. Wraps `simulate_transaction`. |
+| `explain` | Plain-English description, audience-aware (user / developer / auditor). Wraps `explain_collection` and `bitbadges-cli sdk interpret-*`. |
 | `query` | The 104+ API routes — discovery first via `--help-json`, then call. |
 | `address` | All six address operations (cosmos↔EVM, IBC backing, wrapper, mint-escrow, alias). |
 | `claim` | Build or audit a claim (whitelist / password / codes / open / token-gated). |
-| `broadcast` | Sign + broadcast. Hard-rails — dry-run by default, explicit confirmation for live. |
+| `broadcast` | Sign + broadcast. Hard rails — dry-run by default, explicit confirmation for live. |
+
+For deeper instructions on any specific token type, the plugin sends Claude to the SDK / CLI / docs rather than redefining them locally.
 
 ### Slash commands
 

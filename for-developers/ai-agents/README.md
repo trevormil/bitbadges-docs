@@ -58,7 +58,7 @@ The chain binary + CLI install is the canonical entrypoint for everything below 
 |------|----------|---------|
 | **CLI & Chain Binary** *(start here)* | Terminal agents, shell scripts, any language | `curl -fsSL https://install.bitbadges.io \| sh` — [guide](../cli/for-ai-agents.md) |
 | **BitBadges Builder Tools (MCP)** | Cursor, Claude Desktop, other MCP clients | `npm i -g bitbadges` — [guide](builder-tools.md) |
-| **Claude Code Plugin** | Claude Code users — auto-wired MCP + ~29 curated skills (built on top of the CLI) | `/plugin marketplace add BitBadges/bitbadges-plugin` then `/plugin install bitbadges` — [guide](claude-code-plugin.md) |
+| **Claude Code Plugin** | Claude Code users — auto-wired MCP + 8 workflow skills (built on top of the CLI) | `/plugin marketplace add BitBadges/bitbadges-plugin` then `/plugin install bitbadges` — [guide](claude-code-plugin.md) |
 | **SDK Signing Client** | Full-featured TypeScript bots | `npm i bitbadges` |
 | **Direct HTTP** | Lightweight scripts, any language | REST calls to `api.bitbadges.io` |
 | **Agent Spending Authorization** | Set daily caps, time windows, and revocation | [guide](agent-spending-authorization.md) |

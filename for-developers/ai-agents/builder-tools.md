@@ -43,7 +43,7 @@ After running the standard chain + CLI install (`curl -fsSL https://install.bitb
 claude mcp add bitbadges-builder -- npx -y -p bitbadges bitbadges-builder
 ```
 
-Optionally, install the [Claude Code plugin](claude-code-plugin.md) on top — it auto-wires the same MCP and adds ~29 curated skills plus `/bitbadges:setup` and `/bitbadges:status` slash commands:
+Optionally, install the [Claude Code plugin](claude-code-plugin.md) on top — it auto-wires the same MCP and adds 8 workflow skills plus `/bitbadges:setup` and `/bitbadges:status` slash commands:
 
 ```
 /plugin marketplace add BitBadges/bitbadges-plugin
