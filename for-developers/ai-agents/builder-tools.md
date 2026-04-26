@@ -37,6 +37,17 @@ Add to your `claude_desktop_config.json`:
 
 ### Claude Code
 
+The fastest path is the official plugin — it auto-wires the MCP server, ships ~29 curated skills, and adds the `/bitbadges:setup` and `/bitbadges:status` slash commands:
+
+```
+/plugin marketplace add BitBadges/bitbadges-plugin
+/plugin install bitbadges
+```
+
+See [Claude Code Plugin](claude-code-plugin.md) for the full reference.
+
+For manual MCP setup (e.g. you don't want the skills, or you're scripting):
+
 ```bash
 claude mcp add bitbadges-builder -- npx -y -p bitbadges bitbadges-builder
 ```

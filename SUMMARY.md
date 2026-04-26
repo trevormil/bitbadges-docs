@@ -168,6 +168,7 @@
   * [Create With Burner](for-developers/cli/create-with-burner.md)
   * [CLI for AI Agents](for-developers/cli/for-ai-agents.md)
 * [🤖 AI Agents & Bots](for-developers/ai-agents/README.md)
+  * [Claude Code Plugin](for-developers/ai-agents/claude-code-plugin.md)
   * [Testnet Faucet API (offline)](for-developers/ai-agents/testnet-faucet.md)
   * [Programmatic Agent (BYO Anthropic key)](for-developers/ai-agents/programmatic-agent.md)
   * [Smart Token-Type Detection](for-developers/ai-agents/smart-token-type-detection.md)

@@ -1,5 +1,7 @@
 # CLI for AI Agents
 
+> **Using Claude Code?** Install the [BitBadges plugin](../ai-agents/claude-code-plugin.md) instead — it auto-wires the MCP server and ships ~29 curated skills (`/plugin marketplace add BitBadges/bitbadges-plugin` then `/plugin install bitbadges`). The rest of this page is for non-Claude-Code harnesses (Cursor, shell scripts, generic LLMs, CI).
+
 The BitBadges CLI is the recommended interface for AI agents, bots, and automated systems. It provides structured JSON output, pipe-friendly input, and LLM-consumable command discovery — everything an agent needs without writing TypeScript.
 
 ## Why CLI for Agents?

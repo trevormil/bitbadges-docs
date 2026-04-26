@@ -54,8 +54,9 @@ console.log('TX Hash:', result.txHash);
 
 | Path | Best For | Install |
 |------|----------|---------|
-| **CLI & Chain Binary** | Terminal agents, shell scripts, any language | `curl -fsSL .../install.sh \| sh` — [guide](../cli/for-ai-agents.md) |
-| **BitBadges Builder Tools** | AI assistants (Claude, Cursor, etc.) | `npm i -g bitbadges` |
+| **Claude Code Plugin** | Claude Code users — auto-wired MCP + ~29 curated skills | `/plugin marketplace add BitBadges/bitbadges-plugin` then `/plugin install bitbadges` — [guide](claude-code-plugin.md) |
+| **CLI & Chain Binary** | Terminal agents, shell scripts, any language | `curl -fsSL https://install.bitbadges.io \| sh` — [guide](../cli/for-ai-agents.md) |
+| **BitBadges Builder Tools** | Cursor, Claude Desktop, other MCP clients | `npm i -g bitbadges` — [guide](builder-tools.md) |
 | **SDK Signing Client** | Full-featured TypeScript bots | `npm i bitbadges` |
 | **Direct HTTP** | Lightweight scripts, any language | REST calls to `api.bitbadges.io` |
 | **Agent Spending Authorization** | Set daily caps, time windows, and revocation | [guide](agent-spending-authorization.md) |
@@ -63,10 +64,15 @@ console.log('TX Hash:', result.txHash);
 ### Quick Setup
 
 ```bash
-# Claude Code (one command)
+# Claude Code — one command (recommended)
+# In your Claude Code session:
+#   /plugin marketplace add BitBadges/bitbadges-plugin
+#   /plugin install bitbadges
+
+# Other MCP clients (Cursor, Claude Desktop, etc.):
 claude mcp add bitbadges-builder -- npx -y -p bitbadges bitbadges-builder
 
-# Or install globally
+# Standalone CLI:
 npm install -g bitbadges
 ```
 

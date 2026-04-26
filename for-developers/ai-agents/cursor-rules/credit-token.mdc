@@ -1,0 +1,217 @@
+<!-- GENERATED FILE — do not edit by hand. Source: bitbadgesjs-sdk/src/builder/resources/skillInstructions.ts. Regenerate with `bun run gen-llm-mirrors`. -->
+---
+description: Increment-only, non-transferable credit token purchased with any ICS20 denom. Users pay X of a denom and receive Y tokens as credits/proof of payment. For a 1:1 backed token with on-chain transferability, use the Smart Token standard inste…
+globs:
+alwaysApply: false
+---
+
+# Credit Token
+
+> Increment-only, non-transferable credit token purchased with any ICS20 denom. Users pay X of a denom and receive Y tokens as credits/proof of payment. For a 1:1 backed token with on-chain transferability, use the Smart Token standard instead.
+
+**Category:** `token-type`
+
+## Summary
+
+Required standards: ["Credit Token"]
+
+- Increment-only, non-transferable (soulbound) fungible token purchased with ICS20 denom
+- validTokenIds: [{ "start": "1", "end": "1" }] (single token ID)
+- ONE Mint approval with approvalId "credit-scaled" using allowAmountScaling (single scaled approval supersedes the legacy 8-10 tier approach; legacy tiers still supported for backward compat but deprecated)
+- Lock canUpdateCollectionApprovals (empty array = frozen)
+- defaultBalances: autoApproveAllIncomingTransfers: true, autoApproveSelfInitiatedOutgoingTransfers: true, autoApproveSelfInitiatedIncomingTransfers: true
+- Credit-scaled approval: overridesFromOutgoingApprovals: true, mustPrioritize: true, coinTransfers[0].coins[0].amount = "1" (micro-payment unit)
+- MUST include alias path for display
+- All permissions locked (empty arrays)
+- Key difference from Smart Token: one-way minting only, no backing/unbacking, no transferability
+
+## Instructions
+
+## Credit Token Configuration
+
+### Concept
+
+A Credit Token is an increment-only, non-transferable fungible token that users purchase with an ICS20 denom (USDC, ATOM, BADGE, etc.). Tokens serve as both proof of payment and consumable credits. This is a one-way system — tokens can only be minted (incremented), never sold back, burned, or transferred between users. For a 1:1 backed token with on-chain transferability, use the Smart Token standard instead.
+
+### Payment Flow
+
+When a user mints credit tokens, the payment (coinTransfers) goes directly to a **payout address** specified in the approval. The tokens are NOT redeemable post-mint — they are increment-only. The payout address receives the ICS20 denom immediately upon mint; there is no escrow or redemption mechanism.
+
+### Usage Pattern: totalUsed / totalCreditsPaidFor
+
+Credit tokens are designed for systems that track consumption off-chain. The on-chain token balance represents `totalCreditsPaidFor` — the total credits ever purchased. An off-chain system tracks `totalUsed`. The remaining budget is simply `balance - totalUsed`.
+
+**Example: BitBadges API Credits (Collection 23 / 80, APITOKEN)**
+- User purchases 10 USDC → receives 1,000,000 APITOKEN (on-chain balance = 1,000,000)
+- User makes API calls (including the AI Builder) → backend tracks `totalUsed` (e.g., 250,000 APITOKEN used)
+- Remaining budget = on-chain balance (1,000,000) - totalUsed (250,000) = 750,000
+- User purchases 5 more USDC → on-chain balance increments to 2,000,000
+- Remaining budget = 2,000,000 - 250,000 = 1,750,000
+- The balance only ever goes up (increment-only). The off-chain `totalUsed` only ever goes up. Budget = balance - totalUsed.
+
+### Required Structure
+
+1. **Standards**: `"standards": ["Credit Token"]`
+2. **validTokenIds**: `[{ "start": "1", "end": "1" }]` (single fungible token ID)
+3. **One scaled Mint approval** (see "The Scaled Credit Approval" below) — NO other approvals. Credit tokens are soulbound: no transfer, no burn.
+4. **defaultBalances** must auto-approve all transfer directions:
+   - `"autoApproveAllIncomingTransfers": true`
+   - `"autoApproveSelfInitiatedOutgoingTransfers": true`
+   - `"autoApproveSelfInitiatedIncomingTransfers": true`
+5. **Alias path REQUIRED** for display (see below).
+6. **All permissions frozen** (every `collectionPermissions` field = `[]`).
+
+### The Scaled Credit Approval (single approval — replaces tiers)
+
+The purchase form uses **amount scaling** to support arbitrary purchase sizes in ONE approval. Users pick a quantity on the frontend; the chain scales `startBalances` and `coinTransfers` by the multiplier. Base unit of the approval: **1 micro-payment → tokensPerUnit micro-tokens**.
+
+**`approvalId` MUST be exactly `"credit-scaled"`** — the frontend purchase form detects scaled approvals by this id. Both tracker ids (`amountTrackerId` in `approvalAmounts` and `maxNumTransfers`) must also equal `"credit-scaled"`.
+
+#### Preferred path: preset (short call, canonical shape)
+
+The single approval's shape is fully canonical — use the preset instead of hand-writing the 60-line approvalCriteria JSON:
+
+```
+add_preset_approval({
+  presetId: "credit-token.scaled",
+  params: {
+    paymentDenom: "<ics20 denom — native like 'ubadge', 'uatom', or an 'ibc/...' hash>",
+    paymentRecipient: "<bb1... creator or treasury address>",
+    tokensPerUnit: "<base-unit ratio; see Conversion rate below>"
+  }
+})
+```
+
+Discover params + other credit-token presets with `list_presets({skill: "credit-token"})`. Presets route through the same validators as hand-built approvals — output is structurally identical. Use `overrides` for small tweaks (custom `transferTimes` window, etc.); for shape changes the preset doesn't cover, fall back to `add_approval`.
+
+#### Conversion rate — `tokensPerUnit` is a BASE-UNIT ratio
+
+Like every chain amount, `tokensPerUnit` is in base units — specifically, it's a ratio of two base-unit amounts: **how many micro-tokens to mint per ONE micro-unit of payment**. Because the preset's coinTransfer is fixed at `"1"` micro-payment-unit and the chain scales both sides together at purchase, the ratio you write here is the per-micro-unit mint rate directly.
+
+**Computation:**
+
+Given a user-stated rate "X display-payment-units → Y display-token-units", with payment decimals `Dp` and token decimals `Dt`:
+
+```
+tokensPerUnit = (Y × 10^Dt) / (X × 10^Dp)
+             = (Y / X) × 10^(Dt - Dp)
+```
+
+When `Dt === Dp` (the common case — the frontend mint form auto-matches token decimals to payment decimals), `10^(Dt - Dp) = 1`, so `tokensPerUnit = Y / X` — **just the user's stated ratio, no zeros appended**.
+
+**Worked examples (assume matching decimals):**
+- "1 payment → 100 tokens" → `tokensPerUnit: "100"`
+- "1 payment → 1000 tokens" → `tokensPerUnit: "1000"`
+- "1 payment → 1 token" → `tokensPerUnit: "1"`
+- "5 payment → 100 tokens" → `tokensPerUnit: "20"` (100 / 5)
+
+**Common mistake to avoid:** do not multiply by `10^Dt` alone (e.g. `100 × 10^6 = 100000000`). That converts display-tokens to micro-tokens but forgets that the payment side is ALSO already in micro-units — the two conversions cancel. If a sanity check shows your number has Dp+ trailing zeros per display unit the user stated, you've double-converted.
+
+For mismatched decimals: call `lookup_token_info` to confirm both decimals, then use the full formula.
+
+#### Template
+
+```json
+{
+  "fromListId": "Mint",
+  "toListId": "All",
+  "initiatedByListId": "All",
+  "transferTimes": [{ "start": "1", "end": "18446744073709551615" }],
+  "tokenIds": [{ "start": "1", "end": "1" }],
+  "ownershipTimes": [{ "start": "1", "end": "18446744073709551615" }],
+  "approvalId": "credit-scaled",
+  "uri": "",
+  "customData": "",
+  "version": "0",
+  "approvalCriteria": {
+    "predeterminedBalances": {
+      "manualBalances": [],
+      "incrementedBalances": {
+        "startBalances": [{ "amount": "<tokensPerUnit>", "tokenIds": [{"start":"1","end":"1"}], "ownershipTimes": [{"start":"1","end":"18446744073709551615"}] }],
+        "incrementTokenIdsBy": "0",
+        "incrementOwnershipTimesBy": "0",
+        "durationFromTimestamp": "0",
+        "allowOverrideTimestamp": false,
+        "recurringOwnershipTimes": { "startTime": "0", "intervalLength": "0", "chargePeriodLength": "0" },
+        "allowOverrideWithAnyValidToken": false,
+        "allowAmountScaling": true,
+        "maxScalingMultiplier": "18446744073709551615"
+      },
+      "orderCalculationMethod": { "useOverallNumTransfers": true, "usePerToAddressNumTransfers": false, "usePerFromAddressNumTransfers": false, "usePerInitiatedByAddressNumTransfers": false, "useMerkleChallengeLeafIndex": false, "challengeTrackerId": "" }
+    },
+    "approvalAmounts": { "overallApprovalAmount": "0", "perToAddressApprovalAmount": "0", "perFromAddressApprovalAmount": "0", "perInitiatedByAddressApprovalAmount": "0", "amountTrackerId": "credit-scaled", "resetTimeIntervals": { "startTime": "0", "intervalLength": "0" } },
+    "maxNumTransfers": { "overallMaxNumTransfers": "0", "perToAddressMaxNumTransfers": "0", "perFromAddressMaxNumTransfers": "0", "perInitiatedByAddressMaxNumTransfers": "0", "amountTrackerId": "credit-scaled", "resetTimeIntervals": { "startTime": "0", "intervalLength": "0" } },
+    "coinTransfers": [{
+      "to": "<payment_recipient_address>",
+      "coins": [{ "amount": "1", "denom": "<ics20_denom>" }],
+      "overrideFromWithApproverAddress": false,
+      "overrideToWithInitiator": false
+    }],
+    "merkleChallenges": [],
+    "mustOwnTokens": [],
+    "overridesFromOutgoingApprovals": true,
+    "overridesToIncomingApprovals": false,
+    "mustPrioritize": true
+  }
+}
+```
+
+> **Legacy (deprecated, do not produce):** older credit-token collections shipped 8-10 fixed-amount approvals with ids `credit-1`, `credit-5`, `credit-10`, …, `credit-1000000000`. The frontend still renders those for backward compatibility but new builds MUST use the single `credit-scaled` approval above. Do not mix the two.
+
+### Alias Path (REQUIRED)
+
+MUST include an alias path so tokens display nicely. The alias path REQUIRES at least one `denomUnits` entry with `decimals > 0` — the chain rejects an empty or zero-decimal denom units array with "denom unit decimals cannot be 0". Pick a sensible display exponent (6 is typical for fungible tokens):
+```json
+"aliasPathsToAdd": [{
+  "denom": "u<symbol_lowercase>",
+  "conversion": {
+    "sideA": { "amount": "1" },
+    "sideB": [{ "amount": "1", "ownershipTimes": [{"start":"1","end":"18446744073709551615"}], "tokenIds": [{"start":"1","end":"1"}] }]
+  },
+  "symbol": "<SYMBOL>",
+  "denomUnits": [{ "decimals": "6", "symbol": "<SYMBOL>", "isDefaultDisplay": true, "metadata": { "uri": "ipfs://METADATA_ALIAS_<symbol_lowercase>_UNIT", "customData": "" } }],
+  "metadata": { "uri": "ipfs://METADATA_ALIAS_u<symbol_lowercase>", "customData": "" }
+}]
+```
+
+### Permissions (All Locked)
+
+All permissions should be locked (empty arrays = frozen):
+```json
+"collectionPermissions": {
+  "canDeleteCollection": [],
+  "canArchiveCollection": [],
+  "canUpdateStandards": [],
+  "canUpdateCustomData": [],
+  "canUpdateManager": [],
+  "canUpdateCollectionMetadata": [],
+  "canUpdateValidTokenIds": [],
+  "canUpdateTokenMetadata": [],
+  "canUpdateCollectionApprovals": [],
+  "canAddMoreAliasPaths": [],
+  "canAddMoreCosmosCoinWrapperPaths": []
+}
+```
+
+### Key Differences from Smart Token
+
+- **Increment-only** — tokens can only be minted (purchased), never redeemed, burned, or decreased
+- **Non-transferable** — soulbound, no peer-to-peer transfers. If users need transferability, use Smart Token instead
+- **No backing/unbacking** — one-way minting only, no cosmosCoinBackedPath
+- **Single scaled approval** — one `credit-scaled` approval with `allowAmountScaling: true` handles all purchase sizes
+- **Credits never expire** — ownership times cover full range
+
+## Common Mistakes
+
+- DON'T ship the legacy `credit-1 / credit-5 / credit-10 / …` tier approvals on new collections — produce ONE approval with `approvalId: "credit-scaled"` instead.
+- DON'T forget `allowAmountScaling: true` on the `credit-scaled` approval — without it the frontend can't scale payments.
+- DON'T set `coinTransfers[0].coins[0].amount` to anything other than `"1"` on the scaled approval — the amount is the per-micro-unit rate; the frontend multiplies at purchase time.
+- DON'T add transferable or burnable approvals — credit tokens are soulbound. Only the one scaled Mint approval.
+- DON'T forget `mustPrioritize: true` — required so the scaled approval wins during purchase.
+- DON'T forget the alias path — credit tokens will not display properly without one.
+- DON'T use numbers instead of strings for amounts — all values must be string-encoded.
+- DON'T confuse credit tokens with smart tokens — credit tokens are one-way minting only with no backing/unbacking or transferability.
+
+## Reference Collections
+
+- [Collection 23](https://bitbadges.io/collections/23)

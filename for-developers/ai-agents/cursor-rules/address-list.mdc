@@ -1,0 +1,129 @@
+<!-- GENERATED FILE — do not edit by hand. Source: bitbadgesjs-sdk/src/builder/resources/skillInstructions.ts. Regenerate with `bun run gen-llm-mirrors`. -->
+---
+description: On-chain address list where membership = owning x1 of token ID 1. Manager can add/remove addresses.
+globs:
+alwaysApply: false
+---
+
+# Address List
+
+> On-chain address list where membership = owning x1 of token ID 1. Manager can add/remove addresses.
+
+**Category:** `token-type`
+
+## Summary
+
+Required standards: ["Address List"]
+
+- validTokenIds: MUST be exactly [{ "start": "1", "end": "1" }]
+- TWO collection approvals required with EXACT approvalIds (frontend depends on these):
+  1. "manager-add": fromListId "Mint", toListId "All", initiatedByListId = creator. Mints token to add address.
+  2. "manager-remove": fromListId "All", toListId burn address (bb1qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqs7gvmv), initiatedByListId = creator. Burns token to remove address.
+- BOTH approvals MUST have overridesFromOutgoingApprovals: true
+- NO peer-to-peer transfer approval — only manager can modify the list
+- Standard is "Address List" (NOT "Non-Transferable")
+- Use per-field tools (set_standards, add_approval, set_permissions, set_invariants)
+
+## Instructions
+
+## Address List Configuration
+
+An address list collection represents membership as token ownership: owning x1 of token ID 1 = being on the list. The manager controls membership by minting (adding) and burning (removing) tokens.
+
+### Preferred path: presets (two short tool calls)
+
+Both approvals are fully canonical — the ONLY param that varies is the manager/creator address. Use the presets:
+
+```
+add_preset_approval({ presetId: "address-list.manager-add",    params: { creatorAddress: "bb1..." } })
+add_preset_approval({ presetId: "address-list.manager-remove", params: { creatorAddress: "bb1..." } })
+```
+
+`list_presets({skill: "address-list"})` enumerates them. For non-canonical variants (e.g. a committee instead of a single manager) fall back to raw `add_approval`.
+
+### CRITICAL: Exact Approval IDs Required
+
+The frontend identifies address list approvals by their EXACT approvalIds. Using different IDs will break the UI.
+
+- Approval 1: approvalId MUST be **"manager-add"**
+- Approval 2: approvalId MUST be **"manager-remove"**
+
+### Required Structure
+
+1. **Standards**: ["Address List"] (NOT "Non-Transferable")
+2. **validTokenIds**: [{ "start": "1", "end": "1" }]
+3. **Burn address**: bb1qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqs7gvmv (ETH null address in bb1 format)
+
+### Manager-Add Approval (mint to add)
+
+```json
+{
+  "fromListId": "Mint",
+  "toListId": "All",
+  "initiatedByListId": "bb1creator...",
+  "transferTimes": [{ "start": "1", "end": "18446744073709551615" }],
+  "tokenIds": [{ "start": "1", "end": "1" }],
+  "ownershipTimes": [{ "start": "1", "end": "18446744073709551615" }],
+  "uri": "ipfs://METADATA_APPROVAL_manager-add",
+  "customData": "",
+  "approvalId": "manager-add",
+  "approvalCriteria": {
+    "overridesFromOutgoingApprovals": true
+  },
+  "version": "0"
+}
+```
+
+### Manager-Remove Approval (forceful burn to remove)
+
+`fromListId` MUST be **"!Mint"** (All except Mint). Using "All" is rejected by the chain with "Mint address cannot be included in address list with other addresses" — the Mint slot can only appear in a list by itself.
+
+```json
+{
+  "fromListId": "!Mint",
+  "toListId": "bb1qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqs7gvmv",
+  "initiatedByListId": "bb1creator...",
+  "transferTimes": [{ "start": "1", "end": "18446744073709551615" }],
+  "tokenIds": [{ "start": "1", "end": "1" }],
+  "ownershipTimes": [{ "start": "1", "end": "18446744073709551615" }],
+  "uri": "ipfs://METADATA_APPROVAL_manager-remove",
+  "customData": "",
+  "approvalId": "manager-remove",
+  "approvalCriteria": {
+    "overridesFromOutgoingApprovals": true
+  },
+  "version": "0"
+}
+```
+
+### Invariants
+
+DO NOT set `noForcefulPostMintTransfers: true` on address-list collections. That invariant would block manager-remove from burning tokens (since its `overridesFromOutgoingApprovals: true` is only chain-allowed when `fromListId` is exactly "Mint"). The manager MUST be able to forcibly burn a list member's token, so leave that invariant off. Other default invariants (e.g. `noCustomOwnershipTimes`) are fine.
+
+### Default Balances
+
+```json
+{
+  "balances": [],
+  "outgoingApprovals": [],
+  "incomingApprovals": [],
+  "autoApproveAllIncomingTransfers": true,
+  "autoApproveSelfInitiatedOutgoingTransfers": true,
+  "autoApproveSelfInitiatedIncomingTransfers": true,
+  "userPermissions": {}
+}
+```
+
+### Permissions
+
+Lock approvals and token IDs:
+- canUpdateCollectionApprovals: frozen
+- canUpdateValidTokenIds: frozen
+- canUpdateManager: frozen (typically)
+
+## Common Mistakes
+
+- DON'T use approvalId other than "manager-add" and "manager-remove" — the frontend depends on these exact strings.
+- DON'T use standard "Non-Transferable" — address lists use "Address List".
+- DON'T add a peer-to-peer transfer approval — only the manager should modify the list.
+- DON'T forget overridesFromOutgoingApprovals: true on BOTH approvals.
