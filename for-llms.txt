@@ -8146,7 +8146,7 @@ This section is for developers building AI agents, bots, and automated systems t
 ## Install
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/BitBadges/bitbadgeschain/master/install.sh | sh
+curl -fsSL https://install.bitbadges.io | sh
 ```
 
 This installs the chain binary and SDK CLI. For CLI-based agent workflows (query, review, transact — no TypeScript needed), see [CLI for AI Agents](../cli/for-ai-agents.md).
@@ -17900,7 +17900,7 @@ The BitBadges CLI is the fastest way to interact with the BitBadges blockchain. 
 ## Install (One-Liner)
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/BitBadges/bitbadgeschain/master/install.sh | sh
+curl -fsSL https://install.bitbadges.io | sh
 ```
 
 This installs both:
@@ -19171,7 +19171,7 @@ The BitBadges CLI is the recommended interface for AI agents, bots, and automate
 
 ```bash
 # 1. Install everything
-curl -fsSL https://raw.githubusercontent.com/BitBadges/bitbadgeschain/master/install.sh | sh
+curl -fsSL https://install.bitbadges.io | sh
 
 # 2. Configure API key
 bitbadges-cli config set apiKey YOUR_KEY
@@ -19319,7 +19319,7 @@ fi
 The fastest way to install everything. Detects your OS and architecture automatically, downloads the chain binary, and installs the SDK CLI.
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/BitBadges/bitbadgeschain/master/install.sh | sh
+curl -fsSL https://install.bitbadges.io | sh
 ```
 
 This installs:
@@ -19330,16 +19330,16 @@ This installs:
 
 ```bash
 # Testnet binary
-curl -fsSL https://raw.githubusercontent.com/BitBadges/bitbadgeschain/master/install.sh | sh -s -- --testnet
+curl -fsSL https://install.bitbadges.io | sh -s -- --testnet
 
 # Specific version
-curl -fsSL https://raw.githubusercontent.com/BitBadges/bitbadgeschain/master/install.sh | sh -s -- --version v29
+curl -fsSL https://install.bitbadges.io | sh -s -- --version v29
 
 # Custom install directory
-curl -fsSL https://raw.githubusercontent.com/BitBadges/bitbadgeschain/master/install.sh | sh -s -- --install-dir ~/.local/bin
+curl -fsSL https://install.bitbadges.io | sh -s -- --install-dir ~/.local/bin
 
 # Skip sudo
-curl -fsSL https://raw.githubusercontent.com/BitBadges/bitbadgeschain/master/install.sh | sh -s -- --no-sudo
+curl -fsSL https://install.bitbadges.io | sh -s -- --no-sudo
 ```
 
 ### Supported Platforms
@@ -20019,7 +20019,7 @@ const txn = createTransactionPayload(txContext, msgs);
 The fastest way to start building. One command installs the chain binary (`bitbadgeschaind`) and the SDK CLI (`bitbadges-cli`) with 104+ API routes, review tools, and built-in docs.
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/BitBadges/bitbadgeschain/master/install.sh | sh
+curl -fsSL https://install.bitbadges.io | sh
 ```
 
 Works on Linux, macOS (Intel + Apple Silicon), and Windows (Git Bash / WSL). See [Installation](cli/installation.md) for all options.
@@ -24131,7 +24131,7 @@ Below is a list of official links for socials and other platforms. Our preferred
 One command installs everything — the chain binary, SDK CLI, and 104+ API routes:
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/BitBadges/bitbadgeschain/master/install.sh | sh
+curl -fsSL https://install.bitbadges.io | sh
 ```
 
 Supports Linux, macOS (Intel + Apple Silicon), and Windows (Git Bash / WSL). See [CLI & Chain Binary](../for-developers/cli/) for full documentation.

@@ -10,7 +10,7 @@ Below is a list of official links for socials and other platforms. Our preferred
 One command installs everything — the chain binary, SDK CLI, and 104+ API routes:
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/BitBadges/bitbadgeschain/master/install.sh | sh
+curl -fsSL https://install.bitbadges.io | sh
 ```
 
 Supports Linux, macOS (Intel + Apple Silicon), and Windows (Git Bash / WSL). See [CLI & Chain Binary](../for-developers/cli/) for full documentation.
