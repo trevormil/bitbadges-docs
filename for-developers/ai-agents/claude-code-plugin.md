@@ -34,7 +34,7 @@ The plugin's `.mcp.json` registers `bitbadges-builder` automatically — no `cla
 npx -y -p bitbadges bitbadges-builder
 ```
 
-The latest published `bitbadges` npm package is fetched on first use. No global install required.
+`npx` resolves the locally installed `bitbadges` package from the prerequisites step above. If you skipped that install, npx falls back to fetching the package from the npm registry on first call — slower and less reliable, but it works.
 
 ### Skills (~29 total)
 
@@ -98,7 +98,7 @@ The plugin is for Claude Code users specifically. For other harnesses, BitBadges
 
 - **Cursor / Claude Desktop / other MCP clients** → set up the `bitbadges-builder` MCP server (`claude mcp add bitbadges-builder -- npx -y -p bitbadges bitbadges-builder` for Claude Desktop, or the equivalent in your client). The MCP exposes `get_skill_instructions(<id>)` for on-demand loading — same path the plugin uses.
 - **Generic LLMs / shell scripts / CI** → use the [CLI](../cli/) directly. For skill instructions, browse the rendered [skill pages](../../x-tokenization/examples/skills/) or call `bitbadges-cli sdk skills <id>`.
-- **TypeScript/JavaScript devs** → `npm install bitbadges` and use the [SDK](../sdk-overview.md) directly.
+- **TypeScript/JavaScript devs** → `npm install bitbadges` and use the [SDK](../bitbadges-sdk/README.md) directly.
 
 The CLI is the universal base layer; the plugin is just a Claude-Code-specific veneer. Skill instruction content is rendered in one place — [`x-tokenization/examples/skills/`](../../x-tokenization/examples/skills/) — and consumed everywhere else (plugin, MCP, CLI) by reference.
 
