@@ -94,13 +94,13 @@ claude mcp remove bitbadges-builder
 
 ## When you don't need the plugin
 
-The plugin is for Claude Code users specifically. For other harnesses, BitBadges still has full coverage:
+The plugin is for Claude Code users specifically. For other harnesses, BitBadges still has full coverage via the same MCP server and the existing skill docs:
 
-- **Cursor users** → copy the [`cursor-rules/*.mdc`](./cursor-rules/) files into your project's `.cursor/rules/` directory.
-- **Generic LLMs / shell scripts / CI** → use the [CLI](../cli/) directly. Point any LLM at [`for-llms-skills.md`](./for-llms-skills.md) for one-shot context.
+- **Cursor / Claude Desktop / other MCP clients** → set up the `bitbadges-builder` MCP server (`claude mcp add bitbadges-builder -- npx -y -p bitbadges bitbadges-builder` for Claude Desktop, or the equivalent in your client). The MCP exposes `get_skill_instructions(<id>)` for on-demand loading — same path the plugin uses.
+- **Generic LLMs / shell scripts / CI** → use the [CLI](../cli/) directly. For skill instructions, browse the rendered [skill pages](../../x-tokenization/examples/skills/) or call `bitbadges-cli sdk skills <id>`.
 - **TypeScript/JavaScript devs** → `npm install bitbadges` and use the [SDK](../sdk-overview.md) directly.
 
-The CLI is the universal base layer; the plugin is just a Claude-Code-specific veneer.
+The CLI is the universal base layer; the plugin is just a Claude-Code-specific veneer. Skill instruction content is rendered in one place — [`x-tokenization/examples/skills/`](../../x-tokenization/examples/skills/) — and consumed everywhere else (plugin, MCP, CLI) by reference.
 
 ## Source
 
