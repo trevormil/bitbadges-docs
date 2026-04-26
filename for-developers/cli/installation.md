@@ -38,6 +38,17 @@ curl -fsSL https://install.bitbadges.io | sh -s -- --no-sudo
 | macOS | Apple Silicon (arm64) | Supported |
 | Windows | x86_64 (via Git Bash, MSYS2, WSL) | Supported |
 
+## Optional add-on: Claude Code plugin
+
+After the install above, Claude Code users can optionally install the [BitBadges plugin](../ai-agents/claude-code-plugin.md) for auto-wired MCP and 8 curated workflow skills:
+
+```
+/plugin marketplace add BitBadges/bitbadges-plugin
+/plugin install bitbadges
+```
+
+The plugin is a convenience layer that builds on the CLI install above — it does not replace it.
+
 ## SDK CLI Only (npm / bun)
 
 If you only need the SDK CLI (API access, review tools, docs) without the chain binary:

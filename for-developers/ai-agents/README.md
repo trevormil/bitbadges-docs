@@ -52,10 +52,13 @@ console.log('TX Hash:', result.txHash);
 
 ## Integration Paths
 
+The chain binary + CLI install is the canonical entrypoint for everything below — install it first, then layer whichever harness-specific convenience you want on top.
+
 | Path | Best For | Install |
 |------|----------|---------|
-| **CLI & Chain Binary** | Terminal agents, shell scripts, any language | `curl -fsSL .../install.sh \| sh` — [guide](../cli/for-ai-agents.md) |
-| **BitBadges Builder Tools** | AI assistants (Claude, Cursor, etc.) | `npm i -g bitbadges` |
+| **CLI & Chain Binary** *(start here)* | Terminal agents, shell scripts, any language | `curl -fsSL https://install.bitbadges.io \| sh` — [guide](../cli/for-ai-agents.md) |
+| **BitBadges Builder Tools (MCP)** | Cursor, Claude Desktop, other MCP clients | `npm i -g bitbadges` — [guide](builder-tools.md) |
+| **Claude Code Plugin** | Claude Code users — auto-wired MCP + 8 workflow skills (built on top of the CLI) | `/plugin marketplace add BitBadges/bitbadges-plugin` then `/plugin install bitbadges` — [guide](claude-code-plugin.md) |
 | **SDK Signing Client** | Full-featured TypeScript bots | `npm i bitbadges` |
 | **Direct HTTP** | Lightweight scripts, any language | REST calls to `api.bitbadges.io` |
 | **Agent Spending Authorization** | Set daily caps, time windows, and revocation | [guide](agent-spending-authorization.md) |
@@ -63,11 +66,16 @@ console.log('TX Hash:', result.txHash);
 ### Quick Setup
 
 ```bash
-# Claude Code (one command)
-claude mcp add bitbadges-builder -- npx -y -p bitbadges bitbadges-builder
+# Step 1 — install the chain binary + CLI (always)
+curl -fsSL https://install.bitbadges.io | sh
+bitbadges-cli config set apiKey YOUR_KEY
 
-# Or install globally
-npm install -g bitbadges
+# Step 2 — optionally layer a harness convenience
+# Claude Code:
+#   /plugin marketplace add BitBadges/bitbadges-plugin
+#   /plugin install bitbadges
+# Cursor / Claude Desktop / other MCP clients:
+#   claude mcp add bitbadges-builder -- npx -y -p bitbadges bitbadges-builder
 ```
 
 See the full [Builder Tools Reference](builder-tools.md) for all 50+ tools (including session-based per-field builders), configuration for Claude Desktop / Cursor, and workflow guides.
