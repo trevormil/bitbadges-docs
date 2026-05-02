@@ -54,6 +54,8 @@ console.log('TX Hash:', result.txHash);
 
 The CLI builders and templates accept `--name`, `--image`, and `--description` (or `--name` + `--description` for approvals — no image) and serialize them into the on-chain `customData` field. The indexer, SDK, and frontend parse `customData` on read and surface the result as the resolved metadata, so an agent can ship a working collection without an IPFS pin or Pinata account. Pass `--uri <pre-hosted-uri>` instead if you would rather host the JSON yourself; URI takes priority when both are populated. See [Collection Configuration › Inline metadata via customData](../../token-standard/learn/collection-setup-fields.md#inline-metadata-via-customdata) for the on-chain shape.
 
+> **`--image` should be a URL, not bytes.** Inline `customData` lives on-chain — you pay gas per byte and blocks have a hard size cap. Pre-host images on IPFS (or any URL host) and pass the URL to `--image`. Inline customData is for the metadata wrapper (name, description, link to image), not the image itself. See [Cost considerations](../../token-standard/learn/collection-setup-fields.md#cost-considerations-keep-images-off-chain).
+
 ## Integration Paths
 
 The chain binary + CLI install is the canonical entrypoint for everything below — install it first, then layer whichever harness-specific convenience you want on top.

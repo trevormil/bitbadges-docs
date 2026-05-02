@@ -170,6 +170,30 @@ The indexer, SDK, and frontend resolve metadata with `uri` taking priority: if `
 
 `customData` is still a free-form string. Anything that does not parse as a JSON object with at least one of `name`, `image`, or `description` is ignored as metadata and the entity falls through to "no metadata" rather than rendering attacker-controlled fields.
 
+#### Cost considerations: keep images off-chain
+
+Inline `customData` is stored on-chain. **You pay gas proportional to the byte size, every block has a hard size cap, and the bytes live in chain state forever.** This is fine for short text fields and a tiny URL pointing at an image, but it is the wrong place for large payloads.
+
+Strong recommendation: **do not store image bytes (or any base64-encoded media) inline in `customData`.** Even a small JPEG is tens of KB and a PNG can easily run into hundreds of KB or MB — orders of magnitude more expensive than a text-only payload, and large enough to start fighting block-size limits during bulk updates. Pre-host images on IPFS (or any other URL host) and reference them by URL inside the inline JSON:
+
+```typescript
+const collectionMetadata: CollectionMetadata = {
+    uri: '',
+    customData: JSON.stringify({
+        name: 'My Collection',
+        image: 'ipfs://Qm.../image.png', // <-- URL only, NOT base64
+        description: 'A short description.',
+    }),
+};
+```
+
+Rule of thumb:
+- **Inline customData is great for**: name, description, attributes, links, small structured fields — the metadata wrapper.
+- **Inline customData is the wrong place for**: image bytes, video, audio, anything binary, anything more than a few KB.
+- If your full metadata JSON (after stringification) is more than ~4 KB, prefer hosting the JSON externally and using `uri` instead.
+
+It is a tradeoff. Inline customData buys you zero hosting setup and no IPFS pin to maintain; remote hosting buys you cheap storage of large assets. Pick per entity, not per collection.
+
 ## Default Balances
 
 `defaultBalances` are predefined balance stores automatically assigned to new users (uninitialized balance stores) when they first interact with a collection. Set during collection creation only—cannot be updated after genesis.
