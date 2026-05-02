@@ -59,7 +59,7 @@ bitbadgeschaind tx tokenization set-collection-metadata '[tx-json]' --from manag
     "collectionId": "1",
     "collectionMetadata": {
         "uri": "https://example.com/collection.json",
-        "customData": "{\"description\": \"My collection\"}"
+        "customData": ""
     },
     "canUpdateCollectionMetadata": [
         {
@@ -67,6 +67,22 @@ bitbadgeschaind tx tokenization set-collection-metadata '[tx-json]' --from manag
             "permanentlyForbiddenTimes": []
         }
     ]
+}
+```
+
+#### JSON Example — Inline Metadata via `customData`
+
+As an alternative to hosting the metadata JSON behind a URI, leave `uri` empty and put the metadata document inline in `customData` as a JSON-encoded string. The indexer parses it on read and surfaces the result as the resolved metadata; URI always wins when both are populated. See [Collection Configuration › Inline metadata via customData](../../token-standard/learn/collection-setup-fields.md#inline-metadata-via-customdata).
+
+```json
+{
+    "creator": "bb1abc123...",
+    "collectionId": "1",
+    "collectionMetadata": {
+        "uri": "",
+        "customData": "{\"name\":\"My Collection\",\"image\":\"ipfs://Qm.../image.png\",\"description\":\"A short description.\"}"
+    },
+    "canUpdateCollectionMetadata": []
 }
 ```
 

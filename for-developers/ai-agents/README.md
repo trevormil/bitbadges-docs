@@ -50,6 +50,10 @@ const result = await client.signAndBroadcast([
 console.log('TX Hash:', result.txHash);
 ```
 
+## Metadata: No Hosting Required
+
+The CLI builders and templates accept `--name`, `--image`, and `--description` (or `--name` + `--description` for approvals — no image) and serialize them into the on-chain `customData` field. The indexer, SDK, and frontend parse `customData` on read and surface the result as the resolved metadata, so an agent can ship a working collection without an IPFS pin or Pinata account. Pass `--uri <pre-hosted-uri>` instead if you would rather host the JSON yourself; URI takes priority when both are populated. See [Collection Configuration › Inline metadata via customData](../../token-standard/learn/collection-setup-fields.md#inline-metadata-via-customdata) for the on-chain shape.
+
 ## Integration Paths
 
 The chain binary + CLI install is the canonical entrypoint for everything below — install it first, then layer whichever harness-specific convenience you want on top.

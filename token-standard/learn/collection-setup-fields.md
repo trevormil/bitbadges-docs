@@ -136,9 +136,7 @@ const tokenMetadata: TokenMetadata[] = [
 
 ## Custom Data
 
-`customData` provides generic string storage for application-specific information. Not used by BitBadges site—for future customization and extensibility.
-
-This is often used for application-specific implementations or contract integrations. You may also see `customData` used elsewhere like in approvals, address lists, and other structures.
+`customData` provides generic string storage for application-specific information. It is not interpreted by the chain itself—use it for any application-specific implementations or contract integrations. You may also see `customData` used elsewhere like in approvals, address lists, and other structures.
 
 ```typescript
 const customData: string = 'Any string value you want to store';
@@ -152,6 +150,25 @@ const customData: string = 'Any string value you want to store';
 -   Messages: Various transaction messages include custom data fields
 
 **Permission Control:** Updates controlled by `canUpdateCustomData` permission.
+
+### Inline metadata via `customData`
+
+Wherever a metadata-bearing entity exposes a `(uri, customData)` pair (collection metadata, token metadata, address lists, dynamic stores, paths, and approvals), `customData` can also hold an inline JSON metadata document with the same shape that a hosted metadata file would have:
+
+```typescript
+const collectionMetadata: CollectionMetadata = {
+    uri: '',
+    customData: JSON.stringify({
+        name: 'My Collection',
+        image: 'ipfs://Qm.../image.png',
+        description: 'A short description.',
+    }),
+};
+```
+
+The indexer, SDK, and frontend resolve metadata with `uri` taking priority: if `uri` is non-empty it is fetched as today; otherwise `customData` is parsed as inline JSON and surfaced as the resolved metadata. This is a zero-hosting alternative to IPFS-hosted JSON—no Pinata account, no pin to maintain. Approval metadata uses `name` + `description` only (no `image`); every other entity expects `name` + `image` + `description`.
+
+`customData` is still a free-form string. Anything that does not parse as a JSON object with at least one of `name`, `image`, or `description` is ignored as metadata and the entity falls through to "no metadata" rather than rendering attacker-controlled fields.
 
 ## Default Balances
 
