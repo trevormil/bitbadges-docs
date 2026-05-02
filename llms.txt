@@ -1,0 +1,141 @@
+# BitBadges
+
+> BitBadges is a Cosmos-SDK chain with a fully-EVM-compatible execution layer
+> and a programmable token standard (Smart Tokens) that supports approvals,
+> permissions, time-based balances, and on-chain compliance rules. This file
+> is a curated index for AI coding agents — start here, then fetch the 1-3
+> pages relevant to your task. The full doc dump lives at `for-llms.txt`.
+
+## Overview
+
+- [BitBadges Overview](https://docs.bitbadges.io/) — One-paragraph intro: what BitBadges is, who it's for, the chain + EVM + smart-token model.
+- [BitBadges vs ERC-3643](https://docs.bitbadges.io/overview/bitbadges-vs-erc3643) — Positioning vs the closest standards-based RWA stack.
+- [FAQ](https://docs.bitbadges.io/overview/faq) — Common chain / token / fee questions.
+- [Use cases](https://docs.bitbadges.io/overview/use-cases) — Worked examples of what people build (NFTs, subscriptions, auctions, vaults, claims).
+- [BADGE token](https://docs.bitbadges.io/overview/badge) — The native staking / governance / fee token.
+- [Official links](https://docs.bitbadges.io/overview/official-links) — Mainnet / testnet / explorer / API endpoints in one place.
+
+## Core concepts (read these before designing a smart token)
+
+- [Token-standard overview](https://docs.bitbadges.io/x-tokenization/README) — How collections, tokens, balances, approvals, and permissions fit together.
+- [Manager / permissions](https://docs.bitbadges.io/learn/permissions) — Who can change what, and how to lock fields after launch.
+- [Balances](https://docs.bitbadges.io/token-standard/learn/balance-system) — The time-bounded balance model (this is unusual — read it).
+- [Transferability / approvals](https://docs.bitbadges.io/learn/transferability) — How approval criteria gate every transfer.
+- [Approval criteria](https://docs.bitbadges.io/token-standard/learn/approval-criteria/README) — The full vocabulary for programmable token policy.
+- [Predetermined balances](https://docs.bitbadges.io/token-standard/learn/approval-criteria/predetermined-balances) — Mint-time balance allocation patterns.
+- [Merkle challenges](https://docs.bitbadges.io/token-standard/learn/approval-criteria/merkle-challenges) — Allowlist-style claim gating.
+- [UintRanges](https://docs.bitbadges.io/token-standard/learn/uintrange) — The range primitive used everywhere (token IDs, times, etc.).
+- [Address lists](https://docs.bitbadges.io/token-standard/learn/address-lists) — Reusable membership lists.
+
+## Build with an AI agent
+
+- [AI Agents & Bots overview](https://docs.bitbadges.io/for-developers/ai-agents/README) — Map of every agent surface: MCP, programmatic SDK, CLI for agents, claim webhooks.
+- [Claude Code plugin](https://docs.bitbadges.io/for-developers/ai-agents/claude-code-plugin) — One-command install for Claude Code; ships the BitBadges builder MCP and skills.
+- [Programmatic agent](https://docs.bitbadges.io/for-developers/ai-agents/programmatic-agent) — `BitBadgesBuilderAgent` Node-side self-driving build loop (Anthropic / OpenAI key required).
+- [Builder tools (MCP)](https://docs.bitbadges.io/for-developers/ai-agents/builder-tools) — The per-tool MCP surface; install once, drive from any IDE/agent (no LLM key needed).
+- [Smart token-type detection](https://docs.bitbadges.io/for-developers/ai-agents/smart-token-type-detection) — How the agent auto-classifies a prompt into one of the 15 marketplace token types.
+- [Bot examples](https://docs.bitbadges.io/for-developers/ai-agents/bot-examples) — Working snippets: claim webhooks, ws listeners, vault tutorials.
+- [E2E: AI Agent with USDC vault](https://docs.bitbadges.io/for-developers/ai-agents/openclaw-vault-tutorial) — End-to-end: agent owns a vault, accepts deposits, settles on-chain.
+- [Claims for agents](https://docs.bitbadges.io/for-developers/ai-agents/claims-for-agents) — How an agent should integrate with the Claims system (deprecated redemption path; create-side still live).
+- [Agent spending authorization](https://docs.bitbadges.io/for-developers/ai-agents/agent-spending-authorization) — Granting an agent a bounded on-chain spending budget.
+- [WebSocket events](https://docs.bitbadges.io/for-developers/ai-agents/websocket-events) — Live on-chain event stream for agent reactions.
+
+## Builder skills (per token type)
+
+- [Builder skills index](https://docs.bitbadges.io/x-tokenization/examples/skills/README) — All 20+ skills (token-type templates) the builder agent ships with.
+- [Smart Token](https://docs.bitbadges.io/x-tokenization/examples/skills/smart-token) — Default programmable-policy token; the place to start.
+- [Fungible Token](https://docs.bitbadges.io/x-tokenization/examples/skills/fungible-token) — ERC-20-style supply with smart-token policy hooks.
+- [NFT Collection](https://docs.bitbadges.io/x-tokenization/examples/skills/nft-collection) — Unique-token-ID issuance.
+- [Subscription](https://docs.bitbadges.io/x-tokenization/examples/skills/subscription) — Recurring time-bounded access tokens.
+- [Payment Protocol](https://docs.bitbadges.io/x-tokenization/examples/skills/payment-protocol) — Pay-to-mint / pay-to-transfer flows.
+- [Auction](https://docs.bitbadges.io/x-tokenization/examples/skills/auction) / [Bounty](https://docs.bitbadges.io/x-tokenization/examples/skills/bounty) / [Crowdfund](https://docs.bitbadges.io/x-tokenization/examples/skills/crowdfund) / [Quest](https://docs.bitbadges.io/x-tokenization/examples/skills/quest) — Marketplace primitives.
+- [Liquidity Pools](https://docs.bitbadges.io/x-tokenization/examples/skills/liquidity-pools) — x/gamm-backed AMM pools.
+- [Prediction Market](https://docs.bitbadges.io/x-tokenization/examples/skills/prediction-market) / [Credit Token](https://docs.bitbadges.io/x-tokenization/examples/skills/credit-token) / [Custom 2FA](https://docs.bitbadges.io/x-tokenization/examples/skills/custom-2fa) — Specialty templates.
+- [Address List](https://docs.bitbadges.io/x-tokenization/examples/skills/address-list) — Lightweight membership lists (no token issuance).
+- [BB-402 Token-Gated Access](https://docs.bitbadges.io/x-tokenization/examples/skills/bb-402) — HTTP 402 paywall + token-gated middleware recipes.
+
+## CLI
+
+- [CLI overview](https://docs.bitbadges.io/for-developers/cli/README) — One binary, two surfaces: `bitbadgeschaind` (chain) + `bitbadgeschaind cli` (SDK forwarder); use `bb` as the friendly alias.
+- [CLI for AI agents](https://docs.bitbadges.io/for-developers/cli/for-ai-agents) — Agent-friendly flags (`--help-json`, `--dry-run`, JSON output) and recommended workflows.
+- [Installation](https://docs.bitbadges.io/for-developers/cli/installation) — `curl -fsSL https://install.bitbadges.io | sh`.
+- [SDK commands](https://docs.bitbadges.io/for-developers/cli/sdk-commands) — review, audit, address conversion, docs browser, skills listing.
+- [API commands](https://docs.bitbadges.io/for-developers/cli/api-commands) — 104+ API routes from your terminal.
+- [Chain commands](https://docs.bitbadges.io/for-developers/cli/chain-commands) — keys, signing, broadcasting, on-chain queries.
+- [Builder templates](https://docs.bitbadges.io/for-developers/cli/builder-templates) — Flag-driven generators for vault, subscription, bounty, auction, and 14 other token types.
+- [Create with burner](https://docs.bitbadges.io/for-developers/cli/create-with-burner) — Ship a create-collection tx without bringing your own wallet.
+
+## API
+
+- [BitBadges API overview](https://docs.bitbadges.io/for-developers/bitbadges-api/README) — Auth, routes, and the credit / quota model.
+- [Getting started](https://docs.bitbadges.io/for-developers/bitbadges-api/api) — Make your first authenticated request.
+- [OpenAPI spec (machine-readable)](https://api.bitbadges.io/openapi.json) — Full machine-readable schema; feed this to your tool-using agent.
+- [Standard API reference (Stoplight)](https://bitbadges.stoplight.io/docs/bitbadges) — Human-readable route reference.
+- [Blockchain LCD reference](https://lcd.bitbadges.io/) — Cosmos REST node API.
+- [Typed SDK reference](https://bitbadges.github.io/bitbadgesjs/classes/BitBadgesAPI.html) — TypeScript class docs for the API client.
+- [API credits](https://docs.bitbadges.io/for-developers/bitbadges-api/credits) — Per-route credit pricing.
+- [Limits & restrictions](https://docs.bitbadges.io/for-developers/bitbadges-api/concepts/limits-restrictions) — Rate limits, payload caps, view ttls.
+
+## Chain message types
+
+- [Messages index](https://docs.bitbadges.io/x-tokenization/messages/README) — Every Msg the `x/tokenization` module accepts.
+- [MsgCreateCollection](https://docs.bitbadges.io/x-tokenization/messages/msg-create-collection) — Mint a new collection (most builder flows end here).
+- [MsgUniversalUpdateCollection](https://docs.bitbadges.io/x-tokenization/messages/msg-universal-update-collection) — Atomic multi-field update.
+- [MsgUpdateCollection](https://docs.bitbadges.io/x-tokenization/messages/msg-update-collection) / [MsgUpdateUserApprovals](https://docs.bitbadges.io/x-tokenization/messages/msg-update-user-approvals) — Targeted edits.
+- [MsgTransferTokens](https://docs.bitbadges.io/x-tokenization/messages/msg-transfer-tokens) — Move balances; honors all approval criteria.
+- [MsgSetCollectionApprovals](https://docs.bitbadges.io/x-tokenization/messages/msg-set-collection-approvals) — Set the policy layer for a collection.
+- [MsgSetCollectionMetadata](https://docs.bitbadges.io/x-tokenization/messages/msg-set-collection-metadata) / [MsgSetTokenMetadata](https://docs.bitbadges.io/x-tokenization/messages/msg-set-token-metadata) — Metadata URIs.
+- [MsgSetStandards](https://docs.bitbadges.io/x-tokenization/messages/msg-set-standards) — Declare which standard(s) a collection conforms to.
+- [MsgCreateAddressLists](https://docs.bitbadges.io/x-tokenization/messages/msg-create-address-lists) — Reusable membership lists.
+- [MsgCreateDynamicStore](https://docs.bitbadges.io/x-tokenization/messages/msg-create-dynamic-store) / [MsgSetDynamicStoreValue](https://docs.bitbadges.io/x-tokenization/messages/msg-set-dynamic-store-value) — On-chain KV state for claim challenges.
+
+## Queries
+
+- [Queries index](https://docs.bitbadges.io/x-tokenization/queries/README) — Read-side gRPC / REST entry points.
+- [GetCollection](https://docs.bitbadges.io/x-tokenization/queries/get-collection) / [GetBalance](https://docs.bitbadges.io/x-tokenization/queries/get-balance) — The two most-used reads.
+- [GetApprovalTracker](https://docs.bitbadges.io/x-tokenization/queries/get-approval-tracker) / [GetChallengeTracker](https://docs.bitbadges.io/x-tokenization/queries/get-challenge-tracker) — Counter / merkle state for approvals.
+- [GetDynamicStore](https://docs.bitbadges.io/x-tokenization/queries/get-dynamic-store) / [GetDynamicStoreValue](https://docs.bitbadges.io/x-tokenization/queries/get-dynamic-store-value) — KV reads.
+- [GetAddressList](https://docs.bitbadges.io/x-tokenization/queries/get-address-list) — Address-list lookup.
+
+## EVM precompiles
+
+- [EVM integration overview](https://docs.bitbadges.io/evm/EVM_INTEGRATION) — How Solidity contracts call into BitBadges modules.
+- [Setup and configuration](https://docs.bitbadges.io/evm/evm-precompiles/setup-and-configuration) — RPC endpoints, chain ids (mainnet 90123, testnet 50025).
+- [Developer guide](https://docs.bitbadges.io/evm/evm-precompiles/developer-guide) — Calling precompiles from Solidity.
+- [Tokenization precompile API](https://docs.bitbadges.io/evm/evm-precompiles/tokenization-precompile/API) — Per-method ABI for the smart-token precompile.
+- [Gas](https://docs.bitbadges.io/evm/evm-precompiles/tokenization-precompile/gas) / [Errors](https://docs.bitbadges.io/evm/evm-precompiles/tokenization-precompile/errors) / [Security](https://docs.bitbadges.io/evm/evm-precompiles/tokenization-precompile/security) — Operational reference.
+
+## Sign-in (SIWBB / OAuth)
+
+- [Sign In with BitBadges overview](https://docs.bitbadges.io/for-developers/sign-in-with-bitbadges/overview) — OAuth-style auth backed by token ownership.
+- [Setting up an app](https://docs.bitbadges.io/for-developers/sign-in-with-bitbadges/setting-up-an-app) — Register a client, get keys.
+- [Authorization URL](https://docs.bitbadges.io/for-developers/sign-in-with-bitbadges/authorization-url/README) — Build the auth-redirect URL.
+- [Verification flow](https://docs.bitbadges.io/for-developers/sign-in-with-bitbadges/verification/verification-flow) — Validate the returned token server-side.
+- [Access tokens](https://docs.bitbadges.io/for-developers/sign-in-with-bitbadges/verification/access-tokens) — Token format, lifetime, refresh.
+
+## Faucet
+
+- [Testnet faucet](https://docs.bitbadges.io/for-developers/ai-agents/testnet-faucet) — HTTP API for top-up on the testnet chain.
+
+## Examples / quickstarts
+
+- [Bot examples](https://docs.bitbadges.io/for-developers/ai-agents/bot-examples) — Drop-in patterns for common automations.
+- [E2E: USDC vault tutorial](https://docs.bitbadges.io/for-developers/ai-agents/openclaw-vault-tutorial) — Walk through agent-owned vault end-to-end.
+- [Claims for agents](https://docs.bitbadges.io/for-developers/ai-agents/claims-for-agents) — Claim-side integration patterns.
+- [Token-standard examples index](https://docs.bitbadges.io/x-tokenization/examples/README) — Hand-written collection / approval / permission examples.
+- [Quest token collection](https://docs.bitbadges.io/x-tokenization/examples/txs/msgcreatecollection/quest-badge-collection) — Walk-through tx for a quest token.
+- [Tradable NFT collection](https://docs.bitbadges.io/x-tokenization/examples/txs/msgcreatecollection/tradable-nft-collection) — Walk-through tx for a tradable NFT.
+- [Building collection approvals](https://docs.bitbadges.io/x-tokenization/examples/building-collection-approvals) — Step-by-step approval-policy authoring.
+- [Building collection permissions](https://docs.bitbadges.io/x-tokenization/examples/building-collection-permissions) — Step-by-step permissions authoring.
+- [Mint all tokens to self](https://docs.bitbadges.io/x-tokenization/examples/mint-all-to-self-tutorial) — Simplest-possible mint flow.
+- [Burnable approval](https://docs.bitbadges.io/x-tokenization/examples/approvals/burnable-approval) — Reference snippet for a burn policy.
+- [Transferable approval](https://docs.bitbadges.io/x-tokenization/examples/approvals/transferable-approval) — Reference snippet for an open transfer policy.
+
+## SDK + transaction generation
+
+- [BitBadges SDK overview](https://docs.bitbadges.io/for-developers/bitbadges-sdk/overview) — TypeScript library for everything.
+- [React / Next.js quickstart](https://docs.bitbadges.io/for-developers/bitbadges-sdk/react-quickstart) — Wire up wallet + collection reads in a Next app.
+- [Signing client (recommended path)](https://docs.bitbadges.io/for-developers/bitbadges-blockchain/create-and-broadcast-txs/signing-client) — The high-level tx-build + sign + broadcast helper.
+- [Generate Msg contents](https://docs.bitbadges.io/for-developers/bitbadges-blockchain/create-and-broadcast-txs/generate-msg-contents) — How to construct each Msg by hand.
+- [Broadcast to a node](https://docs.bitbadges.io/for-developers/bitbadges-blockchain/create-and-broadcast-txs/broadcast-to-a-node) — Endpoint + retry guidance.
+- [Address conversions](https://docs.bitbadges.io/for-developers/bitbadges-sdk/common-snippets/address-conversions) — bb1 ↔ 0x ↔ cosmos1 conversions.
