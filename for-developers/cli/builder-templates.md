@@ -86,6 +86,30 @@ bitbadges-cli builder templates bounty --amount 500 --denom USDC \
 | `--expiration <duration>` | No | Expiration duration (default: 30d) |
 | `--name <name>` | No | Collection name (default: "Bounty") |
 
+### `build payment-request`
+
+Create an agent-initiated payment request — the inverse of `bounty`. The agent (or any address) creates a collection requesting payment from a targeted payer; the payer approves AND pays from their own wallet in a single action. **No escrow up front.**
+
+```bash
+bitbadges-cli builder templates payment-request \
+  --amount 10 --denom USDC \
+  --payer bb1payer... --recipient bb1agent... \
+  --expiration 30d --name "Service charge" \
+  --context "Agent X is requesting payment for completed deliverable Y under approved budget envelope of \$100/month."
+```
+
+| Flag | Required | Description |
+|------|----------|-------------|
+| `--amount <n>` | Yes | Payment amount in display units |
+| `--denom <symbol>` | Yes | Coin (USDC, BADGE) |
+| `--payer <address>` | Yes | Payer address (the human approver) |
+| `--recipient <address>` | Yes | Recipient address (agent / merchant) |
+| `--expiration <duration>` | No | Expiration duration (default: 30d) |
+| `--name <name>` | No | Collection name (default: "Payment Request") |
+| `--context <text>` | No | Rationale shown to the payer at approval time (≥100 chars recommended) |
+
+See the full spec in [skills/payment-request](../../x-tokenization/examples/skills/payment-request.md).
+
 ### `build crowdfund`
 
 Create a crowdfunding collection with a funding goal and deadline.
