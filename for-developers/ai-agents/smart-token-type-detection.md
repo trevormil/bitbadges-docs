@@ -37,6 +37,7 @@ Full mapping:
 | `"Address List"` | `address-list` |
 | `"Quest"` | `quest` |
 | `"Bounty"` | `bounty` |
+| `"PaymentRequest"` | `payment-request` |
 | `"Crowdfund"` | `crowdfund` |
 | `"Auction"` | `auction` |
 | `"Products"` | `product-catalog` |
