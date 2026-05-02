@@ -2,6 +2,17 @@
 
 The BitBadges CLI is the fastest way to interact with the BitBadges blockchain. A single install gives you everything: the chain binary (`bitbadgeschaind`), the SDK CLI (`bitbadges-cli`), and 104+ API routes — all from your terminal.
 
+## One binary, two surfaces
+
+There is exactly one canonical binary: `bitbadgeschaind`. It exposes two surfaces:
+
+| Surface | Form | What it covers |
+|---|---|---|
+| **Cosmos-native chain ops** | `bitbadgeschaind tx \| query \| keys ...` | Key management, transaction signing, broadcasting, on-chain reads. Same surface as any Cosmos SDK chain binary. |
+| **BitBadges SDK CLI (forwarded)** | `bitbadgeschaind cli <subcmd>` | The full Node SDK CLI — API access, review/audit, docs browser, skills, address tools. Identical surface to `bitbadges-cli`, just routed through the chain binary. |
+
+We ship a friendly alias, `bb`, via `install.bitbadges.io`. Use `bb` as the entry point in examples and scripts — it's just `bitbadgeschaind` under the hood, and the chain-vs-cli surface split is identical.
+
 ## Install (One-Liner)
 
 ```bash
@@ -9,14 +20,32 @@ curl -fsSL https://install.bitbadges.io | sh
 ```
 
 This installs both:
-- **`bitbadgeschaind`** — the chain binary (key management, signing, broadcasting, on-chain queries)
-- **`bitbadges-cli`** — the SDK CLI (API access, review/audit, docs browser, skills, address tools)
+- **`bitbadgeschaind`** (with the `bb` alias) — the chain binary (key management, signing, broadcasting, on-chain queries) AND the forwarder for the SDK CLI.
+- **`bitbadges-cli`** — the standalone SDK CLI (API access, review/audit, docs browser, skills, address tools). Equivalent to `bb cli ...`.
 
 Verify your installation:
 
 ```bash
-bitbadgeschaind version
-bitbadges-cli sdk status
+bb version
+bb cli sdk status
+```
+
+## Quick examples
+
+Four shapes worth knowing:
+
+```bash
+# 1. Native chain query — Cosmos SDK surface, no forwarding
+bb query bank balances bb1abc... --output json
+
+# 2. Forwarded SDK call — `bb cli` is shorthand for the Node SDK CLI
+bb cli api tokens get-collection 1 --output json
+
+# 3. Authenticated session (ships in a forthcoming commit)
+bb auth login --from mykey
+
+# 4. Discover the full command tree as JSON — for AI agents
+bb --help-json | jq '.commands[] | .name'
 ```
 
 ## How They Work Together
@@ -24,10 +53,10 @@ bitbadges-cli sdk status
 The chain binary delegates every `bitbadges-cli` subcommand to the Node.js CLI via a single `cli` forwarder. These are equivalent:
 
 ```bash
-bitbadgeschaind cli sdk review tx.json
+bb cli sdk review tx.json
 bitbadges-cli sdk review tx.json
 
-bitbadgeschaind cli api tokens get-collection 1
+bb cli api tokens get-collection 1
 bitbadges-cli api tokens get-collection 1
 ```
 
