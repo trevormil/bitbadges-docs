@@ -9,15 +9,15 @@
 Required standards: ["PaymentRequest"]
 
 - 1 token ID (vehicle for approval engine — minted directly to burn)
-- 3 collection-level approvals: pay, deny, expire
+- 2 collection-level approvals: pay, deny
 - Each approval: Mint → burn 1x token ID 1
 - Pay approval triggers a coinTransfer FROM the payer's wallet TO the recipient
 - NO mintEscrowCoinsToTransfer — payment debits the payer's wallet at execution time
 - Approval gating via initiatedByListId scoped to the payer (no votingChallenges)
 - Fixed payment amount, no amount scaling
-- All approvals maxNumTransfers = 1 (one-shot)
+- Both approvals maxNumTransfers = 1 (one-shot)
 - All permissions frozen after creation
-- Expiration enforced via transferTimes windows
+- Expiration is implicit — both approvals share `transferTimes: [{ start: 1, end: expirationTimestamp }]`; once that window closes neither can fire (no separate expire approval, since there's no escrow to refund)
 
 ## Mental Model
 
@@ -37,9 +37,9 @@ This is the on-chain equivalent of [Stripe Link](https://github.com/stripe/link-
 - validTokenIds: [{ start: "1", end: "1" }]
 - No alias path needed (1-of-1 receipt-style token)
 
-## 3 Required Approvals
+## 2 Required Approvals
 
-All 3 approvals share: Mint → burn address, 1x token ID 1, maxNumTransfers = 1, overridesFromOutgoingApprovals=true, overridesToIncomingApprovals=true. **NO votingChallenges** — gating is via initiatedByListId, not voting.
+Both approvals share: Mint → burn address, 1x token ID 1, maxNumTransfers = 1, overridesFromOutgoingApprovals=true, overridesToIncomingApprovals=true, transferTimes `[{ start: "1", end: expirationTimestamp }]`. **NO votingChallenges** — gating is via initiatedByListId, not voting.
 
 ### 1. Pay (payment-request-pay-*)
 
@@ -63,13 +63,9 @@ Same shape as Pay but:
 - Same `initiatedByListId` (payer)
 - Same `transferTimes` (concurrent with pay)
 
-### 3. Expire (payment-request-expire-*)
+### Why no expire branch?
 
-After expiration → mint-to-burn → no coin transfer. Anyone can finalize. Records terminal state.
-
-- `initiatedByListId`: "All" (anyone can finalize)
-- NO `coinTransfers`
-- `transferTimes`: `[{ start: expirationTimestamp + 1, end: "18446744073709551615" }]`
+Bounty has an expire approval to refund escrowed funds back to the submitter once the deadline passes. PaymentRequest has no escrow — if the payer doesn't act before `expirationTimestamp`, both approvals' time windows close and the request is simply un-actionable. There's nothing to refund and no terminal state to record on-chain. UIs detect "expired" by comparing the current time to `transferTimes[0].end`. Validators reject collections with more than 2 approvals.
 
 ## Settlement Flow
 
@@ -78,16 +74,17 @@ After expiration → mint-to-burn → no coin transfer. Anyone can finalize. Rec
 3. Payer either:
    - **Approves+pays**: signs `MsgTransferTokens` from `Mint` → burn (1x token ID 1) with `prioritizedApprovals` targeting the pay approval. Coins debit from their wallet to the recipient automatically.
    - **Denies**: signs `MsgTransferTokens` targeting the deny approval. No coins move.
-4. If neither happens before expiration, anyone can call the expire approval to mark terminal.
+4. If the payer does neither before `expirationTimestamp`, both approvals become un-fireable and the request is implicitly expired. No on-chain action is needed to "finalize" expiration.
 
 ## Key Differences from Bounty
 
 - **NO `mintEscrowCoinsToTransfer`** at the collection level
 - **Pay approval uses `overrideFromWithApproverAddress: false`** (Bounty uses `true`)
 - **No `votingChallenges`** — gating is via `initiatedByListId` scoped to payer
-- **Deny + expire have no `coinTransfers`** — no funds need to be returned (no escrow to refund)
-- **`initiatedByListId` varies**: pay/deny use payer's address; expire uses "All"
-- Same 3-approval shape, same mint-to-burn vehicle, same frozen permissions
+- **Deny has no `coinTransfers`** — no funds need to be returned (no escrow to refund)
+- **No expire approval** — expiration is implicit via the shared `transferTimes[0].end`. Bounty needs an expire branch to refund escrow; we don't have escrow.
+- **2 approvals** instead of Bounty's 3
+- Same mint-to-burn vehicle, same frozen permissions
 
 ## Creation Flow (CLI)
 
@@ -111,7 +108,7 @@ The `--context` flag populates the collection metadata description with the rati
 3. `set_standards` — set `["PaymentRequest"]`
 4. `set_invariants` — set `{ noCustomOwnershipTimes: true, disablePoolCreation: true, noForcefulPostMintTransfers: true }`
 5. **DO NOT** call `set_mint_escrow_coins` — there's no escrow
-6. `add_preset_approval` x3 — pay, deny, expire (or `add_approval` for raw)
+6. `add_preset_approval` x2 — pay, deny (or `add_approval` for raw)
 7. `set_permissions` — freeze all permissions
 8. `set_collection_metadata` — name + the rationale (≥100 chars recommended)
 9. `set_token_metadata` — token 1 metadata
@@ -133,7 +130,7 @@ All permissions MUST be frozen (same set as Bounty).
 
 ## Relationship to the Invoices Standard
 
-The existing [`Invoices` standard](./payment-protocol.md) validates a single payer-as-initiator approval — useful as a building block, but it has no deny/expire branches and no targeted-payer scoping. PaymentRequest is a more constrained, agent-payments-specific subset: same payment direction (initiator → address), but with the bounty-shaped 3-approval lifecycle for explicit HITL approval/denial/expiry states.
+The existing [`Invoices` standard](./payment-protocol.md) validates a single payer-as-initiator approval — useful as a building block, but it has no deny branch and no targeted-payer scoping. PaymentRequest is a more constrained, agent-payments-specific subset: same payment direction (initiator → address), but with an explicit pay+deny pair so the payer's "no" is captured on-chain rather than being indistinguishable from "hasn't acted yet".
 
 Consumers that want any payer-initiated payment can match `Invoices`; consumers that want the agent-payments artifact specifically should match `PaymentRequest`.
 
