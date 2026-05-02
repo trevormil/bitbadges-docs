@@ -194,6 +194,32 @@ Rule of thumb:
 
 It is a tradeoff. Inline customData buys you zero hosting setup and no IPFS pin to maintain; remote hosting buys you cheap storage of large assets. Pick per entity, not per collection.
 
+#### Optional: deterministic SVG placeholder art (zero-hosting image)
+
+If you want zero hosting **and** an image, the SDK ships a deterministic SVG generator that produces 1-8 KB `data:image/svg+xml;base64,...` URIs you can drop directly into the `image` field of inline customData:
+
+```typescript
+import { generatePlaceholderArt } from 'bitbadges';
+
+const art = generatePlaceholderArt({ seed: 'My Collection' });
+const customData = JSON.stringify({
+    name: 'My Collection',
+    description: '...',
+    image: art.imageUri, // data:image/svg+xml;base64,...
+});
+// On-chain: collectionMetadata.uri = '', collectionMetadata.customData = customData
+```
+
+Same seed always produces the same art (six curated presets × 24 palettes, hash-picked deterministically). Pin a specific look with `style` / `paletteName` if needed.
+
+**This is not free.** The SVG bytes still live on-chain — you're shifting the cost from a hosting fee to chain gas, not eliminating it. Concretely:
+
+- Inline SVG: 1-8 KB on-chain → roughly 10-80k extra gas per write.
+- Inline customData with hosted image URL (`ipfs://...`): ~250 B on-chain wrapper, plus an IPFS pin you maintain. Cheapest on-chain when you have an image.
+- Full URI mode (`uri` set, `customData` empty): ~50 B on-chain (just the URL), plus an IPFS pin for JSON + image. Cheapest on-chain overall, but two pinning concerns.
+
+Pick the SVG generator when "no hosting setup at all" is worth the extra ~80k gas per write. For high-frequency mints, image-heavy collections, or anything where the art *is* the product, prefer a hosted image URL.
+
 ## Default Balances
 
 `defaultBalances` are predefined balance stores automatically assigned to new users (uninitialized balance stores) when they first interact with a collection. Set during collection creation only—cannot be updated after genesis.
