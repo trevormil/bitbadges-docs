@@ -63,6 +63,12 @@ For `refine` / `update` modes, the user message sent to Haiku is enriched with:
 
 ## SDK usage
 
+The `anthropicKey` below is required because this snippet uses the
+programmatic `BitBadgesBuilderAgent`. If you're driving the build from the MCP
+server (Cursor / Claude Desktop / Claude Code / Cline / OpenAI Codex / Gemini
+Code Assist), `autoInferTokenType` is wired in for you and no Anthropic /
+OpenAI key is needed — your IDE / agent provides the model.
+
 ```ts
 import { BitBadgesBuilderAgent } from 'bitbadges/builder/agent';
 

@@ -18,6 +18,14 @@ npm install bitbadges @anthropic-ai/sdk
 
 `@anthropic-ai/sdk` is an optional peerDependency — the SDK does not ship it. Install it yourself so your key stays in your process.
 
+> **Anthropic / OpenAI keys are required ONLY for `BitBadgesBuilderAgent`** —
+> the Node-side self-driving build loop on this page. The MCP server
+> (`bitbadges-builder` bin used by Cursor / Claude Desktop / Claude Code /
+> Cline / OpenAI Codex / Gemini Code Assist) is model-agnostic and does **not**
+> read these env vars. If you're just installing the MCP, skip ahead to
+> [Builder Tools (MCP)](builder-tools.md) — your IDE / agent already provides
+> the model.
+
 ```bash
 export ANTHROPIC_API_KEY=sk-ant-...
 # Optional — only needed if prompts trigger query/search/simulate tools
