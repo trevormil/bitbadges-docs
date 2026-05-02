@@ -1,30 +1,49 @@
 # Programmatic Agent (`BitBadgesBuilderAgent`)
 
-Build BitBadges collections from natural-language prompts in Node/TypeScript — **you bring your own Anthropic API key**. BitBadges never sees your key, never proxies your requests.
+Build BitBadges collections from natural-language prompts in Node/TypeScript — **you bring your own Anthropic or OpenAI API key**. BitBadges never sees your key, never proxies your requests.
 
 This is the scriptable counterpart to the [MCP Builder Tools](builder-tools.md) path. Pick whichever fits:
 
 | | No-code UI | MCP Builder | **Programmatic Agent** |
 |---|---|---|---|
 | Where it runs | `bitbadges.io/create` | Claude Desktop / Cursor / Claude Code | Your Node process |
-| Anthropic key | BitBadges-managed (billed credits) | Your Claude subscription | **Your Anthropic API key** |
+| LLM key | BitBadges-managed (billed credits) | Your Claude subscription | **Your Anthropic or OpenAI key** |
 | Good for | End users, one-off builds | Power users, exploratory work | Dapps, bots, games, CI, fine-tuning |
 
 ## Install
 
+Install the SDK plus the LLM provider you want to use. Both providers ship as **optional peer dependencies** — install whichever you'll use; you don't need both.
+
 ```bash
+# Anthropic (default)
 npm install bitbadges @anthropic-ai/sdk
+
+# OpenAI
+npm install bitbadges openai
 ```
 
-`@anthropic-ai/sdk` is an optional peerDependency — the SDK does not ship it. Install it yourself so your key stays in your process.
+The SDK never bundles either provider — your key stays in your process.
+
+> **Anthropic / OpenAI keys are required ONLY for `BitBadgesBuilderAgent`** —
+> the Node-side self-driving build loop on this page. The MCP server
+> (`bitbadges-builder` bin used by Cursor / Claude Desktop / Claude Code /
+> Cline / OpenAI Codex / Gemini Code Assist) is model-agnostic and does **not**
+> read these env vars. If you're just installing the MCP, skip ahead to
+> [Builder Tools (MCP)](builder-tools.md) — your IDE / agent already provides
+> the model.
 
 ```bash
+# Pick one — Anthropic (default) or OpenAI
 export ANTHROPIC_API_KEY=sk-ant-...
+export OPENAI_API_KEY=sk-proj-...
+
 # Optional — only needed if prompts trigger query/search/simulate tools
 export BITBADGES_API_KEY=bb-...
 ```
 
 ## Zero-config
+
+### Anthropic (default)
 
 ```ts
 import { BitBadgesBuilderAgent } from 'bitbadges/builder/agent';
@@ -39,9 +58,27 @@ console.log(result.toString());
 console.log(result.transaction);
 ```
 
+### OpenAI
+
+```ts
+import { BitBadgesBuilderAgent } from 'bitbadges/builder/agent';
+
+const agent = new BitBadgesBuilderAgent({
+  provider: 'openai',
+  apiKey: process.env.OPENAI_API_KEY
+});
+
+const result = await agent.build('create a subscription token for $10/month, max 500 subscribers');
+console.log(result.transaction);
+```
+
+Both providers run the **same self-driving loop** — same tools, same validation, same review pass, same auto-token-type inference. The dispatcher translates the Anthropic-style internal message format to/from OpenAI's chat-completions shape at the API boundary.
+
+> **Token-type inference parity**: both providers run a fast classifier (Anthropic Haiku / OpenAI `gpt-4o-mini`) before each build to auto-pick the right token-type skill. OpenAI uses native structured outputs (`response_format: json_schema, strict: true`) so the JSON contract is server-enforced. The two paths are interchangeable — pick whichever matches your stack.
+
 ## Auth modes
 
-All three are interchangeable — pick whichever matches your deployment:
+### Anthropic
 
 ```ts
 // 1. API key (most common)
@@ -55,15 +92,34 @@ import Anthropic from '@anthropic-ai/sdk';
 new BitBadgesBuilderAgent({ anthropicClient: new Anthropic({ apiKey, baseURL: proxy }) });
 ```
 
-Env vars are auto-read when no explicit creds are passed: `ANTHROPIC_API_KEY`, `ANTHROPIC_OAUTH_TOKEN`, `ANTHROPIC_AUTH_TOKEN`, `BITBADGES_API_KEY`, `BITBADGES_API_URL`.
+### OpenAI
+
+```ts
+// 1. API key (most common)
+new BitBadgesBuilderAgent({ provider: 'openai', apiKey: 'sk-proj-…' });
+
+// 2. Custom base URL — for Azure OpenAI, proxies, gateways
+new BitBadgesBuilderAgent({ provider: 'openai', apiKey, baseURL: 'https://your-proxy/v1' });
+
+// 3. Pre-built OpenAI client — for custom retry/interceptor/Azure-AD logic
+import OpenAI from 'openai';
+new BitBadgesBuilderAgent({ provider: 'openai', providerClient: new OpenAI({ apiKey, baseURL }) });
+```
+
+Env vars are auto-read when no explicit creds are passed:
+- **Anthropic**: `ANTHROPIC_API_KEY`, `ANTHROPIC_OAUTH_TOKEN`, `ANTHROPIC_AUTH_TOKEN`
+- **OpenAI**: `OPENAI_API_KEY`
+- **Shared**: `BITBADGES_API_KEY`, `BITBADGES_API_URL`
 
 ## Customization
 
 ```ts
 const agent = new BitBadgesBuilderAgent({
+  // Provider — pick one of the auth-mode patterns above
   anthropicKey: process.env.ANTHROPIC_API_KEY,
   bitbadgesApiKey: process.env.BITBADGES_API_KEY,
-  model: 'sonnet',                       // 'haiku' | 'sonnet' (default) | 'opus'
+  model: 'sonnet',                       // Anthropic: 'haiku' | 'sonnet' (default) | 'opus'.
+                                         // OpenAI: pass a model id directly, e.g. 'gpt-4o' / 'gpt-4o-mini'.
   validation: 'strict',                  // 'strict' | 'lenient' | 'off'
   skills: ['subscription', 'fungible-token'], // limit the skill set
   systemPromptAppend: 'Always use locked-approvals permissions.', // adds to base prompt
