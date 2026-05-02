@@ -6,6 +6,8 @@ All build commands accept friendly inputs -- use coin symbols like `USDC` instea
 
 > **Tip — don't want to bring your own wallet?** Pipe the output of any collection template straight into [`create-with-burner`](create-with-burner.md). The CLI generates a throwaway signer, funds it from the faucet, broadcasts the create-collection tx, and hands ownership to the address you pass as `--manager`. No keys to set up.
 
+> **No IPFS hosting needed.** Every template accepts metadata in one of two modes per metadata-bearing entity: pass `--uri <pre-hosted-uri>` if you have already hosted the JSON yourself, or pass the per-entity field flags (`--name`, `--image`, `--description`) and the CLI serializes them into the on-chain `customData` field. The indexer, SDK, and frontend parse `customData` on read and surface the result as the resolved metadata, so there is no Pinata account to set up. Approvals are text-only — `--name` + `--description`, no image. The CLI throws a clear error if neither mode is fully satisfied; there are no defaults or placeholders. See [Collection Configuration › Inline metadata via customData](../../token-standard/learn/collection-setup-fields.md#inline-metadata-via-customdata) for the on-chain shape.
+
 ## Common Flags
 
 Every build command supports the following flags:

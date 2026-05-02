@@ -60,7 +60,7 @@ bitbadgeschaind tx tokenization set-badge-metadata '[tx-json]' --from manager-ke
     "tokenMetadata": [
         {
             "uri": "https://example.com/badge1.json",
-            "customData": "{\"description\": \"First token\"}",
+            "customData": "",
             "tokenIds": [{ "start": "1", "end": "10" }]
         }
     ],
@@ -71,6 +71,25 @@ bitbadgeschaind tx tokenization set-badge-metadata '[tx-json]' --from manager-ke
             "permanentlyForbiddenTimes": []
         }
     ]
+}
+```
+
+#### JSON Example — Inline Metadata via `customData`
+
+As an alternative to hosting the metadata JSON behind a URI, leave `uri` empty and put the metadata document inline in `customData` as a JSON-encoded string. The indexer parses it on read and surfaces the result as the resolved metadata; URI always wins when both are populated. See [Collection Configuration › Inline metadata via customData](../../token-standard/learn/collection-setup-fields.md#inline-metadata-via-customdata).
+
+```json
+{
+    "creator": "bb1abc123...",
+    "collectionId": "1",
+    "tokenMetadata": [
+        {
+            "uri": "",
+            "customData": "{\"name\":\"Token #1\",\"image\":\"ipfs://Qm.../1.png\",\"description\":\"First token in the series.\"}",
+            "tokenIds": [{ "start": "1", "end": "1" }]
+        }
+    ],
+    "canUpdateTokenMetadata": []
 }
 ```
 
