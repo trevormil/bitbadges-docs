@@ -145,10 +145,10 @@ Supported keys: `apiKey`, `apiKeyTestnet`, `apiKeyLocal`, `network` (`mainnet` |
 bitbadgeschaind version
 
 # Check SDK CLI
-bitbadges-cli sdk status
+bitbadges-cli doctor
 
 # Check API connectivity
-bitbadges-cli sdk status --testnet
+bitbadges-cli doctor --testnet
 ```
 
 ## Shell Completion

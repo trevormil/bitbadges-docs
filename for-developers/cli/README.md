@@ -27,7 +27,7 @@ Verify your installation:
 
 ```bash
 bb version
-bb cli sdk status
+bb cli doctor
 ```
 
 ## Quick examples
@@ -60,8 +60,8 @@ bb --help-json | jq '.commands[] | .name'
 The chain binary delegates every `bitbadges-cli` subcommand to the Node.js CLI via a single `cli` forwarder. These are equivalent:
 
 ```bash
-bb cli sdk review tx.json
-bitbadges-cli sdk review tx.json
+bb cli check tx.json
+bitbadges-cli check tx.json
 
 bb cli api tokens get-collection 1
 bitbadges-cli api tokens get-collection 1
@@ -73,14 +73,18 @@ Use whichever you prefer. The chain binary adds key management, transaction sign
 
 | Capability | Command | Example |
 |-----------|---------|---------|
-| **Create a collection with no wallet setup** | `bitbadges-cli builder create-with-burner` | `bitbadges-cli builder templates subscription … \| bitbadges-cli builder create-with-burner --msg-stdin --manager bb1… --local` |
+| **Create a collection with no wallet setup** | `bitbadges-cli deploy --burner` | `bitbadges-cli build subscription … \| bitbadges-cli deploy --burner --msg-stdin --manager bb1… --local` |
 | **Query any collection** | `bitbadges-cli api tokens get-collection` | `bitbadges-cli api tokens get-collection 1` |
-| **Review and audit tokens** | `bitbadges-cli sdk review` | `bitbadges-cli sdk review tx.json` |
+| **Review and audit tokens** | `bitbadges-cli check` | `bitbadges-cli check tx.json` |
+| **Explain a tx or collection** | `bitbadges-cli explain` | `bitbadges-cli explain tx.json` |
+| **Dry-run a transaction** | `bitbadges-cli simulate` | `bitbadges-cli simulate tx.json` |
+| **Share a tx for visual review** | `bitbadges-cli preview` | `bitbadges-cli preview tx.json` |
 | **Browse 104+ API routes** | `bitbadges-cli api` | `bitbadges-cli api tokens --help` |
-| **Convert addresses** | `bitbadges-cli sdk address convert` | `bitbadges-cli sdk address convert 0x1234... --to bb1` |
-| **Look up token info** | `bitbadges-cli sdk lookup-token` | `bitbadges-cli sdk lookup-token USDC` |
-| **Browse docs** | `bitbadges-cli sdk docs` | `bitbadges-cli sdk docs learn/approvals` |
-| **List builder skills** | `bitbadges-cli sdk skills` | `bitbadges-cli sdk skills smart-token` |
+| **Convert addresses** | `bitbadges-cli address convert` | `bitbadges-cli address convert 0x1234... --to bb1` |
+| **Look up token info** | `bitbadges-cli lookup` | `bitbadges-cli lookup USDC` |
+| **Browse docs** | `bitbadges-cli docs` | `bitbadges-cli docs learn/approvals` |
+| **List builder skills** | `bitbadges-cli skills` | `bitbadges-cli skills smart-token` |
+| **Health check** | `bitbadges-cli doctor` | `bitbadges-cli doctor --testnet` |
 | **Create/sign transactions** | `bitbadgeschaind tx` | `bitbadgeschaind tx tokenization create-collection ./col.json --from mykey` |
 | **Manage keys** | `bitbadgeschaind keys` | `bitbadgeschaind keys add mykey` |
 | **Query on-chain state** | `bitbadgeschaind query` | `bitbadgeschaind query tokenization collection 1` |
@@ -102,10 +106,12 @@ For building token collections with AI assistants (Claude, Cursor, etc.), see th
 ## Next Steps
 
 - [Installation](installation.md) — all install methods and configuration
-- [SDK Commands](sdk-commands.md) — review, interpret, address tools, docs, skills
+- [Build Commands](build-commands.md) — flag-based generators for vault, subscription, bounty, auction, and 14 other token types
+- [Analysis Commands](analysis-commands.md) — `check`, `explain`, `simulate`, `preview`
+- [Deploy Commands](deploy-commands.md) — ship a create-collection tx without bringing your own wallet
+- [Tool Commands](tool-commands.md) — fine-grained MCP tools (`tool` / `tools`), persisted sessions, static resources
+- [Utility Commands](utility-commands.md) — `docs`, `skills`, `address`, `alias`, `lookup`, `gen-list-id`, `doctor`
 - [API Commands](api-commands.md) — 104+ API routes from your terminal
+- [Auth Commands](auth-commands.md) — wallet-agnostic Blockin sessions for Full Access endpoints
 - [Chain Commands](chain-commands.md) — keys, transactions, on-chain queries
-- [Builder Templates](builder-templates.md) — flag-based generators for vault, subscription, bounty, auction, and 14 other token types
-- [Create With Burner](create-with-burner.md) — ship a create-collection tx without bringing your own wallet
-- [Builder Commands](builder-commands.md) — tools, review, verify, simulate, preview, doctor, session, resources
 - [CLI for AI Agents](for-ai-agents.md) — agent workflows and automation patterns

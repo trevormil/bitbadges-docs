@@ -12,7 +12,7 @@ The CLI provides structured JSON output, pipe-friendly input, and LLM-consumable
 - **`--help-json`** — outputs the full command tree as structured JSON, perfect for LLM tool discovery
 - **`--dry-run`** — simulate any API call without side effects
 - **Pipe-friendly** — accepts stdin (`-`), file paths (`@file.json`), and inline JSON
-- **Self-documenting** — `bitbadges-cli sdk docs all` dumps the entire documentation
+- **Self-documenting** — `bitbadges-cli docs all` dumps the entire documentation
 - **No build step** — no TypeScript compilation, no bundling, just install and run
 
 ## Quick Setup for Agents
@@ -25,7 +25,7 @@ curl -fsSL https://install.bitbadges.io | sh
 bitbadges-cli config set apiKey YOUR_KEY
 
 # 3. Verify
-bitbadges-cli sdk status
+bitbadges-cli doctor
 ```
 
 > **Heads up — API key vs. session.** The API key is required on every indexer call but is the *app* scope. Anything that mutates an account, manages keys, or publishes signed data also needs a *user* scope: a session cookie obtained via [`auth login`](auth-commands.md). The CLI is wallet-agnostic — pair it with `bitbadgeschaind sign-arbitrary` for fully headless Cosmos signing, or paste in a signature from any external wallet.
@@ -65,32 +65,32 @@ bitbadges-cli api misc search --body '{"query":"my-token"}'
 
 ```bash
 # Review a transaction before broadcasting
-bitbadges-cli sdk review tx.json
+bitbadges-cli check tx.json
 
 # Get human-readable explanation
-bitbadges-cli sdk interpret-tx tx.json
+bitbadges-cli explain tx.json
 
 # Review a live collection
-bitbadges-cli sdk review 42 --testnet
+bitbadges-cli check 42 --testnet
 
 # Interpret what a collection does
-bitbadges-cli sdk interpret-collection 42
+bitbadges-cli explain 42
 ```
 
 ### Step 4: Browse docs and skills
 
 ```bash
 # Dump full docs for context
-bitbadges-cli sdk docs all
+bitbadges-cli docs all
 
 # Browse a specific topic
-bitbadges-cli sdk docs learn/approvals
+bitbadges-cli docs learn/approvals
 
 # List available builder skills
-bitbadges-cli sdk skills
+bitbadges-cli skills
 
 # Get instructions for building a specific token type
-bitbadges-cli sdk skills smart-token
+bitbadges-cli skills smart-token
 ```
 
 ### Step 5: Sign and broadcast (with chain binary)
@@ -166,7 +166,7 @@ if [ "$AMOUNT" -lt "$THRESHOLD" ]; then
   echo "Balance $AMOUNT below threshold $THRESHOLD, minting..."
   
   # Review the transaction first
-  bitbadges-cli sdk review ./mint-tx.json --testnet
+  bitbadges-cli check ./mint-tx.json --testnet
   
   # If review passes, broadcast
   bitbadgeschaind tx tokenization transfer-tokens ./mint-tx.json \
