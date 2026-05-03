@@ -1,10 +1,10 @@
-# CLI Build Commands
+# Build Commands
 
-The `bitbadges-cli builder templates` command provides 18 template builders that generate ready-to-sign transaction JSON. Each builder creates a complete collection or approval configuration from simple, human-readable parameters.
+The `bitbadges-cli build` command provides 18 builders that generate ready-to-sign transaction JSON. Each builder creates a complete collection or approval configuration from simple, human-readable parameters.
 
 All build commands accept friendly inputs -- use coin symbols like `USDC` instead of raw IBC denominations, and duration shorthands like `30d` instead of millisecond timestamps. The output is a fully-formed transaction message that can be signed and broadcast using the SDK, the BitBadges frontend, or the chain binary.
 
-> **Tip — don't want to bring your own wallet?** Pipe the output of any collection template straight into [`create-with-burner`](create-with-burner.md). The CLI generates a throwaway signer, funds it from the faucet, broadcasts the create-collection tx, and hands ownership to the address you pass as `--manager`. No keys to set up.
+> **Tip — don't want to bring your own wallet?** Pipe the output of any collection builder straight into [`deploy --burner`](deploy-commands.md). The CLI generates a throwaway signer, funds it from the faucet, broadcasts the create-collection tx, and hands ownership to the address you pass as `--manager`. No keys to set up.
 
 > **No IPFS hosting needed.** Every template accepts metadata in one of two modes per metadata-bearing entity: pass `--uri <pre-hosted-uri>` if you have already hosted the JSON yourself, or pass the per-entity field flags (`--name`, `--image`, `--description`) and the CLI serializes them into the on-chain `customData` field. The indexer, SDK, and frontend parse `customData` on read and surface the result as the resolved metadata, so there is no Pinata account to set up. Approvals are text-only — `--name` + `--description`, no image. The CLI throws a clear error if neither mode is fully satisfied; there are no defaults or placeholders. See [Collection Configuration › Inline metadata via customData](../../token-standard/learn/collection-setup-fields.md#inline-metadata-via-customdata) for the on-chain shape.
 
@@ -31,7 +31,7 @@ These commands generate `MsgUniversalUpdateCollection` transaction JSON for crea
 Create an IBC-backed vault token with optional withdrawal limits, 2FA gating, and emergency recovery.
 
 ```bash
-bitbadges-cli builder templates vault --backing-coin USDC \
+bitbadges-cli build vault --backing-coin USDC \
   --name "My Vault" \
   --symbol vUSDC \
   --daily-withdraw-limit 1000 \
@@ -54,7 +54,7 @@ bitbadges-cli builder templates vault --backing-coin USDC \
 Create a recurring subscription collection with configurable intervals, pricing, and optional multi-tier support.
 
 ```bash
-bitbadges-cli builder templates subscription --interval monthly \
+bitbadges-cli build subscription --interval monthly \
   --price 10 --denom USDC --recipient bb1... \
   --tiers 3 --transferable
 ```
@@ -75,7 +75,7 @@ bitbadges-cli builder templates subscription --interval monthly \
 Create a bounty with escrowed funds, a verifier who approves completion, and a designated recipient.
 
 ```bash
-bitbadges-cli builder templates bounty --amount 500 --denom USDC \
+bitbadges-cli build bounty --amount 500 --denom USDC \
   --verifier bb1... --recipient bb1... --expiration 30d
 ```
 
@@ -93,7 +93,7 @@ bitbadges-cli builder templates bounty --amount 500 --denom USDC \
 Create an agent-initiated payment request — the inverse of `bounty`. The agent (or any address) creates a collection requesting payment from a targeted payer; the payer approves AND pays from their own wallet in a single action. **No escrow up front.**
 
 ```bash
-bitbadges-cli builder templates payment-request \
+bitbadges-cli build payment-request \
   --amount 10 --denom USDC \
   --payer bb1payer... --recipient bb1agent... \
   --expiration 30d --name "Service charge" \
@@ -117,7 +117,7 @@ See the full spec in [skills/payment-request](../../x-tokenization/examples/skil
 Create a crowdfunding collection with a funding goal and deadline.
 
 ```bash
-bitbadges-cli builder templates crowdfund --goal 10000 --denom USDC \
+bitbadges-cli build crowdfund --goal 10000 --denom USDC \
   --crowdfunder bb1... --deadline 30d
 ```
 
@@ -134,7 +134,7 @@ bitbadges-cli builder templates crowdfund --goal 10000 --denom USDC \
 Create an auction collection with configurable bidding and acceptance windows.
 
 ```bash
-bitbadges-cli builder templates auction --bid-deadline 7d --accept-window 7d \
+bitbadges-cli build auction --bid-deadline 7d --accept-window 7d \
   --name "Rare Item" --description "Limited edition collectible" \
   --seller bb1seller...
 ```
@@ -153,7 +153,7 @@ bitbadges-cli builder templates auction --bid-deadline 7d --accept-window 7d \
 Create a product catalog collection with multiple products, each having its own price and optional supply limit.
 
 ```bash
-bitbadges-cli builder templates product-catalog \
+bitbadges-cli build product-catalog \
   --products '[{"name":"Widget","price":25,"denom":"USDC","maxSupply":100}]' \
   --store-address bb1...
 ```
@@ -169,7 +169,7 @@ bitbadges-cli builder templates product-catalog \
 Create a binary prediction market (YES/NO outcome tokens) with a designated resolver.
 
 ```bash
-bitbadges-cli builder templates prediction-market --verifier bb1... \
+bitbadges-cli build prediction-market --verifier bb1... \
   --denom USDC --name "Will X happen by 2027?"
 ```
 
@@ -186,7 +186,7 @@ bitbadges-cli builder templates prediction-market --verifier bb1... \
 Create an IBC-backed smart account with optional trading and AI agent vault support.
 
 ```bash
-bitbadges-cli builder templates smart-account --backing-coin USDC \
+bitbadges-cli build smart-account --backing-coin USDC \
   --symbol sUSDC --tradable --ai-agent-vault
 ```
 
@@ -203,7 +203,7 @@ bitbadges-cli builder templates smart-account --backing-coin USDC \
 Create a credit or prepaid token where users pay to receive a configurable number of tokens.
 
 ```bash
-bitbadges-cli builder templates credit-token --payment-denom USDC \
+bitbadges-cli build credit-token --payment-denom USDC \
   --recipient bb1... --symbol CREDIT --tokens-per-unit 100
 ```
 
@@ -220,7 +220,7 @@ bitbadges-cli builder templates credit-token --payment-denom USDC \
 Create a custom 2FA token collection for use as a second authentication factor in other collections.
 
 ```bash
-bitbadges-cli builder templates custom-2fa --name "My 2FA Token" --burnable
+bitbadges-cli build custom-2fa --name "My 2FA Token" --burnable
 ```
 
 | Flag | Required | Description |
@@ -236,7 +236,7 @@ bitbadges-cli builder templates custom-2fa --name "My 2FA Token" --burnable
 Create a quest or reward collection where users claim token rewards up to a maximum number of claims.
 
 ```bash
-bitbadges-cli builder templates quests --reward 10 --denom USDC --max-claims 1000
+bitbadges-cli build quests --reward 10 --denom USDC --max-claims 1000
 ```
 
 | Flag | Required | Description |
@@ -251,7 +251,7 @@ bitbadges-cli builder templates quests --reward 10 --denom USDC --max-claims 100
 Create an on-chain address list (not a token collection -- uses a separate message type).
 
 ```bash
-bitbadges-cli builder templates address-list --name "Allowlist" --description "Approved addresses"
+bitbadges-cli build address-list --name "Allowlist" --description "Approved addresses"
 ```
 
 | Flag | Required | Description |
@@ -269,7 +269,7 @@ These commands generate user-level approval messages for marketplace listings, b
 Create an OTC swap intent (user outgoing approval) on the Intent Exchange.
 
 ```bash
-bitbadges-cli builder templates intent --address bb1... \
+bitbadges-cli build intent --address bb1... \
   --collection-id 5 \
   --pay-denom USDC --pay-amount 100 \
   --receive-denom BADGE --receive-amount 500 \
@@ -291,7 +291,7 @@ bitbadges-cli builder templates intent --address bb1... \
 Create a recurring payment approval (user incoming approval) for subscription collections.
 
 ```bash
-bitbadges-cli builder templates recurring-payment --collection-id 10 \
+bitbadges-cli build recurring-payment --collection-id 10 \
   --amount 25 --denom USDC --interval monthly \
   --recipient bb1... --expiration 365d
 ```
@@ -310,7 +310,7 @@ bitbadges-cli builder templates recurring-payment --collection-id 10 \
 Create a marketplace listing (user outgoing approval) to sell tokens from a collection.
 
 ```bash
-bitbadges-cli builder templates listing --address bb1... \
+bitbadges-cli build listing --address bb1... \
   --collection-id 7 --token-ids "1-5" \
   --price 50 --denom USDC --max-sales 1 --expiration 30d
 ```
@@ -330,7 +330,7 @@ bitbadges-cli builder templates listing --address bb1... \
 Create a marketplace bid (user incoming approval) to buy tokens from a collection.
 
 ```bash
-bitbadges-cli builder templates bid --address bb1... \
+bitbadges-cli build bid --address bb1... \
   --collection-id 7 --token-ids "1-5" \
   --price 40 --denom USDC --expiration 7d
 ```
@@ -349,7 +349,7 @@ bitbadges-cli builder templates bid --address bb1... \
 Create a prediction market sell intent (user outgoing approval) to sell outcome tokens.
 
 ```bash
-bitbadges-cli builder templates pm-sell-intent --address bb1... \
+bitbadges-cli build pm-sell-intent --address bb1... \
   --collection-id 12 --token yes \
   --amount 10 --price 50 --denom USDC
 ```
@@ -369,7 +369,7 @@ bitbadges-cli builder templates pm-sell-intent --address bb1... \
 Create a prediction market buy intent (user incoming approval) to buy outcome tokens.
 
 ```bash
-bitbadges-cli builder templates pm-buy-intent --address bb1... \
+bitbadges-cli build pm-buy-intent --address bb1... \
   --collection-id 12 --token no \
   --amount 10 --price 50 --denom USDC
 ```
@@ -390,13 +390,13 @@ All commands support `--json` for passing parameters as a JSON object. This is u
 
 ```bash
 # Inline JSON
-bitbadges-cli builder templates vault --json '{"backingCoin":"USDC","name":"My Vault"}'
+bitbadges-cli build vault --json '{"backingCoin":"USDC","name":"My Vault"}'
 
 # From a file
-bitbadges-cli builder templates vault --json ./params.json
+bitbadges-cli build vault --json ./params.json
 
 # From stdin
-echo '{"backingCoin":"USDC"}' | bitbadges-cli builder templates vault --json -
+echo '{"backingCoin":"USDC"}' | bitbadges-cli build vault --json -
 ```
 
 ## Output

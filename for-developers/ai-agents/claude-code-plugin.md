@@ -2,7 +2,7 @@
 
 The BitBadges Claude Code plugin is a convenience layer on top of the BitBadges chain binary + CLI for Claude Code users specifically. It auto-wires the `bitbadges-builder` MCP server and ships 8 skills that teach Claude how to leverage the CLI + MCP + docs for common BitBadges workflows.
 
-The plugin is **a thin harness, not a knowledge base**. Token-type-specific instructions live in the SDK and are surfaced via `bitbadges-cli sdk skills <id>`, the `get_skill_instructions` MCP tool, and the [Gitbook skill pages](../../x-tokenization/examples/skills/). The plugin's job is to teach Claude where to find them and how to compose them — not to ship one routing wrapper per token type.
+The plugin is **a thin harness, not a knowledge base**. Token-type-specific instructions live in the SDK and are surfaced via `bitbadges-cli skills <id>`, the `get_skill_instructions` MCP tool, and the [Gitbook skill pages](../../x-tokenization/examples/skills/). The plugin's job is to teach Claude where to find them and how to compose them — not to ship one routing wrapper per token type.
 
 ## Prerequisites
 
@@ -44,10 +44,10 @@ Each skill is a guide that routes Claude to the right CLI command, MCP tool, or 
 
 | Skill | What it teaches |
 |---|---|
-| `build` | Meta-guide for constructing any token type (smart-token, fungible, NFT, subscription, vault, claim, quest, auction, payment, crowdfund, prediction-market, …). Discovers via `bitbadges-cli sdk skills`, loads canonical instructions via the `get_skill_instructions` MCP tool, then constructs via the per-field MCP session tools. |
-| `review` | Audit a transaction file or live collection for correctness, standards compliance, foot-guns. Wraps `bitbadges-cli sdk review` and `review_collection`. |
+| `build` | Meta-guide for constructing any token type (smart-token, fungible, NFT, subscription, vault, claim, quest, auction, payment, crowdfund, prediction-market, …). Discovers via `bitbadges-cli skills`, loads canonical instructions via the `get_skill_instructions` MCP tool, then constructs via the per-field MCP session tools. |
+| `review` | Audit a transaction file or live collection for correctness, standards compliance, foot-guns. Wraps `bitbadges-cli check` and `review_collection`. |
 | `simulate` | Dry-run a transaction. Returns events + balance diffs. Always before broadcast. Wraps `simulate_transaction`. |
-| `explain` | Plain-English description, audience-aware (user / developer / auditor). Wraps `explain_collection` and `bitbadges-cli sdk interpret-*`. |
+| `explain` | Plain-English description, audience-aware (user / developer / auditor). Wraps `explain_collection` and `bitbadges-cli explain`. |
 | `query` | The 104+ API routes — discovery first via `--help-json`, then call. |
 | `address` | All six address operations (cosmos↔EVM, IBC backing, wrapper, mint-escrow, alias). |
 | `claim` | Build or audit a claim (whitelist / password / codes / open / token-gated). |
@@ -97,7 +97,7 @@ claude mcp remove bitbadges-builder
 The plugin is for Claude Code users specifically. For other harnesses, BitBadges still has full coverage via the same MCP server and the existing skill docs:
 
 - **Cursor / Claude Desktop / other MCP clients** → set up the `bitbadges-builder` MCP server (`claude mcp add bitbadges-builder -- npx -y -p bitbadges bitbadges-builder` for Claude Desktop, or the equivalent in your client). The MCP exposes `get_skill_instructions(<id>)` for on-demand loading — same path the plugin uses.
-- **Generic LLMs / shell scripts / CI** → use the [CLI](../cli/) directly. For skill instructions, browse the rendered [skill pages](../../x-tokenization/examples/skills/) or call `bitbadges-cli sdk skills <id>`.
+- **Generic LLMs / shell scripts / CI** → use the [CLI](../cli/) directly. For skill instructions, browse the rendered [skill pages](../../x-tokenization/examples/skills/) or call `bitbadges-cli skills <id>`.
 - **TypeScript/JavaScript devs** → `npm install bitbadges` and use the [SDK](../bitbadges-sdk/README.md) directly.
 
 The CLI is the universal base layer; the plugin is just a Claude-Code-specific veneer. Skill instruction content is rendered in one place — [`x-tokenization/examples/skills/`](../../x-tokenization/examples/skills/) — and consumed everywhere else (plugin, MCP, CLI) by reference.

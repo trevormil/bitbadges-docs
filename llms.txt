@@ -59,11 +59,14 @@
 - [CLI overview](https://docs.bitbadges.io/for-developers/cli/README) — One binary, two surfaces: `bitbadgeschaind` (chain) + `bitbadgeschaind cli` (SDK forwarder); use `bb` as the friendly alias.
 - [CLI for AI agents](https://docs.bitbadges.io/for-developers/cli/for-ai-agents) — Agent-friendly flags (`--help-json`, `--dry-run`, JSON output) and recommended workflows.
 - [Installation](https://docs.bitbadges.io/for-developers/cli/installation) — `curl -fsSL https://install.bitbadges.io | sh`.
-- [SDK commands](https://docs.bitbadges.io/for-developers/cli/sdk-commands) — review, audit, address conversion, docs browser, skills listing.
+- [Build commands](https://docs.bitbadges.io/for-developers/cli/build-commands) — Flag-driven generators for vault, subscription, bounty, auction, and 14 other token types.
+- [Analysis commands](https://docs.bitbadges.io/for-developers/cli/analysis-commands) — `check` (validate / review / verify folded), `explain`, `simulate`, `preview`.
+- [Deploy commands](https://docs.bitbadges.io/for-developers/cli/deploy-commands) — Ship a create-collection tx without bringing your own wallet (`deploy --burner`).
+- [Tool commands](https://docs.bitbadges.io/for-developers/cli/tool-commands) — Fine-grained MCP `tool` / `tools` registry, persisted `session`, static `resources`.
+- [Utility commands](https://docs.bitbadges.io/for-developers/cli/utility-commands) — `docs`, `skills`, `address`, `alias`, `lookup`, `gen-list-id`, `doctor`.
 - [API commands](https://docs.bitbadges.io/for-developers/cli/api-commands) — 104+ API routes from your terminal.
+- [Auth commands](https://docs.bitbadges.io/for-developers/cli/auth-commands) — wallet-agnostic Blockin sessions for Full Access endpoints.
 - [Chain commands](https://docs.bitbadges.io/for-developers/cli/chain-commands) — keys, signing, broadcasting, on-chain queries.
-- [Builder templates](https://docs.bitbadges.io/for-developers/cli/builder-templates) — Flag-driven generators for vault, subscription, bounty, auction, and 14 other token types.
-- [Create with burner](https://docs.bitbadges.io/for-developers/cli/create-with-burner) — Ship a create-collection tx without bringing your own wallet.
 
 ## API
 
