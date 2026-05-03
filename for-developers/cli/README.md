@@ -74,12 +74,16 @@ Use whichever you prefer. The chain binary adds key management, transaction sign
 | Capability | Command | Example |
 |-----------|---------|---------|
 | **Create a collection with no wallet setup** | `bitbadges-cli deploy --burner` | `bitbadges-cli build subscription … \| bitbadges-cli deploy --burner --msg-stdin --manager bb1… --local` |
+| **Confirm a tx landed on chain** | `bitbadges-cli tx wait` | `bitbadges-cli tx wait $TXHASH --mainnet --timeout 60` |
 | **Query any collection** | `bitbadges-cli api tokens get-collection` | `bitbadges-cli api tokens get-collection 1` |
 | **Review and audit tokens** | `bitbadges-cli check` | `bitbadges-cli check tx.json` |
 | **Explain a tx or collection** | `bitbadges-cli explain` | `bitbadges-cli explain tx.json` |
 | **Dry-run a transaction** | `bitbadges-cli simulate` | `bitbadges-cli simulate tx.json` |
+| **Dry-run a deploy without spending** | `bitbadges-cli deploy --dry-run` | `bitbadges-cli deploy vault.json --burner --dry-run --manager bb1...` |
 | **Share a tx for visual review** | `bitbadges-cli preview` | `bitbadges-cli preview tx.json` |
-| **Browse 104+ API routes** | `bitbadges-cli api` | `bitbadges-cli api tokens --help` |
+| **Browse 100+ API routes** | `bitbadges-cli api` | `bitbadges-cli api tokens --help` |
+| **Search API routes by keyword** | `bitbadges-cli api --search` | `bitbadges-cli api --search swap` |
+| **Inspect a route's schema** | `bitbadges-cli api ... --schema` | `bitbadges-cli api tokens get-collection --schema` |
 | **Convert addresses** | `bitbadges-cli address convert` | `bitbadges-cli address convert 0x1234... --to bb1` |
 | **Look up token info** | `bitbadges-cli lookup` | `bitbadges-cli lookup USDC` |
 | **Browse docs** | `bitbadges-cli docs` | `bitbadges-cli docs learn/approvals` |
@@ -94,8 +98,13 @@ Use whichever you prefer. The chain binary adds key management, transaction sign
 The CLI is the recommended interface for AI agents and automation. It provides:
 
 - **Structured JSON output** for every command — easy to parse programmatically
+- **Uniform output envelope** on `--format json` for the agent-facing verbs (`tx`, `explain`, `api --search`): `{ok, data, warnings, hint, error}` — same shape across every command, with hints populated on common failure modes
 - **`--help-json`** flag that outputs the full command tree as structured JSON for LLM tool discovery
-- **`--dry-run`** for safe simulation before broadcasting
+- **`--dry-run`** on both `simulate` and `deploy` for safe preview before broadcasting
+- **`--quiet`** (or `BB_QUIET=1`) silences stderr commentary across every command — pipe-friendly by default
+- **`api --search` / `--schema`** for route discovery without grepping help text
+- **`tx status` / `tx wait`** to confirm a tx landed on chain (Cosmos LCD + EVM RPC fall-through)
+- **Targeted `hint:` on common errors** — auth-rejected, 401/403, deploy insufficient-funds, tx-wait timeout — designed to cut agent retry loops in half
 - **Shell completion** for interactive use: `eval "$(bitbadges-cli completion)"`
 - **Pipe-friendly** — accepts stdin (`-`), file paths (`@file.json`), and inline JSON
 
@@ -109,6 +118,7 @@ For building token collections with AI assistants (Claude, Cursor, etc.), see th
 - [Build Commands](build-commands.md) — flag-based generators for vault, subscription, bounty, auction, and 14 other token types
 - [Analysis Commands](analysis-commands.md) — `check`, `explain`, `simulate`, `preview`
 - [Deploy Commands](deploy-commands.md) — ship a create-collection tx without bringing your own wallet
+- [Tx Commands](tx-commands.md) — confirm a broadcast tx committed (Cosmos + EVM hash support)
 - [Tool Commands](tool-commands.md) — fine-grained MCP tools (`tool` / `tools`), persisted sessions, static resources
 - [Utility Commands](utility-commands.md) — `docs`, `skills`, `address`, `alias`, `lookup`, `gen-list-id`, `doctor`
 - [API Commands](api-commands.md) — 104+ API routes from your terminal
