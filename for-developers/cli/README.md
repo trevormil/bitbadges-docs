@@ -41,8 +41,15 @@ bb query bank balances bb1abc... --output json
 # 2. Forwarded SDK call — `bb cli` is shorthand for the Node SDK CLI
 bb cli api tokens get-collection 1 --output json
 
-# 3. Authenticated session (ships in a forthcoming commit)
-bb auth login --from mykey
+# 3. Authenticated session — wallet-agnostic, headless-friendly
+#    (full reference: for-developers/cli/auth-commands.md)
+MSG=$(bb cli auth challenge --address bb1...)
+SIG_JSON=$(bb sign-arbitrary mykey "$MSG")
+bb cli auth login \
+  --address    "$(echo "$SIG_JSON" | jq -r .address)" \
+  --signature  "$(echo "$SIG_JSON" | jq -r .signature)" \
+  --public-key "$(echo "$SIG_JSON" | jq -r .pubKey)" \
+  --message    "$MSG"
 
 # 4. Discover the full command tree as JSON — for AI agents
 bb --help-json | jq '.commands[] | .name'

@@ -163,6 +163,7 @@
   * [Installation](for-developers/cli/installation.md)
   * [SDK Commands](for-developers/cli/sdk-commands.md)
   * [API Commands](for-developers/cli/api-commands.md)
+  * [Auth Commands](for-developers/cli/auth-commands.md)
   * [Chain Commands](for-developers/cli/chain-commands.md)
   * [Builder Templates](for-developers/cli/builder-templates.md)
   * [Builder Commands](for-developers/cli/builder-commands.md)
