@@ -28,6 +28,8 @@ bitbadges-cli config set apiKey YOUR_KEY
 bitbadges-cli sdk status
 ```
 
+> **Heads up — API key vs. session.** The API key is required on every indexer call but is the *app* scope. Anything that mutates an account, manages keys, or publishes signed data also needs a *user* scope: a session cookie obtained via [`auth login`](auth-commands.md). The CLI is wallet-agnostic — pair it with `bitbadgeschaind sign-arbitrary` for fully headless Cosmos signing, or paste in a signature from any external wallet.
+
 ## Agent Workflow: Query, Review, Transact
 
 ### Step 1: Discover available commands
@@ -106,6 +108,30 @@ bitbadgeschaind tx tokenization create-collection ./collection.json \
 # Or broadcast via the API
 bitbadges-cli api tx broadcast-tx --body @signed-tx.json
 ```
+
+### Step 6: Authenticate for `Full Access` API routes
+
+Most read-only API routes work with just the API key, but anything that mutates an account or publishes signed data needs a session cookie. The CLI ships a wallet-agnostic three-step flow that pairs cleanly with the chain binary's offline signer:
+
+```bash
+# 1. Fetch a challenge (saves the nonce cookie locally for step 3)
+MSG=$(bitbadges-cli auth challenge --address $(bitbadgeschaind keys show agent-wallet -a))
+
+# 2. Sign offline with the chain binary
+SIG_JSON=$(bitbadgeschaind sign-arbitrary agent-wallet "$MSG")
+
+# 3. Post the signature — stores the session under ~/.bitbadges/auth.json
+bitbadges-cli auth login \
+  --address    "$(echo "$SIG_JSON" | jq -r .address)" \
+  --signature  "$(echo "$SIG_JSON" | jq -r .signature)" \
+  --public-key "$(echo "$SIG_JSON" | jq -r .pubKey)" \
+  --message    "$MSG"
+
+# 4. Make Full Access requests by adding --with-session
+bitbadges-cli api accounts get-account --body '{"address":"bb1..."}' --with-session
+```
+
+Multi-account, multi-network, with `--2fa` support. Full reference: [Auth Commands](auth-commands.md).
 
 ## Combining with BitBadges Builder Tools
 
