@@ -263,7 +263,7 @@ The CLI replays the full cookie chain (Blockin nonce + indexer LB stickiness) th
 ## Notes and limitations
 
 - **Scope is `Full Access`.** The indexer's `getChallenge` currently hard-codes the scope set; narrower-scope sessions (e.g. `Manage Claims` only) need a small indexer change. Tracked in the backlog.
-- **No auto-refresh.** Sessions expire on the server's schedule; re-run `auth login` when `auth status` reports `EXPIRED`.
+- **Sessions auto-refresh on use.** The indexer runs `express-session` with `rolling: true` and a 7-day window — every authenticated request resets the cookie's expiry to "now + 7 days" server-side. The CLI captures the rolled `Set-Cookie` from each `--with-session` response and writes the new `expiresAt` back to `auth.json`, so a long-lived agent that makes any request inside the rolling window keeps its session indefinitely without re-logging in. Re-run `auth login` only after a stretch of full inactivity longer than the rolling window (or after explicit `auth logout`).
 - **The pending challenge has a 5-minute TTL.** If you wait too long between `auth challenge` and `auth login`, the entry is stale and `login` will fetch a fresh challenge (which will not match the message you signed).
 - **Shipping `auth.json` between machines is fine** — the cookie is just an HTTP cookie. Move the file with `scp` or equivalent; the receiving box can immediately `bitbadges-cli api --with-session`. Keep it `0600`.
 
