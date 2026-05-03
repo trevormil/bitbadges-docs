@@ -89,7 +89,7 @@ Bounty has an expire approval to refund escrowed funds back to the submitter onc
 ## Creation Flow (CLI)
 
 ```bash
-bitbadges-cli builder templates payment-request \
+bitbadges-cli build payment-request \
   --amount 10 \
   --denom USDC \
   --payer bb1payer... \

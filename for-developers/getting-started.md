@@ -15,7 +15,7 @@ After installing, set your API key and start querying:
 ```bash
 bitbadges-cli config set apiKey YOUR_KEY    # get one at bitbadges.io/developer
 bitbadges-cli api tokens get-collection 1   # query any collection
-bitbadges-cli sdk docs                      # browse docs from terminal
+bitbadges-cli docs                          # browse docs from terminal
 ```
 
 > **For AI agents:** The CLI is the recommended interface. See [CLI for AI Agents](cli/for-ai-agents.md) for end-to-end workflows, or use the [BitBadges Builder Tools](ai-agents/builder-tools.md) for building tokens with Claude/Cursor.

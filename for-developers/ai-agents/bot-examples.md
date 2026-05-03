@@ -210,10 +210,10 @@ For quick collection creation from the terminal, use the CLI build commands:
 
 ```bash
 # Generate a vault token (outputs transaction JSON)
-bitbadges-cli builder templates vault --backing-coin USDC --name "My Vault" --explain
+bitbadges-cli build vault --backing-coin USDC --name "My Vault" --explain
 
 # Generate a subscription collection
-bitbadges-cli builder templates subscription --interval monthly --price 10 --denom USDC --recipient bb1...
+bitbadges-cli build subscription --interval monthly --price 10 --denom USDC --recipient bb1...
 ```
 
 See [CLI Build Commands](../cli/build-commands.md) for the full list of 18 template builders.
