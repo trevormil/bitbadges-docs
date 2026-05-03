@@ -1,5 +1,5 @@
 # Gitbook Documentation Compilation
-Generated on Sun May  3 12:43:04 UTC 2026
+Generated on Sun May  3 13:30:05 UTC 2026
 
 
 
@@ -2008,6 +2008,7 @@ BitBadges addresses these fundamental issues through core design decisions:
   * [Build Commands](for-developers/cli/build-commands.md)
   * [Analysis Commands](for-developers/cli/analysis-commands.md)
   * [Deploy Commands](for-developers/cli/deploy-commands.md)
+  * [Tx Commands](for-developers/cli/tx-commands.md)
   * [Tool Commands](for-developers/cli/tool-commands.md)
   * [Utility Commands](for-developers/cli/utility-commands.md)
   * [API Commands](for-developers/cli/api-commands.md)
@@ -17875,12 +17876,16 @@ Use whichever you prefer. The chain binary adds key management, transaction sign
 | Capability | Command | Example |
 |-----------|---------|---------|
 | **Create a collection with no wallet setup** | `bitbadges-cli deploy --burner` | `bitbadges-cli build subscription … \| bitbadges-cli deploy --burner --msg-stdin --manager bb1… --local` |
+| **Confirm a tx landed on chain** | `bitbadges-cli tx wait` | `bitbadges-cli tx wait $TXHASH --mainnet --timeout 60` |
 | **Query any collection** | `bitbadges-cli api tokens get-collection` | `bitbadges-cli api tokens get-collection 1` |
 | **Review and audit tokens** | `bitbadges-cli check` | `bitbadges-cli check tx.json` |
 | **Explain a tx or collection** | `bitbadges-cli explain` | `bitbadges-cli explain tx.json` |
 | **Dry-run a transaction** | `bitbadges-cli simulate` | `bitbadges-cli simulate tx.json` |
+| **Dry-run a deploy without spending** | `bitbadges-cli deploy --dry-run` | `bitbadges-cli deploy vault.json --burner --dry-run --manager bb1...` |
 | **Share a tx for visual review** | `bitbadges-cli preview` | `bitbadges-cli preview tx.json` |
-| **Browse 104+ API routes** | `bitbadges-cli api` | `bitbadges-cli api tokens --help` |
+| **Browse 100+ API routes** | `bitbadges-cli api` | `bitbadges-cli api tokens --help` |
+| **Search API routes by keyword** | `bitbadges-cli api --search` | `bitbadges-cli api --search swap` |
+| **Inspect a route's schema** | `bitbadges-cli api ... --schema` | `bitbadges-cli api tokens get-collection --schema` |
 | **Convert addresses** | `bitbadges-cli address convert` | `bitbadges-cli address convert 0x1234... --to bb1` |
 | **Look up token info** | `bitbadges-cli lookup` | `bitbadges-cli lookup USDC` |
 | **Browse docs** | `bitbadges-cli docs` | `bitbadges-cli docs learn/approvals` |
@@ -17895,8 +17900,13 @@ Use whichever you prefer. The chain binary adds key management, transaction sign
 The CLI is the recommended interface for AI agents and automation. It provides:
 
 - **Structured JSON output** for every command — easy to parse programmatically
+- **Uniform output envelope** on `--format json` for the agent-facing verbs (`tx`, `explain`, `api --search`): `{ok, data, warnings, hint, error}` — same shape across every command, with hints populated on common failure modes
 - **`--help-json`** flag that outputs the full command tree as structured JSON for LLM tool discovery
-- **`--dry-run`** for safe simulation before broadcasting
+- **`--dry-run`** on both `simulate` and `deploy` for safe preview before broadcasting
+- **`--quiet`** (or `BB_QUIET=1`) silences stderr commentary across every command — pipe-friendly by default
+- **`api --search` / `--schema`** for route discovery without grepping help text
+- **`tx status` / `tx wait`** to confirm a tx landed on chain (Cosmos LCD + EVM RPC fall-through)
+- **Targeted `hint:` on common errors** — auth-rejected, 401/403, deploy insufficient-funds, tx-wait timeout — designed to cut agent retry loops in half
 - **Shell completion** for interactive use: `eval "$(bitbadges-cli completion)"`
 - **Pipe-friendly** — accepts stdin (`-`), file paths (`@file.json`), and inline JSON
 
@@ -17910,6 +17920,7 @@ For building token collections with AI assistants (Claude, Cursor, etc.), see th
 - [Build Commands](build-commands.md) — flag-based generators for vault, subscription, bounty, auction, and 14 other token types
 - [Analysis Commands](analysis-commands.md) — `check`, `explain`, `simulate`, `preview`
 - [Deploy Commands](deploy-commands.md) — ship a create-collection tx without bringing your own wallet
+- [Tx Commands](tx-commands.md) — confirm a broadcast tx committed (Cosmos + EVM hash support)
 - [Tool Commands](tool-commands.md) — fine-grained MCP tools (`tool` / `tools`), persisted sessions, static resources
 - [Utility Commands](utility-commands.md) — `docs`, `skills`, `address`, `alias`, `lookup`, `gen-list-id`, `doctor`
 - [API Commands](api-commands.md) — 104+ API routes from your terminal
@@ -17990,7 +18001,33 @@ echo '{"messages":[...]}' | bitbadges-cli explain -
 | Flag | Description |
 |---|---|
 | `--output-file <path>` | Write the output to a file instead of stdout |
+| `--format <json\|text>` | `text` (default for TTY) renders prose; `json` returns a structured envelope |
 | `--testnet`, `--local`, `--url` | Network selection for numeric collection-id fetches |
+
+### Structured output: `--format json`
+
+For agents that want to branch on transaction shape rather than parse prose, `--format json` returns the envelope-wrapped structured findings:
+
+```bash
+bitbadges-cli explain tx.json --format json
+# {
+#   "ok": true,
+#   "data": {
+#     "kind": "tx" | "collection" | "msg",
+#     "messages": [
+#       {
+#         "typeUrl": "/tokenization.MsgCreateCollection",
+#         "summary": "Create a new Smart Token (IBC-backed) called \"My Vault\" ..."
+#       }
+#     ],
+#     "fullText": "...full prose interpretation..."
+#   },
+#   "warnings": [],
+#   "error": null
+# }
+```
+
+`kind` lets agents discriminate between transactions, raw collections, and bare messages. `messages[]` is empty for raw collection inputs; populated for tx wrappers and bare messages. `fullText` is the same prose `--format text` would print, included so JSON callers don't have to make a second call to get the human-readable version.
 
 Replaces the old `sdk interpret-tx` and `sdk interpret-collection` commands plus `builder explain` — one verb, auto-detect, one less mental dimension.
 
@@ -18123,11 +18160,61 @@ Each route's `--help` includes the HTTP method, path template, SDK type names, k
 bitbadges-cli api tokens get-collections --help
 ```
 
+## Discovery: `--search` and `--schema`
+
+Two flags help agents and humans navigate the 100+ routes without grepping the help tree.
+
+### `--search <keyword>`
+
+Substring scan over route name, path, tag, and description. Case-insensitive. Default text columns; pass `--format json` for a parseable list.
+
+```bash
+bitbadges-cli api --search swap
+# estimate-swap          POST  /api/{version}/swaps/estimate
+#       Estimate Swap
+# get-swap-activities    GET   /swapActivities
+#       Get Swap Activities
+
+bitbadges-cli api --search balance --format json
+# [{"name":"get-balance-by-address-specific-token", ...}, ...]
+```
+
+### `--schema` (per route)
+
+Print the route's request body fields, query parameters, and SDK type names without making an API call. Useful for agents that want to construct valid request bodies offline.
+
+```bash
+bitbadges-cli api tokens get-collection --schema
+# {
+#   "name": "get-collection",
+#   "method": "GET",
+#   "path": "/collection/{collectionId}",
+#   "sdkLinks": { "response": "iGetCollectionSuccessResponse", ... },
+#   "queryParams": [],
+#   "bodyFields": []
+# }
+```
+
+`--schema` works on every route in every group.
+
+## Authentication Hints on Errors
+
+When an `api` call fails with HTTP 401 or 403 (typically a Full Access route called without a session), the CLI emits a one-liner pointing at the recovery action:
+
+```bash
+bitbadges-cli api accounts get-account --body '{"address":"bb1..."}'
+# Error: API error: Unauthorized
+# Hint: This route requires user-scoped auth — run `bitbadges-cli auth login`, then retry with `--with-session`.
+```
+
+If the call already attached a cookie via `--with-session` and the indexer still refused, the hint suggests a re-login (session likely expired or scoped wrong).
+
 ## Global Options
 
 | Flag | Description |
 |---|---|
 | `--help-json` | Output the full command tree as structured JSON (useful for LLMs) |
+| `--quiet` / `BB_QUIET=1` | Silence stderr commentary; errors still emit |
 | `--help` | Standard help output |
 
 
@@ -19194,8 +19281,22 @@ In non-interactive environments (or with `--non-interactive`), the CLI defaults 
 - **Unset `BITBADGES_API_KEY`** with `--fund faucet` on `--network mainnet` or `--network testnet` — the faucet will reject the request. Use `--local` for local development or set the key.
 - **Faucet already airdropped to this address** — the faucet dedupes by address. The CLI generates a fresh burner per run, so you'd only hit this by reusing a wallet that already got its dust.
 - **Manual funding never arrives** — the CLI pauses and lets you resume once the funding lands.
+- **Shape mismatch on input** — the CLI expects a single Msg `{typeUrl, value}`, not a tx wrapper `{messages: [...]}`. The error message says exactly what shape was provided so agents don't have to guess.
+- **Insufficient funds at broadcast time** — when the burner came up short on dust (faucet refused, manual funding too small, or the wallet got swept between funding and broadcast), the result envelope includes a `hint` pointing at `bitbadges-cli burner sweep` to recover any remaining dust.
 
 In every failure mode, the recovery file captures the state so nothing is silently lost.
+
+## `--dry-run`: Simulate Without Broadcasting
+
+Pass `--dry-run` to preview a deploy without generating a wallet, hitting the faucet, or broadcasting. The CLI runs the transaction through the indexer's simulate endpoint and prints expected gas, balance changes, and any validation errors.
+
+```bash
+bitbadges-cli deploy vault.json --burner --dry-run --manager bb1... --mainnet
+```
+
+If the simulator rejects the transaction (validation error, malformed msg, etc), the command exits non-zero so agents can branch on `success === false` before committing real funds. No state is written to disk.
+
+The dry-run requires an API key on non-local networks, since simulate is API-gated. On `--local` it works without a key.
 
 
 ## File: ./for-developers/cli/for-ai-agents.md
@@ -19649,6 +19750,140 @@ bitbadges-cli resources read bitbadges://recipes/all
 - [Build Commands](build-commands.md) — flag-based deterministic builders. Use these instead of composing tool calls when a template fits.
 - [Analysis Commands](analysis-commands.md) — `check`, `explain`, `simulate`, `preview` for the assembled tx.
 - The MCP builder server (`bitbadges-builder` bin) exposes the same registry over stdio — point any MCP client at it for the same surface in Claude Desktop, Cursor, etc.
+
+
+## File: ./for-developers/cli/tx-commands.md
+
+# Tx Commands
+
+The `tx` subcommand confirms whether a broadcast transaction landed on chain. It hits the chain's REST/RPC endpoints directly — Cosmos LCD first, with automatic fall-through to the EVM JSON-RPC for `eth_sendRawTransaction`-broadcast hashes. No indexer round-trip.
+
+Use `tx` to close the loop after `bitbadges-cli deploy` (or any external broadcast).
+
+## Subcommands
+
+```bash
+bitbadges-cli tx status <hash>                 # one-shot status fetch
+bitbadges-cli tx wait   <hash> [--timeout 60s] # poll until committed/failed
+```
+
+## `tx status <hash>`
+
+Fetches one transaction by hash. Tries the Cosmos LCD's `/cosmos/tx/v1beta1/txs/{hash}` endpoint first; if the hash isn't recognized there, falls through to the EVM JSON-RPC's `eth_getTransactionReceipt` to handle keccak256 hashes from EVM-routed broadcasts.
+
+```bash
+bitbadges-cli tx status 0F46899E29754227DE90F702754CDC74FD39EA37527F2C1E307655C15E910D81 --mainnet
+# Status:    committed  (code 0)
+# Via:       Cosmos LCD
+# Hash:      0F46899E...
+# Height:    10000000
+# Gas used:  156490 / 237670
+# Timestamp: 2026-05-01T04:54:56Z
+```
+
+`--format json` returns the full envelope:
+
+```json
+{
+  "ok": true,
+  "data": {
+    "via": "cosmos",
+    "hash": "0F46899E...",
+    "height": "10000000",
+    "code": 0,
+    "gasUsed": "156490",
+    "events": [...]
+  },
+  "warnings": [],
+  "error": null
+}
+```
+
+For successful EVM-routed transactions, `via` is `"evm"` and the data shape includes the same fields populated from `eth_getTransactionReceipt`.
+
+### Exit codes
+
+| Code | Meaning |
+|---|---|
+| `0` | Transaction committed (Cosmos `code === 0` or EVM `status === '0x1'`) |
+| `1` | Transaction included on chain but failed (non-zero Cosmos code or EVM revert) |
+| `2` | RPC error or transaction not found via either endpoint |
+
+Pair with `tx wait` (below) when the tx may not be indexed yet.
+
+### Hash format
+
+Both Cosmos sha256 and EVM keccak256 hashes are accepted, with or without a `0x` prefix, in any case. The CLI normalizes to upper-case hex internally:
+
+```bash
+bitbadges-cli tx status 0xabcdef...    # works
+bitbadges-cli tx status ABCDEF...      # works
+bitbadges-cli tx status abcdef...      # works
+```
+
+### Network selection
+
+Same flags as the rest of the CLI: `--mainnet | --testnet | --local | --url <api-url> | --node-url <chain-lcd-url>`. The `--node-url` override is useful when querying a private chain at a custom LCD endpoint.
+
+For EVM hashes, the CLI uses the matching EVM RPC URL from `NETWORK_CONFIGS[network].evmRpcUrl`. Override via `--evm-rpc-url <url>`.
+
+## `tx wait <hash>`
+
+Polls the same endpoints until the transaction is found and committed (or fails). Use after `deploy` when the tx hash is fresh and may not be indexed yet.
+
+```bash
+bitbadges-cli tx wait $TXHASH --mainnet --timeout 120 --format json
+```
+
+| Flag | Default | Description |
+|---|---|---|
+| `--timeout <seconds>` | `60` | Max seconds to wait before exiting non-zero |
+| `--interval <seconds>` | `2` | Polling interval |
+| `--format <json\|text>` | TTY-dependent | Output format |
+
+### Exit codes
+
+Same as `tx status`, plus:
+
+- `2` is also returned on timeout. The error envelope includes `error.code === "timeout"` and a `hint:` pointing at re-running `tx status` later or extending `--timeout`.
+
+```bash
+bitbadges-cli tx wait 1111111... --mainnet --timeout 5 --format json
+# {
+#   "ok": false,
+#   "data": null,
+#   "warnings": [],
+#   "hint": "Re-run `tx status 1111111...` later, or extend with --timeout <seconds>.",
+#   "error": {
+#     "code": "timeout",
+#     "message": "Timed out after 5s waiting for 1111111...",
+#     "details": {"hash": "1111111...", "timeoutSeconds": 5}
+#   }
+# }
+```
+
+## Worked example: deploy → wait → confirm
+
+```bash
+# 1. Build a vault collection
+bitbadges-cli build vault --backing-coin USDC --name "My Vault" \
+    --image https://... --description "..." \
+    --json-only > vault.json
+
+# 2. Dry-run before spending
+bitbadges-cli deploy vault.json --burner --dry-run --manager bb1... --mainnet
+
+# 3. Real deploy
+RESULT=$(bitbadges-cli deploy vault.json --burner --manager bb1... --mainnet --format json)
+TXHASH=$(echo "$RESULT" | jq -r '.data.txHash')
+
+# 4. Wait for it to commit
+bitbadges-cli tx wait "$TXHASH" --mainnet --timeout 60
+```
+
+## Why no indexer route?
+
+The BitBadges indexer doesn't expose a public `tx-by-hash` query. Hitting the chain RPC directly is the canonical way to confirm a tx — same path the indexer's own poller uses internally. This keeps `tx` working even when the indexer is degraded or in a regional outage.
 
 
 ## File: ./for-developers/cli/utility-commands.md
