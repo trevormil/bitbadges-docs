@@ -1,6 +1,11 @@
 # Deploy Commands
 
-The `bitbadges-cli deploy` command broadcasts a transaction. Today only the `--burner` path ships — the required `--burner` flag reserves the verb for future paths (`--from <key>` for chain-binary signing, `--api-broadcast` for posting a pre-signed tx) without making any of them the silent default.
+The `bitbadges-cli deploy` command broadcasts a transaction. Pick exactly one signing path:
+
+- **`--burner`** — generate a throwaway signer locally, fund it from the faucet, sign one create-collection tx, discard. Zero wallet setup. CREATE-only.
+- **`--browser`** — hand the tx off to your real wallet (Keplr, MetaMask, etc.) via the [Sign Bridge](sign-bridge.md). The CLI opens `/sign`, you confirm in the wallet, the tx hash comes back to your terminal.
+
+Both paths emit the same JSON envelope on stdout when they succeed. The rest of this page covers `--burner`; for `--browser` see the [Sign Bridge](sign-bridge.md#deploy-browser) page.
 
 `bitbadges-cli deploy --burner` lets you create a new collection **without bringing your own Cosmos wallet**. The CLI generates a throwaway signer on demand, funds it (via the faucet or manually), signs the create-collection tx, and hands ownership of the new collection to an address you specify. The throwaway signer is discarded right after.
 

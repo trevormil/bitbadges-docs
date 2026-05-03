@@ -169,6 +169,7 @@
   * [Utility Commands](for-developers/cli/utility-commands.md)
   * [API Commands](for-developers/cli/api-commands.md)
   * [Auth Commands](for-developers/cli/auth-commands.md)
+  * [Sign Bridge (Browser Wallet)](for-developers/cli/sign-bridge.md)
   * [Chain Commands](for-developers/cli/chain-commands.md)
   * [CLI for AI Agents](for-developers/cli/for-ai-agents.md)
 * [🤖 AI Agents & Bots](for-developers/ai-agents/README.md)
