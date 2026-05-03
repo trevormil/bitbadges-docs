@@ -1,5 +1,5 @@
 # Gitbook Documentation Compilation
-Generated on Sun May  3 11:39:36 UTC 2026
+Generated on Sun May  3 12:43:04 UTC 2026
 
 
 
@@ -2005,13 +2005,14 @@ BitBadges addresses these fundamental issues through core design decisions:
 * [🔨 Getting Started](for-developers/getting-started.md)
 * [🖥️ CLI & Chain Binary](for-developers/cli/README.md)
   * [Installation](for-developers/cli/installation.md)
-  * [SDK Commands](for-developers/cli/sdk-commands.md)
+  * [Build Commands](for-developers/cli/build-commands.md)
+  * [Analysis Commands](for-developers/cli/analysis-commands.md)
+  * [Deploy Commands](for-developers/cli/deploy-commands.md)
+  * [Tool Commands](for-developers/cli/tool-commands.md)
+  * [Utility Commands](for-developers/cli/utility-commands.md)
   * [API Commands](for-developers/cli/api-commands.md)
   * [Auth Commands](for-developers/cli/auth-commands.md)
   * [Chain Commands](for-developers/cli/chain-commands.md)
-  * [Builder Templates](for-developers/cli/builder-templates.md)
-  * [Builder Commands](for-developers/cli/builder-commands.md)
-  * [Create With Burner](for-developers/cli/create-with-burner.md)
   * [CLI for AI Agents](for-developers/cli/for-ai-agents.md)
 * [🤖 AI Agents & Bots](for-developers/ai-agents/README.md)
   * [Claude Code Plugin](for-developers/ai-agents/claude-code-plugin.md)
@@ -8528,10 +8529,10 @@ For quick collection creation from the terminal, use the CLI build commands:
 
 ```bash
 # Generate a vault token (outputs transaction JSON)
-bitbadges-cli builder templates vault --backing-coin USDC --name "My Vault" --explain
+bitbadges-cli build vault --backing-coin USDC --name "My Vault" --explain
 
 # Generate a subscription collection
-bitbadges-cli builder templates subscription --interval monthly --price 10 --denom USDC --recipient bb1...
+bitbadges-cli build subscription --interval monthly --price 10 --denom USDC --recipient bb1...
 ```
 
 See [CLI Build Commands](../cli/build-commands.md) for the full list of 18 template builders.
@@ -9013,7 +9014,7 @@ From there, the agent follows the same complete -> get codes -> submit proof flo
 
 The BitBadges Claude Code plugin is a convenience layer on top of the BitBadges chain binary + CLI for Claude Code users specifically. It auto-wires the `bitbadges-builder` MCP server and ships 8 skills that teach Claude how to leverage the CLI + MCP + docs for common BitBadges workflows.
 
-The plugin is **a thin harness, not a knowledge base**. Token-type-specific instructions live in the SDK and are surfaced via `bitbadges-cli sdk skills <id>`, the `get_skill_instructions` MCP tool, and the [Gitbook skill pages](../../x-tokenization/examples/skills/). The plugin's job is to teach Claude where to find them and how to compose them — not to ship one routing wrapper per token type.
+The plugin is **a thin harness, not a knowledge base**. Token-type-specific instructions live in the SDK and are surfaced via `bitbadges-cli skills <id>`, the `get_skill_instructions` MCP tool, and the [Gitbook skill pages](../../x-tokenization/examples/skills/). The plugin's job is to teach Claude where to find them and how to compose them — not to ship one routing wrapper per token type.
 
 ## Prerequisites
 
@@ -9055,10 +9056,10 @@ Each skill is a guide that routes Claude to the right CLI command, MCP tool, or 
 
 | Skill | What it teaches |
 |---|---|
-| `build` | Meta-guide for constructing any token type (smart-token, fungible, NFT, subscription, vault, claim, quest, auction, payment, crowdfund, prediction-market, …). Discovers via `bitbadges-cli sdk skills`, loads canonical instructions via the `get_skill_instructions` MCP tool, then constructs via the per-field MCP session tools. |
-| `review` | Audit a transaction file or live collection for correctness, standards compliance, foot-guns. Wraps `bitbadges-cli sdk review` and `review_collection`. |
+| `build` | Meta-guide for constructing any token type (smart-token, fungible, NFT, subscription, vault, claim, quest, auction, payment, crowdfund, prediction-market, …). Discovers via `bitbadges-cli skills`, loads canonical instructions via the `get_skill_instructions` MCP tool, then constructs via the per-field MCP session tools. |
+| `review` | Audit a transaction file or live collection for correctness, standards compliance, foot-guns. Wraps `bitbadges-cli check` and `review_collection`. |
 | `simulate` | Dry-run a transaction. Returns events + balance diffs. Always before broadcast. Wraps `simulate_transaction`. |
-| `explain` | Plain-English description, audience-aware (user / developer / auditor). Wraps `explain_collection` and `bitbadges-cli sdk interpret-*`. |
+| `explain` | Plain-English description, audience-aware (user / developer / auditor). Wraps `explain_collection` and `bitbadges-cli explain`. |
 | `query` | The 104+ API routes — discovery first via `--help-json`, then call. |
 | `address` | All six address operations (cosmos↔EVM, IBC backing, wrapper, mint-escrow, alias). |
 | `claim` | Build or audit a claim (whitelist / password / codes / open / token-gated). |
@@ -9108,7 +9109,7 @@ claude mcp remove bitbadges-builder
 The plugin is for Claude Code users specifically. For other harnesses, BitBadges still has full coverage via the same MCP server and the existing skill docs:
 
 - **Cursor / Claude Desktop / other MCP clients** → set up the `bitbadges-builder` MCP server (`claude mcp add bitbadges-builder -- npx -y -p bitbadges bitbadges-builder` for Claude Desktop, or the equivalent in your client). The MCP exposes `get_skill_instructions(<id>)` for on-demand loading — same path the plugin uses.
-- **Generic LLMs / shell scripts / CI** → use the [CLI](../cli/) directly. For skill instructions, browse the rendered [skill pages](../../x-tokenization/examples/skills/) or call `bitbadges-cli sdk skills <id>`.
+- **Generic LLMs / shell scripts / CI** → use the [CLI](../cli/) directly. For skill instructions, browse the rendered [skill pages](../../x-tokenization/examples/skills/) or call `bitbadges-cli skills <id>`.
 - **TypeScript/JavaScript devs** → `npm install bitbadges` and use the [SDK](../bitbadges-sdk/README.md) directly.
 
 The CLI is the universal base layer; the plugin is just a Claude-Code-specific veneer. Skill instruction content is rendered in one place — [`x-tokenization/examples/skills/`](../../x-tokenization/examples/skills/) — and consumed everywhere else (plugin, MCP, CLI) by reference.
@@ -13431,322 +13432,20 @@ If there is anything we can do to make development easier, let us know.
 
 # BitBadges CLI
 
-> **This page has moved.** The canonical CLI documentation is now at [CLI & Chain Binary](../cli/). See [Installation](../cli/installation.md), [SDK Commands](../cli/sdk-commands.md), and [API Commands](../cli/api-commands.md).
-
-The BitBadges CLI provides SDK utilities and API access from your terminal. It ships with the SDK package and is also available via the chain binary.
-
-## Installation
-
-```bash
-npm install -g bitbadges
-```
-
-This installs the `bitbadges-cli` command globally. Verify:
-
-```bash
-bitbadges-cli --help
-```
-
-### Via bitbadgeschaind
-
-The chain binary delegates `sdk` and `api` subcommands to the Node.js CLI automatically:
-
-```bash
-bitbadgeschaind cli sdk review tx.json
-bitbadgeschaind cli api tokens get-collection 1
-```
-
-Discovery order:
-
-1. `BITBADGES_SDK_CLI_PATH` environment variable
-2. `bitbadges-cli` on PATH
-3. `npx -p bitbadges bitbadges-cli` as fallback
-
-## Configuration
-
-### Config file
-
-The CLI reads `~/.bitbadges/config.json`. Manage it with the `config` command:
-
-```bash
-# Set values
-bitbadges-cli config set apiKey YOUR_KEY
-bitbadges-cli config set apiKeyTestnet YOUR_TESTNET_KEY
-bitbadges-cli config set apiKeyLocal YOUR_LOCAL_KEY
-bitbadges-cli config set network testnet
-bitbadges-cli config set url https://custom-api.example.com/api/v0
-
-# View current config
-bitbadges-cli config show
-
-# Remove a value
-bitbadges-cli config unset apiKeyTestnet
-```
-
-Supported keys: `apiKey`, `apiKeyTestnet`, `apiKeyLocal`, `network` (`mainnet` | `testnet` | `local`), `url`.
-
-### Environment variables
-
-| Variable | Description |
-|---|---|
-| `BITBADGES_API_KEY` | Default API key (all networks) |
-| `BITBADGES_API_KEY_TESTNET` | Testnet-specific API key |
-| `BITBADGES_API_KEY_LOCAL` | Local-specific API key |
-| `BITBADGES_API_URL` | Custom base URL (overrides config) |
-
-### Network flags
-
-| Flag | Description |
-|---|---|
-| `--testnet` | Use testnet API (`https://api.testnet.bitbadges.io`) |
-| `--local` | Use local API (`http://localhost:3001`) |
-| `--url <url>` | Custom API base URL (overrides all others) |
-
-API key resolution order: `--api-key` flag > network-specific env var > `BITBADGES_API_KEY` env var > network-specific config key > default config `apiKey`.
-
-Base URL resolution order: `--url` flag > `--local` > `--testnet` > `BITBADGES_API_URL` env > config file > default production URL.
-
-## SDK Commands
-
-### review
-
-Run validation, audit, and standards checks on a transaction or collection. Accepts a JSON file, inline JSON, collection ID (numeric), or `-` for stdin.
-
-```bash
-bitbadges-cli sdk review tx.json
-bitbadges-cli sdk review collection.json --human
-bitbadges-cli sdk review 42 --testnet
-echo '{"messages":[...]}' | bitbadges-cli sdk review -
-```
-
-If `BITBADGES_API_KEY` is set, transactions are sent to the enriched simulate endpoint. Falls back to local analysis via the unified `reviewCollection()` entry point if the API is unavailable.
-
-For collection JSON (no `messages` field), runs `reviewCollection()` locally.
-
-`reviewCollection()` composes three check families — `audit` (permission/supply/centralization), `standards` (protocol conformance), and `ux` (the deterministic UX checks ported from the frontend review sidebar) — into a single `Finding[]`. Each finding carries an `audience` field (`'agent' | 'human' | 'both'`) so consumers can filter: agents get everything; the frontend sidebar passes `audienceFilter: 'human'` via `ReviewContext` to hide audit findings the MCP validators already surface during construction.
-
-### interpret-tx
-
-Generate a human-readable explanation of a transaction.
-
-```bash
-bitbadges-cli sdk interpret-tx tx.json
-bitbadges-cli sdk interpret-tx '{"messages":[...]}' --output-file summary.txt
-```
-
-### interpret-collection
-
-Generate a human-readable explanation of a collection. Accepts a JSON file, inline JSON, numeric collection ID (fetched via API), or `-` for stdin.
-
-```bash
-bitbadges-cli sdk interpret-collection collection.json
-bitbadges-cli sdk interpret-collection 42 --testnet
-```
-
-### address convert
-
-Convert addresses between `bb1` (Cosmos) and `0x` (Ethereum) formats.
-
-```bash
-bitbadges-cli sdk address convert 0x1234...abcd --to bb1
-bitbadges-cli sdk address convert bb1qpzm... --to 0x
-```
-
-### address validate
-
-Check if an address is valid and detect its chain type.
-
-```bash
-bitbadges-cli sdk address validate bb1qpzm...
-# { "valid": true, "chain": "BitBadges", "address": "bb1qpzm..." }
-```
-
-### lookup-token
-
-Look up token info by symbol. Returns IBC denom, decimals, supported networks, and backing address (for IBC tokens). Omit the symbol to list all known tokens.
-
-```bash
-bitbadges-cli sdk lookup-token          # list all tokens
-bitbadges-cli sdk lookup-token BADGE    # specific token info
-```
-
-### alias for-ibc-backing
-
-Generate the backing address for an IBC-backed smart token.
-
-```bash
-bitbadges-cli sdk alias for-ibc-backing ibc/27394FB092D2ECCD...
-```
-
-### alias for-wrapper
-
-Generate the wrapper path address for a cosmos coin wrapper.
-
-```bash
-bitbadges-cli sdk alias for-wrapper ubadge
-```
-
-### alias for-mint-escrow
-
-Generate the mint escrow address for a collection (where quest reward funds are sent, etc.).
-
-```bash
-bitbadges-cli sdk alias for-mint-escrow 42
-```
-
-### gen-list-id
-
-Generate a reserved address list ID from a set of addresses.
-
-```bash
-bitbadges-cli sdk gen-list-id bb1abc... bb1def...
-bitbadges-cli sdk gen-list-id bb1abc... --blacklist
-```
-
-### skills
-
-List available Builder skills or fetch a specific skill's instructions from the bundled docs.
-
-```bash
-bitbadges-cli sdk skills               # list all skills
-bitbadges-cli sdk skills smart-token   # show specific skill
-```
-
-### docs
-
-Browse bundled BitBadges documentation.
-
-```bash
-bitbadges-cli sdk docs                      # show section tree
-bitbadges-cli sdk docs all                  # dump full documentation
-bitbadges-cli sdk docs learn                # specific section
-bitbadges-cli sdk docs learn/approvals      # navigate deeper with slash paths
-```
-
-### status
-
-Show CLI status: active API key (masked), network, base URL, config path, SDK version, and API health check.
-
-```bash
-bitbadges-cli sdk status
-bitbadges-cli sdk status --testnet
-```
-
-## API Commands
-
-The `api` subcommand provides access to all 104+ indexer API routes, auto-generated from the OpenAPI spec. Routes are grouped by category.
-
-### Route groups
-
-| Group | Description |
-|---|---|
-| `api accounts` | Account and user routes |
-| `api tokens` | Collection and token routes |
-| `api claims` | Claim management routes |
-| `api auth` | Sign In with BitBadges / OAuth routes |
-| `api tx` | Transaction broadcast and simulation |
-| `api apps` | Developer apps and applications |
-| `api plugins` | Plugin management routes |
-| `api stores` | Dynamic data store routes |
-| `api onchain-stores` | On-chain dynamic store routes |
-| `api pages` | Utility page routes |
-| `api maps` | On-chain map and protocol routes |
-| `api assets` | DEX, pools, and asset pair routes |
-| `api misc` | Miscellaneous routes |
-| `api all` | All routes ungrouped (flat list) |
-
-### Usage
-
-```bash
-bitbadges-cli api <group> <route-name> [path-params...] [options]
-```
-
-Path parameters are positional arguments. Request bodies can be inline JSON, a file reference with `@`, or `-` for stdin.
-
-### Common flags
-
-| Flag | Description |
-|---|---|
-| `--body <json>` | Request body: inline JSON, `@file.json`, or `-` for stdin |
-| `--query <json>` | Query string params as a JSON object |
-| `--api-key <key>` | Override the API key for this request |
-| `--testnet` | Use testnet API |
-| `--local` | Use local API (localhost:3001) |
-| `--url <url>` | Custom API base URL |
-| `--condensed` | Output condensed JSON (no whitespace) |
-| `--dry-run` | Show request details without sending |
-| `--output-file <path>` | Write output to file instead of stdout |
-
-### Examples
-
-```bash
-# GET routes
-bitbadges-cli api tokens get-collection 1
-bitbadges-cli api accounts get-account --body '{"address":"bb1..."}'
-
-# POST routes (with body)
-bitbadges-cli api accounts get-accounts --body '{"accountsToFetch":[{"address":"bb1..."}]}'
-bitbadges-cli api tx broadcast-tx --body @tx.json
-
-# GET routes auto-convert --body to query params
-bitbadges-cli api accounts get-tokens-for-user bb1... --body '{"viewType":"collected"}'
-
-# Testnet with dry-run
-bitbadges-cli api tokens get-collection 1 --testnet --dry-run
-
-# List routes in a group
-bitbadges-cli api tokens --help
-```
-
-### Help and type schemas
-
-Each route's `--help` includes the HTTP method, path template, SDK type names, key body/query fields, and an SDK code example (where available).
-
-```bash
-bitbadges-cli api tokens get-collections --help
-```
-
-## Global Options
-
-| Flag | Description |
-|---|---|
-| `--help-json` | Output the full command tree as structured JSON (useful for LLMs) |
-| `--help` | Standard help output |
-
-### Shell completion
-
-Generate a bash/zsh completion script:
-
-```bash
-eval "$(bitbadges-cli completion)"
-```
-
-Add that line to your `.bashrc` or `.zshrc` for persistent completions.
-
-## Build Commands
-
-Token building (creating collections, generating approvals, etc.) is handled by the [BitBadges Builder Tools](../ai-agents/builder-tools.md), not the CLI directly. The CLI focuses on analysis, review, and API access.
-
-## bitbadgeschaind Delegation
-
-The Go chain binary includes `sdk` and `api` subcommands that delegate to the Node.js CLI:
-
-```bash
-# These are equivalent:
-bitbadgeschaind cli sdk review tx.json
-bitbadges-cli sdk review tx.json
-
-bitbadgeschaind cli api tokens get-collection 1
-bitbadges-cli api tokens get-collection 1
-```
-
-The binary looks for the CLI in this order:
-
-1. `BITBADGES_SDK_CLI_PATH` environment variable
-2. `bitbadges-cli` on PATH
-3. `npx -p bitbadges bitbadges-cli` as fallback
-
-If the CLI is not found, the chain binary prints an install message but does not error -- chain operations (keys, tx, query) continue to work.
+> **This page has moved.** The canonical CLI documentation is now at [CLI & Chain Binary](../cli/).
+
+The CLI surface is flat verb-first — every command lives at `bitbadges-cli <verb>`. Start here:
+
+- **[Installation](../cli/installation.md)** — install the chain binary + Node CLI in one shot
+- **[Build Commands](../cli/build-commands.md)** — flag-based generators (`build vault`, `build subscription`, `build bounty`, …)
+- **[Analysis Commands](../cli/analysis-commands.md)** — `check` (validate / review / verify folded), `explain`, `simulate`, `preview`
+- **[Deploy Commands](../cli/deploy-commands.md)** — `deploy --burner` for the keyless faucet path
+- **[Tool Commands](../cli/tool-commands.md)** — fine-grained MCP `tool` / `tools` registry, persisted `session`, static `resources`
+- **[Utility Commands](../cli/utility-commands.md)** — `docs`, `skills`, `address`, `alias`, `lookup`, `gen-list-id`, `doctor`
+- **[API Commands](../cli/api-commands.md)** — 104+ indexer routes
+- **[Auth Commands](../cli/auth-commands.md)** — wallet-agnostic Blockin sessions
+- **[Chain Commands](../cli/chain-commands.md)** — `bitbadgeschaind` keys, transactions, queries
+- **[CLI for AI Agents](../cli/for-ai-agents.md)** — agent workflows and automation patterns
 
 
 ## File: ./for-developers/bitbadges-sdk/common-snippets/README.md
@@ -18129,7 +17828,7 @@ Verify your installation:
 
 ```bash
 bb version
-bb cli sdk status
+bb cli doctor
 ```
 
 ## Quick examples
@@ -18162,8 +17861,8 @@ bb --help-json | jq '.commands[] | .name'
 The chain binary delegates every `bitbadges-cli` subcommand to the Node.js CLI via a single `cli` forwarder. These are equivalent:
 
 ```bash
-bb cli sdk review tx.json
-bitbadges-cli sdk review tx.json
+bb cli check tx.json
+bitbadges-cli check tx.json
 
 bb cli api tokens get-collection 1
 bitbadges-cli api tokens get-collection 1
@@ -18175,14 +17874,18 @@ Use whichever you prefer. The chain binary adds key management, transaction sign
 
 | Capability | Command | Example |
 |-----------|---------|---------|
-| **Create a collection with no wallet setup** | `bitbadges-cli builder create-with-burner` | `bitbadges-cli builder templates subscription … \| bitbadges-cli builder create-with-burner --msg-stdin --manager bb1… --local` |
+| **Create a collection with no wallet setup** | `bitbadges-cli deploy --burner` | `bitbadges-cli build subscription … \| bitbadges-cli deploy --burner --msg-stdin --manager bb1… --local` |
 | **Query any collection** | `bitbadges-cli api tokens get-collection` | `bitbadges-cli api tokens get-collection 1` |
-| **Review and audit tokens** | `bitbadges-cli sdk review` | `bitbadges-cli sdk review tx.json` |
+| **Review and audit tokens** | `bitbadges-cli check` | `bitbadges-cli check tx.json` |
+| **Explain a tx or collection** | `bitbadges-cli explain` | `bitbadges-cli explain tx.json` |
+| **Dry-run a transaction** | `bitbadges-cli simulate` | `bitbadges-cli simulate tx.json` |
+| **Share a tx for visual review** | `bitbadges-cli preview` | `bitbadges-cli preview tx.json` |
 | **Browse 104+ API routes** | `bitbadges-cli api` | `bitbadges-cli api tokens --help` |
-| **Convert addresses** | `bitbadges-cli sdk address convert` | `bitbadges-cli sdk address convert 0x1234... --to bb1` |
-| **Look up token info** | `bitbadges-cli sdk lookup-token` | `bitbadges-cli sdk lookup-token USDC` |
-| **Browse docs** | `bitbadges-cli sdk docs` | `bitbadges-cli sdk docs learn/approvals` |
-| **List builder skills** | `bitbadges-cli sdk skills` | `bitbadges-cli sdk skills smart-token` |
+| **Convert addresses** | `bitbadges-cli address convert` | `bitbadges-cli address convert 0x1234... --to bb1` |
+| **Look up token info** | `bitbadges-cli lookup` | `bitbadges-cli lookup USDC` |
+| **Browse docs** | `bitbadges-cli docs` | `bitbadges-cli docs learn/approvals` |
+| **List builder skills** | `bitbadges-cli skills` | `bitbadges-cli skills smart-token` |
+| **Health check** | `bitbadges-cli doctor` | `bitbadges-cli doctor --testnet` |
 | **Create/sign transactions** | `bitbadgeschaind tx` | `bitbadgeschaind tx tokenization create-collection ./col.json --from mykey` |
 | **Manage keys** | `bitbadgeschaind keys` | `bitbadgeschaind keys add mykey` |
 | **Query on-chain state** | `bitbadgeschaind query` | `bitbadgeschaind query tokenization collection 1` |
@@ -18204,13 +17907,144 @@ For building token collections with AI assistants (Claude, Cursor, etc.), see th
 ## Next Steps
 
 - [Installation](installation.md) — all install methods and configuration
-- [SDK Commands](sdk-commands.md) — review, interpret, address tools, docs, skills
+- [Build Commands](build-commands.md) — flag-based generators for vault, subscription, bounty, auction, and 14 other token types
+- [Analysis Commands](analysis-commands.md) — `check`, `explain`, `simulate`, `preview`
+- [Deploy Commands](deploy-commands.md) — ship a create-collection tx without bringing your own wallet
+- [Tool Commands](tool-commands.md) — fine-grained MCP tools (`tool` / `tools`), persisted sessions, static resources
+- [Utility Commands](utility-commands.md) — `docs`, `skills`, `address`, `alias`, `lookup`, `gen-list-id`, `doctor`
 - [API Commands](api-commands.md) — 104+ API routes from your terminal
+- [Auth Commands](auth-commands.md) — wallet-agnostic Blockin sessions for Full Access endpoints
 - [Chain Commands](chain-commands.md) — keys, transactions, on-chain queries
-- [Builder Templates](builder-templates.md) — flag-based generators for vault, subscription, bounty, auction, and 14 other token types
-- [Create With Burner](create-with-burner.md) — ship a create-collection tx without bringing your own wallet
-- [Builder Commands](builder-commands.md) — tools, review, verify, simulate, preview, doctor, session, resources
 - [CLI for AI Agents](for-ai-agents.md) — agent workflows and automation patterns
+
+
+## File: ./for-developers/cli/analysis-commands.md
+
+# Analysis Commands
+
+Once you have a transaction JSON in hand (from `build`, the MCP builder tools, or hand-rolled), the next step is to inspect it. The CLI ships four analysis verbs that all accept the same input shapes (JSON file path, `@file.json` token, inline JSON, numeric collection id where applicable, or `-` for stdin):
+
+| Command | Purpose |
+|---|---|
+| [`check <input>`](#check) | Validate / review / metadata coverage in one pass — the unified analysis verb |
+| [`explain <input>`](#explain) | Plain-English summary, auto-detects tx vs collection |
+| [`simulate <input>`](#simulate) | Dry-run against the indexer's simulate endpoint, returns gas + per-address balance changes |
+| [`preview <input>`](#preview) | Upload to the indexer and print a shareable bitbadges.io preview URL |
+
+`check` and `doctor` (covered on the [Utility Commands](utility-commands.md) page) replace the old `sdk review` / `builder verify` / `sdk status` / `builder doctor` quartet.
+
+## check
+
+`bitbadges-cli check` is the unified analysis entry point. It folds the old `validate`, `review`, and `verify` verbs into one command with a `--depth` dial.
+
+```bash
+bitbadges-cli check tx.json                       # full check (default)
+bitbadges-cli check tx.json --depth structural    # validateTransaction() only
+bitbadges-cli check tx.json --depth review        # reviewCollection() only
+bitbadges-cli check 42 --depth review --testnet   # live collection, design audit
+echo '{"messages":[...]}' | bitbadges-cli check -
+```
+
+**Depth levels:**
+
+| `--depth` | What it runs | Use when |
+|---|---|---|
+| `structural` | `validateTransaction()` only — uint ranges, approval criteria, structural correctness | Fast offline check before you commit JSON to disk |
+| `review` | `reviewCollection()` only — design audit, standards conformance, UX checks | You're reviewing someone else's work or a live collection by id |
+| `full` (default) | validate + review + design + metadata coverage, all rendered together | Pre-broadcast diligence; the most useful single-shot check |
+
+**Common flags:**
+
+| Flag | Description |
+|---|---|
+| `--depth <level>` | `structural \| review \| full` (default: `full`) |
+| `--json` | Output the structured result as JSON |
+| `--strict` | Exit `1` on warnings (criticals always exit `2`) |
+| `--no-validate`, `--no-review`, `--no-metadata` | Skip the corresponding section in `--depth full` |
+| `--design` | Include the design-decisions section in `--depth full` (informational ✓/✗) |
+| `--output-file <path>` | Write the rendered output to a file (ANSI stripped) |
+| `--testnet`, `--local`, `--url` | Network selection for fetching numeric collection ids |
+
+`check` accepts collection ids on `review` and `full` depths (fetches the collection from the indexer first). `structural` is offline-only and refuses numeric ids — pass tx JSON directly.
+
+## explain
+
+`bitbadges-cli explain` produces a plain-English summary. Auto-detects whether the input is a transaction or a collection and routes to the right interpreter.
+
+```bash
+bitbadges-cli explain tx.json
+bitbadges-cli explain '{"messages":[...]}'
+bitbadges-cli explain 42 --testnet           # numeric: fetch collection from indexer
+echo '{"messages":[...]}' | bitbadges-cli explain -
+```
+
+**Input detection:**
+
+- Single Msg `{ typeUrl, value: {...} }` → walks `value` through `interpretTransaction()`
+- Tx wrapper `{ messages: [{ typeUrl, value }, ...] }` → finds the first collection msg and explains it
+- Raw collection (no `typeUrl`, no `messages`) → walks through `interpretCollection()`
+- Numeric `<n>` → fetches `/api/v0/collection/<n>` then walks through `interpretCollection()`
+
+**Flags:**
+
+| Flag | Description |
+|---|---|
+| `--output-file <path>` | Write the output to a file instead of stdout |
+| `--testnet`, `--local`, `--url` | Network selection for numeric collection-id fetches |
+
+Replaces the old `sdk interpret-tx` and `sdk interpret-collection` commands plus `builder explain` — one verb, auto-detect, one less mental dimension.
+
+## simulate
+
+`bitbadges-cli simulate` dry-runs a transaction against the indexer's `/api/v0/simulate` endpoint. Returns the parsed events, per-address balance changes, and any errors that would have surfaced on-chain.
+
+```bash
+bitbadges-cli simulate tx.json
+bitbadges-cli simulate tx.json --creator bb1mysigner...
+bitbadges-cli simulate tx.json --json
+bitbadges-cli simulate tx.json --events           # dump full events array
+echo '{"messages":[...]}' | bitbadges-cli simulate -
+```
+
+**Flags:**
+
+| Flag | Description |
+|---|---|
+| `--json` | Output the structured `SimulateResult` as JSON |
+| `--creator <address>` | Override the simulation context address (default: a placeholder) |
+| `--events` | Dump the full raw chain events array (default: just the count) |
+| `--testnet`, `--local`, `--url` | Network selection |
+
+Requires `BITBADGES_API_KEY` (or per-network override) on mainnet/testnet. Local indexers usually accept any (or no) key.
+
+User-level approval messages (`MsgUpdateUserApprovals`, `MsgSetIncomingApproval`, etc.) are explicitly refused — their semantics are state-change-on-existing-collection with set/append/delete variability and dry-running them isn't meaningful. Use `check` instead for those.
+
+## preview
+
+`bitbadges-cli preview` uploads a transaction to the indexer and prints a shareable `bitbadges.io/builder/preview?code=...` URL. Intended for handing a tx off to a non-CLI reviewer for visual inspection without giving them edit/submit rights. Lives 1 hour in the indexer's Redis cache.
+
+```bash
+bitbadges-cli preview tx.json
+bitbadges-cli preview tx.json --json              # structured output
+bitbadges-cli preview tx.json --frontend-url https://staging.bitbadges.io
+echo '{"messages":[...]}' | bitbadges-cli preview -
+```
+
+**Flags:**
+
+| Flag | Description |
+|---|---|
+| `--frontend-url <url>` | Override the bitbadges.io frontend base for the printed URL (default: `https://bitbadges.io`) |
+| `--json` | Output the structured upload result as JSON instead of just the URL |
+| `--testnet`, `--local`, `--url` | Network selection — controls which indexer hosts the preview |
+
+The endpoint is intentionally open (no API key required); the unguessable code in the URL is the secret.
+
+## See also
+
+- [Build Commands](build-commands.md) — produce the JSON inputs you'd pass to these analysis verbs
+- [Tool Commands](tool-commands.md) — fine-grained MCP tool surface for incremental construction
+- [Deploy Commands](deploy-commands.md) — the broadcast side
 
 
 ## File: ./for-developers/cli/api-commands.md
@@ -18575,352 +18409,15 @@ The CLI replays the full cookie chain (Blockin nonce + indexer LB stickiness) th
 - [CLI for AI Agents](for-ai-agents.md) — end-to-end agent workflow.
 
 
-## File: ./for-developers/cli/builder-commands.md
+## File: ./for-developers/cli/build-commands.md
 
-# Builder Commands
+# Build Commands
 
-The `bitbadges-cli builder` command group is the umbrella for every non-template builder subcommand: the fine-grained tool registry, the review / verify / simulate / validate check family, the preview uploader, the environment doctor, the persisted session store, and the static resource registry.
-
-If you are looking for flag-based template generators (`vault`, `nft`, `subscription`, …), see [Builder Templates](builder-templates.md). Everything else lives here.
-
-All commands are also available via `bitbadgeschaind cli builder …` — the chain binary forwards `builder` subcommands to the Node.js CLI in-process, so there is no functional difference between `bitbadges-cli builder review tx.json` and `bitbadgeschaind cli builder review tx.json`.
-
-## Overview
-
-| Command | Purpose |
-|---------|---------|
-| [`builder tools list`](#builder-tools-list) | List every builder tool with its JSON schema |
-| [`builder tools call <tool>`](#builder-tools-call) | Invoke a builder tool by name |
-| [`builder review <input>`](#builder-review) | Run `reviewCollection()` over a tx or collection |
-| [`builder verify <input>`](#builder-verify) | Aggregate validate + review + metadata coverage |
-| [`builder validate <input>`](#builder-validate) | Offline structural validation only |
-| [`builder simulate <input>`](#builder-simulate) | Dry-run a tx against the BitBadges API simulate endpoint |
-| [`builder explain <input>`](#builder-explain) | Plain-English explanation of a tx or collection |
-| [`builder preview <input>`](#builder-preview) | Upload a tx and print a shareable `bitbadges.io` preview URL |
-| [`builder doctor`](#builder-doctor) | Environment + session health check |
-| [`builder session list / show / reset`](#builder-session) | Inspect, dump, or delete persisted builder sessions |
-| [`builder resources list / read`](#builder-resources) | Browse the static resource registry (recipes, skills, docs, …) |
-
-Every command that takes an `<input>` accepts the same five shapes:
-
-- A file path (`tx.json`)
-- A `@file.json` path token
-- Inline JSON (`'{"messages":[...]}'`)
-- A numeric collection ID (for `review` and `explain` only — fetched from the API)
-- `-` to read from stdin
-
-## builder tools
-
-The `tools` subcommand is the in-process surface for every builder tool the SDK exposes — the same set the legacy `bitbadges-builder-mcp` stdio server used to ship to Claude Desktop, now reachable as a plain function call with no subprocess and no MCP protocol round-trip. The builder tools are bundled inside `bitbadges` (`dist/cjs/builder/`) and are shared by the CLI, the chain binary's `builder` forwarder, and any Node host that imports the SDK directly.
-
-### builder tools list
-
-List every builder tool with its full JSON schema.
-
-```bash
-bitbadges-cli builder tools list                  # full schemas, as JSON
-bitbadges-cli builder tools list --names          # just the tool names, one per line
-```
-
-### builder tools call
-
-Invoke a builder tool by name. Arguments come from `--args` (inline JSON) or `--args-file` (path to a JSON file).
-
-```bash
-bitbadges-cli builder tools call get_current_timestamp
-bitbadges-cli builder tools call get_skill_instructions --args '{"skillId":"smart-token"}'
-bitbadges-cli builder tools call set_collection_metadata \
-  --args-file ./metadata.json \
-  --session demo
-```
-
-**Options:**
-
-| Flag | Description |
-|------|-------------|
-| `--args <json>` | Tool arguments as an inline JSON string |
-| `--args-file <path>` | Tool arguments read from a JSON file |
-| `--session <id>` | Session id for stateful tools. Persisted to `~/.bitbadges/sessions/<id>.json`. Defaults to `--args.sessionId`, or the built-in default session. |
-| `--raw` | Print the structured result instead of the formatted text block |
-
-Stateful tools (`set_*`, `add_*`, `remove_*`, `get_transaction`, …) read from and write to the named session. Sessions survive across invocations, so agents can compose a collection across many CLI calls:
-
-```bash
-SESSION=demo
-bitbadges-cli builder tools call set_standards --session $SESSION --args '{"standards":["SmartToken"]}'
-bitbadges-cli builder tools call set_collection_metadata --session $SESSION --args @meta.json
-bitbadges-cli builder tools call add_approval --session $SESSION --args @approval.json
-bitbadges-cli builder tools call get_transaction --session $SESSION  # emit final JSON
-```
-
-Unknown tool names exit 1 and print the available tool list on stderr.
-
-## builder review
-
-Top-level alias for `sdk review`. Runs `reviewCollection()` over a transaction, collection, or on-chain collection ID and prints the grouped findings.
-
-```bash
-bitbadges-cli builder review tx.json
-bitbadges-cli builder review collection.json --strict
-bitbadges-cli builder review 42 --testnet               # fetch by collection id
-echo '{"messages":[...]}' | bitbadges-cli builder review -
-```
-
-`reviewCollection()` composes three check families — `audit` (permission / supply / centralization), `standards` (protocol conformance), and `ux` (the deterministic UX checks ported from the frontend review sidebar) — into a single `Finding[]`. The CLI, the MCP `review_collection` tool, the indexer validation gate, and the frontend review sidebar all dispatch through this exact same entry point.
-
-**Options:**
-
-| Flag | Description |
-|------|-------------|
-| `--json` | Output the full `ReviewResult` as JSON |
-| `--strict` | Exit 1 on warnings. Critical findings always exit 2. |
-| `--output-file <path>` | Write the rendered output to a file instead of stdout |
-| `--network <mainnet\|testnet\|local>` | Target network for numeric-id fetches |
-| `--testnet` / `--local` / `--url <url>` | Shorthands for `--network` and base URL overrides |
-
-## builder verify
-
-One-stop diligence command. Runs `validate` + `review` + metadata coverage scan in a single pass and renders all three sections with the same terminal renderer the templates use. Saves agents 3+ separate calls per build.
-
-```bash
-bitbadges-cli builder verify tx.json
-bitbadges-cli builder verify tx.json --json             # single structured payload
-bitbadges-cli builder verify tx.json --strict           # exit 1 on any warnings
-bitbadges-cli builder verify tx.json --no-metadata      # skip the metadata section
-```
-
-For transactions whose first collection message isn't at `messages[0]` (e.g. `[MsgTransferTokens, MsgCreateCollection]`, emitted by `add_transfer` + post-fact create), `verify` finds the collection message by walking the array. The `review` and metadata sections only run when a collection message is present — for user-level approvals, transfers, or dynamic store messages, only `validate` + `simulate` are useful signal and `review` stays silent.
-
-**Options:**
-
-| Flag | Description |
-|------|-------------|
-| `--json` | Output a structured aggregate JSON instead of rendered sections |
-| `--strict` | Exit 1 on warnings; criticals always exit 2 |
-| `--no-validate` | Skip the structural validation section |
-| `--no-review` | Skip the design review section |
-| `--no-metadata` | Skip the metadata coverage section |
-| `--output-file <path>` | Write the rendered sections to a file instead of stdout |
-
-Exit codes: `0` clean, `1` when `--strict` and warnings are present, `2` when there are critical findings or validation errors.
-
-## builder validate
-
-Offline structural validation only — no API calls, no design review, no metadata scan. Checks JSON structure, uint ranges, approval criteria shape, and every other invariant that can be verified statically.
-
-```bash
-bitbadges-cli builder validate tx.json
-bitbadges-cli builder validate tx.json --json
-```
-
-Use `validate` when you want the fastest possible pre-commit gate (no network, no API key), and `verify` when you want the full diligence report.
-
-## builder simulate
-
-Dry-run a built tx against the BitBadges API `/api/v0/simulate` endpoint. Returns gas estimates and per-address net balance changes. Requires an API key — set `BITBADGES_API_KEY`, run `bitbadges-cli config set apiKey <key>`, or target a key-less local indexer with `--network local`.
-
-```bash
-bitbadges-cli builder simulate tx.json
-bitbadges-cli builder simulate tx.json --json
-bitbadges-cli builder simulate tx.json --events              # include raw chain events
-bitbadges-cli builder simulate tx.json --creator bb1...      # override the sim context address
-```
-
-**Options:**
-
-| Flag | Description |
-|------|-------------|
-| `--json` | Output the structured `SimulateResult` as JSON instead of a rendered section |
-| `--creator <address>` | Override the simulation context address (default: `bb1simulation`) |
-| `--events` | Dump the full raw chain events array in the rendered output (default: just the count) |
-| `--network` / `--testnet` / `--local` / `--url` | Network targeting |
-
-User-level approval messages (`MsgUpdateUserApprovals`, `MsgSetIncomingApproval`, `MsgSetOutgoingApproval`, `MsgDeleteIncomingApproval`, `MsgDeleteOutgoingApproval`, `MsgPurgeApprovals`) are **not simulable** — they describe a state mutation on an existing user approval list, not a self-contained tx. Use `builder validate` + `builder review` on those instead.
-
-## builder explain
-
-Human-readable explanation of a transaction body or a raw collection. Auto-detects which shape was passed: a `MsgCreateCollection` / `MsgUpdateCollection` / `MsgUniversalUpdateCollection` tx goes through `interpretTransaction()`, a raw collection goes through `interpretCollection()`. Numeric input is fetched from the indexer as a collection id.
-
-```bash
-bitbadges-cli builder explain tx.json
-bitbadges-cli builder explain 42 --testnet
-bitbadges-cli builder explain tx.json --output-file summary.txt
-```
-
-## builder preview
-
-Upload a built tx to the indexer and print a shareable `bitbadges.io` preview URL. Lets agents and humans hand off a tx to a non-CLI reviewer for visual inspection without giving them edit or submit rights.
-
-```bash
-bitbadges-cli builder preview tx.json
-bitbadges-cli builder preview tx.json --json
-bitbadges-cli builder preview tx.json --frontend-url https://testnet.bitbadges.io
-```
-
-The CLI posts the tx to the indexer's `/api/v0/builder/preview` route, which is **premium-gated** — requests without a valid premium API key return 402 Payment Required. Uploaded previews live in the indexer's Redis cache for one hour, and the unguessable code baked into the returned URL is what keeps unauthorized viewers out.
-
-**Options:**
-
-| Flag | Description |
-|------|-------------|
-| `--json` | Output the structured upload result (code, URL, expiry) as JSON |
-| `--frontend-url <url>` | Override the `bitbadges.io` base for the printed URL (default: `https://bitbadges.io`) |
-| `--network` / `--testnet` / `--local` / `--url` | Indexer target for the upload |
-
-### Preview API reference
-
-The CLI is a thin wrapper over two indexer routes. You can call them directly — for example, from a non-Node service that still wants to hand a built tx off to a reviewer.
-
-Both routes are gated by the premium-only auth handler. An anonymous caller, or a caller whose API key does not carry a premium entitlement, will receive `402 Payment Required`. The same API key you use for `builder simulate` works here.
-
-#### POST /api/v0/builder/preview
-
-Upload a built transaction and receive a short code plus expiry metadata.
-
-```bash
-curl -X POST https://api.bitbadges.io/api/v0/builder/preview \
-  -H "Content-Type: application/json" \
-  -H "x-api-key: $BITBADGES_API_KEY" \
-  -d '{
-        "transaction": {
-          "messages": [ /* tx messages, with per-msg _meta.metadataPlaceholders if any */ ]
-        }
-      }'
-```
-
-Request body:
-
-| Field | Type | Required | Description |
-|-------|------|----------|-------------|
-| `transaction` | object | yes | The built tx. Must contain a non-empty `messages` array. |
-| `transaction.messages[i].value._meta.metadataPlaceholders` | object | no | Per-message placeholder sidecar. This is the only supported location for placeholders — a top-level `metadataPlaceholders` field on the request is rejected with 400. |
-
-Response `200 OK`:
-
-```json
-{
-  "success": true,
-  "code": "prv_ab12cd34",
-  "expiresAt": 1712345678901,
-  "expiresIn": "1 hour"
-}
-```
-
-| Field | Type | Description |
-|-------|------|-------------|
-| `success` | boolean | Always `true` on 200. |
-| `code` | string | Preview code. Shape: `prv_<8 lowercase alphanumeric>`. Plug into `https://bitbadges.io/builder/preview?code=<code>` to share. |
-| `expiresAt` | number | Unix epoch milliseconds at which the entry will be evicted from the Redis cache. |
-| `expiresIn` | string | Human-readable TTL (currently `1 hour`). |
-
-Error responses:
-
-| Status | When |
-|--------|------|
-| `400` | Missing `transaction`, missing/empty `messages`, or a deprecated top-level `metadataPlaceholders` field was sent. |
-| `402` | Caller is not on a premium plan. |
-| `500` | Code collision after retries, or the indexer failed to write to Redis. |
-
-#### GET /api/v0/builder/preview?code=\<code>
-
-Fetch a previously uploaded preview by code.
-
-```bash
-curl "https://api.bitbadges.io/api/v0/builder/preview?code=prv_ab12cd34" \
-  -H "x-api-key: $BITBADGES_API_KEY"
-```
-
-Query parameters:
-
-| Name | Type | Required | Description |
-|------|------|----------|-------------|
-| `code` | string | yes | Preview code returned by the POST. Must match `prv_[a-z0-9]{8}`. |
-
-Response `200 OK`:
-
-```json
-{
-  "success": true,
-  "transaction": { "messages": [ /* … */ ] }
-}
-```
-
-| Field | Type | Description |
-|-------|------|-------------|
-| `success` | boolean | Always `true` on 200. |
-| `transaction` | object | The exact transaction body that was uploaded, including any per-message `_meta.metadataPlaceholders`. |
-
-Error responses:
-
-| Status | When |
-|--------|------|
-| `400` | `code` query parameter missing or fails the `prv_[a-z0-9]{8}` shape check. |
-| `402` | Caller is not on a premium plan. |
-| `404` | Code is valid-shaped but not in the cache — either it never existed or the 1-hour TTL has lapsed. |
-
-## builder doctor
-
-One-shot environment + session health check. Runs six independent probes:
-
-1. **Node version** — must be ≥ 18
-2. **SDK package + version** — loaded from `bitbadges`'s own `package.json`
-3. **CLI config file** — `~/.bitbadges/config.json`
-4. **API key reachability** — pings `/api/v0/simulate` with a no-op request
-5. **SDK builder module presence** — locates the installed `bitbadges` package and checks that the built builder entry (`dist/cjs/builder/index.js` or the ESM equivalent) is on disk. Catches installs that forgot `npm run build` in the SDK.
-6. **Persisted sessions** — every file under `~/.bitbadges/sessions/` parses
-
-Each probe reports `PASS` / `FAIL` / `WARN` / `SKIP`. The command exits non-zero only if any probe is a hard `FAIL`; warnings and skips are informational.
-
-```bash
-bitbadges-cli builder doctor
-bitbadges-cli builder doctor --json
-bitbadges-cli builder doctor --with-preview   # adds a preview round-trip probe
-```
-
-`--with-preview` adds a seventh probe: builds a minimal tx, posts it to `/api/v0/builder/preview`, fetches it back by code, and asserts the round trip is byte-equivalent. Catches indexer, Redis, and preview-route regressions.
-
-## builder session
-
-Persisted builder sessions live at `~/.bitbadges/sessions/<id>.json`. They are the storage backend for the stateful `builder tools call` flow and the in-process MCP session dispatcher.
-
-```bash
-bitbadges-cli builder session list          # list every persisted session id
-bitbadges-cli builder session show demo     # dump a session as JSON
-bitbadges-cli builder session reset demo    # delete a session file
-```
-
-Sessions are plain JSON — you can inspect or edit them by hand if needed. Corrupted session files are surfaced by `builder doctor` on the next run.
-
-## builder resources
-
-The resource registry is the static half of the builder surface: the token registry, collection recipes, skill instructions, bundled docs, error patterns, and every other content resource the SDK builder module exposes via `bitbadges://` URIs.
-
-```bash
-bitbadges-cli builder resources list                       # full metadata, as JSON
-bitbadges-cli builder resources list --uris                # URIs only, one per line
-bitbadges-cli builder resources read bitbadges://skills/all
-bitbadges-cli builder resources read bitbadges://recipes/all
-```
-
-Every resource URI exposed by the SDK builder module is readable through this command. Agents that want to pre-load skill instructions or recipe catalogues into a prompt can stream them directly from the CLI instead of importing the SDK by hand.
-
-## See Also
-
-- [Builder Templates](builder-templates.md) — the `bitbadges-cli builder templates *` tree for flag-based template generators
-- [SDK Commands](sdk-commands.md) — address, alias, lookup, and docs utilities under `bitbadges-cli sdk`
-- [Builder Tools Reference](../ai-agents/builder-tools.md) — the full tool registry reference, including input schemas and workflows
-- [CLI for AI Agents](for-ai-agents.md) — end-to-end agent workflows and automation patterns
-
-
-## File: ./for-developers/cli/builder-templates.md
-
-# CLI Build Commands
-
-The `bitbadges-cli builder templates` command provides 18 template builders that generate ready-to-sign transaction JSON. Each builder creates a complete collection or approval configuration from simple, human-readable parameters.
+The `bitbadges-cli build` command provides 18 builders that generate ready-to-sign transaction JSON. Each builder creates a complete collection or approval configuration from simple, human-readable parameters.
 
 All build commands accept friendly inputs -- use coin symbols like `USDC` instead of raw IBC denominations, and duration shorthands like `30d` instead of millisecond timestamps. The output is a fully-formed transaction message that can be signed and broadcast using the SDK, the BitBadges frontend, or the chain binary.
 
-> **Tip — don't want to bring your own wallet?** Pipe the output of any collection template straight into [`create-with-burner`](create-with-burner.md). The CLI generates a throwaway signer, funds it from the faucet, broadcasts the create-collection tx, and hands ownership to the address you pass as `--manager`. No keys to set up.
+> **Tip — don't want to bring your own wallet?** Pipe the output of any collection builder straight into [`deploy --burner`](deploy-commands.md). The CLI generates a throwaway signer, funds it from the faucet, broadcasts the create-collection tx, and hands ownership to the address you pass as `--manager`. No keys to set up.
 
 > **No IPFS hosting needed.** Every template accepts metadata in one of two modes per metadata-bearing entity: pass `--uri <pre-hosted-uri>` if you have already hosted the JSON yourself, or pass the per-entity field flags (`--name`, `--image`, `--description`) and the CLI serializes them into the on-chain `customData` field. The indexer, SDK, and frontend parse `customData` on read and surface the result as the resolved metadata, so there is no Pinata account to set up. Approvals are text-only — `--name` + `--description`, no image. The CLI throws a clear error if neither mode is fully satisfied; there are no defaults or placeholders. See [Collection Configuration › Inline metadata via customData](../../token-standard/learn/collection-setup-fields.md#inline-metadata-via-customdata) for the on-chain shape.
 
@@ -18947,7 +18444,7 @@ These commands generate `MsgUniversalUpdateCollection` transaction JSON for crea
 Create an IBC-backed vault token with optional withdrawal limits, 2FA gating, and emergency recovery.
 
 ```bash
-bitbadges-cli builder templates vault --backing-coin USDC \
+bitbadges-cli build vault --backing-coin USDC \
   --name "My Vault" \
   --symbol vUSDC \
   --daily-withdraw-limit 1000 \
@@ -18970,7 +18467,7 @@ bitbadges-cli builder templates vault --backing-coin USDC \
 Create a recurring subscription collection with configurable intervals, pricing, and optional multi-tier support.
 
 ```bash
-bitbadges-cli builder templates subscription --interval monthly \
+bitbadges-cli build subscription --interval monthly \
   --price 10 --denom USDC --recipient bb1... \
   --tiers 3 --transferable
 ```
@@ -18991,7 +18488,7 @@ bitbadges-cli builder templates subscription --interval monthly \
 Create a bounty with escrowed funds, a verifier who approves completion, and a designated recipient.
 
 ```bash
-bitbadges-cli builder templates bounty --amount 500 --denom USDC \
+bitbadges-cli build bounty --amount 500 --denom USDC \
   --verifier bb1... --recipient bb1... --expiration 30d
 ```
 
@@ -19009,7 +18506,7 @@ bitbadges-cli builder templates bounty --amount 500 --denom USDC \
 Create an agent-initiated payment request — the inverse of `bounty`. The agent (or any address) creates a collection requesting payment from a targeted payer; the payer approves AND pays from their own wallet in a single action. **No escrow up front.**
 
 ```bash
-bitbadges-cli builder templates payment-request \
+bitbadges-cli build payment-request \
   --amount 10 --denom USDC \
   --payer bb1payer... --recipient bb1agent... \
   --expiration 30d --name "Service charge" \
@@ -19033,7 +18530,7 @@ See the full spec in [skills/payment-request](../../x-tokenization/examples/skil
 Create a crowdfunding collection with a funding goal and deadline.
 
 ```bash
-bitbadges-cli builder templates crowdfund --goal 10000 --denom USDC \
+bitbadges-cli build crowdfund --goal 10000 --denom USDC \
   --crowdfunder bb1... --deadline 30d
 ```
 
@@ -19050,7 +18547,7 @@ bitbadges-cli builder templates crowdfund --goal 10000 --denom USDC \
 Create an auction collection with configurable bidding and acceptance windows.
 
 ```bash
-bitbadges-cli builder templates auction --bid-deadline 7d --accept-window 7d \
+bitbadges-cli build auction --bid-deadline 7d --accept-window 7d \
   --name "Rare Item" --description "Limited edition collectible" \
   --seller bb1seller...
 ```
@@ -19069,7 +18566,7 @@ bitbadges-cli builder templates auction --bid-deadline 7d --accept-window 7d \
 Create a product catalog collection with multiple products, each having its own price and optional supply limit.
 
 ```bash
-bitbadges-cli builder templates product-catalog \
+bitbadges-cli build product-catalog \
   --products '[{"name":"Widget","price":25,"denom":"USDC","maxSupply":100}]' \
   --store-address bb1...
 ```
@@ -19085,7 +18582,7 @@ bitbadges-cli builder templates product-catalog \
 Create a binary prediction market (YES/NO outcome tokens) with a designated resolver.
 
 ```bash
-bitbadges-cli builder templates prediction-market --verifier bb1... \
+bitbadges-cli build prediction-market --verifier bb1... \
   --denom USDC --name "Will X happen by 2027?"
 ```
 
@@ -19102,7 +18599,7 @@ bitbadges-cli builder templates prediction-market --verifier bb1... \
 Create an IBC-backed smart account with optional trading and AI agent vault support.
 
 ```bash
-bitbadges-cli builder templates smart-account --backing-coin USDC \
+bitbadges-cli build smart-account --backing-coin USDC \
   --symbol sUSDC --tradable --ai-agent-vault
 ```
 
@@ -19119,7 +18616,7 @@ bitbadges-cli builder templates smart-account --backing-coin USDC \
 Create a credit or prepaid token where users pay to receive a configurable number of tokens.
 
 ```bash
-bitbadges-cli builder templates credit-token --payment-denom USDC \
+bitbadges-cli build credit-token --payment-denom USDC \
   --recipient bb1... --symbol CREDIT --tokens-per-unit 100
 ```
 
@@ -19136,7 +18633,7 @@ bitbadges-cli builder templates credit-token --payment-denom USDC \
 Create a custom 2FA token collection for use as a second authentication factor in other collections.
 
 ```bash
-bitbadges-cli builder templates custom-2fa --name "My 2FA Token" --burnable
+bitbadges-cli build custom-2fa --name "My 2FA Token" --burnable
 ```
 
 | Flag | Required | Description |
@@ -19152,7 +18649,7 @@ bitbadges-cli builder templates custom-2fa --name "My 2FA Token" --burnable
 Create a quest or reward collection where users claim token rewards up to a maximum number of claims.
 
 ```bash
-bitbadges-cli builder templates quests --reward 10 --denom USDC --max-claims 1000
+bitbadges-cli build quests --reward 10 --denom USDC --max-claims 1000
 ```
 
 | Flag | Required | Description |
@@ -19167,7 +18664,7 @@ bitbadges-cli builder templates quests --reward 10 --denom USDC --max-claims 100
 Create an on-chain address list (not a token collection -- uses a separate message type).
 
 ```bash
-bitbadges-cli builder templates address-list --name "Allowlist" --description "Approved addresses"
+bitbadges-cli build address-list --name "Allowlist" --description "Approved addresses"
 ```
 
 | Flag | Required | Description |
@@ -19185,7 +18682,7 @@ These commands generate user-level approval messages for marketplace listings, b
 Create an OTC swap intent (user outgoing approval) on the Intent Exchange.
 
 ```bash
-bitbadges-cli builder templates intent --address bb1... \
+bitbadges-cli build intent --address bb1... \
   --collection-id 5 \
   --pay-denom USDC --pay-amount 100 \
   --receive-denom BADGE --receive-amount 500 \
@@ -19207,7 +18704,7 @@ bitbadges-cli builder templates intent --address bb1... \
 Create a recurring payment approval (user incoming approval) for subscription collections.
 
 ```bash
-bitbadges-cli builder templates recurring-payment --collection-id 10 \
+bitbadges-cli build recurring-payment --collection-id 10 \
   --amount 25 --denom USDC --interval monthly \
   --recipient bb1... --expiration 365d
 ```
@@ -19226,7 +18723,7 @@ bitbadges-cli builder templates recurring-payment --collection-id 10 \
 Create a marketplace listing (user outgoing approval) to sell tokens from a collection.
 
 ```bash
-bitbadges-cli builder templates listing --address bb1... \
+bitbadges-cli build listing --address bb1... \
   --collection-id 7 --token-ids "1-5" \
   --price 50 --denom USDC --max-sales 1 --expiration 30d
 ```
@@ -19246,7 +18743,7 @@ bitbadges-cli builder templates listing --address bb1... \
 Create a marketplace bid (user incoming approval) to buy tokens from a collection.
 
 ```bash
-bitbadges-cli builder templates bid --address bb1... \
+bitbadges-cli build bid --address bb1... \
   --collection-id 7 --token-ids "1-5" \
   --price 40 --denom USDC --expiration 7d
 ```
@@ -19265,7 +18762,7 @@ bitbadges-cli builder templates bid --address bb1... \
 Create a prediction market sell intent (user outgoing approval) to sell outcome tokens.
 
 ```bash
-bitbadges-cli builder templates pm-sell-intent --address bb1... \
+bitbadges-cli build pm-sell-intent --address bb1... \
   --collection-id 12 --token yes \
   --amount 10 --price 50 --denom USDC
 ```
@@ -19285,7 +18782,7 @@ bitbadges-cli builder templates pm-sell-intent --address bb1... \
 Create a prediction market buy intent (user incoming approval) to buy outcome tokens.
 
 ```bash
-bitbadges-cli builder templates pm-buy-intent --address bb1... \
+bitbadges-cli build pm-buy-intent --address bb1... \
   --collection-id 12 --token no \
   --amount 10 --price 50 --denom USDC
 ```
@@ -19306,13 +18803,13 @@ All commands support `--json` for passing parameters as a JSON object. This is u
 
 ```bash
 # Inline JSON
-bitbadges-cli builder templates vault --json '{"backingCoin":"USDC","name":"My Vault"}'
+bitbadges-cli build vault --json '{"backingCoin":"USDC","name":"My Vault"}'
 
 # From a file
-bitbadges-cli builder templates vault --json ./params.json
+bitbadges-cli build vault --json ./params.json
 
 # From stdin
-echo '{"backingCoin":"USDC"}' | bitbadges-cli builder templates vault --json -
+echo '{"backingCoin":"USDC"}' | bitbadges-cli build vault --json -
 ```
 
 ## Output
@@ -19527,11 +19024,13 @@ bitbadgeschaind tx tokenization create-collection '{"collectionMetadataTimeline"
 Using files is recommended for complex transactions. The JSON schema for each message matches the protobuf definitions documented in the [Messages](../../x-tokenization/messages/README.md) section.
 
 
-## File: ./for-developers/cli/create-with-burner.md
+## File: ./for-developers/cli/deploy-commands.md
 
-# Create With Burner
+# Deploy Commands
 
-`bitbadges-cli builder create-with-burner` lets you create a new collection **without bringing your own Cosmos wallet**. The CLI generates a throwaway signer on demand, funds it (via the faucet or manually), signs the create-collection tx, and hands ownership of the new collection to an address you specify. The throwaway signer is discarded right after.
+The `bitbadges-cli deploy` command broadcasts a transaction. Today only the `--burner` path ships — the required `--burner` flag reserves the verb for future paths (`--from <key>` for chain-binary signing, `--api-broadcast` for posting a pre-signed tx) without making any of them the silent default.
+
+`bitbadges-cli deploy --burner` lets you create a new collection **without bringing your own Cosmos wallet**. The CLI generates a throwaway signer on demand, funds it (via the faucet or manually), signs the create-collection tx, and hands ownership of the new collection to an address you specify. The throwaway signer is discarded right after.
 
 This is the easiest way for agents, one-shot scripts, and anyone who just wants to try BitBadges without the usual wallet-setup ceremony to ship a collection on-chain.
 
@@ -19550,7 +19049,7 @@ Do **not** use it for, and do **not** assume it can handle, any of:
 
 The whole flow works because the "manager" field on the transaction is separate from the signer. Every future action on a collection you create this way has to come from the **manager** you passed — i.e. **you**, not the burner. The moment the create transaction lands, the burner is done. The SDK will not pretend otherwise.
 
-**Dust only, never real funds.** Hot wallets are stored in plaintext on disk. They exist for one job: holding just enough to pay for a single broadcast and its fees. That is the entire security model. Do **not** send meaningful amounts to these addresses. Do **not** reuse them as a personal wallet. Do **not** leave the burner directory in a shared or backed-up location you don't fully control. If you ever accidentally fund one with more than dust, immediately sweep the balance out with `bitbadges-cli builder burner sweep <selector> --to <your-real-address>`.
+**Dust only, never real funds.** Hot wallets are stored in plaintext on disk. They exist for one job: holding just enough to pay for a single broadcast and its fees. That is the entire security model. Do **not** send meaningful amounts to these addresses. Do **not** reuse them as a personal wallet. Do **not** leave the burner directory in a shared or backed-up location you don't fully control. If you ever accidentally fund one with more than dust, immediately sweep the balance out with `bitbadges-cli burner sweep <selector> --to <your-real-address>`.
 
 ## Advantages vs Tradeoffs
 
@@ -19582,11 +19081,11 @@ The burner has **no lasting authority** over the collection it creates. It signs
 Pipe the output of any template that produces a new collection straight into the broadcast command:
 
 ```bash
-bitbadges-cli builder templates subscription \
+bitbadges-cli build subscription \
     --interval monthly --price 10 --denom USDC \
     --recipient bb1your-payout-address... \
     --name "My Subscription" --json-only \
-  | bitbadges-cli builder create-with-burner \
+  | bitbadges-cli deploy --burner \
     --msg-stdin \
     --manager bb1your-real-address... \
     --local --fund faucet
@@ -19614,7 +19113,7 @@ Broadcasting tx (fee=0ubadge, gas=400000)...
 | Flag | Default | Description |
 |---|---|---|
 | `--msg-file <path>` | — | Read the create-collection JSON from a file. |
-| `--msg-stdin` | — | Read the JSON from stdin. Use this when piping from `builder templates …`. |
+| `--msg-stdin` | — | Read the JSON from stdin. Use this when piping from `build …`. |
 | `--manager <bb1…>` | **required** | Address that will own the created collection. Refuses to run without it — orphaning a collection on the throwaway signer would lose it forever. |
 | `--fund <faucet\|manual>` | `faucet` | How to get dust into the burner. `faucet` hits the indexer's faucet endpoint. `manual` prints the address and waits for you to fund it yourself (useful on mainnet where the faucet won't hand out enough for real fees). |
 | `--fee <amount>` | `0` | Fee amount in base units. Defaults to zero — the chain currently accepts zero-fee txs. Bump if you want to prioritize your tx. |
@@ -19664,17 +19163,17 @@ Every burner is written to disk **in plaintext** under `~/.bitbadges/burners/` (
 
 Plaintext is an intentional tradeoff. These wallets hold at most a few units of dust, they sign one transaction and are done, and they carry zero authority over the collections they create. The value of being able to recover funds or resume an interrupted broadcast outweighs the value of keystore encryption for keys this disposable. **Do not reuse burners for anything you care about, and do not commit the burner directory to source control.**
 
-Companion commands for managing saved wallets live under `bitbadges-cli builder burner`:
+Companion commands for managing saved wallets live under `bitbadges-cli burner`:
 
 ```bash
-bitbadges-cli builder burner list                       # show every saved wallet
-bitbadges-cli builder burner show <address>             # inspect one (includes mnemonic)
-bitbadges-cli builder burner resume <address> \
+bitbadges-cli burner list                       # show every saved wallet
+bitbadges-cli burner show <address>             # inspect one (includes mnemonic)
+bitbadges-cli burner resume <address> \
     --msg-file subscription.json --manager bb1... \
     --local                                         # re-enter a paused broadcast
-bitbadges-cli builder burner sweep <address> \
+bitbadges-cli burner sweep <address> \
     --to bb1your-real-address... --local            # send any remaining dust out
-bitbadges-cli builder burner forget <address>           # delete the recovery file
+bitbadges-cli burner forget <address>           # delete the recovery file
 ```
 
 ## What Happens If Funding Is Slow
@@ -19683,7 +19182,7 @@ Zero-fee transactions on a quiet chain usually land in under ten seconds, but th
 
 - **Keep waiting** (default). Polls for another window of the same length.
 - **Retry the faucet**. Sends another request to the indexer faucet endpoint.
-- **Pause and exit**. Writes the recovery file with a `pending` status and quits cleanly. Pick it back up later with `bitbadges-cli builder burner resume …`.
+- **Pause and exit**. Writes the recovery file with a `pending` status and quits cleanly. Pick it back up later with `bitbadges-cli burner resume …`.
 - **Give up**. Marks the wallet as failed. You can still sweep any dust back out afterwards.
 
 In non-interactive environments (or with `--non-interactive`), the CLI defaults to **pause and exit** so automated callers never hang forever and funds are never lost to a timeout.
@@ -19715,7 +19214,7 @@ The CLI provides structured JSON output, pipe-friendly input, and LLM-consumable
 - **`--help-json`** — outputs the full command tree as structured JSON, perfect for LLM tool discovery
 - **`--dry-run`** — simulate any API call without side effects
 - **Pipe-friendly** — accepts stdin (`-`), file paths (`@file.json`), and inline JSON
-- **Self-documenting** — `bitbadges-cli sdk docs all` dumps the entire documentation
+- **Self-documenting** — `bitbadges-cli docs all` dumps the entire documentation
 - **No build step** — no TypeScript compilation, no bundling, just install and run
 
 ## Quick Setup for Agents
@@ -19728,7 +19227,7 @@ curl -fsSL https://install.bitbadges.io | sh
 bitbadges-cli config set apiKey YOUR_KEY
 
 # 3. Verify
-bitbadges-cli sdk status
+bitbadges-cli doctor
 ```
 
 > **Heads up — API key vs. session.** The API key is required on every indexer call but is the *app* scope. Anything that mutates an account, manages keys, or publishes signed data also needs a *user* scope: a session cookie obtained via [`auth login`](auth-commands.md). The CLI is wallet-agnostic — pair it with `bitbadgeschaind sign-arbitrary` for fully headless Cosmos signing, or paste in a signature from any external wallet.
@@ -19768,32 +19267,32 @@ bitbadges-cli api misc search --body '{"query":"my-token"}'
 
 ```bash
 # Review a transaction before broadcasting
-bitbadges-cli sdk review tx.json
+bitbadges-cli check tx.json
 
 # Get human-readable explanation
-bitbadges-cli sdk interpret-tx tx.json
+bitbadges-cli explain tx.json
 
 # Review a live collection
-bitbadges-cli sdk review 42 --testnet
+bitbadges-cli check 42 --testnet
 
 # Interpret what a collection does
-bitbadges-cli sdk interpret-collection 42
+bitbadges-cli explain 42
 ```
 
 ### Step 4: Browse docs and skills
 
 ```bash
 # Dump full docs for context
-bitbadges-cli sdk docs all
+bitbadges-cli docs all
 
 # Browse a specific topic
-bitbadges-cli sdk docs learn/approvals
+bitbadges-cli docs learn/approvals
 
 # List available builder skills
-bitbadges-cli sdk skills
+bitbadges-cli skills
 
 # Get instructions for building a specific token type
-bitbadges-cli sdk skills smart-token
+bitbadges-cli skills smart-token
 ```
 
 ### Step 5: Sign and broadcast (with chain binary)
@@ -19869,7 +19368,7 @@ if [ "$AMOUNT" -lt "$THRESHOLD" ]; then
   echo "Balance $AMOUNT below threshold $THRESHOLD, minting..."
   
   # Review the transaction first
-  bitbadges-cli sdk review ./mint-tx.json --testnet
+  bitbadges-cli check ./mint-tx.json --testnet
   
   # If review passes, broadcast
   bitbadgeschaind tx tokenization transfer-tokens ./mint-tx.json \
@@ -20036,10 +19535,10 @@ Supported keys: `apiKey`, `apiKeyTestnet`, `apiKeyLocal`, `network` (`mainnet` |
 bitbadgeschaind version
 
 # Check SDK CLI
-bitbadges-cli sdk status
+bitbadges-cli doctor
 
 # Check API connectivity
-bitbadges-cli sdk status --testnet
+bitbadges-cli doctor --testnet
 ```
 
 ## Shell Completion
@@ -20053,135 +19552,248 @@ eval "$(bitbadges-cli completion)"
 Add that line to your `.bashrc` or `.zshrc` for persistent completions.
 
 
-## File: ./for-developers/cli/sdk-commands.md
+## File: ./for-developers/cli/tool-commands.md
 
-# SDK Commands
+# Tool Commands
 
-The `sdk` subcommand provides utilities for reviewing, interpreting, and working with BitBadges data. All commands are available via both `bitbadges-cli sdk` and `bitbadgeschaind cli sdk`.
+The MCP builder tool registry — the same surface Claude Desktop and other MCP clients reach over stdio — is also reachable directly from the CLI as plain function calls. No subprocess, no protocol round-trip.
 
-## review
+| Command | Purpose |
+|---|---|
+| [`tools`](#tools) | List every fine-grained tool with its JSON schema |
+| [`tool <name>`](#tool) | Invoke a single tool by name |
+| [`session list \| show \| reset`](#session) | Inspect, dump, or reset persisted builder sessions |
+| [`resources list \| read`](#resources) | Browse the static resource registry (recipes, skills, error patterns, etc.) |
 
-Run validation, audit, and standards checks on a transaction or collection. Accepts a JSON file, inline JSON, collection ID (numeric), or `-` for stdin.
+`tool` (singular) invokes; `tools` (plural) lists. Same convention as `kubectl get pod <name>` vs `kubectl get pods`.
 
-```bash
-bitbadges-cli sdk review tx.json
-bitbadges-cli sdk review collection.json --human
-bitbadges-cli sdk review 42 --testnet
-echo '{"messages":[...]}' | bitbadges-cli sdk review -
-```
+## tools
 
-If `BITBADGES_API_KEY` is set, transactions are sent to the enriched simulate endpoint. Falls back to local analysis via the unified `reviewCollection()` entry point if the API is unavailable.
-
-For collection JSON (no `messages` field), runs `reviewCollection()` locally.
-
-`reviewCollection()` composes three check families — `audit` (permission/supply/centralization), `standards` (protocol conformance), and `ux` (the deterministic UX checks ported from the frontend review sidebar) — into a single `Finding[]`. Each finding carries an `audience` field (`'agent' | 'human' | 'both'`) so consumers can filter: agents get everything (audit + standards + ux); the frontend sidebar passes `audienceFilter: 'human'` via `ReviewContext` to hide audit findings the MCP validators already surface during construction.
-
-## interpret-tx
-
-Generate a human-readable explanation of a transaction.
+Lists every builder tool with its full JSON schema.
 
 ```bash
-bitbadges-cli sdk interpret-tx tx.json
-bitbadges-cli sdk interpret-tx '{"messages":[...]}' --output-file summary.txt
+bitbadges-cli tools                              # full schemas, as JSON
+bitbadges-cli tools --names                      # just tool names, one per line
 ```
 
-## interpret-collection
+**Flags:**
 
-Generate a human-readable explanation of a collection. Accepts a JSON file, inline JSON, numeric collection ID (fetched via API), or `-` for stdin.
+| Flag | Description |
+|---|---|
+| `--names` | Print only the tool names |
+
+## tool
+
+Invokes a single fine-grained builder tool by name. Args come from `--args` (inline JSON) or `--args-file` (path to a JSON file).
 
 ```bash
-bitbadges-cli sdk interpret-collection collection.json
-bitbadges-cli sdk interpret-collection 42 --testnet
+bitbadges-cli tool get_current_timestamp
+bitbadges-cli tool get_skill_instructions --args '{"skillId":"smart-token"}'
+bitbadges-cli tool set_collection_metadata --args-file ./metadata.json --session demo
 ```
 
-## address convert
+**Flags:**
 
-Convert addresses between `bb1` (Cosmos) and `0x` (Ethereum) formats.
+| Flag | Description |
+|---|---|
+| `--args <json>` | Tool arguments as an inline JSON string |
+| `--args-file <path>` | Tool arguments read from a JSON file |
+| `--session <id>` | Session id for stateful tools. Persisted to `~/.bitbadges/sessions/<id>.json`. Defaults to `--args.sessionId`, or the built-in default session. |
+| `--raw` | Print the structured result instead of the formatted text block |
+
+Stateful tools (`set_*`, `add_*`, `remove_*`, `get_transaction`, …) read from and write to the named session. Sessions survive across invocations, so agents can compose a collection across many CLI calls:
 
 ```bash
-bitbadges-cli sdk address convert 0x1234...abcd --to bb1
-bitbadges-cli sdk address convert bb1qpzm... --to 0x
+SESSION=demo
+bitbadges-cli tool set_standards --session $SESSION --args '{"standards":["SmartToken"]}'
+bitbadges-cli tool set_collection_metadata --session $SESSION --args-file ./meta.json
+bitbadges-cli tool add_approval --session $SESSION --args-file ./approval.json
+bitbadges-cli tool get_transaction --session $SESSION  # emit final JSON
 ```
 
-## address validate
+Unknown tool names exit `1` and print the available tool list on stderr.
 
-Check if an address is valid and detect its chain type.
+## session
+
+Persisted builder sessions live under `~/.bitbadges/sessions/<id>.json`. Use the `session` subcommand to inspect or reset them.
 
 ```bash
-bitbadges-cli sdk address validate bb1qpzm...
-# { "valid": true, "chain": "BitBadges", "address": "bb1qpzm..." }
+bitbadges-cli session list                       # session ids on disk
+bitbadges-cli session show demo                  # snapshot as JSON
+bitbadges-cli session reset demo                 # delete the file
 ```
 
-## lookup-token
+| Subcommand | Purpose |
+|---|---|
+| `list` | Print every persisted session id, one per line |
+| `show <id>` | Print the session snapshot as JSON |
+| `reset <id>` | Delete the session file |
 
-Look up token info by symbol. Returns IBC denom, decimals, supported networks, and backing address (for IBC tokens). Omit the symbol to list all known tokens.
+## resources
+
+Static MCP resources — the bundled token registry, recipes, skills, error patterns, and docs slugs. Same surface the MCP clients see, reachable from the CLI for inspection or scripting.
 
 ```bash
-bitbadges-cli sdk lookup-token          # list all tokens
-bitbadges-cli sdk lookup-token BADGE    # specific token info
+bitbadges-cli resources list                     # full metadata as JSON
+bitbadges-cli resources list --uris              # just URIs
+bitbadges-cli resources read bitbadges://recipes/all
 ```
 
-## alias for-ibc-backing
+| Subcommand | Flag | Description |
+|---|---|---|
+| `list` | `--uris` | Print only the resource URIs |
+| `read <uri>` | — | Read a resource body by URI (e.g. `bitbadges://recipes/all`) |
 
-Generate the backing address for an IBC-backed smart token.
+## See also
 
-```bash
-bitbadges-cli sdk alias for-ibc-backing ibc/27394FB092D2ECCD...
-```
+- [Build Commands](build-commands.md) — flag-based deterministic builders. Use these instead of composing tool calls when a template fits.
+- [Analysis Commands](analysis-commands.md) — `check`, `explain`, `simulate`, `preview` for the assembled tx.
+- The MCP builder server (`bitbadges-builder` bin) exposes the same registry over stdio — point any MCP client at it for the same surface in Claude Desktop, Cursor, etc.
 
-## alias for-wrapper
 
-Generate the wrapper path address for a cosmos coin wrapper.
+## File: ./for-developers/cli/utility-commands.md
 
-```bash
-bitbadges-cli sdk alias for-wrapper ubadge
-```
+# Utility Commands
 
-## alias for-mint-escrow
+Catch-all reference for the CLI's smaller utility verbs — discovery, address tooling, lookup, and connectivity.
 
-Generate the mint escrow address for a collection (where quest reward funds are sent, etc.).
-
-```bash
-bitbadges-cli sdk alias for-mint-escrow 42
-```
-
-## gen-list-id
-
-Generate a reserved address list ID from a set of addresses.
-
-```bash
-bitbadges-cli sdk gen-list-id bb1abc... bb1def...
-bitbadges-cli sdk gen-list-id bb1abc... --blacklist
-```
-
-## skills
-
-List available Builder skills or fetch a specific skill's instructions from the bundled docs.
-
-```bash
-bitbadges-cli sdk skills               # list all skills
-bitbadges-cli sdk skills smart-token   # show specific skill
-```
+| Command | Purpose |
+|---|---|
+| [`docs [section]`](#docs) | Browse BitBadges documentation locally |
+| [`skills [id]`](#skills) | Shorthand for `docs builder-skills` — list or show Builder skills |
+| [`address convert \| validate`](#address) | Address conversion and validation |
+| [`alias for-ibc-backing \| for-wrapper \| for-mint-escrow`](#alias) | Generate protocol-derived alias addresses |
+| [`lookup [symbol]`](#lookup) | Look up token info by symbol |
+| [`gen-list-id <addresses...>`](#gen-list-id) | Generate a reserved address list ID |
+| [`doctor`](#doctor) | Environment + connectivity health check |
 
 ## docs
 
-Browse bundled BitBadges documentation.
+Browse BitBadges documentation. Fetched from GitHub on first use, cached locally for 24 hours.
 
 ```bash
-bitbadges-cli sdk docs                      # show section tree
-bitbadges-cli sdk docs all                  # dump full documentation
-bitbadges-cli sdk docs learn                # specific section
-bitbadges-cli sdk docs learn/approvals      # navigate deeper with slash paths
+bitbadges-cli docs                               # show section tree
+bitbadges-cli docs all                           # dump full corpus
+bitbadges-cli docs learn                         # specific section
+bitbadges-cli docs learn/approval-criteria       # nested with slash
+bitbadges-cli docs learn/approval-criteria/merkle-challenges
+bitbadges-cli docs --refresh                     # force cache refresh
 ```
 
-## status
+Partial matching: `bitbadges-cli docs approvals` finds the first section containing "approvals".
 
-Show CLI status: active API key (masked), network, base URL, config path, SDK version, and API health check.
+| Flag | Description |
+|---|---|
+| `--refresh` | Force refresh the cached docs corpus |
+
+Cache: `~/.bitbadges/docs-cache.json`.
+
+## skills
+
+Shorthand for `docs builder-skills` — list or show one of the BitBadges Builder skills.
 
 ```bash
-bitbadges-cli sdk status
-bitbadges-cli sdk status --testnet
+bitbadges-cli skills                             # list all skills
+bitbadges-cli skills smart-token                 # specific skill
 ```
+
+Equivalent to `docs builder-skills` / `docs builder-skills/<id>`.
+
+## address
+
+Convert and validate BitBadges addresses.
+
+```bash
+bitbadges-cli address convert 0x1234...abcd --to bb1
+bitbadges-cli address convert bb1qpzm... --to 0x
+bitbadges-cli address validate bb1qpzm...
+# { "valid": true, "chain": "BitBadges", "address": "bb1qpzm..." }
+```
+
+| Subcommand | Flag | Description |
+|---|---|---|
+| `convert <address>` | `--to <bb1\|0x>` | Convert to the target format |
+| `validate <address>` | — | Check validity and detect chain |
+
+`bb1...` ↔ `0x...` is deterministic (same key, two encodings). The CLI handles the bech32/hex math.
+
+## alias
+
+Generate protocol-derived alias addresses — used wherever the chain auto-derives an account from input data (IBC denoms, collection IDs, etc.).
+
+```bash
+bitbadges-cli alias for-ibc-backing ibc/27394FB092D2ECCD...
+bitbadges-cli alias for-wrapper ubadge
+bitbadges-cli alias for-mint-escrow 42
+```
+
+| Subcommand | Purpose |
+|---|---|
+| `for-ibc-backing <ibcDenom>` | Backing address for an IBC-backed smart token (deposits land here) |
+| `for-wrapper <denom>` | Wrapper path address for a Cosmos coin wrapper |
+| `for-mint-escrow <collectionId>` | Mint-escrow address for a collection (where quest reward funds, etc. are sent) |
+
+These are protocol-controlled addresses with auto-set approvals. Don't try to write to them directly — use the corresponding flow (IBC backing, mint, etc.).
+
+## lookup
+
+Look up token info by symbol. Returns IBC denom, decimals, supported networks, and backing address (for IBC tokens). Omit the symbol to list every known token.
+
+```bash
+bitbadges-cli lookup                             # list every token
+bitbadges-cli lookup BADGE                       # specific token
+```
+
+| Flag | Description |
+|---|---|
+| `--output-file <path>` | Write the JSON output to a file |
+
+## gen-list-id
+
+Generate a reserved address list ID from a set of addresses. Used to deterministically reference an ad-hoc allow/deny list without registering it on-chain first.
+
+```bash
+bitbadges-cli gen-list-id bb1abc... bb1def...
+bitbadges-cli gen-list-id bb1abc... --blacklist
+```
+
+| Flag | Description |
+|---|---|
+| `--blacklist` | Treat as blacklist (default is whitelist) |
+
+## doctor
+
+One-shot environment + connectivity health check. Replaces the old `sdk status` and `builder doctor` commands.
+
+```bash
+bitbadges-cli doctor                             # six core probes
+bitbadges-cli doctor --testnet                   # probe against testnet
+bitbadges-cli doctor --json                      # machine-readable
+bitbadges-cli doctor --with-preview              # add the preview-roundtrip probe
+```
+
+**Probes:**
+
+1. Node version (must be ≥ 18)
+2. SDK package + version (loaded from the bitbadges package.json)
+3. CLI config file at `~/.bitbadges/config.json`
+4. API key reachable for the resolved network (pings `/api/v0/simulate`)
+5. MCP stdio bin presence
+6. Persisted sessions parse
+7. **(`--with-preview` only)** Preview upload + fetch roundtrip — builds a minimal tx, POSTs it to `/api/v0/builder/preview`, GETs it back, asserts the round trip is byte-equivalent
+
+| Flag | Description |
+|---|---|
+| `--json` | Output the full DoctorReport as JSON |
+| `--with-preview` | Add the preview-roundtrip probe |
+| `--testnet`, `--local`, `--url` | Network selection — controls which indexer the API-key probe hits |
+
+Each probe reports `PASS` / `FAIL` / `WARN` / `SKIP`. Exits non-zero only on hard failures; warnings and skips are informational.
+
+## See also
+
+- [Build Commands](build-commands.md), [Analysis Commands](analysis-commands.md), [Deploy Commands](deploy-commands.md), [Tool Commands](tool-commands.md) — the rest of the CLI surface.
+- [Auth Commands](auth-commands.md) — for endpoints that need a user-scoped session cookie on top of the API key.
 
 
 ## File: ./for-developers/concepts/README.md
@@ -20617,7 +20229,7 @@ After installing, set your API key and start querying:
 ```bash
 bitbadges-cli config set apiKey YOUR_KEY    # get one at bitbadges.io/developer
 bitbadges-cli api tokens get-collection 1   # query any collection
-bitbadges-cli sdk docs                      # browse docs from terminal
+bitbadges-cli docs                          # browse docs from terminal
 ```
 
 > **For AI agents:** The CLI is the recommended interface. See [CLI for AI Agents](cli/for-ai-agents.md) for end-to-end workflows, or use the [BitBadges Builder Tools](ai-agents/builder-tools.md) for building tokens with Claude/Cursor.
@@ -36819,7 +36431,7 @@ Bounty has an expire approval to refund escrowed funds back to the submitter onc
 ## Creation Flow (CLI)
 
 ```bash
-bitbadges-cli builder templates payment-request \
+bitbadges-cli build payment-request \
   --amount 10 \
   --denom USDC \
   --payer bb1payer... \
@@ -42213,11 +41825,14 @@ jobs:
 - [CLI overview](https://docs.bitbadges.io/for-developers/cli/README) — One binary, two surfaces: `bitbadgeschaind` (chain) + `bitbadgeschaind cli` (SDK forwarder); use `bb` as the friendly alias.
 - [CLI for AI agents](https://docs.bitbadges.io/for-developers/cli/for-ai-agents) — Agent-friendly flags (`--help-json`, `--dry-run`, JSON output) and recommended workflows.
 - [Installation](https://docs.bitbadges.io/for-developers/cli/installation) — `curl -fsSL https://install.bitbadges.io | sh`.
-- [SDK commands](https://docs.bitbadges.io/for-developers/cli/sdk-commands) — review, audit, address conversion, docs browser, skills listing.
+- [Build commands](https://docs.bitbadges.io/for-developers/cli/build-commands) — Flag-driven generators for vault, subscription, bounty, auction, and 14 other token types.
+- [Analysis commands](https://docs.bitbadges.io/for-developers/cli/analysis-commands) — `check` (validate / review / verify folded), `explain`, `simulate`, `preview`.
+- [Deploy commands](https://docs.bitbadges.io/for-developers/cli/deploy-commands) — Ship a create-collection tx without bringing your own wallet (`deploy --burner`).
+- [Tool commands](https://docs.bitbadges.io/for-developers/cli/tool-commands) — Fine-grained MCP `tool` / `tools` registry, persisted `session`, static `resources`.
+- [Utility commands](https://docs.bitbadges.io/for-developers/cli/utility-commands) — `docs`, `skills`, `address`, `alias`, `lookup`, `gen-list-id`, `doctor`.
 - [API commands](https://docs.bitbadges.io/for-developers/cli/api-commands) — 104+ API routes from your terminal.
+- [Auth commands](https://docs.bitbadges.io/for-developers/cli/auth-commands) — wallet-agnostic Blockin sessions for Full Access endpoints.
 - [Chain commands](https://docs.bitbadges.io/for-developers/cli/chain-commands) — keys, signing, broadcasting, on-chain queries.
-- [Builder templates](https://docs.bitbadges.io/for-developers/cli/builder-templates) — Flag-driven generators for vault, subscription, bounty, auction, and 14 other token types.
-- [Create with burner](https://docs.bitbadges.io/for-developers/cli/create-with-burner) — Ship a create-collection tx without bringing your own wallet.
 
 ## API
 
