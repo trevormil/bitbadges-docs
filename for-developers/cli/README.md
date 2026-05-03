@@ -74,6 +74,11 @@ Use whichever you prefer. The chain binary adds key management, transaction sign
 | Capability | Command | Example |
 |-----------|---------|---------|
 | **Create a collection with no wallet setup** | `bitbadges-cli deploy --burner` | `bitbadges-cli build subscription … \| bitbadges-cli deploy --burner --msg-stdin --manager bb1… --local` |
+| **Sign with a browser wallet (Keplr / MetaMask)** | `bitbadges-cli auth login --browser` | `bitbadges-cli auth login --browser --address bb1...` |
+| **Broadcast via your browser wallet** | `bitbadges-cli deploy --browser` | `bitbadges-cli deploy --browser --msg-file col.json --manager bb1...` |
+| **Build + broadcast in one step** | `bitbadges-cli build … --deploy-with-browser` | `bitbadges-cli build vault --name … --deploy-with-browser` |
+| **Sign now, broadcast later** | `bitbadges-cli deploy --browser --sign-only` | `bitbadges-cli deploy --browser --sign-only --msg-file col.json --manager bb1...` |
+| **Get signable payload for a custom signer (ethers/viem/HSM)** | `bitbadges-cli gen-tx-payload` | `bitbadges-cli build vault … \| bitbadges-cli gen-tx-payload --from bb1... --with-evm-tx` |
 | **Confirm a tx landed on chain** | `bitbadges-cli tx wait` | `bitbadges-cli tx wait $TXHASH --mainnet --timeout 60` |
 | **Query any collection** | `bitbadges-cli api tokens get-collection` | `bitbadges-cli api tokens get-collection 1` |
 | **Review and audit tokens** | `bitbadges-cli check` | `bitbadges-cli check tx.json` |
@@ -123,5 +128,6 @@ For building token collections with AI assistants (Claude, Cursor, etc.), see th
 - [Utility Commands](utility-commands.md) — `docs`, `skills`, `address`, `alias`, `lookup`, `gen-list-id`, `doctor`
 - [API Commands](api-commands.md) — 104+ API routes from your terminal
 - [Auth Commands](auth-commands.md) — wallet-agnostic Blockin sessions for Full Access endpoints
+- [Sign Bridge](sign-bridge.md) — sign with a browser wallet (Keplr/MetaMask) from the CLI; `gen-tx-payload` for custom programmatic signers
 - [Chain Commands](chain-commands.md) — keys, transactions, on-chain queries
 - [CLI for AI Agents](for-ai-agents.md) — agent workflows and automation patterns

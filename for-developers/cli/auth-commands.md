@@ -11,8 +11,8 @@ Available via both `bitbadges-cli auth` and `bb cli auth`.
 The CLI **never touches a private key**. Every `auth login` requires a signature produced by something else:
 
 - `bitbadgeschaind sign-arbitrary` — the chain binary's offline ADR-36 signer. Recommended for fully headless agents.
-- A browser wallet (MetaMask, Keplr) — copy the message out, sign in the browser, paste the signature back.
-- A hardware wallet, custodial signer, HSM — anything that can produce an ADR-36 / EIP-191 signature over the challenge message.
+- **A browser wallet (MetaMask, Keplr) via `auth login --browser`** — opens `/sign` in your default browser, signs there, captures the signature on a local loopback listener. See [Sign Bridge](sign-bridge.md) for the full reference.
+- A hardware wallet, custodial signer, HSM — anything that can produce an ADR-36 / EIP-191 signature over the challenge message. For programmatic / agentic signers that need pre-built SignDoc bytes, see [`gen-tx-payload`](sign-bridge.md#gen-tx-payload).
 
 That separation is what makes the same `auth` surface work for both an agent on a headless box and a developer signing on their laptop.
 
@@ -68,9 +68,19 @@ bitbadges-cli api accounts get-account --body '{"address":"bb1..."}' --with-sess
 
 For an interactive flow with an in-process signer, `auth login` will fetch a fresh challenge inline if no pending entry exists and `--message` is not passed.
 
-## Browser-wallet flow (paste-in)
+## Browser-wallet flow
 
-For users whose wallet only lives in a browser extension, the same three steps work — sign step 2 in the browser instead of with the chain binary:
+The recommended path for browser-only wallets is the **sign bridge**:
+
+```bash
+bitbadges-cli auth login --browser --address bb1...
+```
+
+The CLI opens `/sign` in your default browser; you sign with Keplr/MetaMask; the resulting Full Access session lands in `~/.bitbadges/auth.json` automatically. No copy-paste, no `--public-key` to manage. See [Sign Bridge](sign-bridge.md#auth-login-browser) for the full flag reference, the threat model, and SSH-tunneled dev setups.
+
+### Manual paste-in (legacy)
+
+If you want to do it without the bridge — useful for paranoid environments or if the browser auto-launch is undesirable — the same three-step flow works with a paste-in signature:
 
 ```bash
 # 1. Fetch and print the challenge
@@ -103,10 +113,15 @@ bitbadges-cli auth login \
 | Flag | Description |
 |---|---|
 | `--address <addr>` | Native address (`bb1...` for Cosmos, `0x...` for ETH). Required. |
-| `--signature <sig>` | Hex or base64 signature over the challenge message. Required. |
-| `--public-key <b64>` | Compressed pubkey, base64. Required for Cosmos. |
+| `--signature <sig>` | Hex or base64 signature over the challenge message. Required unless `--browser` is set. |
+| `--browser` | Use the [sign bridge](sign-bridge.md) — opens the browser, signs in the wallet there. Mutually exclusive with `--signature`. |
+| `--public-key <b64>` | Compressed pubkey, base64. Required for Cosmos when using `--signature`; auto-captured from the wallet when using `--browser`. |
 | `--message <text>` | Exact challenge message. Defaults to the saved pending entry. |
 | `--message-file <path>` | Read the challenge message from a file (use `-` for stdin). |
+| `--frontend-url <url>` | With `--browser`: override the frontend base URL. |
+| `--no-open` | With `--browser`: print the sign URL instead of auto-launching the browser. |
+| `--port <n>` | With `--browser`: pin the loopback listener port (useful for SSH-tunneled dev). |
+| `--timeout <seconds>` | With `--browser`: how long to wait for the wallet (default 300, max 1800). |
 | `--2fa <code>` | 6-digit TOTP code, if the account has 2FA enabled. |
 | `--2fa-backup <code>` | Backup recovery code (alternative to `--2fa`). |
 
