@@ -68,7 +68,33 @@ echo '{"messages":[...]}' | bitbadges-cli explain -
 | Flag | Description |
 |---|---|
 | `--output-file <path>` | Write the output to a file instead of stdout |
+| `--format <json\|text>` | `text` (default for TTY) renders prose; `json` returns a structured envelope |
 | `--testnet`, `--local`, `--url` | Network selection for numeric collection-id fetches |
+
+### Structured output: `--format json`
+
+For agents that want to branch on transaction shape rather than parse prose, `--format json` returns the envelope-wrapped structured findings:
+
+```bash
+bitbadges-cli explain tx.json --format json
+# {
+#   "ok": true,
+#   "data": {
+#     "kind": "tx" | "collection" | "msg",
+#     "messages": [
+#       {
+#         "typeUrl": "/tokenization.MsgCreateCollection",
+#         "summary": "Create a new Smart Token (IBC-backed) called \"My Vault\" ..."
+#       }
+#     ],
+#     "fullText": "...full prose interpretation..."
+#   },
+#   "warnings": [],
+#   "error": null
+# }
+```
+
+`kind` lets agents discriminate between transactions, raw collections, and bare messages. `messages[]` is empty for raw collection inputs; populated for tx wrappers and bare messages. `fullText` is the same prose `--format text` would print, included so JSON callers don't have to make a second call to get the human-readable version.
 
 Replaces the old `sdk interpret-tx` and `sdk interpret-collection` commands plus `builder explain` — one verb, auto-detect, one less mental dimension.
 

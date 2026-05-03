@@ -166,5 +166,19 @@ In non-interactive environments (or with `--non-interactive`), the CLI defaults 
 - **Unset `BITBADGES_API_KEY`** with `--fund faucet` on `--network mainnet` or `--network testnet` — the faucet will reject the request. Use `--local` for local development or set the key.
 - **Faucet already airdropped to this address** — the faucet dedupes by address. The CLI generates a fresh burner per run, so you'd only hit this by reusing a wallet that already got its dust.
 - **Manual funding never arrives** — the CLI pauses and lets you resume once the funding lands.
+- **Shape mismatch on input** — the CLI expects a single Msg `{typeUrl, value}`, not a tx wrapper `{messages: [...]}`. The error message says exactly what shape was provided so agents don't have to guess.
+- **Insufficient funds at broadcast time** — when the burner came up short on dust (faucet refused, manual funding too small, or the wallet got swept between funding and broadcast), the result envelope includes a `hint` pointing at `bitbadges-cli burner sweep` to recover any remaining dust.
 
 In every failure mode, the recovery file captures the state so nothing is silently lost.
+
+## `--dry-run`: Simulate Without Broadcasting
+
+Pass `--dry-run` to preview a deploy without generating a wallet, hitting the faucet, or broadcasting. The CLI runs the transaction through the indexer's simulate endpoint and prints expected gas, balance changes, and any validation errors.
+
+```bash
+bitbadges-cli deploy vault.json --burner --dry-run --manager bb1... --mainnet
+```
+
+If the simulator rejects the transaction (validation error, malformed msg, etc), the command exits non-zero so agents can branch on `success === false` before committing real funds. No state is written to disk.
+
+The dry-run requires an API key on non-local networks, since simulate is API-gated. On `--local` it works without a key.

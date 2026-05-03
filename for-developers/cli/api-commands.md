@@ -72,9 +72,59 @@ Each route's `--help` includes the HTTP method, path template, SDK type names, k
 bitbadges-cli api tokens get-collections --help
 ```
 
+## Discovery: `--search` and `--schema`
+
+Two flags help agents and humans navigate the 100+ routes without grepping the help tree.
+
+### `--search <keyword>`
+
+Substring scan over route name, path, tag, and description. Case-insensitive. Default text columns; pass `--format json` for a parseable list.
+
+```bash
+bitbadges-cli api --search swap
+# estimate-swap          POST  /api/{version}/swaps/estimate
+#       Estimate Swap
+# get-swap-activities    GET   /swapActivities
+#       Get Swap Activities
+
+bitbadges-cli api --search balance --format json
+# [{"name":"get-balance-by-address-specific-token", ...}, ...]
+```
+
+### `--schema` (per route)
+
+Print the route's request body fields, query parameters, and SDK type names without making an API call. Useful for agents that want to construct valid request bodies offline.
+
+```bash
+bitbadges-cli api tokens get-collection --schema
+# {
+#   "name": "get-collection",
+#   "method": "GET",
+#   "path": "/collection/{collectionId}",
+#   "sdkLinks": { "response": "iGetCollectionSuccessResponse", ... },
+#   "queryParams": [],
+#   "bodyFields": []
+# }
+```
+
+`--schema` works on every route in every group.
+
+## Authentication Hints on Errors
+
+When an `api` call fails with HTTP 401 or 403 (typically a Full Access route called without a session), the CLI emits a one-liner pointing at the recovery action:
+
+```bash
+bitbadges-cli api accounts get-account --body '{"address":"bb1..."}'
+# Error: API error: Unauthorized
+# Hint: This route requires user-scoped auth — run `bitbadges-cli auth login`, then retry with `--with-session`.
+```
+
+If the call already attached a cookie via `--with-session` and the indexer still refused, the hint suggests a re-login (session likely expired or scoped wrong).
+
 ## Global Options
 
 | Flag | Description |
 |---|---|
 | `--help-json` | Output the full command tree as structured JSON (useful for LLMs) |
+| `--quiet` / `BB_QUIET=1` | Silence stderr commentary; errors still emit |
 | `--help` | Standard help output |
