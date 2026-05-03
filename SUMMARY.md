@@ -164,6 +164,7 @@
   * [Build Commands](for-developers/cli/build-commands.md)
   * [Analysis Commands](for-developers/cli/analysis-commands.md)
   * [Deploy Commands](for-developers/cli/deploy-commands.md)
+  * [Tx Commands](for-developers/cli/tx-commands.md)
   * [Tool Commands](for-developers/cli/tool-commands.md)
   * [Utility Commands](for-developers/cli/utility-commands.md)
   * [API Commands](for-developers/cli/api-commands.md)
