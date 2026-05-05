@@ -8,6 +8,7 @@
 * [🔗 Official Links and Resources](overview/official-links.md)
 * [🤝 Brand Guidelines](overview/link-sharing.md)
 * [⚖️ BitBadges vs ERC-3643](overview/bitbadges-vs-erc3643.md)
+* [🏛️ Compliance Zone Architecture](overview/compliance-zone-architecture.md)
 
 ## 🏗️ Token Standard
 
