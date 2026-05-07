@@ -11,6 +11,6 @@ The CLI surface is flat verb-first — every command lives at `bitbadges-cli <ve
 - **[Tool Commands](../cli/tool-commands.md)** — fine-grained MCP `tool` / `tools` registry, persisted `session`, static `resources`
 - **[Utility Commands](../cli/utility-commands.md)** — `docs`, `skills`, `address`, `alias`, `lookup`, `gen-list-id`, `doctor`
 - **[API Commands](../cli/api-commands.md)** — 104+ indexer routes
-- **[Auth Commands](../cli/auth-commands.md)** — wallet-agnostic Blockin sessions
+- **[Auth Commands](../cli/auth-commands.md)** — wallet-agnostic SIWBB sessions
 - **[Chain Commands](../cli/chain-commands.md)** — `bitbadgeschaind` keys, transactions, queries
 - **[CLI for AI Agents](../cli/for-ai-agents.md)** — agent workflows and automation patterns

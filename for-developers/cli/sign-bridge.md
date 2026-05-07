@@ -28,7 +28,7 @@ Every sign-bridge command resolves to one of three URL `mode` values on the `/si
 
 | Mode | Used by | What lands on `/sign` | What comes back |
 |---|---|---|---|
-| `login` | `auth login --browser` | The Blockin challenge message | Signature → CLI replays it on `/auth/verify` to mint a Full Access session cookie |
+| `login` | `auth login --browser` | The SIWBB (SIWE) challenge message | Signature → CLI replays it on `/auth/verify` to mint a Full Access session cookie |
 | `msg` | `sign-with-browser` | An arbitrary string to sign | Signature + address (+ pubkey for Cosmos) |
 | `tx` | `deploy --browser`, `build … --deploy-with-browser` | A Cosmos `MsgCreateCollection` (or any single tx). For collection-creation msgs the page runs the same review pipeline as `/builder/preview`, so you see the full Preview / Review Items / Transferability / Permissions / Details / Compatibility / Alternatives sidebar before you sign. | Tx hash (or signed bytes if `--sign-only` is set) |
 
@@ -46,7 +46,7 @@ The page rejects any redirect target that isn't a `127.0.0.1` or `localhost` URL
 
 ## auth login --browser
 
-Mint a Full Access session cookie by signing the Blockin challenge with a browser wallet.
+Mint a Full Access session cookie by signing the SIWBB (SIWE) challenge with a browser wallet.
 
 ```bash
 bitbadges-cli auth login --browser \
@@ -334,6 +334,6 @@ This is also the realistic prod scenario: the wallet and the CLI live on the sam
 
 ## Reference
 
-- [auth-commands.md](auth-commands.md) — full Blockin / `auth login` reference
+- [auth-commands.md](auth-commands.md) — full SIWBB / `auth login` reference
 - [deploy-commands.md](deploy-commands.md) — `--burner` (the alternative to `--browser`)
 - [build-commands.md](build-commands.md) — every `--deploy-with-burner` / `--deploy-with-browser` preset

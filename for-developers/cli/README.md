@@ -127,7 +127,7 @@ For building token collections with AI assistants (Claude, Cursor, etc.), see th
 - [Tool Commands](tool-commands.md) — fine-grained MCP tools (`tool` / `tools`), persisted sessions, static resources
 - [Utility Commands](utility-commands.md) — `docs`, `skills`, `address`, `alias`, `lookup`, `gen-list-id`, `doctor`
 - [API Commands](api-commands.md) — 104+ API routes from your terminal
-- [Auth Commands](auth-commands.md) — wallet-agnostic Blockin sessions for Full Access endpoints
+- [Auth Commands](auth-commands.md) — wallet-agnostic SIWBB sessions for Full Access endpoints
 - [Sign Bridge](sign-bridge.md) — sign with a browser wallet (Keplr/MetaMask) from the CLI; `gen-tx-payload` for custom programmatic signers
 - [Chain Commands](chain-commands.md) — keys, transactions, on-chain queries
 - [CLI for AI Agents](for-ai-agents.md) — agent workflows and automation patterns
