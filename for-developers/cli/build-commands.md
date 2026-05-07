@@ -386,6 +386,46 @@ bitbadges-cli build pm-buy-intent --address bb1... \
 | `--denom <symbol>` | Yes | Payment coin (USDC, BADGE) |
 | `--expiration <duration>` | No | How long the intent stays open (default: 7d) |
 
+## Transfer Builder
+
+This command builds a `MsgTransferTokens` transaction for moving existing tokens between addresses. Unlike the collection builders, it runs as an interactive walkthrough by default — it fetches the collection, the sender's outgoing approvals, and the recipient's incoming approvals, then walks you through picking which approvals to prioritize, whether to use predetermined-balance precalculation, and the amount + token IDs to transfer. Every prompt has a flag short-circuit so the command can also run non-interactively in scripts.
+
+### `build transfer`
+
+Build a `MsgTransferTokens` with guided approval discovery. Requires `BITBADGES_API_KEY` (env var or `bitbadges-cli config set apiKey ...`) — the walkthrough fetches the collection and per-user approvals from the API.
+
+```bash
+# Interactive walkthrough — prompts for everything
+bitbadges-cli build transfer
+
+# Flag-driven (still prompts for the approval-selection step)
+bitbadges-cli build transfer --collection-id 1 --from bb1abc... --to bb1xyz... --amount 5
+
+# Fully non-interactive — picks no prioritized approvals (chain matches),
+# no precalculation, default amount=1, default tokenIds=all valid
+bitbadges-cli build transfer --yes --collection-id 1 --from bb1abc... --to bb1xyz...
+```
+
+The walkthrough renders a numbered list grouped by approval level (collection / outgoing / incoming) with tags for `predetermined`, `payment`, `must-own`, and `backed`, then asks:
+
+1. Which approvals to set as `prioritizedApprovals` (comma-separated indices, blank to skip).
+2. For each level with a pick, whether to set `onlyCheckPrioritized<Level>Approvals: true`.
+3. If any picked approval has `predeterminedBalances`, whether to delegate balance computation via `precalculateBalancesFromApproval` (and an optional `scalingMultiplier` for consuming N predetermined steps in one tx).
+4. If not precalculated, the per-recipient `amount` and the `tokenIds` to transfer.
+
+If a picked approval requires a coin payment or prerequisite token ownership, the walkthrough prints a "Heads up" line listing those side conditions before the final emit.
+
+| Flag | Required | Description |
+|------|----------|-------------|
+| `--collection-id <id>` | No | Collection ID (prompts if omitted) |
+| `--from <address>` | No | Sender address (`bb1.../0x.../"Mint"` for minting); prompts if omitted |
+| `--to <address>` | No | Recipient address (cannot be `"Mint"`); prompts if omitted |
+| `--amount <n>` | No | Per-recipient amount when not precalculated (default: prompt; `1` with `--yes`) |
+| `--token-ids <spec>` | No | Token IDs — `1-5`, `1,3,5`, or `all` (default: prompt; `all` with `--yes`) |
+| `--yes` | No | Skip every prompt. Picks no prioritized approvals (chain matches), no precalc, default amount + tokenIds. For scripts/CI |
+
+The output `MsgTransferTokens` flows through the same `emit()` pipeline as the collection builders, so `--simulate`, `--explain`, `--deploy-with-browser`, and the auto-validate banner all behave identically. The `--deploy-with-burner` path is CREATE-only and will refuse a transfer with its standard error.
+
 ## JSON Input Mode
 
 All commands support `--json` for passing parameters as a JSON object. This is useful for scripting, piping from other tools, or when an AI agent generates the parameters programmatically.

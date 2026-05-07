@@ -8,9 +8,28 @@ const res = await BitBadgesApi.getAccount({ address: '...' });
 const account = res.account;
 const { accountNumber, sequence, publicKey } = account;
 if (Number(accountNumber) <= 0) {
-    // TODO: They are unregistered. Send them dust to register.
+    // The account hasn't interacted with the chain yet — it has no
+    // account ID, so the chain can't validate a signed tx from it.
+    // Register the account by sending it any non-zero amount of any
+    // denom (BADGE works); the next block assigns an account number.
+    //
+    // Production apps typically route the user to:
+    //   • The faucet (testnet only — see ai-agents/testnet-faucet.md), or
+    //   • An MsgSend signed by an already-registered key (mainnet),
+    //
+    // …then re-fetch the account via `BitBadgesApi.getAccount` to pick
+    // up the now-valid accountNumber. The snippet below stops the flow
+    // cleanly so the calling app can decide which registration path
+    // to use:
+    throw new Error(
+        `Account ${account.address} is unregistered. ` +
+        `Send it any non-zero balance (e.g. via MsgSend or the testnet faucet) ` +
+        `and re-fetch before building a tx context.`
+    );
 }
 ```
+
+> See [Accounts](../../concepts/accounts.md) for how the account ID is assigned, and [Testnet Faucet](../../ai-agents/testnet-faucet.md) for the testnet registration path.
 
 For Cosmos-based wallets, you will need the public key. This may be available in the account response if the user has already interacted with BitBadges, but if this is first time, you can fetch it like below.
 
