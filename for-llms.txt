@@ -1,5 +1,5 @@
 # Gitbook Documentation Compilation
-Generated on Tue May  5 13:22:34 UTC 2026
+Generated on Thu May  7 00:43:33 UTC 2026
 
 
 
@@ -2057,7 +2057,7 @@ BitBadges addresses these fundamental issues through core design decisions:
       * [Verification Flow](for-developers/sign-in-with-bitbadges/verification/verification-flow.md)
       * [Access Tokens](for-developers/sign-in-with-bitbadges/verification/access-tokens.md)
       * [Security Considerations](for-developers/sign-in-with-bitbadges/verification/security-considerations.md)
-    * [Blockin Docs](https://blockin.gitbook.io/blockin)
+    * [SIWE Spec (EIP-4361)](https://eips.ethereum.org/EIPS/eip-4361)
 * [⚒️ BitBadges JS / SDK](for-developers/bitbadges-sdk/README.md)
   * [Overview](for-developers/bitbadges-sdk/overview.md)
   * [React & Next.js Quickstart](for-developers/bitbadges-sdk/react-quickstart.md)
@@ -13446,7 +13446,7 @@ The CLI surface is flat verb-first — every command lives at `bitbadges-cli <ve
 - **[Tool Commands](../cli/tool-commands.md)** — fine-grained MCP `tool` / `tools` registry, persisted `session`, static `resources`
 - **[Utility Commands](../cli/utility-commands.md)** — `docs`, `skills`, `address`, `alias`, `lookup`, `gen-list-id`, `doctor`
 - **[API Commands](../cli/api-commands.md)** — 104+ indexer routes
-- **[Auth Commands](../cli/auth-commands.md)** — wallet-agnostic Blockin sessions
+- **[Auth Commands](../cli/auth-commands.md)** — wallet-agnostic SIWBB sessions
 - **[Chain Commands](../cli/chain-commands.md)** — `bitbadgeschaind` keys, transactions, queries
 - **[CLI for AI Agents](../cli/for-ai-agents.md)** — agent workflows and automation patterns
 
@@ -17931,7 +17931,7 @@ For building token collections with AI assistants (Claude, Cursor, etc.), see th
 - [Tool Commands](tool-commands.md) — fine-grained MCP tools (`tool` / `tools`), persisted sessions, static resources
 - [Utility Commands](utility-commands.md) — `docs`, `skills`, `address`, `alias`, `lookup`, `gen-list-id`, `doctor`
 - [API Commands](api-commands.md) — 104+ API routes from your terminal
-- [Auth Commands](auth-commands.md) — wallet-agnostic Blockin sessions for Full Access endpoints
+- [Auth Commands](auth-commands.md) — wallet-agnostic SIWBB sessions for Full Access endpoints
 - [Sign Bridge](sign-bridge.md) — sign with a browser wallet (Keplr/MetaMask) from the CLI; `gen-tx-payload` for custom programmatic signers
 - [Chain Commands](chain-commands.md) — keys, transactions, on-chain queries
 - [CLI for AI Agents](for-ai-agents.md) — agent workflows and automation patterns
@@ -18230,7 +18230,7 @@ If the call already attached a cookie via `--with-session` and the indexer still
 
 # Auth Commands
 
-The `bitbadges-cli auth` subcommand authenticates the CLI against the BitBadges indexer using the standard Blockin challenge → verify flow. It stores the resulting session cookie under `~/.bitbadges/auth.json` (mode `0600`, multi-account, multi-network), and `bitbadges-cli api --with-session` attaches that cookie on subsequent calls.
+The `bitbadges-cli auth` subcommand authenticates the CLI against the BitBadges indexer using the standard SIWBB (SIWE / EIP-4361) challenge → verify flow. It stores the resulting session cookie under `~/.bitbadges/auth.json` (mode `0600`, multi-account, multi-network), and `bitbadges-cli api --with-session` attaches that cookie on subsequent calls.
 
 This is what an agent or operator runs once before hitting any indexer endpoint gated by `Full Access` — anything that mutates an account, manages keys, publishes signed data, etc. The plain API key is necessary on every call but not sufficient for those routes; the API key is the *app* scope, the session cookie is the *user* scope.
 
@@ -18362,7 +18362,7 @@ bitbadges-cli auth login \
 
 ## auth challenge
 
-Fetch a Blockin challenge for an address. Prints the message your signer must sign and (by default) persists the response cookie locally so a follow-up `auth login` / `auth verify` can replay it.
+Fetch a SIWBB challenge for an address. Prints the message your signer must sign and (by default) persists the response cookie locally so a follow-up `auth login` / `auth verify` can replay it.
 
 ```bash
 bitbadges-cli auth challenge --address bb1... [--json] [--no-save-pending]
@@ -18503,7 +18503,7 @@ bitbadges-cli auth login --address bb1... --signature ... --public-key ... \
   --2fa-backup AAAA-BBBB-CCCC # one of the backup codes from setup
 ```
 
-The CLI replays the full cookie chain (Blockin nonce + indexer LB stickiness) through `/api/v0/2fa/offline/verify` for you — no extra setup needed beyond the flag.
+The CLI replays the full cookie chain (SIWBB nonce + indexer LB stickiness) through `/api/v0/2fa/offline/verify` for you — no extra setup needed beyond the flag.
 
 ## Notes and limitations
 
@@ -19715,7 +19715,7 @@ Every sign-bridge command resolves to one of three URL `mode` values on the `/si
 
 | Mode | Used by | What lands on `/sign` | What comes back |
 |---|---|---|---|
-| `login` | `auth login --browser` | The Blockin challenge message | Signature → CLI replays it on `/auth/verify` to mint a Full Access session cookie |
+| `login` | `auth login --browser` | The SIWBB (SIWE) challenge message | Signature → CLI replays it on `/auth/verify` to mint a Full Access session cookie |
 | `msg` | `sign-with-browser` | An arbitrary string to sign | Signature + address (+ pubkey for Cosmos) |
 | `tx` | `deploy --browser`, `build … --deploy-with-browser` | A Cosmos `MsgCreateCollection` (or any single tx). For collection-creation msgs the page runs the same review pipeline as `/builder/preview`, so you see the full Preview / Review Items / Transferability / Permissions / Details / Compatibility / Alternatives sidebar before you sign. | Tx hash (or signed bytes if `--sign-only` is set) |
 
@@ -19733,7 +19733,7 @@ The page rejects any redirect target that isn't a `127.0.0.1` or `localhost` URL
 
 ## auth login --browser
 
-Mint a Full Access session cookie by signing the Blockin challenge with a browser wallet.
+Mint a Full Access session cookie by signing the SIWBB (SIWE) challenge with a browser wallet.
 
 ```bash
 bitbadges-cli auth login --browser \
@@ -20021,7 +20021,7 @@ This is also the realistic prod scenario: the wallet and the CLI live on the sam
 
 ## Reference
 
-- [auth-commands.md](auth-commands.md) — full Blockin / `auth login` reference
+- [auth-commands.md](auth-commands.md) — full SIWBB / `auth login` reference
 - [deploy-commands.md](deploy-commands.md) — `--burner` (the alternative to `--browser`)
 - [build-commands.md](build-commands.md) — every `--deploy-with-burner` / `--deploy-with-browser` preset
 
@@ -35176,7 +35176,7 @@ Protocol for token-gated access to APIs/resources using HTTP 402 Payment Require
 - mustOwnAmounts: { start: 0, end: 0 } = must NOT own (exclusion)
 - Tiered access: different token IDs = different access levels
 - Time-bounded access: combine ownershipTimes with subscription tokens
-- Server-side verification: BitBadgesApi.verifyOwnership() or Blockin sign-in
+- Server-side verification: BitBadgesApi.verifyOwnership() or SIWBB sign-in
 
 ## Instructions
 
@@ -35230,7 +35230,7 @@ Require badges from multiple collections using $and/$or logic.
 2. **Configure ownership requirements**: Define what badges grant what access
 3. **Server integration**: Use BitBadges API to verify ownership:
    - `BitBadgesApi.verifyOwnership()` for programmatic checks
-   - Blockin sign-in for session-based authentication
+   - SIWBB sign-in for session-based authentication
 4. **Client integration**: Handle 402 responses, present proof of ownership
 
 ### BB-402 Gotchas
@@ -42556,7 +42556,7 @@ jobs:
 - [Tool commands](https://docs.bitbadges.io/for-developers/cli/tool-commands) — Fine-grained MCP `tool` / `tools` registry, persisted `session`, static `resources`.
 - [Utility commands](https://docs.bitbadges.io/for-developers/cli/utility-commands) — `docs`, `skills`, `address`, `alias`, `lookup`, `gen-list-id`, `doctor`.
 - [API commands](https://docs.bitbadges.io/for-developers/cli/api-commands) — 104+ API routes from your terminal.
-- [Auth commands](https://docs.bitbadges.io/for-developers/cli/auth-commands) — wallet-agnostic Blockin sessions for Full Access endpoints.
+- [Auth commands](https://docs.bitbadges.io/for-developers/cli/auth-commands) — wallet-agnostic SIWBB sessions for Full Access endpoints.
 - [Chain commands](https://docs.bitbadges.io/for-developers/cli/chain-commands) — keys, signing, broadcasting, on-chain queries.
 
 ## API
