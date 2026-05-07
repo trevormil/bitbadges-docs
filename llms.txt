@@ -65,7 +65,7 @@
 - [Tool commands](https://docs.bitbadges.io/for-developers/cli/tool-commands) — Fine-grained MCP `tool` / `tools` registry, persisted `session`, static `resources`.
 - [Utility commands](https://docs.bitbadges.io/for-developers/cli/utility-commands) — `docs`, `skills`, `address`, `alias`, `lookup`, `gen-list-id`, `doctor`.
 - [API commands](https://docs.bitbadges.io/for-developers/cli/api-commands) — 104+ API routes from your terminal.
-- [Auth commands](https://docs.bitbadges.io/for-developers/cli/auth-commands) — wallet-agnostic Blockin sessions for Full Access endpoints.
+- [Auth commands](https://docs.bitbadges.io/for-developers/cli/auth-commands) — wallet-agnostic SIWBB sessions for Full Access endpoints.
 - [Chain commands](https://docs.bitbadges.io/for-developers/cli/chain-commands) — keys, signing, broadcasting, on-chain queries.
 
 ## API

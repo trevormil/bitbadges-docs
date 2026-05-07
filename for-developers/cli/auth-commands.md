@@ -1,6 +1,6 @@
 # Auth Commands
 
-The `bitbadges-cli auth` subcommand authenticates the CLI against the BitBadges indexer using the standard Blockin challenge → verify flow. It stores the resulting session cookie under `~/.bitbadges/auth.json` (mode `0600`, multi-account, multi-network), and `bitbadges-cli api --with-session` attaches that cookie on subsequent calls.
+The `bitbadges-cli auth` subcommand authenticates the CLI against the BitBadges indexer using the standard SIWBB (SIWE / EIP-4361) challenge → verify flow. It stores the resulting session cookie under `~/.bitbadges/auth.json` (mode `0600`, multi-account, multi-network), and `bitbadges-cli api --with-session` attaches that cookie on subsequent calls.
 
 This is what an agent or operator runs once before hitting any indexer endpoint gated by `Full Access` — anything that mutates an account, manages keys, publishes signed data, etc. The plain API key is necessary on every call but not sufficient for those routes; the API key is the *app* scope, the session cookie is the *user* scope.
 
@@ -132,7 +132,7 @@ bitbadges-cli auth login \
 
 ## auth challenge
 
-Fetch a Blockin challenge for an address. Prints the message your signer must sign and (by default) persists the response cookie locally so a follow-up `auth login` / `auth verify` can replay it.
+Fetch a SIWBB challenge for an address. Prints the message your signer must sign and (by default) persists the response cookie locally so a follow-up `auth login` / `auth verify` can replay it.
 
 ```bash
 bitbadges-cli auth challenge --address bb1... [--json] [--no-save-pending]
@@ -273,7 +273,7 @@ bitbadges-cli auth login --address bb1... --signature ... --public-key ... \
   --2fa-backup AAAA-BBBB-CCCC # one of the backup codes from setup
 ```
 
-The CLI replays the full cookie chain (Blockin nonce + indexer LB stickiness) through `/api/v0/2fa/offline/verify` for you — no extra setup needed beyond the flag.
+The CLI replays the full cookie chain (SIWBB nonce + indexer LB stickiness) through `/api/v0/2fa/offline/verify` for you — no extra setup needed beyond the flag.
 
 ## Notes and limitations
 

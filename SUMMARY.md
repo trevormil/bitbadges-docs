@@ -212,7 +212,7 @@
       * [Verification Flow](for-developers/sign-in-with-bitbadges/verification/verification-flow.md)
       * [Access Tokens](for-developers/sign-in-with-bitbadges/verification/access-tokens.md)
       * [Security Considerations](for-developers/sign-in-with-bitbadges/verification/security-considerations.md)
-    * [Blockin Docs](https://blockin.gitbook.io/blockin)
+    * [SIWE Spec (EIP-4361)](https://eips.ethereum.org/EIPS/eip-4361)
 * [⚒️ BitBadges JS / SDK](for-developers/bitbadges-sdk/README.md)
   * [Overview](for-developers/bitbadges-sdk/overview.md)
   * [React & Next.js Quickstart](for-developers/bitbadges-sdk/react-quickstart.md)
