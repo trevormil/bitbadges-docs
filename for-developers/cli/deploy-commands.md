@@ -74,12 +74,14 @@ Pipe the output of any template that produces a new collection straight into the
 bitbadges-cli build subscription \
     --interval monthly --price 10 --denom USDC \
     --recipient bb1your-payout-address... \
-    --name "My Subscription" --json-only \
+    --name "My Subscription" --quiet \
   | bitbadges-cli deploy --burner \
     --msg-stdin \
     --manager bb1your-real-address... \
     --local --fund faucet
 ```
+
+`bb build` emits the universal `{ok, data, ...}` envelope. `bb deploy` unwraps it transparently when reading stdin or `--msg-file`, so the pipe still feeds the msg straight through. `--quiet` just suppresses the human-readable review on stderr — pre-#0398 this flag was `--json-only`, which is still accepted as a deprecated alias.
 
 You'll see:
 

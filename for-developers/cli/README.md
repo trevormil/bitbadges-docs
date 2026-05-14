@@ -43,7 +43,7 @@ bb cli api tokens get-collection 1 --output json
 
 # 3. Authenticated session — wallet-agnostic, headless-friendly
 #    (full reference: for-developers/cli/auth-commands.md)
-MSG=$(bb cli auth challenge --address bb1...)
+MSG=$(bb cli auth challenge --address bb1... | jq -r .data.message)
 SIG_JSON=$(bb sign-arbitrary mykey "$MSG")
 bb cli auth login \
   --address    "$(echo "$SIG_JSON" | jq -r .address)" \
@@ -102,8 +102,8 @@ Use whichever you prefer. The chain binary adds key management, transaction sign
 
 The CLI is the recommended interface for AI agents and automation. It provides:
 
-- **Structured JSON output** for every command — easy to parse programmatically
-- **Uniform output envelope** on `--format json` for the agent-facing verbs (`tx`, `explain`, `api --search`): `{ok, data, warnings, hint, error}` — same shape across every command, with hints populated on common failure modes
+- **Structured JSON output** for every data-emitting command — easy to parse programmatically
+- **Uniform output envelope** on stdout for every data-emitting command: `{ok, data, warnings, hint?, meta?, error}` — same shape across the surface, with hints populated on common failure modes. The envelope is the only output mode; `--format` / `--json` / `--human` flags are gone. Universal flags: `--condensed` (single-line) and `--output-file <path>`. `bb build` extends the envelope with a `meta` sidecar carrying validation, review, simulate, and resolved-metadata reports alongside the msg in `data`
 - **`--help-json`** flag that outputs the full command tree as structured JSON for LLM tool discovery
 - **`--dry-run`** on both `simulate` and `deploy` for safe preview before broadcasting
 - **`--quiet`** (or `BB_QUIET=1`) silences stderr commentary across every command — pipe-friendly by default

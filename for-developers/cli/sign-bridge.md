@@ -197,7 +197,7 @@ For programmatic signers that aren't a chain binary and aren't a browser wallet 
 
 ```bash
 # Cosmos signer (cosmjs / hardware wallet)
-bitbadges-cli build vault … --json-only \
+bitbadges-cli build vault … --quiet \
   | bitbadges-cli gen-tx-payload --from bb1... --gas 600000
 
 # EVM-only signer (ethers / viem on the BitBadges EVM chain)

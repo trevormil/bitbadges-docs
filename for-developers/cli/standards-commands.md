@@ -21,7 +21,7 @@ bb cli auctions place-bid 42 \
   | bb cli deploy --browser --msg-stdin
 ```
 
-Every action verb supports `--json-only` to suppress the auto-review banner and emit pure JSON for piping, plus all the standard [build flags](build-commands.md#common-flags) (`--explain`, `--simulate`, `--dry-run`, etc.).
+Every action verb emits the universal `{ok, data, ...}` envelope on stdout. Pipe it straight into `bb cli deploy` — deploy unwraps the envelope transparently. Use `--quiet` (or `BB_QUIET=1`) to suppress the human-readable auto-review banner on stderr; standard [build flags](build-commands.md#common-flags) (`--explain`, `--simulate`, `--dry-run`, etc.) all apply.
 
 ## Available Standards
 
@@ -71,7 +71,7 @@ bb cli auctions status 42      # → must be "bidding" before place-bid
 # 4. Emit + sign + broadcast
 bb cli auctions place-bid 42 \
   --creator bb1my... --amount 5000 --denom uusdc \
-  --json-only \
+  --quiet \
   | bb cli deploy --browser --msg-stdin
 ```
 

@@ -78,17 +78,28 @@ Two flags help agents and humans navigate the 100+ routes without grepping the h
 
 ### `--search <keyword>`
 
-Substring scan over route name, path, tag, and description. Case-insensitive. Default text columns; pass `--format json` for a parseable list.
+Substring scan over route name, path, tag, and description. Case-insensitive. Always emits the universal envelope on stdout; the matched routes live at `data.matches[]`.
 
 ```bash
-bitbadges-cli api --search swap
-# estimate-swap          POST  /api/{version}/swaps/estimate
-#       Estimate Swap
-# get-swap-activities    GET   /swapActivities
-#       Get Swap Activities
+bitbadges-cli api --search balance
+# {
+#   "ok": true,
+#   "data": {
+#     "search": "balance",
+#     "matches": [
+#       { "name": "get-balance-by-address-specific-token",
+#         "method": "GET",
+#         "path": "/api/{version}/collection/{collectionId}/{tokenId}/balance/{address}",
+#         "tag": "accounts",
+#         "description": "..." }
+#     ]
+#   },
+#   "warnings": [],
+#   "error": null
+# }
 
-bitbadges-cli api --search balance --format json
-# [{"name":"get-balance-by-address-specific-token", ...}, ...]
+# Pretty table for humans:
+bitbadges-cli api --search swap | jq -r '.data.matches[] | "\(.name)\t\(.method)\t\(.path)"'
 ```
 
 ### `--schema` (per route)
