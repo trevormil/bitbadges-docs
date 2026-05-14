@@ -17,7 +17,7 @@ bb auth login --browser --address bb1...
 
 The flat surface comes with grouped help. Run `bb --help` and you see seven groups:
 
-- **Chain operations** — `start`, `init`, `status`, `version`, `tx`, `query`, `keys`, `sign-arbitrary`, `genesis`, `debug`, `confix`, `pruning`, `snapshot`, `comet`
+- **Chain node (Cosmos SDK)** — `start`, `init`, `status`, `version`, `tx`, `query`, `keys`, `sign-arbitrary`, `genesis`, `debug`, `config`, `prune`, `snapshots`, `comet` (the BitBadges chain node — distinct from the SDK indexer)
 - **BitBadges SDK — Build & Deploy** — `build`, `check`, `explain`, `simulate`, `preview`, `deploy`
 - **BitBadges SDK — Standards** — the 12 standards (`auctions`, `bounties`, `crowdfunds`, `credit-tokens`, `dynamic-stores`, `intents`, `nfts`, `pay-requests`, `prediction-markets`, `products`, `smart-tokens`, `subscriptions`)
 - **BitBadges SDK — Indexer & Auth** — `api`, `auth`, `account`
