@@ -1,5 +1,5 @@
 # Gitbook Documentation Compilation
-Generated on Thu May  7 12:58:11 UTC 2026
+Generated on Thu May 14 01:30:20 UTC 2026
 
 
 
@@ -2007,6 +2007,7 @@ BitBadges addresses these fundamental issues through core design decisions:
 * [🖥️ CLI & Chain Binary](for-developers/cli/README.md)
   * [Installation](for-developers/cli/installation.md)
   * [Build Commands](for-developers/cli/build-commands.md)
+  * [Standards Commands](for-developers/cli/standards-commands.md)
   * [Analysis Commands](for-developers/cli/analysis-commands.md)
   * [Deploy Commands](for-developers/cli/deploy-commands.md)
   * [Tx Commands](for-developers/cli/tx-commands.md)
@@ -17944,8 +17945,9 @@ For building token collections with AI assistants (Claude, Cursor, etc.), see th
 
 - [Installation](installation.md) — all install methods and configuration
 - [Build Commands](build-commands.md) — flag-based generators for vault, subscription, bounty, auction, and 14 other token types
+- [Standards Commands](standards-commands.md) — consumer-side `list / show / status / <action>` for every standard (auctions, crowdfunds, payment-requests, intents, swap, ...)
 - [Analysis Commands](analysis-commands.md) — `check`, `explain`, `simulate`, `preview`
-- [Deploy Commands](deploy-commands.md) — ship a create-collection tx without bringing your own wallet
+- [Deploy Commands](deploy-commands.md) — ship a create-collection tx without bringing your own wallet (also covers `--wait-for-indexer` + `--with-keyring`)
 - [Tx Commands](tx-commands.md) — confirm a broadcast tx committed (Cosmos + EVM hash support)
 - [Tool Commands](tool-commands.md) — fine-grained MCP tools (`tool` / `tools`), persisted sessions, static resources
 - [Utility Commands](utility-commands.md) — `docs`, `skills`, `address`, `alias`, `lookup`, `gen-list-id`, `doctor`
@@ -18355,7 +18357,6 @@ bitbadges-cli auth login \
   --signature <sig> \
   [--public-key <b64>] \
   [--message <text> | --message-file <path>] \
-  [--2fa <totp> | --2fa-backup <code>] \
   [network flags]
 ```
 
@@ -18371,13 +18372,10 @@ bitbadges-cli auth login \
 | `--no-open` | With `--browser`: print the sign URL instead of auto-launching the browser. |
 | `--port <n>` | With `--browser`: pin the loopback listener port (useful for SSH-tunneled dev). |
 | `--timeout <seconds>` | With `--browser`: how long to wait for the wallet (default 300, max 1800). |
-| `--2fa <code>` | 6-digit TOTP code, if the account has 2FA enabled. |
-| `--2fa-backup <code>` | Backup recovery code (alternative to `--2fa`). |
 
 **Exit codes:**
 - `0` — logged in, cookie stored
 - `1` — signature rejected, network error, or other failure
-- `2` — account requires 2FA and no `--2fa` / `--2fa-backup` was passed
 
 ## auth challenge
 
@@ -18402,8 +18400,7 @@ bitbadges-cli auth verify \
   --address <addr> \
   --signature <sig> \
   [--public-key <b64>] \
-  [--message <text> | --message-file <path>] \
-  [--2fa <code> | --2fa-backup <code>]
+  [--message <text> | --message-file <path>]
 ```
 
 ## auth status
@@ -18509,20 +18506,6 @@ bitbadges-cli api accounts update-account-info \
 ```
 
 If the resolved address has no stored session, the call exits 1 with a message pointing you at `auth login`.
-
-## Two-factor authentication
-
-If the account has 2FA enabled, the first `auth login` returns `requires2FA: true` and exits with code `2`. Re-run with the second factor:
-
-```bash
-bitbadges-cli auth login --address bb1... --signature ... --public-key ... \
-  --2fa 123456                # TOTP code from your authenticator app
-# or
-bitbadges-cli auth login --address bb1... --signature ... --public-key ... \
-  --2fa-backup AAAA-BBBB-CCCC # one of the backup codes from setup
-```
-
-The CLI replays the full cookie chain (SIWBB nonce + indexer LB stickiness) through `/api/v0/2fa/offline/verify` for you — no extra setup needed beyond the flag.
 
 ## Notes and limitations
 
@@ -19203,8 +19186,21 @@ The `bitbadges-cli deploy` command broadcasts a transaction. Pick exactly one si
 
 - **`--burner`** — generate a throwaway signer locally, fund it from the faucet, sign one create-collection tx, discard. Zero wallet setup. CREATE-only.
 - **`--browser`** — hand the tx off to your real wallet (Keplr, MetaMask, etc.) via the [Sign Bridge](sign-bridge.md). The CLI opens `/sign`, you confirm in the wallet, the tx hash comes back to your terminal.
+- **`--with-keyring --from <name>`** — sign locally using a key already imported into the chain binary's keyring (`bitbadgeschaind keys add ...`). The CLI prints the equivalent `bitbadgeschaind tx ...` command and executes it. Best for headless scripts where the same long-lived key signs many txs.
 
-Both paths emit the same JSON envelope on stdout when they succeed. The rest of this page covers `--burner`; for `--browser` see the [Sign Bridge](sign-bridge.md#deploy-browser) page.
+Both `--burner` and `--browser` paths emit the same JSON envelope on stdout when they succeed; `--with-keyring` prints the chain-binary response verbatim. The rest of this page covers `--burner`; for `--browser` see the [Sign Bridge](sign-bridge.md#deploy-browser) page.
+
+## `--wait-for-indexer [timeout-ms]`
+
+Optional on any deploy path. After the tx broadcast succeeds, the CLI polls the indexer until the created collection / dynamic store appears (or `timeout-ms` elapses, default `30000`). Useful in agent scripts that immediately want to `query` the new entity:
+
+```bash
+bitbadges-cli build vault --name … \
+  | bitbadges-cli deploy --burner --msg-stdin --manager bb1… \
+      --wait-for-indexer
+```
+
+Output JSON gains a `waited` field — `{ entity, id, attempts, elapsedMs, ok, body }` on success, `{ ok: false, lastStatus }` on timeout. Without the flag, deploy returns as soon as the tx commits on-chain and indexer catch-up is your problem.
 
 `bitbadges-cli deploy --burner` lets you create a new collection **without bringing your own Cosmos wallet**. The CLI generates a throwaway signer on demand, funds it (via the faucet or manually), signs the create-collection tx, and hands ownership of the new collection to an address you specify. The throwaway signer is discarded right after.
 
@@ -19523,7 +19519,7 @@ bitbadges-cli auth login \
 bitbadges-cli api accounts get-account --body '{"address":"bb1..."}' --with-session
 ```
 
-Multi-account, multi-network, with `--2fa` support. Full reference: [Auth Commands](auth-commands.md).
+Multi-account, multi-network. Full reference: [Auth Commands](auth-commands.md).
 
 ## Combining with BitBadges Builder Tools
 
@@ -19750,9 +19746,9 @@ The sign bridge is the CLI's way to use a browser-resident wallet (Keplr, MetaMa
 
 It works the same way `gh auth login --web` and `npm login --auth-type=web` do:
 
-1. The CLI starts a tiny HTTP listener on `127.0.0.1:<port>` and prints a one-time PIN.
+1. The CLI starts a tiny HTTP listener on `127.0.0.1:<port>`.
 2. It opens your default browser to `https://bitbadges.io/sign?…` with the request encoded in the URL (or in a Redis-backed short code if the payload is large).
-3. You verify the PIN matches the one in your terminal, review the request, and sign with whatever wallet you have connected.
+3. You review the request and sign with whatever wallet you have connected.
 4. The browser redirects to `127.0.0.1:<port>/callback?…` with the signature or transaction hash. The listener catches it, the CLI completes the flow, and you go back to your terminal.
 
 The wallet never leaves the browser; the CLI only ever sees the resulting signature or tx hash. This is the headlining "I have my wallet in MetaMask, I want my agent on a headless box to act as me" workflow.
@@ -19782,11 +19778,10 @@ Every sign-bridge command resolves to one of three URL `mode` values on the `/si
 
 What the user sees:
 
-1. **A 6-digit PIN.** The CLI prints this same PIN to stderr; cross-verifying defends against landing on a phishing page that pretends to be from your CLI.
-2. **A "review and trust" warning.** A signature here can authorize transactions, transfer ownership, or grant access on behalf of the connected wallet. The PIN proves the page was launched by your CLI — it does **not** vouch for what's inside.
-3. **The full request.** For login/msg modes, the message is shown verbatim. For tx mode with a single creation msg, the page renders the same StreamlinedBuilderPreview the dashboard uses internally.
-4. **A wallet-mismatch panel** if the connected wallet's address (bb1-converted) doesn't match the address the CLI expected. The Sign button stays disabled until the addresses match. There's an inline **Disconnect this wallet** button so you can switch wallets without leaving the page.
-5. **A single full-width Sign button.** Click → wallet popup (Keplr/MetaMask/etc) → sign. The browser tab redirects back to your loopback listener; the CLI prints the result.
+1. **A "review and trust" warning.** A signature here can authorize transactions, transfer ownership, or grant access on behalf of the connected wallet.
+2. **The full request.** For login/msg modes, the message is shown verbatim. For tx mode with a single creation msg, the page renders the same StreamlinedBuilderPreview the dashboard uses internally.
+3. **A wallet-mismatch panel** if the connected wallet's address (bb1-converted) doesn't match the address the CLI expected. The Sign button stays disabled until the addresses match. There's an inline **Disconnect this wallet** button so you can switch wallets without leaving the page.
+4. **A single full-width Sign button.** Click → wallet popup (Keplr/MetaMask/etc) → sign. The browser tab redirects back to your loopback listener; the CLI prints the result.
 
 The page rejects any redirect target that isn't a `127.0.0.1` or `localhost` URL — RFC 8252 §7.3 native-app loopback exception, same posture `gh` and `gcloud` use.
 
@@ -20036,12 +20031,11 @@ Useful when the indexer isn't reachable from the signing host (air-gapped HSM ri
 The sign bridge is layered defense:
 
 1. **Loopback-only return URLs.** The `/sign` page rejects any redirect target that isn't `127.0.0.1` or `localhost`. Without this, an attacker could craft a `bitbadges.io/sign?…&return=https://evil.com` link, get a victim to sign, and harvest the signature. Loopback-only means the listener has to be on the same machine as the browser.
-2. **PIN cross-verification.** A 6-digit code shown on both stderr and `/sign`. Defends against the "I have multiple browser tabs open and I'm not sure which one is mine" failure mode, plus phishing where someone DMs a sign URL claiming to be from your CLI.
-3. **Wallet-mismatch block.** The page disables the Sign button (and shows a Disconnect-this-wallet shortcut) when `chain.address` doesn't match the address the CLI declared. Stops the user from signing with the wrong account by accident.
-4. **State nonce.** A random per-request token echoed back on the redirect. Mismatched state → 403 + page rejects.
-5. **Single-shot listener.** The CLI's loopback HTTP server accepts exactly one valid callback. Subsequent requests get `410 Gone`.
-6. **The wallet's own confirmation popup.** For tx mode, the wallet shows the actual tx contents one more time before signing. The user has to click through the wallet popup *and* the page button — two gates, both showing what's actually being signed.
-7. **The "review and trust" warning beneath the PIN.** PIN proves the page came from your CLI. The warning reminds the user that proof of source ≠ proof of safety; review the contents.
+2. **Wallet-mismatch block.** The page disables the Sign button (and shows a Disconnect-this-wallet shortcut) when `chain.address` doesn't match the address the CLI declared. Stops the user from signing with the wrong account by accident.
+3. **State nonce.** A random per-request token echoed back on the redirect. Mismatched state → 403 + page rejects.
+4. **Single-shot listener.** The CLI's loopback HTTP server accepts exactly one valid callback. Subsequent requests get `410 Gone`.
+5. **The wallet's own confirmation popup.** For tx mode, the wallet shows the actual tx contents one more time before signing. The user has to click through the wallet popup *and* the page button — two gates, both showing what's actually being signed.
+6. **The "review and trust" warning.** Reminds the user that the bridge proves origin (loopback callback, state nonce) but doesn't vouch for contents — review what you're signing.
 
 What's deliberately **not** in scope:
 
@@ -20083,6 +20077,127 @@ This is also the realistic prod scenario: the wallet and the CLI live on the sam
 - [auth-commands.md](auth-commands.md) — full SIWBB / `auth login` reference
 - [deploy-commands.md](deploy-commands.md) — `--burner` (the alternative to `--browser`)
 - [build-commands.md](build-commands.md) — every `--deploy-with-burner` / `--deploy-with-browser` preset
+
+
+## File: ./for-developers/cli/standards-commands.md
+
+# Standards Commands
+
+End-user surface for every BitBadges standard. Each command group lets you **read** collections of that standard from the indexer and **emit** the right transaction msg for the user-side action — bid on an auction, contribute to a crowdfund, pay a payment-request, redeem a credit-token tier, etc.
+
+Two halves to know about:
+
+1. **Read verbs** — `list`, `show`, `status`. Pure indexer queries, no signing.
+2. **Action verbs** — emit a ready-to-sign msg JSON to stdout. Pipe into [`deploy`](deploy-commands.md) to broadcast.
+
+The **create** side of every standard (the manager/creator setting up an auction, posting a payment-request, etc.) lives under [`build`](build-commands.md). The commands on this page cover the **consumer / participant** side.
+
+```bash
+# Read
+bb cli auctions list                          # browse active auctions
+bb cli auctions show 42                       # full details for one
+bb cli auctions status 42                     # quick status: bidding / accepting / sold / expired
+
+# Act (emit + deploy)
+bb cli auctions place-bid 42 \
+  --creator bb1... --amount 5000 --denom uusdc \
+  | bb cli deploy --browser --msg-stdin
+```
+
+Every action verb supports `--json-only` to suppress the auto-review banner and emit pure JSON for piping, plus all the standard [build flags](build-commands.md#common-flags) (`--explain`, `--simulate`, `--dry-run`, etc.).
+
+## Available Standards
+
+| Standard | Command | What users do |
+| --- | --- | --- |
+| **Auctions** | `bb cli auctions` | `list / show / status / place-bid / cancel-bid / accept-bid / build` |
+| **Bounties** | `bb cli bounties` | `list / show / status / accept / deny / claim-refund / build`. Accept/deny emit a 2-msg envelope (cast-vote + transfer). |
+| **Credit Tokens** | `bb cli credit-tokens` | `list / show / purchase / build`. Tier amounts use `bigint`. |
+| **Crowdfunds** | `bb cli crowdfunds` | `list / show / status / contribute / withdraw / refund / build`. Aliased as `bb cli crowdfund` (singular) for backwards compat. |
+| **Dynamic Stores** | `bb cli dynamic-stores` | On-chain key→bool maps. `create / update / delete / add / remove / set-value / get-value / list-values / search`. |
+| **Intents** | `bb cli intents` | Off-chain OTC swap offers via user outgoing approvals. `list / show / create / fill / cancel`. |
+| **NFTs** (orderbook) | `bb cli nfts` | `bid / list / cancel / buy / sell / orders / history / build`. Orderbook trading on individual badges. |
+| **Payment Requests** | `bb cli pay-requests` | `list / show / status / pay / deny / claim-refund / build`. The no-escrow inverse of bounty — recipient asks payer to approve. |
+| **Prediction Markets** | `bb cli prediction-markets` | `list / show / status / buy / sell / cancel / deposit / redeem / resolve / build`. YES/NO share trading. |
+| **Products** | `bb cli products` | `list / show / purchase / build`. Product-catalog purchase flow. |
+| **Smart Tokens** | `bb cli smart-tokens` | `list / show / status / deposit / withdraw / build`. The unified primitive behind vaults, AI-agent vaults, and tradable wrapped tokens. |
+| **Subscriptions** | `bb cli subscriptions` | `list / status / claim / enable-renewal / cancel / subscribe`. Recurring-payment approvals. |
+| **Swap / DEX** | `bb cli swap` | Cross-chain swap helpers — `assets / chains / balances / estimate / track / activity / intents`. Powered by Skip:Go via the indexer's consolidated `/swap/*` routes. |
+
+## Status semantics
+
+Every standard with a lifecycle (`auctions`, `crowdfunds`, `prediction-markets`, `bounties`, `pay-requests`) exposes a `status` subcommand that returns one of a fixed set of values. Read these BEFORE acting — most action verbs throw if the standard isn't in a compatible state.
+
+| Standard | Status values |
+| --- | --- |
+| Auctions | `bidding`, `accepting`, `sold`, `expired` |
+| Crowdfunds | `funding`, `goal-met`, `withdrawn`, `expired` |
+| Bounties | `open`, `accepting`, `accepted`, `denied`, `expired` |
+| Payment Requests | `pending`, `paid`, `denied`, `expired` |
+| Prediction Markets | `active`, `closed`, `resolved`, `canceled` |
+| Subscriptions | `active`, `renewable`, `cancelled` |
+
+## Pattern: list → show → act
+
+The agentic pattern most users follow:
+
+```bash
+# 1. Discover what's available
+bb cli auctions list --output json | jq '.[] | {id, status, sellerAddress}'
+
+# 2. Drill into one
+bb cli auctions show 42
+
+# 3. Check it's actionable
+bb cli auctions status 42      # → must be "bidding" before place-bid
+
+# 4. Emit + sign + broadcast
+bb cli auctions place-bid 42 \
+  --creator bb1my... --amount 5000 --denom uusdc \
+  --json-only \
+  | bb cli deploy --browser --msg-stdin
+```
+
+## Read commands hit the indexer
+
+Every `list / show / status` reads from the BitBadges indexer (`api.bitbadges.io` by default). The CLI accepts the standard network flags inherited from [api-commands](api-commands.md):
+
+```bash
+bb cli auctions list                    # mainnet (default)
+bb cli auctions list --mainnet          # explicit
+bb cli auctions list --local            # localhost:3001
+bb cli auctions list --url <custom>     # explicit base URL
+```
+
+## Action commands need signing
+
+Every action verb (`place-bid`, `contribute`, `pay`, `purchase`, `redeem`, etc.) emits a `MsgSet*Approval` / `MsgTransferTokens` JSON to stdout. You then sign + broadcast through one of:
+
+- **Browser wallet** (Keplr / MetaMask):
+  ```bash
+  bb cli auctions place-bid 42 ... | bb cli deploy --browser --msg-stdin
+  ```
+- **Local keyring** (bitbadgeschaind key):
+  ```bash
+  bb cli auctions place-bid 42 ... > /tmp/bid.json
+  bb cli deploy --with-keyring --from mykey --msg-file /tmp/bid.json
+  ```
+- **Custom signer** (ethers / viem / HSM): pipe through `gen-tx-payload`:
+  ```bash
+  bb cli auctions place-bid 42 ... | bb cli gen-tx-payload --from bb1...
+  ```
+
+See [Deploy Commands](deploy-commands.md) for the full signing-path matrix.
+
+## Reference
+
+Every command has `--help` with the full flag surface. Required vs optional flags are now rendered as separate sections (`Required:` first, then `Options:` with sub-groups for `Metadata`, `Output`, `Network`, `Builder`, `Deploy`):
+
+```bash
+bb cli auctions place-bid --help
+bb cli crowdfunds contribute --help
+bb cli pay-requests pay --help
+```
 
 
 ## File: ./for-developers/cli/tool-commands.md
