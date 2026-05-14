@@ -115,7 +115,7 @@ Most read-only API routes work with just the API key, but anything that mutates 
 
 ```bash
 # 1. Fetch a challenge (saves the nonce cookie locally for step 3)
-MSG=$(bitbadges-cli auth challenge --address $(bitbadgeschaind keys show agent-wallet -a))
+MSG=$(bitbadges-cli auth challenge --address $(bitbadgeschaind keys show agent-wallet -a) | jq -r .data.message)
 
 # 2. Sign offline with the chain binary
 SIG_JSON=$(bitbadgeschaind sign-arbitrary agent-wallet "$MSG")
@@ -159,8 +159,8 @@ BALANCE=$(bitbadges-cli api tokens get-balance \
   --body "{\"collectionId\":\"$COLLECTION_ID\",\"address\":\"$ADDRESS\"}" \
   --condensed)
 
-# Parse and decide
-AMOUNT=$(echo "$BALANCE" | jq -r '.balances[0].amount // "0"')
+# Parse and decide — bb api emits the envelope; the body lives at .data
+AMOUNT=$(echo "$BALANCE" | jq -r '.data.balances[0].amount // "0"')
 
 if [ "$AMOUNT" -lt "$THRESHOLD" ]; then
   echo "Balance $AMOUNT below threshold $THRESHOLD, minting..."

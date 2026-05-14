@@ -17,31 +17,22 @@ Fetches one transaction by hash. Tries the Cosmos LCD's `/cosmos/tx/v1beta1/txs/
 
 ```bash
 bitbadges-cli tx status 0F46899E29754227DE90F702754CDC74FD39EA37527F2C1E307655C15E910D81 --mainnet
-# Status:    committed  (code 0)
-# Via:       Cosmos LCD
-# Hash:      0F46899E...
-# Height:    10000000
-# Gas used:  156490 / 237670
-# Timestamp: 2026-05-01T04:54:56Z
+# {
+#   "ok": true,
+#   "data": {
+#     "via": "cosmos",
+#     "hash": "0F46899E...",
+#     "height": "10000000",
+#     "code": 0,
+#     "gasUsed": "156490",
+#     "events": [...]
+#   },
+#   "warnings": [],
+#   "error": null
+# }
 ```
 
-`--format json` returns the full envelope:
-
-```json
-{
-  "ok": true,
-  "data": {
-    "via": "cosmos",
-    "hash": "0F46899E...",
-    "height": "10000000",
-    "code": 0,
-    "gasUsed": "156490",
-    "events": [...]
-  },
-  "warnings": [],
-  "error": null
-}
-```
+Pipe through `jq -r .data.code` (or `.data.hash`, `.data.height`, etc.) for shell-friendly field extraction.
 
 For successful EVM-routed transactions, `via` is `"evm"` and the data shape includes the same fields populated from `eth_getTransactionReceipt`.
 
@@ -76,14 +67,15 @@ For EVM hashes, the CLI uses the matching EVM RPC URL from `NETWORK_CONFIGS[netw
 Polls the same endpoints until the transaction is found and committed (or fails). Use after `deploy` when the tx hash is fresh and may not be indexed yet.
 
 ```bash
-bitbadges-cli tx wait $TXHASH --mainnet --timeout 120 --format json
+bitbadges-cli tx wait $TXHASH --mainnet --timeout 120
 ```
 
 | Flag | Default | Description |
 |---|---|---|
 | `--timeout <seconds>` | `60` | Max seconds to wait before exiting non-zero |
 | `--interval <seconds>` | `2` | Polling interval |
-| `--format <json\|text>` | TTY-dependent | Output format |
+| `--condensed` | off | Single-line JSON envelope |
+| `--output-file <path>` | — | Write the envelope to a file instead of stdout |
 
 ### Exit codes
 
@@ -92,7 +84,7 @@ Same as `tx status`, plus:
 - `2` is also returned on timeout. The error envelope includes `error.code === "timeout"` and a `hint:` pointing at re-running `tx status` later or extending `--timeout`.
 
 ```bash
-bitbadges-cli tx wait 1111111... --mainnet --timeout 5 --format json
+bitbadges-cli tx wait 1111111... --mainnet --timeout 5
 # {
 #   "ok": false,
 #   "data": null,
@@ -109,16 +101,17 @@ bitbadges-cli tx wait 1111111... --mainnet --timeout 5 --format json
 ## Worked example: deploy → wait → confirm
 
 ```bash
-# 1. Build a vault collection
+# 1. Build a vault collection. `bb build` writes the envelope directly;
+#    pipe it straight to a file — `bb deploy` unwraps the envelope on read.
 bitbadges-cli build vault --backing-coin USDC --name "My Vault" \
     --image https://... --description "..." \
-    --json-only > vault.json
+    --quiet > vault.json
 
 # 2. Dry-run before spending
 bitbadges-cli deploy vault.json --burner --dry-run --manager bb1... --mainnet
 
 # 3. Real deploy
-RESULT=$(bitbadges-cli deploy vault.json --burner --manager bb1... --mainnet --format json)
+RESULT=$(bitbadges-cli deploy vault.json --burner --manager bb1... --mainnet)
 TXHASH=$(echo "$RESULT" | jq -r '.data.txHash')
 
 # 4. Wait for it to commit

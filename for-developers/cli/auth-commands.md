@@ -48,7 +48,7 @@ The canonical agentic flow is three commands. Each step is independent — the o
 
 ```bash
 # 1. Fetch a challenge. Saves the nonce cookie locally so step 3 can replay it.
-MSG=$(bitbadges-cli auth challenge --address bb1...)
+MSG=$(bitbadges-cli auth challenge --address bb1... | jq -r .data.message)
 
 # 2. Sign the challenge with whatever signer you have. Headless Cosmos example:
 SIG_JSON=$(bitbadgeschaind sign-arbitrary mykey "$MSG")
@@ -128,16 +128,24 @@ bitbadges-cli auth login \
 
 ## auth challenge
 
-Fetch a SIWBB challenge for an address. Prints the message your signer must sign and (by default) persists the response cookie locally so a follow-up `auth login` / `auth verify` can replay it.
+Fetch a SIWBB challenge for an address. Emits the message your signer must sign (at `data.message`) and (by default) persists the response cookie locally so a follow-up `auth login` / `auth verify` can replay it.
 
 ```bash
-bitbadges-cli auth challenge --address bb1... [--json] [--no-save-pending]
+bitbadges-cli auth challenge --address bb1... [--no-save-pending]
+# {
+#   "ok": true,
+#   "data": { "message": "...SIWBB challenge text...", "nonce": "..." },
+#   "warnings": [],
+#   "error": null
+# }
+
+# Extract just the message for a downstream signer:
+MSG=$(bitbadges-cli auth challenge --address bb1... | jq -r .data.message)
 ```
 
 | Flag | Description |
 |---|---|
 | `--address <addr>` | Native address (`bb1...` or `0x...`). Required. |
-| `--json` | Output `{message, nonce}` as JSON instead of the bare message. |
 | `--no-save-pending` | Do not persist the challenge cookie locally. Advanced — use only if you intend to re-fetch the challenge yourself before verifying. |
 
 ## auth verify

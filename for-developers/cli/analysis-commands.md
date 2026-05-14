@@ -36,12 +36,14 @@ echo '{"messages":[...]}' | bitbadges-cli check -
 | Flag | Description |
 |---|---|
 | `--depth <level>` | `structural \| review \| full` (default: `full`) |
-| `--json` | Output the structured result as JSON |
 | `--strict` | Exit `1` on warnings (criticals always exit `2`) |
 | `--no-validate`, `--no-review`, `--no-metadata` | Skip the corresponding section in `--depth full` |
-| `--design` | Include the design-decisions section in `--depth full` (informational ✓/✗) |
-| `--output-file <path>` | Write the rendered output to a file (ANSI stripped) |
+| `--design` | Include the design-decisions section in `--depth full`'s envelope payload (informational ✓/✗) |
+| `--condensed` | Single-line JSON envelope (smaller pipe payload) |
+| `--output-file <path>` | Write the envelope to a file instead of stdout |
 | `--testnet`, `--local`, `--url` | Network selection for fetching numeric collection ids |
+
+Stdout is always the universal `{ok, data, warnings, error}` envelope; the human-readable scorecards print to stderr (suppress with `--quiet` / `BB_QUIET=1`).
 
 `check` accepts collection ids on `review` and `full` depths (fetches the collection from the indexer first). `structural` is offline-only and refuses numeric ids — pass tx JSON directly.
 
@@ -67,16 +69,16 @@ echo '{"messages":[...]}' | bitbadges-cli explain -
 
 | Flag | Description |
 |---|---|
-| `--output-file <path>` | Write the output to a file instead of stdout |
-| `--format <json\|text>` | `text` (default for TTY) renders prose; `json` returns a structured envelope |
+| `--output-file <path>` | Write the envelope to a file instead of stdout |
+| `--condensed` | Single-line JSON (smaller pipe payload) |
 | `--testnet`, `--local`, `--url` | Network selection for numeric collection-id fetches |
 
-### Structured output: `--format json`
+### Output shape
 
-For agents that want to branch on transaction shape rather than parse prose, `--format json` returns the envelope-wrapped structured findings:
+`explain` always emits the universal envelope. The prose interpretation lives at `data.fullText`; agents that want a per-message breakdown read `data.messages[]`.
 
 ```bash
-bitbadges-cli explain tx.json --format json
+bitbadges-cli explain tx.json
 # {
 #   "ok": true,
 #   "data": {
@@ -94,7 +96,7 @@ bitbadges-cli explain tx.json --format json
 # }
 ```
 
-`kind` lets agents discriminate between transactions, raw collections, and bare messages. `messages[]` is empty for raw collection inputs; populated for tx wrappers and bare messages. `fullText` is the same prose `--format text` would print, included so JSON callers don't have to make a second call to get the human-readable version.
+`kind` lets agents discriminate between transactions, raw collections, and bare messages. `messages[]` is empty for raw collection inputs; populated for tx wrappers and bare messages. `fullText` is included so callers that just want the human-readable text can `jq -r .data.fullText` instead of branching on shape.
 
 Replaces the old `sdk interpret-tx` and `sdk interpret-collection` commands plus `builder explain` — one verb, auto-detect, one less mental dimension.
 
@@ -105,7 +107,6 @@ Replaces the old `sdk interpret-tx` and `sdk interpret-collection` commands plus
 ```bash
 bitbadges-cli simulate tx.json
 bitbadges-cli simulate tx.json --creator bb1mysigner...
-bitbadges-cli simulate tx.json --json
 bitbadges-cli simulate tx.json --events           # dump full events array
 echo '{"messages":[...]}' | bitbadges-cli simulate -
 ```
@@ -114,10 +115,13 @@ echo '{"messages":[...]}' | bitbadges-cli simulate -
 
 | Flag | Description |
 |---|---|
-| `--json` | Output the structured `SimulateResult` as JSON |
 | `--creator <address>` | Override the simulation context address (default: a placeholder) |
 | `--events` | Dump the full raw chain events array (default: just the count) |
+| `--condensed` | Single-line JSON envelope (smaller pipe payload) |
+| `--output-file <path>` | Write the envelope to a file instead of stdout |
 | `--testnet`, `--local`, `--url` | Network selection |
+
+Stdout is the universal envelope wrapping `SimulateResult` in `data`. The terminal-friendly per-message breakdown prints to stderr (suppress with `--quiet`).
 
 Requires `BITBADGES_API_KEY` (or per-network override) on mainnet/testnet. Local indexers usually accept any (or no) key.
 
@@ -129,7 +133,6 @@ User-level approval messages (`MsgUpdateUserApprovals`, `MsgSetIncomingApproval`
 
 ```bash
 bitbadges-cli preview tx.json
-bitbadges-cli preview tx.json --json              # structured output
 bitbadges-cli preview tx.json --frontend-url https://staging.bitbadges.io
 echo '{"messages":[...]}' | bitbadges-cli preview -
 ```
@@ -139,8 +142,11 @@ echo '{"messages":[...]}' | bitbadges-cli preview -
 | Flag | Description |
 |---|---|
 | `--frontend-url <url>` | Override the bitbadges.io frontend base for the printed URL (default: `https://bitbadges.io`) |
-| `--json` | Output the structured upload result as JSON instead of just the URL |
+| `--condensed` | Single-line JSON envelope |
+| `--output-file <path>` | Write the envelope to a file instead of stdout |
 | `--testnet`, `--local`, `--url` | Network selection — controls which indexer hosts the preview |
+
+Stdout is the universal envelope; the URL lives at `data.url`, expiry at `data.expiresIn`.
 
 The endpoint is intentionally open (no API key required); the unguessable code in the URL is the secret.
 
