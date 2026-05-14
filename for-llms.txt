@@ -1,5 +1,5 @@
 # Gitbook Documentation Compilation
-Generated on Thu May 14 14:49:38 UTC 2026
+Generated on Thu May 14 18:51:37 UTC 2026
 
 
 
@@ -8225,7 +8225,7 @@ The chain binary + CLI install is the canonical entrypoint for everything below 
 ```bash
 # Step 1 — install the chain binary + CLI (always)
 curl -fsSL https://install.bitbadges.io | sh
-bitbadges-cli config set apiKey YOUR_KEY
+bb settings set apiKey YOUR_KEY
 
 # Step 2 — optionally layer a harness convenience
 # Claude Code:
@@ -8533,10 +8533,10 @@ For quick collection creation from the terminal, use the CLI build commands:
 
 ```bash
 # Generate a vault token (outputs transaction JSON)
-bitbadges-cli build vault --backing-coin USDC --name "My Vault" --explain
+bb build vault --backing-coin USDC --name "My Vault" --explain
 
 # Generate a subscription collection
-bitbadges-cli build subscription --interval monthly --price 10 --denom USDC --recipient bb1...
+bb build subscription --interval monthly --price 10 --denom USDC --recipient bb1...
 ```
 
 See [CLI Build Commands](../cli/build-commands.md) for the full list of 18 template builders.
@@ -9018,7 +9018,7 @@ From there, the agent follows the same complete -> get codes -> submit proof flo
 
 The BitBadges Claude Code plugin is a convenience layer on top of the BitBadges chain binary + CLI for Claude Code users specifically. It auto-wires the `bitbadges-builder` MCP server and ships 8 skills that teach Claude how to leverage the CLI + MCP + docs for common BitBadges workflows.
 
-The plugin is **a thin harness, not a knowledge base**. Token-type-specific instructions live in the SDK and are surfaced via `bitbadges-cli skills <id>`, the `get_skill_instructions` MCP tool, and the [Gitbook skill pages](../../x-tokenization/examples/skills/). The plugin's job is to teach Claude where to find them and how to compose them — not to ship one routing wrapper per token type.
+The plugin is **a thin harness, not a knowledge base**. Token-type-specific instructions live in the SDK and are surfaced via `bb dev skills <id>`, the `get_skill_instructions` MCP tool, and the [Gitbook skill pages](../../x-tokenization/examples/skills/). The plugin's job is to teach Claude where to find them and how to compose them — not to ship one routing wrapper per token type.
 
 ## Prerequisites
 
@@ -9026,10 +9026,10 @@ The chain binary + CLI install is the canonical entrypoint for everything BitBad
 
 ```sh
 curl -fsSL https://install.bitbadges.io | sh
-bitbadges-cli config set apiKey YOUR_KEY
+bb settings set apiKey YOUR_KEY
 ```
 
-This installs `bitbadgeschaind` and `bitbadges-cli` (which includes the `bitbadges-builder` MCP bin). The plugin uses these — without them, the plugin falls back to running the MCP via `npx -y -p bitbadges bitbadges-builder`, which works but is slower and less reliable than a globally installed CLI.
+This installs `bitbadgeschaind` (aliased as `bb`), which includes the `bitbadges-builder` MCP bin. The plugin uses it — without it, the plugin falls back to running the MCP via `npx -y -p bitbadges bitbadges-builder`, which works but is slower and less reliable than a globally installed binary.
 
 ## Install the plugin
 
@@ -9060,10 +9060,10 @@ Each skill is a guide that routes Claude to the right CLI command, MCP tool, or 
 
 | Skill | What it teaches |
 |---|---|
-| `build` | Meta-guide for constructing any token type (smart-token, fungible, NFT, subscription, vault, claim, quest, auction, payment, crowdfund, prediction-market, …). Discovers via `bitbadges-cli skills`, loads canonical instructions via the `get_skill_instructions` MCP tool, then constructs via the per-field MCP session tools. |
-| `review` | Audit a transaction file or live collection for correctness, standards compliance, foot-guns. Wraps `bitbadges-cli check` and `review_collection`. |
+| `build` | Meta-guide for constructing any token type (smart-token, fungible, NFT, subscription, vault, claim, quest, auction, payment, crowdfund, prediction-market, …). Discovers via `bb dev skills`, loads canonical instructions via the `get_skill_instructions` MCP tool, then constructs via the per-field MCP session tools. |
+| `review` | Audit a transaction file or live collection for correctness, standards compliance, foot-guns. Wraps `bb check` and `review_collection`. |
 | `simulate` | Dry-run a transaction. Returns events + balance diffs. Always before broadcast. Wraps `simulate_transaction`. |
-| `explain` | Plain-English description, audience-aware (user / developer / auditor). Wraps `explain_collection` and `bitbadges-cli explain`. |
+| `explain` | Plain-English description, audience-aware (user / developer / auditor). Wraps `explain_collection` and `bb explain`. |
 | `query` | The 104+ API routes — discovery first via `--help-json`, then call. |
 | `address` | All six address operations (cosmos↔EVM, IBC backing, wrapper, mint-escrow, alias). |
 | `claim` | Build or audit a claim (whitelist / password / codes / open / token-gated). |
@@ -9088,7 +9088,7 @@ The plugin pre-warms the npx cache for the `bitbadges` package on every session 
 
 ## API key
 
-The plugin reads `~/.bitbadges/config.json` if you've already configured the BitBadges CLI. Otherwise `/bitbadges:setup` prompts and writes via `bitbadges-cli config set apiKey <KEY>` so both the CLI and the plugin pick it up.
+The plugin reads `~/.bitbadges/config.json` if you've already configured the BitBadges CLI. Otherwise `/bitbadges:setup` prompts and writes via `bb settings set apiKey <KEY>` so both the CLI and the plugin pick it up.
 
 Get an API key at [bitbadges.io/developer](https://bitbadges.io/developer).
 
@@ -9113,7 +9113,7 @@ claude mcp remove bitbadges-builder
 The plugin is for Claude Code users specifically. For other harnesses, BitBadges still has full coverage via the same MCP server and the existing skill docs:
 
 - **Cursor / Claude Desktop / other MCP clients** → set up the `bitbadges-builder` MCP server (`claude mcp add bitbadges-builder -- npx -y -p bitbadges bitbadges-builder` for Claude Desktop, or the equivalent in your client). The MCP exposes `get_skill_instructions(<id>)` for on-demand loading — same path the plugin uses.
-- **Generic LLMs / shell scripts / CI** → use the [CLI](../cli/) directly. For skill instructions, browse the rendered [skill pages](../../x-tokenization/examples/skills/) or call `bitbadges-cli skills <id>`.
+- **Generic LLMs / shell scripts / CI** → use the [CLI](../cli/) directly. For skill instructions, browse the rendered [skill pages](../../x-tokenization/examples/skills/) or call `bb dev skills <id>`.
 - **TypeScript/JavaScript devs** → `npm install bitbadges` and use the [SDK](../bitbadges-sdk/README.md) directly.
 
 The CLI is the universal base layer; the plugin is just a Claude-Code-specific veneer. Skill instruction content is rendered in one place — [`x-tokenization/examples/skills/`](../../x-tokenization/examples/skills/) — and consumed everywhere else (plugin, MCP, CLI) by reference.
@@ -13457,7 +13457,7 @@ If there is anything we can do to make development easier, let us know.
 
 > **This page has moved.** The canonical CLI documentation is now at [CLI & Chain Binary](../cli/).
 
-The CLI surface is flat verb-first — every command lives at `bitbadges-cli <verb>`. Start here:
+The CLI surface is flat verb-first — every command lives at `bb <verb>`. The previous `bb cli <subcmd>` infix is deprecated and prints a stderr banner during the migration window; the release after the window removes it. See the [overview](../cli/README.md#deprecation-runway--the-old-bb-cli-and-standalone-names-still-work) for the full mapping. Start here:
 
 - **[Installation](../cli/installation.md)** — install the chain binary + Node CLI in one shot
 - **[Build Commands](../cli/build-commands.md)** — flag-based generators (`build vault`, `build subscription`, `build bounty`, …)
@@ -17824,18 +17824,32 @@ For high-stakes use cases:
 
 # CLI & Chain Binary
 
-The BitBadges CLI is the fastest way to interact with the BitBadges blockchain. A single install gives you everything: the chain binary (`bitbadgeschaind`), the SDK CLI (`bitbadges-cli`), and 104+ API routes — all from your terminal.
+The BitBadges CLI is the fastest way to interact with the BitBadges blockchain. A single install gives you everything: the chain binary, the SDK CLI, and 104+ API routes — all from your terminal.
 
-## One binary, two surfaces
+## One binary, one flat surface
 
-There is exactly one canonical binary: `bitbadgeschaind`. It exposes two surfaces:
+There is exactly one canonical binary, `bitbadgeschaind`, shipped with a friendly two-letter alias `bb` via `install.bitbadges.io`. Use `bb` everywhere. The previous `bb cli <subcmd>` infix is gone — every SDK CLI verb is a first-class top-level command on `bb`:
 
-| Surface | Form | What it covers |
-|---|---|---|
-| **Cosmos-native chain ops** | `bitbadgeschaind tx \| query \| keys ...` | Key management, transaction signing, broadcasting, on-chain reads. Same surface as any Cosmos SDK chain binary. |
-| **BitBadges SDK CLI (forwarded)** | `bitbadgeschaind cli <subcmd>` | The full Node SDK CLI — API access, review/audit, docs browser, skills, address tools. Identical surface to `bitbadges-cli`, just routed through the chain binary. |
+```bash
+bb build vault ...            # SDK builder (was: bb cli build vault)
+bb auctions place-bid 42 ...  # SDK standards verb (was: bb cli auctions place-bid)
+bb api tokens get-collection 1
+bb tx tokenization create-collection ./col.json --from mykey   # chain native
+bb query bank balances bb1abc...                                # chain native
+bb auth login --browser --address bb1...
+```
 
-We ship a friendly alias, `bb`, via `install.bitbadges.io`. Use `bb` as the entry point in examples and scripts — it's just `bitbadgeschaind` under the hood, and the chain-vs-cli surface split is identical.
+The flat surface comes with grouped help. Run `bb --help` and you see seven groups:
+
+- **Chain node (Cosmos SDK)** — `start`, `init`, `status`, `version`, `tx`, `query`, `keys`, `sign-arbitrary`, `genesis`, `debug`, `config`, `prune`, `snapshots`, `comet` (the BitBadges chain node — distinct from the SDK indexer)
+- **BitBadges SDK — Build & Deploy** — `build`, `check`, `explain`, `simulate`, `preview`, `deploy`
+- **BitBadges SDK — Standards** — the 12 standards (`auctions`, `bounties`, `crowdfunds`, `credit-tokens`, `dynamic-stores`, `intents`, `nfts`, `pay-requests`, `prediction-markets`, `products`, `smart-tokens`, `subscriptions`)
+- **BitBadges SDK — Indexer & Auth** — `api`, `auth`, `account`
+- **BitBadges SDK — Swap / DEX** — `swap`, `pools`, `pairs`, `price`
+- **BitBadges SDK — Dev** — `dev` (per-field MCP tools, resources, docs browser, skills, pubkey utilities)
+- **Local state** — `settings`, `session`, `burner`, `doctor`, `completion`
+
+The groups exist so you can tell at a glance which surface owns a given verb — chain natives on top, SDK CLI below, local state at the bottom.
 
 ## Install (One-Liner)
 
@@ -17843,33 +17857,28 @@ We ship a friendly alias, `bb`, via `install.bitbadges.io`. Use `bb` as the entr
 curl -fsSL https://install.bitbadges.io | sh
 ```
 
-This installs both:
-- **`bitbadgeschaind`** (with the `bb` alias) — the chain binary (key management, signing, broadcasting, on-chain queries) AND the forwarder for the SDK CLI.
-- **`bitbadges-cli`** — the standalone SDK CLI (API access, review/audit, docs browser, skills, address tools). Equivalent to `bb cli ...`.
+This installs the chain binary as `bitbadgeschaind` (with the `bb` alias) and the standalone SDK CLI (`bitbadges-cli`). Every example in these docs uses `bb`; the standalone `bitbadges-cli` binary still works for the SDK-only subset if you don't need the chain binary.
 
 Verify your installation:
 
 ```bash
 bb version
-bb cli doctor
+bb doctor
 ```
 
 ## Quick examples
 
-Four shapes worth knowing:
-
 ```bash
-# 1. Native chain query — Cosmos SDK surface, no forwarding
+# 1. Native chain query
 bb query bank balances bb1abc... --output json
 
-# 2. Forwarded SDK call — `bb cli` is shorthand for the Node SDK CLI
-bb cli api tokens get-collection 1 --output json
+# 2. Indexer call
+bb api tokens get-collection 1 --output json
 
 # 3. Authenticated session — wallet-agnostic, headless-friendly
-#    (full reference: for-developers/cli/auth-commands.md)
-MSG=$(bb cli auth challenge --address bb1... | jq -r .data.message)
+MSG=$(bb auth challenge --address bb1... | jq -r .data.message)
 SIG_JSON=$(bb sign-arbitrary mykey "$MSG")
-bb cli auth login \
+bb auth login \
   --address    "$(echo "$SIG_JSON" | jq -r .address)" \
   --signature  "$(echo "$SIG_JSON" | jq -r .signature)" \
   --public-key "$(echo "$SIG_JSON" | jq -r .pubKey)" \
@@ -17879,62 +17888,60 @@ bb cli auth login \
 bb --help-json | jq '.commands[] | .name'
 ```
 
-## How They Work Together
-
-The chain binary delegates every `bitbadges-cli` subcommand to the Node.js CLI via a single `cli` forwarder. These are equivalent:
-
-```bash
-bb cli check tx.json
-bitbadges-cli check tx.json
-
-bb cli api tokens get-collection 1
-bitbadges-cli api tokens get-collection 1
-```
-
-Use whichever you prefer. The chain binary adds key management, transaction signing, and on-chain queries on top of what the SDK CLI provides.
-
 ## What You Can Do
 
 | Capability | Command | Example |
 |-----------|---------|---------|
-| **Create a collection with no wallet setup** | `bitbadges-cli deploy --burner` | `bitbadges-cli build subscription … \| bitbadges-cli deploy --burner --msg-stdin --manager bb1… --local` |
-| **Sign with a browser wallet (Keplr / MetaMask)** | `bitbadges-cli auth login --browser` | `bitbadges-cli auth login --browser --address bb1...` |
-| **Broadcast via your browser wallet** | `bitbadges-cli deploy --browser` | `bitbadges-cli deploy --browser --msg-file col.json --manager bb1...` |
-| **Build + broadcast in one step** | `bitbadges-cli build … --deploy-with-browser` | `bitbadges-cli build vault --name … --deploy-with-browser` |
-| **Sign now, broadcast later** | `bitbadges-cli deploy --browser --sign-only` | `bitbadges-cli deploy --browser --sign-only --msg-file col.json --manager bb1...` |
-| **Get signable payload for a custom signer (ethers/viem/HSM)** | `bitbadges-cli gen-tx-payload` | `bitbadges-cli build vault … \| bitbadges-cli gen-tx-payload --from bb1... --with-evm-tx` |
-| **Confirm a tx landed on chain** | `bitbadges-cli tx wait` | `bitbadges-cli tx wait $TXHASH --mainnet --timeout 60` |
-| **Query any collection** | `bitbadges-cli api tokens get-collection` | `bitbadges-cli api tokens get-collection 1` |
-| **Review and audit tokens** | `bitbadges-cli check` | `bitbadges-cli check tx.json` |
-| **Explain a tx or collection** | `bitbadges-cli explain` | `bitbadges-cli explain tx.json` |
-| **Dry-run a transaction** | `bitbadges-cli simulate` | `bitbadges-cli simulate tx.json` |
-| **Dry-run a deploy without spending** | `bitbadges-cli deploy --dry-run` | `bitbadges-cli deploy vault.json --burner --dry-run --manager bb1...` |
-| **Share a tx for visual review** | `bitbadges-cli preview` | `bitbadges-cli preview tx.json` |
-| **Browse 100+ API routes** | `bitbadges-cli api` | `bitbadges-cli api tokens --help` |
-| **Search API routes by keyword** | `bitbadges-cli api --search` | `bitbadges-cli api --search swap` |
-| **Inspect a route's schema** | `bitbadges-cli api ... --schema` | `bitbadges-cli api tokens get-collection --schema` |
-| **Convert addresses** | `bitbadges-cli address convert` | `bitbadges-cli address convert 0x1234... --to bb1` |
-| **Look up token info** | `bitbadges-cli lookup` | `bitbadges-cli lookup USDC` |
-| **Browse docs** | `bitbadges-cli docs` | `bitbadges-cli docs learn/approvals` |
-| **List builder skills** | `bitbadges-cli skills` | `bitbadges-cli skills smart-token` |
-| **Health check** | `bitbadges-cli doctor` | `bitbadges-cli doctor --testnet` |
-| **Create/sign transactions** | `bitbadgeschaind tx` | `bitbadgeschaind tx tokenization create-collection ./col.json --from mykey` |
-| **Manage keys** | `bitbadgeschaind keys` | `bitbadgeschaind keys add mykey` |
-| **Query on-chain state** | `bitbadgeschaind query` | `bitbadgeschaind query tokenization collection 1` |
+| **Create a collection with no wallet setup** | `bb deploy --burner` | `bb build subscription … \| bb deploy --burner --msg-stdin --manager bb1… --local` |
+| **Sign with a browser wallet (Keplr / MetaMask)** | `bb auth login --browser` | `bb auth login --browser --address bb1...` |
+| **Broadcast via your browser wallet** | `bb deploy --browser` | `bb deploy --browser --msg-file col.json --manager bb1...` |
+| **Build + broadcast in one step** | `bb build … --deploy-with-browser` | `bb build vault --name … --deploy-with-browser` |
+| **Sign now, broadcast later** | `bb deploy --browser --sign-only` | `bb deploy --browser --sign-only --msg-file col.json --manager bb1...` |
+| **Get signable payload for a custom signer (ethers/viem/HSM)** | `bb deploy --gen-payload` | `bb build vault … \| bb deploy --gen-payload --from bb1... --with-evm-tx` |
+| **Confirm a tx landed on chain** | `bb tx wait` | `bb tx wait $TXHASH --mainnet --timeout 60` |
+| **Query any collection** | `bb api tokens get-collection` | `bb api tokens get-collection 1` |
+| **Review and audit tokens** | `bb check` | `bb check tx.json` |
+| **Explain a tx or collection** | `bb explain` | `bb explain tx.json` |
+| **Dry-run a transaction** | `bb simulate` | `bb simulate tx.json` |
+| **Dry-run a deploy without spending** | `bb deploy --dry-run` | `bb deploy vault.json --burner --dry-run --manager bb1...` |
+| **Share a tx for visual review** | `bb preview` | `bb preview tx.json` |
+| **Browse 100+ API routes** | `bb api` | `bb api tokens --help` |
+| **Search API routes by keyword** | `bb api --search` | `bb api --search swap` |
+| **Inspect a route's schema** | `bb api ... --schema` | `bb api tokens get-collection --schema` |
+| **Convert addresses** | `bb account convert` | `bb account convert 0x1234... --to bb1` |
+| **Look up token info** | `bb account lookup` | `bb account lookup USDC` |
+| **Browse docs** | `bb dev docs` | `bb dev docs learn/approvals` |
+| **List builder skills** | `bb dev skills` | `bb dev skills smart-token` |
+| **Health check** | `bb doctor` | `bb doctor --testnet` |
+| **Create/sign transactions** | `bb tx` | `bb tx tokenization create-collection ./col.json --from mykey` |
+| **Manage keys** | `bb keys` | `bb keys add mykey` |
+| **Query on-chain state** | `bb query` | `bb query tokenization collection 1` |
+
+## Deprecation runway — the old `bb cli` and standalone names still work
+
+Every old form — `bb cli <subcmd>`, the per-utility top-level names that moved under `bb account` / `bb dev` / `bb settings`, the standalone `sign-with-browser` and `gen-tx-payload`, the per-standard `<standard> build` subcommands — is still accepted for **one release**. Running the old form prints a one-line deprecation banner to stderr:
+
+```
+[bb] DEPRECATED: `bb cli build vault` — use `bb build vault` instead.
+```
+
+Set `BB_QUIET=1` (or pass `--quiet`) to suppress the banner. The next release after the deprecation window hard-fails old forms and removes every alias. Update your scripts and agent prompts before then.
+
+If you are reading the historical migration note for a specific verb, the deprecation banner is the authoritative source of the new name — it always points at the v2 short form.
 
 ## For AI Agents
 
 The CLI is the recommended interface for AI agents and automation. It provides:
 
 - **Structured JSON output** for every data-emitting command — easy to parse programmatically
-- **Uniform output envelope** on stdout for every data-emitting command: `{ok, data, warnings, hint?, meta?, error}` — same shape across the surface, with hints populated on common failure modes. The envelope is the only output mode; `--format` / `--json` / `--human` flags are gone. Universal flags: `--condensed` (single-line) and `--output-file <path>`. `bb build` extends the envelope with a `meta` sidecar carrying validation, review, simulate, and resolved-metadata reports alongside the msg in `data`
+- **Uniform output envelope** on stdout for every data-emitting command: `{ok, data, warnings, hint?, meta?, error}` — same shape across the surface, with hints populated on common failure modes. The envelope is the only output mode; `--format` / `--json` / `--human` flags are gone. Universal flags: `--condensed` (single-line) and `--output-file <path>`. `bb build` extends the envelope with a `meta` sidecar carrying validation, review, simulate, and resolved-metadata reports alongside the msg in `data`.
 - **`--help-json`** flag that outputs the full command tree as structured JSON for LLM tool discovery
 - **`--dry-run`** on both `simulate` and `deploy` for safe preview before broadcasting
-- **`--quiet`** (or `BB_QUIET=1`) silences stderr commentary across every command — pipe-friendly by default
+- **`--quiet`** (or `BB_QUIET=1`) silences stderr commentary across every command — pipe-friendly by default; this is also the toggle that suppresses the deprecation banner during the migration window
 - **`api --search` / `--schema`** for route discovery without grepping help text
 - **`tx status` / `tx wait`** to confirm a tx landed on chain (Cosmos LCD + EVM RPC fall-through)
 - **Targeted `hint:` on common errors** — auth-rejected, 401/403, deploy insufficient-funds, tx-wait timeout — designed to cut agent retry loops in half
-- **Shell completion** for interactive use: `eval "$(bitbadges-cli completion)"`
+- **Shell completion** for interactive use: `eval "$(bb completion)"`
 - **Pipe-friendly** — accepts stdin (`-`), file paths (`@file.json`), and inline JSON
 
 See [CLI for AI Agents](for-ai-agents.md) for end-to-end agent workflows.
@@ -17949,11 +17956,11 @@ For building token collections with AI assistants (Claude, Cursor, etc.), see th
 - [Analysis Commands](analysis-commands.md) — `check`, `explain`, `simulate`, `preview`
 - [Deploy Commands](deploy-commands.md) — ship a create-collection tx without bringing your own wallet (also covers `--wait-for-indexer` + `--with-keyring`)
 - [Tx Commands](tx-commands.md) — confirm a broadcast tx committed (Cosmos + EVM hash support)
-- [Tool Commands](tool-commands.md) — fine-grained MCP tools (`tool` / `tools`), persisted sessions, static resources
-- [Utility Commands](utility-commands.md) — `docs`, `skills`, `address`, `alias`, `lookup`, `gen-list-id`, `doctor`
+- [Tool Commands](tool-commands.md) — fine-grained MCP tools (`bb dev tools list` / `bb dev tools call`), persisted sessions, static resources
+- [Utility Commands](utility-commands.md) — `bb dev docs`, `bb dev skills`, `bb account convert`, `bb account alias`, `bb account lookup`, `bb account gen-list-id`, `bb doctor`
 - [API Commands](api-commands.md) — 104+ API routes from your terminal
 - [Auth Commands](auth-commands.md) — wallet-agnostic SIWBB sessions for Full Access endpoints
-- [Sign Bridge](sign-bridge.md) — sign with a browser wallet (Keplr/MetaMask) from the CLI; `gen-tx-payload` for custom programmatic signers
+- [Sign Bridge](sign-bridge.md) — sign with a browser wallet (Keplr/MetaMask) from the CLI; `bb deploy --gen-payload` for custom programmatic signers
 - [Chain Commands](chain-commands.md) — keys, transactions, on-chain queries
 - [CLI for AI Agents](for-ai-agents.md) — agent workflows and automation patterns
 
@@ -17975,14 +17982,14 @@ Once you have a transaction JSON in hand (from `build`, the MCP builder tools, o
 
 ## check
 
-`bitbadges-cli check` is the unified analysis entry point. It folds the old `validate`, `review`, and `verify` verbs into one command with a `--depth` dial.
+`bb check` is the unified analysis entry point. It folds the old `validate`, `review`, and `verify` verbs into one command with a `--depth` dial.
 
 ```bash
-bitbadges-cli check tx.json                       # full check (default)
-bitbadges-cli check tx.json --depth structural    # validateTransaction() only
-bitbadges-cli check tx.json --depth review        # reviewCollection() only
-bitbadges-cli check 42 --depth review --testnet   # live collection, design audit
-echo '{"messages":[...]}' | bitbadges-cli check -
+bb check tx.json                       # full check (default)
+bb check tx.json --depth structural    # validateTransaction() only
+bb check tx.json --depth review        # reviewCollection() only
+bb check 42 --depth review --testnet   # live collection, design audit
+echo '{"messages":[...]}' | bb check -
 ```
 
 **Depth levels:**
@@ -18011,13 +18018,13 @@ Stdout is always the universal `{ok, data, warnings, error}` envelope; the human
 
 ## explain
 
-`bitbadges-cli explain` produces a plain-English summary. Auto-detects whether the input is a transaction or a collection and routes to the right interpreter.
+`bb explain` produces a plain-English summary. Auto-detects whether the input is a transaction or a collection and routes to the right interpreter.
 
 ```bash
-bitbadges-cli explain tx.json
-bitbadges-cli explain '{"messages":[...]}'
-bitbadges-cli explain 42 --testnet           # numeric: fetch collection from indexer
-echo '{"messages":[...]}' | bitbadges-cli explain -
+bb explain tx.json
+bb explain '{"messages":[...]}'
+bb explain 42 --testnet           # numeric: fetch collection from indexer
+echo '{"messages":[...]}' | bb explain -
 ```
 
 **Input detection:**
@@ -18040,7 +18047,7 @@ echo '{"messages":[...]}' | bitbadges-cli explain -
 `explain` always emits the universal envelope. The prose interpretation lives at `data.fullText`; agents that want a per-message breakdown read `data.messages[]`.
 
 ```bash
-bitbadges-cli explain tx.json
+bb explain tx.json
 # {
 #   "ok": true,
 #   "data": {
@@ -18064,13 +18071,13 @@ Replaces the old `sdk interpret-tx` and `sdk interpret-collection` commands plus
 
 ## simulate
 
-`bitbadges-cli simulate` dry-runs a transaction against the indexer's `/api/v0/simulate` endpoint. Returns the parsed events, per-address balance changes, and any errors that would have surfaced on-chain.
+`bb simulate` dry-runs a transaction against the indexer's `/api/v0/simulate` endpoint. Returns the parsed events, per-address balance changes, and any errors that would have surfaced on-chain.
 
 ```bash
-bitbadges-cli simulate tx.json
-bitbadges-cli simulate tx.json --creator bb1mysigner...
-bitbadges-cli simulate tx.json --events           # dump full events array
-echo '{"messages":[...]}' | bitbadges-cli simulate -
+bb simulate tx.json
+bb simulate tx.json --creator bb1mysigner...
+bb simulate tx.json --events           # dump full events array
+echo '{"messages":[...]}' | bb simulate -
 ```
 
 **Flags:**
@@ -18091,12 +18098,12 @@ User-level approval messages (`MsgUpdateUserApprovals`, `MsgSetIncomingApproval`
 
 ## preview
 
-`bitbadges-cli preview` uploads a transaction to the indexer and prints a shareable `bitbadges.io/builder/preview?code=...` URL. Intended for handing a tx off to a non-CLI reviewer for visual inspection without giving them edit/submit rights. Lives 1 hour in the indexer's Redis cache.
+`bb preview` uploads a transaction to the indexer and prints a shareable `bitbadges.io/builder/preview?code=...` URL. Intended for handing a tx off to a non-CLI reviewer for visual inspection without giving them edit/submit rights. Lives 1 hour in the indexer's Redis cache.
 
 ```bash
-bitbadges-cli preview tx.json
-bitbadges-cli preview tx.json --frontend-url https://staging.bitbadges.io
-echo '{"messages":[...]}' | bitbadges-cli preview -
+bb preview tx.json
+bb preview tx.json --frontend-url https://staging.bitbadges.io
+echo '{"messages":[...]}' | bb preview -
 ```
 
 **Flags:**
@@ -18123,7 +18130,7 @@ The endpoint is intentionally open (no API key required); the unguessable code i
 
 # API Commands
 
-The `api` subcommand provides access to all 104+ indexer API routes, auto-generated from the OpenAPI spec. Routes are grouped by category. Available via both `bitbadges-cli api` and `bitbadgeschaind cli api`.
+The `api` subcommand provides access to all 104+ indexer API routes, auto-generated from the OpenAPI spec. Routes are grouped by category. Invoke as `bb api`.
 
 ## Route Groups
 
@@ -18147,7 +18154,7 @@ The `api` subcommand provides access to all 104+ indexer API routes, auto-genera
 ## Usage
 
 ```bash
-bitbadges-cli api <group> <route-name> [path-params...] [options]
+bb api <group> <route-name> [path-params...] [options]
 ```
 
 Path parameters are positional arguments. Request bodies can be inline JSON, a file reference with `@`, or `-` for stdin.
@@ -18170,21 +18177,21 @@ Path parameters are positional arguments. Request bodies can be inline JSON, a f
 
 ```bash
 # GET routes
-bitbadges-cli api tokens get-collection 1
-bitbadges-cli api accounts get-account --body '{"address":"bb1..."}'
+bb api tokens get-collection 1
+bb api accounts get-account --body '{"address":"bb1..."}'
 
 # POST routes (with body)
-bitbadges-cli api accounts get-accounts --body '{"accountsToFetch":[{"address":"bb1..."}]}'
-bitbadges-cli api tx broadcast-tx --body @tx.json
+bb api accounts get-accounts --body '{"accountsToFetch":[{"address":"bb1..."}]}'
+bb api tx broadcast-tx --body @tx.json
 
 # GET routes auto-convert --body to query params
-bitbadges-cli api accounts get-tokens-for-user bb1... --body '{"viewType":"collected"}'
+bb api accounts get-tokens-for-user bb1... --body '{"viewType":"collected"}'
 
 # Testnet with dry-run
-bitbadges-cli api tokens get-collection 1 --testnet --dry-run
+bb api tokens get-collection 1 --testnet --dry-run
 
 # List routes in a group
-bitbadges-cli api tokens --help
+bb api tokens --help
 ```
 
 ## Help and Type Schemas
@@ -18192,7 +18199,7 @@ bitbadges-cli api tokens --help
 Each route's `--help` includes the HTTP method, path template, SDK type names, key body/query fields, and an SDK code example (where available).
 
 ```bash
-bitbadges-cli api tokens get-collections --help
+bb api tokens get-collections --help
 ```
 
 ## Discovery: `--search` and `--schema`
@@ -18204,7 +18211,7 @@ Two flags help agents and humans navigate the 100+ routes without grepping the h
 Substring scan over route name, path, tag, and description. Case-insensitive. Always emits the universal envelope on stdout; the matched routes live at `data.matches[]`.
 
 ```bash
-bitbadges-cli api --search balance
+bb api --search balance
 # {
 #   "ok": true,
 #   "data": {
@@ -18222,7 +18229,7 @@ bitbadges-cli api --search balance
 # }
 
 # Pretty table for humans:
-bitbadges-cli api --search swap | jq -r '.data.matches[] | "\(.name)\t\(.method)\t\(.path)"'
+bb api --search swap | jq -r '.data.matches[] | "\(.name)\t\(.method)\t\(.path)"'
 ```
 
 ### `--schema` (per route)
@@ -18230,7 +18237,7 @@ bitbadges-cli api --search swap | jq -r '.data.matches[] | "\(.name)\t\(.method)
 Print the route's request body fields, query parameters, and SDK type names without making an API call. Useful for agents that want to construct valid request bodies offline.
 
 ```bash
-bitbadges-cli api tokens get-collection --schema
+bb api tokens get-collection --schema
 # {
 #   "name": "get-collection",
 #   "method": "GET",
@@ -18248,9 +18255,9 @@ bitbadges-cli api tokens get-collection --schema
 When an `api` call fails with HTTP 401 or 403 (typically a Full Access route called without a session), the CLI emits a one-liner pointing at the recovery action:
 
 ```bash
-bitbadges-cli api accounts get-account --body '{"address":"bb1..."}'
+bb api accounts get-account --body '{"address":"bb1..."}'
 # Error: API error: Unauthorized
-# Hint: This route requires user-scoped auth — run `bitbadges-cli auth login`, then retry with `--with-session`.
+# Hint: This route requires user-scoped auth — run `bb auth login`, then retry with `--with-session`.
 ```
 
 If the call already attached a cookie via `--with-session` and the indexer still refused, the hint suggests a re-login (session likely expired or scoped wrong).
@@ -18268,17 +18275,15 @@ If the call already attached a cookie via `--with-session` and the indexer still
 
 # Auth Commands
 
-The `bitbadges-cli auth` subcommand authenticates the CLI against the BitBadges indexer using the standard SIWBB (SIWE / EIP-4361) challenge → verify flow. It stores the resulting session cookie under `~/.bitbadges/auth.json` (mode `0600`, multi-account, multi-network), and `bitbadges-cli api --with-session` attaches that cookie on subsequent calls.
+The `bb auth` subcommand authenticates the CLI against the BitBadges indexer using the standard SIWBB (SIWE / EIP-4361) challenge → verify flow. It stores the resulting session cookie under `~/.bitbadges/auth.json` (mode `0600`, multi-account, multi-network), and `bb api --with-session` attaches that cookie on subsequent calls.
 
 This is what an agent or operator runs once before hitting any indexer endpoint gated by `Full Access` — anything that mutates an account, manages keys, publishes signed data, etc. The plain API key is necessary on every call but not sufficient for those routes; the API key is the *app* scope, the session cookie is the *user* scope.
-
-Available via both `bitbadges-cli auth` and `bb cli auth`.
 
 ## Wallet-agnostic by design
 
 The CLI **never touches a private key**. Every `auth login` requires a signature produced by something else:
 
-- `bitbadgeschaind sign-arbitrary` — the chain binary's offline ADR-36 signer. Recommended for fully headless agents.
+- `bb sign-arbitrary` — the chain binary's offline ADR-36 signer. Recommended for fully headless agents.
 - **A browser wallet (MetaMask, Keplr) via `auth login --browser`** — opens `/sign` in your default browser, signs there, captures the signature on a local loopback listener. See [Sign Bridge](sign-bridge.md) for the full reference.
 - A hardware wallet, custodial signer, HSM — anything that can produce an ADR-36 / EIP-191 signature over the challenge message. For programmatic / agentic signers that need pre-built SignDoc bytes, see [`gen-tx-payload`](sign-bridge.md#gen-tx-payload).
 
@@ -18299,7 +18304,7 @@ That separation is what makes the same `auth` surface work for both an agent on 
 
 ## Common flags
 
-Every `auth` subcommand accepts the same network resolution flags as `bitbadges-cli api`:
+Every `auth` subcommand accepts the same network resolution flags as `bb api`:
 
 | Flag | Description |
 |---|---|
@@ -18316,20 +18321,20 @@ The canonical agentic flow is three commands. Each step is independent — the o
 
 ```bash
 # 1. Fetch a challenge. Saves the nonce cookie locally so step 3 can replay it.
-MSG=$(bitbadges-cli auth challenge --address bb1... | jq -r .data.message)
+MSG=$(bb auth challenge --address bb1... | jq -r .data.message)
 
 # 2. Sign the challenge with whatever signer you have. Headless Cosmos example:
-SIG_JSON=$(bitbadgeschaind sign-arbitrary mykey "$MSG")
+SIG_JSON=$(bb sign-arbitrary mykey "$MSG")
 
 # 3. Post the signature. Stores the session cookie on success.
-bitbadges-cli auth login \
+bb auth login \
   --address    "$(echo "$SIG_JSON" | jq -r .address)" \
   --signature  "$(echo "$SIG_JSON" | jq -r .signature)" \
   --public-key "$(echo "$SIG_JSON" | jq -r .pubKey)" \
   --message    "$MSG"
 
 # 4. Make a Full Access request. --with-session attaches the cookie.
-bitbadges-cli api accounts get-account --body '{"address":"bb1..."}' --with-session
+bb api accounts get-account --body '{"address":"bb1..."}' --with-session
 ```
 
 > **Why three steps and not one?** The indexer binds each challenge nonce to the response cookie it set on `getChallenge`. Without persisting that cookie locally, a follow-up `auth verify` would hit `No sign-in request found`. `auth challenge` writes a pending entry (5-minute TTL) that `auth login` consumes.
@@ -18341,7 +18346,7 @@ For an interactive flow with an in-process signer, `auth login` will fetch a fre
 The recommended path for browser-only wallets is the **sign bridge**:
 
 ```bash
-bitbadges-cli auth login --browser --address bb1...
+bb auth login --browser --address bb1...
 ```
 
 The CLI opens `/sign` in your default browser; you sign with Keplr/MetaMask; the resulting Full Access session lands in `~/.bitbadges/auth.json` automatically. No copy-paste, no `--public-key` to manage. See [Sign Bridge](sign-bridge.md#auth-login-browser) for the full flag reference, the threat model, and SSH-tunneled dev setups.
@@ -18352,12 +18357,12 @@ If you want to do it without the bridge — useful for paranoid environments or 
 
 ```bash
 # 1. Fetch and print the challenge
-bitbadges-cli auth challenge --address 0x...
+bb auth challenge --address 0x...
 
 # 2. Open MetaMask → "Sign Message" → paste the printed message → copy the signature
 
 # 3. Post it back
-bitbadges-cli auth login \
+bb auth login \
   --address 0x... \
   --signature 0x...   # ETH addresses do not require --public-key
 ```
@@ -18369,7 +18374,7 @@ ETH addresses are detected by the `0x` prefix; Cosmos addresses by `bb1`. `--pub
 One-shot: fetches a challenge (or reuses a pending one), POSTs the signature, persists the cookie, and marks the address active for the network.
 
 ```bash
-bitbadges-cli auth login \
+bb auth login \
   --address <addr> \
   --signature <sig> \
   [--public-key <b64>] \
@@ -18399,7 +18404,7 @@ bitbadges-cli auth login \
 Fetch a SIWBB challenge for an address. Emits the message your signer must sign (at `data.message`) and (by default) persists the response cookie locally so a follow-up `auth login` / `auth verify` can replay it.
 
 ```bash
-bitbadges-cli auth challenge --address bb1... [--no-save-pending]
+bb auth challenge --address bb1... [--no-save-pending]
 # {
 #   "ok": true,
 #   "data": { "message": "...SIWBB challenge text...", "nonce": "..." },
@@ -18408,7 +18413,7 @@ bitbadges-cli auth challenge --address bb1... [--no-save-pending]
 # }
 
 # Extract just the message for a downstream signer:
-MSG=$(bitbadges-cli auth challenge --address bb1... | jq -r .data.message)
+MSG=$(bb auth challenge --address bb1... | jq -r .data.message)
 ```
 
 | Flag | Description |
@@ -18421,7 +18426,7 @@ MSG=$(bitbadges-cli auth challenge --address bb1... | jq -r .data.message)
 Two-step counterpart to `auth login`. Identical surface; kept as a separate subcommand for muscle-memory parity with the `challenge → verify` flow.
 
 ```bash
-bitbadges-cli auth verify \
+bb auth verify \
   --address <addr> \
   --signature <sig> \
   [--public-key <b64>] \
@@ -18433,9 +18438,9 @@ bitbadges-cli auth verify \
 List stored sessions for the resolved network (or all networks with `--all`). With `--check`, additionally hits `/api/v0/auth/status` to confirm the cookie is still valid server-side.
 
 ```bash
-bitbadges-cli auth status              # active session on mainnet
-bitbadges-cli auth status --all        # every stored session, every network
-bitbadges-cli auth status --check      # also revalidate server-side
+bb auth status              # active session on mainnet
+bb auth status --all        # every stored session, every network
+bb auth status --check      # also revalidate server-side
 ```
 
 Output lines look like:
@@ -18446,11 +18451,11 @@ mainnet   bb1abc...   Cosmos   expires=2026-05-10T03:14:15.000Z (valid) [server:
 
 ## auth use
 
-Set the active address for a network. `bitbadges-cli api --with-session` (without `--as-address`) uses whichever address is active for the resolved network.
+Set the active address for a network. `bb api --with-session` (without `--as-address`) uses whichever address is active for the resolved network.
 
 ```bash
-bitbadges-cli auth use bb1abc...
-bitbadges-cli auth use bb1xyz... --testnet
+bb auth use bb1abc...
+bb auth use bb1xyz... --testnet
 ```
 
 ## auth whoami
@@ -18458,8 +18463,8 @@ bitbadges-cli auth use bb1xyz... --testnet
 Print the active address for the resolved network. Exits non-zero if no session is stored.
 
 ```bash
-bitbadges-cli auth whoami
-bitbadges-cli auth whoami --testnet
+bb auth whoami
+bb auth whoami --testnet
 ```
 
 ## auth logout
@@ -18467,9 +18472,9 @@ bitbadges-cli auth whoami --testnet
 Sign out and remove the local record. Hits `/api/v0/auth/logout` server-side and deletes the entry from `auth.json`. If the server call fails (network down, cookie already expired), the local record is removed anyway.
 
 ```bash
-bitbadges-cli auth logout                    # active session on mainnet
-bitbadges-cli auth logout --address bb1...   # specific address
-bitbadges-cli auth logout --all              # every session, every network
+bb auth logout                    # active session on mainnet
+bb auth logout --address bb1...   # specific address
+bb auth logout --all              # every session, every network
 ```
 
 ## auth path
@@ -18477,7 +18482,7 @@ bitbadges-cli auth logout --all              # every session, every network
 Print the absolute path of the auth store. Useful for backups, audits, and shipping a session from a laptop to a headless agent box.
 
 ```bash
-bitbadges-cli auth path
+bb auth path
 # /home/you/.bitbadges/auth.json
 ```
 
@@ -18512,20 +18517,20 @@ bitbadges-cli auth path
 }
 ```
 
-The store is multi-account by design. You can hold sessions for many addresses simultaneously and switch between them with `auth use`, or scope a single call with `bitbadges-cli api ... --as-address <addr>`.
+The store is multi-account by design. You can hold sessions for many addresses simultaneously and switch between them with `auth use`, or scope a single call with `bb api ... --as-address <addr>`.
 
 ## Using a stored session — `api --with-session`
 
-`bitbadges-cli api` only attaches the cookie when you explicitly ask it to (silent session injection is a footgun):
+`bb api` only attaches the cookie when you explicitly ask it to (silent session injection is a footgun):
 
 ```bash
 # Use the active address for the resolved network
-bitbadges-cli api accounts update-account-info \
+bb api accounts update-account-info \
   --body '{"username":"new"}' \
   --with-session
 
 # Override which stored address to use
-bitbadges-cli api accounts update-account-info \
+bb api accounts update-account-info \
   --body '{"username":"new"}' \
   --with-session --as-address bb1xyz...
 ```
@@ -18537,7 +18542,7 @@ If the resolved address has no stored session, the call exits 1 with a message p
 - **Scope is `Full Access`.** The indexer's `getChallenge` currently hard-codes the scope set; narrower-scope sessions (e.g. `Manage Claims` only) need a small indexer change. Tracked in the backlog.
 - **Sessions auto-refresh on use.** The indexer runs `express-session` with `rolling: true` and a 7-day window — every authenticated request resets the cookie's expiry to "now + 7 days" server-side. The CLI captures the rolled `Set-Cookie` from each `--with-session` response and writes the new `expiresAt` back to `auth.json`, so a long-lived agent that makes any request inside the rolling window keeps its session indefinitely without re-logging in. Re-run `auth login` only after a stretch of full inactivity longer than the rolling window (or after explicit `auth logout`).
 - **The pending challenge has a 5-minute TTL.** If you wait too long between `auth challenge` and `auth login`, the entry is stale and `login` will fetch a fresh challenge (which will not match the message you signed).
-- **Shipping `auth.json` between machines is fine** — the cookie is just an HTTP cookie. Move the file with `scp` or equivalent; the receiving box can immediately `bitbadges-cli api --with-session`. Keep it `0600`.
+- **Shipping `auth.json` between machines is fine** — the cookie is just an HTTP cookie. Move the file with `scp` or equivalent; the receiving box can immediately `bb api --with-session`. Keep it `0600`.
 
 ## See also
 
@@ -18550,7 +18555,7 @@ If the resolved address has no stored session, the call exits 1 with a message p
 
 # Build Commands
 
-The `bitbadges-cli build` command provides 18 builders that generate ready-to-sign transaction JSON. Each builder creates a complete collection or approval configuration from simple, human-readable parameters.
+The `bb build` command provides 18 builders that generate ready-to-sign transaction JSON. Each builder creates a complete collection or approval configuration from simple, human-readable parameters.
 
 All build commands accept friendly inputs -- use coin symbols like `USDC` instead of raw IBC denominations, and duration shorthands like `30d` instead of millisecond timestamps. The output is a fully-formed transaction message that can be signed and broadcast using the SDK, the BitBadges frontend, or the chain binary.
 
@@ -18583,7 +18588,7 @@ These commands generate `MsgUniversalUpdateCollection` transaction JSON for crea
 Create an IBC-backed vault token with optional withdrawal limits, 2FA gating, and emergency recovery.
 
 ```bash
-bitbadges-cli build vault --backing-coin USDC \
+bb build vault --backing-coin USDC \
   --name "My Vault" \
   --symbol vUSDC \
   --daily-withdraw-limit 1000 \
@@ -18606,7 +18611,7 @@ bitbadges-cli build vault --backing-coin USDC \
 Create a recurring subscription collection with configurable intervals, pricing, and optional multi-tier support.
 
 ```bash
-bitbadges-cli build subscription --interval monthly \
+bb build subscription --interval monthly \
   --price 10 --denom USDC --recipient bb1... \
   --tiers 3 --transferable
 ```
@@ -18627,7 +18632,7 @@ bitbadges-cli build subscription --interval monthly \
 Create a bounty with escrowed funds, a verifier who approves completion, and a designated recipient.
 
 ```bash
-bitbadges-cli build bounty --amount 500 --denom USDC \
+bb build bounty --amount 500 --denom USDC \
   --verifier bb1... --recipient bb1... --expiration 30d
 ```
 
@@ -18645,7 +18650,7 @@ bitbadges-cli build bounty --amount 500 --denom USDC \
 Create an agent-initiated payment request — the inverse of `bounty`. The agent (or any address) creates a collection requesting payment from a targeted payer; the payer approves AND pays from their own wallet in a single action. **No escrow up front.**
 
 ```bash
-bitbadges-cli build payment-request \
+bb build payment-request \
   --amount 10 --denom USDC \
   --payer bb1payer... --recipient bb1agent... \
   --expiration 30d --name "Service charge" \
@@ -18669,7 +18674,7 @@ See the full spec in [skills/payment-request](../../x-tokenization/examples/skil
 Create a crowdfunding collection with a funding goal and deadline.
 
 ```bash
-bitbadges-cli build crowdfund --goal 10000 --denom USDC \
+bb build crowdfund --goal 10000 --denom USDC \
   --crowdfunder bb1... --deadline 30d
 ```
 
@@ -18686,7 +18691,7 @@ bitbadges-cli build crowdfund --goal 10000 --denom USDC \
 Create an auction collection with configurable bidding and acceptance windows.
 
 ```bash
-bitbadges-cli build auction --bid-deadline 7d --accept-window 7d \
+bb build auction --bid-deadline 7d --accept-window 7d \
   --name "Rare Item" --description "Limited edition collectible" \
   --seller bb1seller...
 ```
@@ -18705,7 +18710,7 @@ bitbadges-cli build auction --bid-deadline 7d --accept-window 7d \
 Create a product catalog collection with multiple products, each having its own price and optional supply limit.
 
 ```bash
-bitbadges-cli build product-catalog \
+bb build product-catalog \
   --products '[{"name":"Widget","price":25,"denom":"USDC","maxSupply":100}]' \
   --store-address bb1...
 ```
@@ -18721,7 +18726,7 @@ bitbadges-cli build product-catalog \
 Create a binary prediction market (YES/NO outcome tokens) with a designated resolver.
 
 ```bash
-bitbadges-cli build prediction-market --verifier bb1... \
+bb build prediction-market --verifier bb1... \
   --denom USDC --name "Will X happen by 2027?"
 ```
 
@@ -18738,7 +18743,7 @@ bitbadges-cli build prediction-market --verifier bb1... \
 Create an IBC-backed smart account with optional trading and AI agent vault support.
 
 ```bash
-bitbadges-cli build smart-account --backing-coin USDC \
+bb build smart-account --backing-coin USDC \
   --symbol sUSDC --tradable --ai-agent-vault
 ```
 
@@ -18755,7 +18760,7 @@ bitbadges-cli build smart-account --backing-coin USDC \
 Create a credit or prepaid token where users pay to receive a configurable number of tokens.
 
 ```bash
-bitbadges-cli build credit-token --payment-denom USDC \
+bb build credit-token --payment-denom USDC \
   --recipient bb1... --symbol CREDIT --tokens-per-unit 100
 ```
 
@@ -18772,7 +18777,7 @@ bitbadges-cli build credit-token --payment-denom USDC \
 Create a custom 2FA token collection for use as a second authentication factor in other collections.
 
 ```bash
-bitbadges-cli build custom-2fa --name "My 2FA Token" --burnable
+bb build custom-2fa --name "My 2FA Token" --burnable
 ```
 
 | Flag | Required | Description |
@@ -18788,7 +18793,7 @@ bitbadges-cli build custom-2fa --name "My 2FA Token" --burnable
 Create a quest or reward collection where users claim token rewards up to a maximum number of claims.
 
 ```bash
-bitbadges-cli build quests --reward 10 --denom USDC --max-claims 1000
+bb build quests --reward 10 --denom USDC --max-claims 1000
 ```
 
 | Flag | Required | Description |
@@ -18803,7 +18808,7 @@ bitbadges-cli build quests --reward 10 --denom USDC --max-claims 1000
 Create an on-chain address list (not a token collection -- uses a separate message type).
 
 ```bash
-bitbadges-cli build address-list --name "Allowlist" --description "Approved addresses"
+bb build address-list --name "Allowlist" --description "Approved addresses"
 ```
 
 | Flag | Required | Description |
@@ -18821,7 +18826,7 @@ These commands generate user-level approval messages for marketplace listings, b
 Create an OTC swap intent (user outgoing approval) on the Intent Exchange.
 
 ```bash
-bitbadges-cli build intent --address bb1... \
+bb build intent --address bb1... \
   --collection-id 5 \
   --pay-denom USDC --pay-amount 100 \
   --receive-denom BADGE --receive-amount 500 \
@@ -18843,7 +18848,7 @@ bitbadges-cli build intent --address bb1... \
 Create a recurring payment approval (user incoming approval) for subscription collections.
 
 ```bash
-bitbadges-cli build recurring-payment --collection-id 10 \
+bb build recurring-payment --collection-id 10 \
   --amount 25 --denom USDC --interval monthly \
   --recipient bb1... --expiration 365d
 ```
@@ -18862,7 +18867,7 @@ bitbadges-cli build recurring-payment --collection-id 10 \
 Create a marketplace listing (user outgoing approval) to sell tokens from a collection.
 
 ```bash
-bitbadges-cli build listing --address bb1... \
+bb build listing --address bb1... \
   --collection-id 7 --token-ids "1-5" \
   --price 50 --denom USDC --max-sales 1 --expiration 30d
 ```
@@ -18882,7 +18887,7 @@ bitbadges-cli build listing --address bb1... \
 Create a marketplace bid (user incoming approval) to buy tokens from a collection.
 
 ```bash
-bitbadges-cli build bid --address bb1... \
+bb build bid --address bb1... \
   --collection-id 7 --token-ids "1-5" \
   --price 40 --denom USDC --expiration 7d
 ```
@@ -18901,7 +18906,7 @@ bitbadges-cli build bid --address bb1... \
 Create a prediction market sell intent (user outgoing approval) to sell outcome tokens.
 
 ```bash
-bitbadges-cli build pm-sell-intent --address bb1... \
+bb build pm-sell-intent --address bb1... \
   --collection-id 12 --token yes \
   --amount 10 --price 50 --denom USDC
 ```
@@ -18921,7 +18926,7 @@ bitbadges-cli build pm-sell-intent --address bb1... \
 Create a prediction market buy intent (user incoming approval) to buy outcome tokens.
 
 ```bash
-bitbadges-cli build pm-buy-intent --address bb1... \
+bb build pm-buy-intent --address bb1... \
   --collection-id 12 --token no \
   --amount 10 --price 50 --denom USDC
 ```
@@ -18942,18 +18947,18 @@ This command builds a `MsgTransferTokens` transaction for moving existing tokens
 
 ### `build transfer`
 
-Build a `MsgTransferTokens` with guided approval discovery. Requires `BITBADGES_API_KEY` (env var or `bitbadges-cli config set apiKey ...`) — the walkthrough fetches the collection and per-user approvals from the API.
+Build a `MsgTransferTokens` with guided approval discovery. Requires `BITBADGES_API_KEY` (env var or `bb settings set apiKey ...`) — the walkthrough fetches the collection and per-user approvals from the API.
 
 ```bash
 # Interactive walkthrough — prompts for everything
-bitbadges-cli build transfer
+bb build transfer
 
 # Flag-driven (still prompts for the approval-selection step)
-bitbadges-cli build transfer --collection-id 1 --from bb1abc... --to bb1xyz... --amount 5
+bb build transfer --collection-id 1 --from bb1abc... --to bb1xyz... --amount 5
 
 # Fully non-interactive — picks no prioritized approvals (chain matches),
 # no precalculation, default amount=1, default tokenIds=all valid
-bitbadges-cli build transfer --yes --collection-id 1 --from bb1abc... --to bb1xyz...
+bb build transfer --yes --collection-id 1 --from bb1abc... --to bb1xyz...
 ```
 
 The walkthrough renders a numbered list grouped by approval level (collection / outgoing / incoming) with tags for `predetermined`, `payment`, `must-own`, and `backed`, then asks:
@@ -18982,13 +18987,13 @@ All commands support `--json` for passing parameters as a JSON object. This is u
 
 ```bash
 # Inline JSON
-bitbadges-cli build vault --json '{"backingCoin":"USDC","name":"My Vault"}'
+bb build vault --json '{"backingCoin":"USDC","name":"My Vault"}'
 
 # From a file
-bitbadges-cli build vault --json ./params.json
+bb build vault --json ./params.json
 
 # From stdin
-echo '{"backingCoin":"USDC"}' | bitbadges-cli build vault --json -
+echo '{"backingCoin":"USDC"}' | bb build vault --json -
 ```
 
 ## Output
@@ -19003,9 +19008,11 @@ The output JSON can be signed and broadcast using the [BitBadges SDK signing cli
 
 ## File: ./for-developers/cli/chain-commands.md
 
-# Chain Commands (bitbadgeschaind)
+# Chain Commands
 
-The `bitbadgeschaind` binary provides key management, transaction signing, broadcasting, and on-chain queries. It is a standard Cosmos SDK binary with BitBadges-specific modules.
+The chain binary (`bitbadgeschaind`, aliased as `bb`) provides key management, transaction signing, broadcasting, and on-chain queries. It is a standard Cosmos SDK binary with BitBadges-specific modules.
+
+Every command on this page works with either binary name. We use `bb` throughout the rest of the docs; `bitbadgeschaind` is the canonical underlying name and is still accepted everywhere.
 
 ## Key Management
 
@@ -19013,23 +19020,23 @@ BitBadges supports both Ethereum-compatible keys (`eth_secp256k1`) and standard 
 
 ```bash
 # Create a new key
-bitbadgeschaind keys add mykey
+bb keys add mykey
 
 # Recover from mnemonic
-bitbadgeschaind keys add mykey --recover
+bb keys add mykey --recover
 
 # List keys
-bitbadgeschaind keys list
+bb keys list
 
 # Show key details (add --bech val for validator address)
-bitbadgeschaind keys show mykey
+bb keys show mykey
 
 # Export / Import
-bitbadgeschaind keys export mykey
-bitbadgeschaind keys import mykey keyfile.armor
+bb keys export mykey
+bb keys import mykey keyfile.armor
 
 # Delete a key
-bitbadgeschaind keys delete mykey
+bb keys delete mykey
 ```
 
 ## Submitting Transactions
@@ -19037,7 +19044,7 @@ bitbadgeschaind keys delete mykey
 All transaction commands follow this pattern:
 
 ```bash
-bitbadgeschaind tx <module> <command> [args...] \
+bb tx <module> <command> [args...] \
   --from mykey \
   --chain-id bitbadges-1 \
   --node https://lcd.bitbadges.io:443 \
@@ -19076,26 +19083,26 @@ The `tokenization` module handles collections, tokens, transfers, approvals, and
 
 ```bash
 # Create a collection
-bitbadgeschaind tx tokenization create-collection ./create-collection.json \
+bb tx tokenization create-collection ./create-collection.json \
   --from mykey --chain-id bitbadges-1 --node https://lcd.bitbadges.io:443
 
 # Universal update (can modify any field)
-bitbadgeschaind tx tokenization universal-update-collection ./update.json \
+bb tx tokenization universal-update-collection ./update.json \
   --from mykey --chain-id bitbadges-1 --node https://lcd.bitbadges.io:443
 
 # Update collection
-bitbadgeschaind tx tokenization update-collection ./update.json \
+bb tx tokenization update-collection ./update.json \
   --from mykey --chain-id bitbadges-1 --node https://lcd.bitbadges.io:443
 
 # Delete collection
-bitbadgeschaind tx tokenization delete-collection 1 \
+bb tx tokenization delete-collection 1 \
   --from mykey --chain-id bitbadges-1 --node https://lcd.bitbadges.io:443
 ```
 
 ### Transfers
 
 ```bash
-bitbadgeschaind tx tokenization transfer-tokens ./transfer.json \
+bb tx tokenization transfer-tokens ./transfer.json \
   --from mykey --chain-id bitbadges-1 --node https://lcd.bitbadges.io:443
 ```
 
@@ -19124,66 +19131,66 @@ Example `transfer.json`:
 
 ```bash
 # Set incoming / outgoing approval
-bitbadgeschaind tx tokenization set-incoming-approval 1 ./approval.json --from mykey ...
-bitbadgeschaind tx tokenization set-outgoing-approval 1 ./approval.json --from mykey ...
+bb tx tokenization set-incoming-approval 1 ./approval.json --from mykey ...
+bb tx tokenization set-outgoing-approval 1 ./approval.json --from mykey ...
 
 # Delete approvals
-bitbadgeschaind tx tokenization delete-incoming-approval 1 my-approval-id --from mykey ...
-bitbadgeschaind tx tokenization delete-outgoing-approval 1 my-approval-id --from mykey ...
+bb tx tokenization delete-incoming-approval 1 my-approval-id --from mykey ...
+bb tx tokenization delete-outgoing-approval 1 my-approval-id --from mykey ...
 
 # Update all user approvals at once
-bitbadgeschaind tx tokenization update-user-approved-transfers ./approvals.json --from mykey ...
+bb tx tokenization update-user-approved-transfers ./approvals.json --from mykey ...
 
 # Purge expired approvals
-bitbadgeschaind tx tokenization purge-approvals 1 true "" false '[]' --from mykey ...
+bb tx tokenization purge-approvals 1 true "" false '[]' --from mykey ...
 ```
 
 ### Metadata and Configuration
 
 ```bash
-bitbadgeschaind tx tokenization set-setcollectionmetadata ./metadata.json --from mykey ...
-bitbadgeschaind tx tokenization set-settokenmetadata ./metadata.json --from mykey ...
-bitbadgeschaind tx tokenization set-setcustomdata ./data.json --from mykey ...
-bitbadgeschaind tx tokenization set-setstandards ./standards.json --from mykey ...
-bitbadgeschaind tx tokenization set-setcollectionapprovals ./approvals.json --from mykey ...
-bitbadgeschaind tx tokenization set-valid-token-ids ./tokenids.json --from mykey ...
-bitbadgeschaind tx tokenization set-manager ./manager.json --from mykey ...
-bitbadgeschaind tx tokenization set-setisarchived ./archived.json --from mykey ...
+bb tx tokenization set-setcollectionmetadata ./metadata.json --from mykey ...
+bb tx tokenization set-settokenmetadata ./metadata.json --from mykey ...
+bb tx tokenization set-setcustomdata ./data.json --from mykey ...
+bb tx tokenization set-setstandards ./standards.json --from mykey ...
+bb tx tokenization set-setcollectionapprovals ./approvals.json --from mykey ...
+bb tx tokenization set-valid-token-ids ./tokenids.json --from mykey ...
+bb tx tokenization set-manager ./manager.json --from mykey ...
+bb tx tokenization set-setisarchived ./archived.json --from mykey ...
 ```
 
 ### Dynamic Stores
 
 ```bash
-bitbadgeschaind tx tokenization create-dynamic-store true --from mykey ...
-bitbadgeschaind tx tokenization update-dynamic-store 1 false true --from mykey ...
-bitbadgeschaind tx tokenization set-dynamic-store-value 1 bb1... true --from mykey ...
-bitbadgeschaind tx tokenization delete-dynamic-store 1 --from mykey ...
+bb tx tokenization create-dynamic-store true --from mykey ...
+bb tx tokenization update-dynamic-store 1 false true --from mykey ...
+bb tx tokenization set-dynamic-store-value 1 bb1... true --from mykey ...
+bb tx tokenization delete-dynamic-store 1 --from mykey ...
 ```
 
 ### Address Lists
 
 ```bash
-bitbadgeschaind tx tokenization create-address-lists ./lists.json --from mykey ...
+bb tx tokenization create-address-lists ./lists.json --from mykey ...
 ```
 
 ## Query Commands
 
 ```bash
 # Collection details
-bitbadgeschaind query tokenization collection 1
+bb query tokenization collection 1
 
 # Balance for an address
-bitbadgeschaind query tokenization balance 1 bb1...
+bb query tokenization balance 1 bb1...
 
 # Collection statistics
-bitbadgeschaind query tokenization get-collection-stats 1
+bb query tokenization get-collection-stats 1
 
 # Module parameters
-bitbadgeschaind query tokenization params
+bb query tokenization params
 
 # Dynamic store queries
-bitbadgeschaind query tokenization get-dynamic-store
-bitbadgeschaind query tokenization get-dynamic-store-value
+bb query tokenization get-dynamic-store
+bb query tokenization get-dynamic-store-value
 ```
 
 All query commands support `--node` to specify which node to query and `--output json` for JSON output.
@@ -19194,10 +19201,10 @@ Most transaction commands accept JSON either inline or from a file path:
 
 ```bash
 # From a file
-bitbadgeschaind tx tokenization create-collection ./my-collection.json --from mykey ...
+bb tx tokenization create-collection ./my-collection.json --from mykey ...
 
 # Inline JSON
-bitbadgeschaind tx tokenization create-collection '{"collectionMetadataTimeline": [...]}' --from mykey ...
+bb tx tokenization create-collection '{"collectionMetadataTimeline": [...]}' --from mykey ...
 ```
 
 Using files is recommended for complex transactions. The JSON schema for each message matches the protobuf definitions documented in the [Messages](../../x-tokenization/messages/README.md) section.
@@ -19207,11 +19214,13 @@ Using files is recommended for complex transactions. The JSON schema for each me
 
 # Deploy Commands
 
-The `bitbadges-cli deploy` command broadcasts a transaction. Pick exactly one signing path:
+The `bb deploy` command broadcasts a transaction. Pick exactly one signing path:
 
 - **`--burner`** — generate a throwaway signer locally, fund it from the faucet, sign one create-collection tx, discard. Zero wallet setup. CREATE-only.
 - **`--browser`** — hand the tx off to your real wallet (Keplr, MetaMask, etc.) via the [Sign Bridge](sign-bridge.md). The CLI opens `/sign`, you confirm in the wallet, the tx hash comes back to your terminal.
-- **`--with-keyring --from <name>`** — sign locally using a key already imported into the chain binary's keyring (`bitbadgeschaind keys add ...`). The CLI prints the equivalent `bitbadgeschaind tx ...` command and executes it. Best for headless scripts where the same long-lived key signs many txs.
+- **`--with-keyring --from <name>`** — sign locally using a key already imported into the chain binary's keyring (`bb keys add ...`). The CLI prints the equivalent `bb tx ...` command and executes it. Best for headless scripts where the same long-lived key signs many txs.
+- **`--gen-payload`** — emit a fully-populated SignDoc/EVM payload for a programmatic signer (ethers/viem, custodial, HSM). Same surface that used to live as the standalone `gen-tx-payload` command.
+- **`--message <text>`** with `--browser` — hand an arbitrary message to the browser wallet and print the signature as JSON (formerly the standalone `sign-with-browser` command). Use this when you need a personal signature for something other than `/auth/verify`.
 
 Both `--burner` and `--browser` paths emit the same JSON envelope on stdout when they succeed; `--with-keyring` prints the chain-binary response verbatim. The rest of this page covers `--burner`; for `--browser` see the [Sign Bridge](sign-bridge.md#deploy-browser) page.
 
@@ -19220,14 +19229,14 @@ Both `--burner` and `--browser` paths emit the same JSON envelope on stdout when
 Optional on any deploy path. After the tx broadcast succeeds, the CLI polls the indexer until the created collection / dynamic store appears (or `timeout-ms` elapses, default `30000`). Useful in agent scripts that immediately want to `query` the new entity:
 
 ```bash
-bitbadges-cli build vault --name … \
-  | bitbadges-cli deploy --burner --msg-stdin --manager bb1… \
+bb build vault --name … \
+  | bb deploy --burner --msg-stdin --manager bb1… \
       --wait-for-indexer
 ```
 
 Output JSON gains a `waited` field — `{ entity, id, attempts, elapsedMs, ok, body }` on success, `{ ok: false, lastStatus }` on timeout. Without the flag, deploy returns as soon as the tx commits on-chain and indexer catch-up is your problem.
 
-`bitbadges-cli deploy --burner` lets you create a new collection **without bringing your own Cosmos wallet**. The CLI generates a throwaway signer on demand, funds it (via the faucet or manually), signs the create-collection tx, and hands ownership of the new collection to an address you specify. The throwaway signer is discarded right after.
+`bb deploy --burner` lets you create a new collection **without bringing your own Cosmos wallet**. The CLI generates a throwaway signer on demand, funds it (via the faucet or manually), signs the create-collection tx, and hands ownership of the new collection to an address you specify. The throwaway signer is discarded right after.
 
 This is the easiest way for agents, one-shot scripts, and anyone who just wants to try BitBadges without the usual wallet-setup ceremony to ship a collection on-chain.
 
@@ -19246,13 +19255,13 @@ Do **not** use it for, and do **not** assume it can handle, any of:
 
 The whole flow works because the "manager" field on the transaction is separate from the signer. Every future action on a collection you create this way has to come from the **manager** you passed — i.e. **you**, not the burner. The moment the create transaction lands, the burner is done. The SDK will not pretend otherwise.
 
-**Dust only, never real funds.** Hot wallets are stored in plaintext on disk. They exist for one job: holding just enough to pay for a single broadcast and its fees. That is the entire security model. Do **not** send meaningful amounts to these addresses. Do **not** reuse them as a personal wallet. Do **not** leave the burner directory in a shared or backed-up location you don't fully control. If you ever accidentally fund one with more than dust, immediately sweep the balance out with `bitbadges-cli burner sweep <selector> --to <your-real-address>`.
+**Dust only, never real funds.** Hot wallets are stored in plaintext on disk. They exist for one job: holding just enough to pay for a single broadcast and its fees. That is the entire security model. Do **not** send meaningful amounts to these addresses. Do **not** reuse them as a personal wallet. Do **not** leave the burner directory in a shared or backed-up location you don't fully control. If you ever accidentally fund one with more than dust, immediately sweep the balance out with `bb burner sweep <selector> --to <your-real-address>`.
 
 ## Advantages vs Tradeoffs
 
 **Advantages**
 
-- Zero wallet setup. No keys to generate, no seed phrases to guard, no browser extension, no `bitbadgeschaind keys add`.
+- Zero wallet setup. No keys to generate, no seed phrases to guard, no browser extension, no `bb keys add`.
 - Agents, CI, and one-shot scripts work cleanly. Non-TTY runs skip the wallet picker and use a fresh wallet each time — no interactive prompts to hang on.
 - Collection ownership lives on **your** `--manager` address from the very first block. There is no "transfer ownership" follow-up step to forget about, and nothing is orphaned if the CLI crashes mid-run (state is written to disk before every irreversible action).
 - Unified auth. Faucet calls go through the standard API-key gate on testnet and mainnet, same as every other premium endpoint.
@@ -19278,11 +19287,11 @@ The burner has **no lasting authority** over the collection it creates. It signs
 Pipe the output of any template that produces a new collection straight into the broadcast command:
 
 ```bash
-bitbadges-cli build subscription \
+bb build subscription \
     --interval monthly --price 10 --denom USDC \
     --recipient bb1your-payout-address... \
     --name "My Subscription" --quiet \
-  | bitbadges-cli deploy --burner \
+  | bb deploy --burner \
     --msg-stdin \
     --manager bb1your-real-address... \
     --local --fund faucet
@@ -19362,17 +19371,17 @@ Every burner is written to disk **in plaintext** under `~/.bitbadges/burners/` (
 
 Plaintext is an intentional tradeoff. These wallets hold at most a few units of dust, they sign one transaction and are done, and they carry zero authority over the collections they create. The value of being able to recover funds or resume an interrupted broadcast outweighs the value of keystore encryption for keys this disposable. **Do not reuse burners for anything you care about, and do not commit the burner directory to source control.**
 
-Companion commands for managing saved wallets live under `bitbadges-cli burner`:
+Companion commands for managing saved wallets live under `bb burner`:
 
 ```bash
-bitbadges-cli burner list                       # show every saved wallet
-bitbadges-cli burner show <address>             # inspect one (includes mnemonic)
-bitbadges-cli burner resume <address> \
+bb burner list                       # show every saved wallet
+bb burner show <address>             # inspect one (includes mnemonic)
+bb burner resume <address> \
     --msg-file subscription.json --manager bb1... \
     --local                                         # re-enter a paused broadcast
-bitbadges-cli burner sweep <address> \
+bb burner sweep <address> \
     --to bb1your-real-address... --local            # send any remaining dust out
-bitbadges-cli burner forget <address>           # delete the recovery file
+bb burner forget <address>           # delete the recovery file
 ```
 
 ## What Happens If Funding Is Slow
@@ -19381,7 +19390,7 @@ Zero-fee transactions on a quiet chain usually land in under ten seconds, but th
 
 - **Keep waiting** (default). Polls for another window of the same length.
 - **Retry the faucet**. Sends another request to the indexer faucet endpoint.
-- **Pause and exit**. Writes the recovery file with a `pending` status and quits cleanly. Pick it back up later with `bitbadges-cli burner resume …`.
+- **Pause and exit**. Writes the recovery file with a `pending` status and quits cleanly. Pick it back up later with `bb burner resume …`.
 - **Give up**. Marks the wallet as failed. You can still sweep any dust back out afterwards.
 
 In non-interactive environments (or with `--non-interactive`), the CLI defaults to **pause and exit** so automated callers never hang forever and funds are never lost to a timeout.
@@ -19394,7 +19403,7 @@ In non-interactive environments (or with `--non-interactive`), the CLI defaults 
 - **Faucet already airdropped to this address** — the faucet dedupes by address. The CLI generates a fresh burner per run, so you'd only hit this by reusing a wallet that already got its dust.
 - **Manual funding never arrives** — the CLI pauses and lets you resume once the funding lands.
 - **Shape mismatch on input** — the CLI expects a single Msg `{typeUrl, value}`, not a tx wrapper `{messages: [...]}`. The error message says exactly what shape was provided so agents don't have to guess.
-- **Insufficient funds at broadcast time** — when the burner came up short on dust (faucet refused, manual funding too small, or the wallet got swept between funding and broadcast), the result envelope includes a `hint` pointing at `bitbadges-cli burner sweep` to recover any remaining dust.
+- **Insufficient funds at broadcast time** — when the burner came up short on dust (faucet refused, manual funding too small, or the wallet got swept between funding and broadcast), the result envelope includes a `hint` pointing at `bb burner sweep` to recover any remaining dust.
 
 In every failure mode, the recovery file captures the state so nothing is silently lost.
 
@@ -19403,7 +19412,7 @@ In every failure mode, the recovery file captures the state so nothing is silent
 Pass `--dry-run` to preview a deploy without generating a wallet, hitting the faucet, or broadcasting. The CLI runs the transaction through the indexer's simulate endpoint and prints expected gas, balance changes, and any validation errors.
 
 ```bash
-bitbadges-cli deploy vault.json --burner --dry-run --manager bb1... --mainnet
+bb deploy vault.json --burner --dry-run --manager bb1... --mainnet
 ```
 
 If the simulator rejects the transaction (validation error, malformed msg, etc), the command exits non-zero so agents can branch on `success === false` before committing real funds. No state is written to disk.
@@ -19427,7 +19436,7 @@ The CLI provides structured JSON output, pipe-friendly input, and LLM-consumable
 - **`--help-json`** — outputs the full command tree as structured JSON, perfect for LLM tool discovery
 - **`--dry-run`** — simulate any API call without side effects
 - **Pipe-friendly** — accepts stdin (`-`), file paths (`@file.json`), and inline JSON
-- **Self-documenting** — `bitbadges-cli docs all` dumps the entire documentation
+- **Self-documenting** — `bb dev docs all` dumps the entire documentation
 - **No build step** — no TypeScript compilation, no bundling, just install and run
 
 ## Quick Setup for Agents
@@ -19437,13 +19446,24 @@ The CLI provides structured JSON output, pipe-friendly input, and LLM-consumable
 curl -fsSL https://install.bitbadges.io | sh
 
 # 2. Configure API key
-bitbadges-cli config set apiKey YOUR_KEY
+bb settings set apiKey YOUR_KEY
 
 # 3. Verify
-bitbadges-cli doctor
+bb doctor
 ```
 
-> **Heads up — API key vs. session.** The API key is required on every indexer call but is the *app* scope. Anything that mutates an account, manages keys, or publishes signed data also needs a *user* scope: a session cookie obtained via [`auth login`](auth-commands.md). The CLI is wallet-agnostic — pair it with `bitbadgeschaind sign-arbitrary` for fully headless Cosmos signing, or paste in a signature from any external wallet.
+> **Deprecation banner — agent-relevant.** If your harness invokes legacy
+> forms (`bb cli <subcmd>`, `bitbadges-cli sign-with-browser`, `bitbadges-cli
+> gen-tx-payload`, the per-utility top-level names that moved under
+> `bb account` / `bb dev` / `bb settings`), each call prints a one-line
+> deprecation banner to **stderr** during the migration window. Stdout (the
+> JSON envelope) is unaffected. Set `BB_QUIET=1` in the agent's environment
+> if banner noise is breaking line-based stderr parsers — the same flag also
+> suppresses every command's auto-review commentary. The release after the
+> migration window hard-fails the old forms; update prompts and scripts to
+> the short form ahead of that cutover.
+
+> **Heads up — API key vs. session.** The API key is required on every indexer call but is the *app* scope. Anything that mutates an account, manages keys, or publishes signed data also needs a *user* scope: a session cookie obtained via [`auth login`](auth-commands.md). The CLI is wallet-agnostic — pair it with `bb sign-arbitrary` for fully headless Cosmos signing, or paste in a signature from any external wallet.
 
 ## Agent Workflow: Query, Review, Transact
 
@@ -19451,77 +19471,77 @@ bitbadges-cli doctor
 
 ```bash
 # Get full command tree as JSON (for LLM tool discovery)
-bitbadges-cli --help-json
+bb --help-json
 
 # List all API route groups
-bitbadges-cli api --help
+bb api --help
 
 # List routes in a specific group
-bitbadges-cli api tokens --help
+bb api tokens --help
 ```
 
 ### Step 2: Query data
 
 ```bash
 # Get a collection
-bitbadges-cli api tokens get-collection 1
+bb api tokens get-collection 1
 
 # Check a balance
-bitbadges-cli api tokens get-balance --body '{"collectionId":"1","address":"bb1..."}'
+bb api tokens get-balance --body '{"collectionId":"1","address":"bb1..."}'
 
 # Look up an account
-bitbadges-cli api accounts get-account --body '{"address":"bb1..."}'
+bb api accounts get-account --body '{"address":"bb1..."}'
 
 # Search
-bitbadges-cli api misc search --body '{"query":"my-token"}'
+bb api misc search --body '{"query":"my-token"}'
 ```
 
 ### Step 3: Review and audit
 
 ```bash
 # Review a transaction before broadcasting
-bitbadges-cli check tx.json
+bb check tx.json
 
 # Get human-readable explanation
-bitbadges-cli explain tx.json
+bb explain tx.json
 
 # Review a live collection
-bitbadges-cli check 42 --testnet
+bb check 42 --testnet
 
 # Interpret what a collection does
-bitbadges-cli explain 42
+bb explain 42
 ```
 
 ### Step 4: Browse docs and skills
 
 ```bash
 # Dump full docs for context
-bitbadges-cli docs all
+bb dev docs all
 
 # Browse a specific topic
-bitbadges-cli docs learn/approvals
+bb dev docs learn/approvals
 
 # List available builder skills
-bitbadges-cli skills
+bb dev skills
 
 # Get instructions for building a specific token type
-bitbadges-cli skills smart-token
+bb dev skills smart-token
 ```
 
 ### Step 5: Sign and broadcast (with chain binary)
 
 ```bash
 # Create a key for the agent
-bitbadgeschaind keys add agent-wallet
+bb keys add agent-wallet
 
 # Sign and broadcast a transaction
-bitbadgeschaind tx tokenization create-collection ./collection.json \
+bb tx tokenization create-collection ./collection.json \
   --from agent-wallet --chain-id bitbadges-1 \
   --node https://lcd.bitbadges.io:443 \
   --gas auto --gas-adjustment 1.5 --fees 10000ubadge
 
 # Or broadcast via the API
-bitbadges-cli api tx broadcast-tx --body @signed-tx.json
+bb api tx broadcast-tx --body @signed-tx.json
 ```
 
 ### Step 6: Authenticate for `Full Access` API routes
@@ -19530,20 +19550,20 @@ Most read-only API routes work with just the API key, but anything that mutates 
 
 ```bash
 # 1. Fetch a challenge (saves the nonce cookie locally for step 3)
-MSG=$(bitbadges-cli auth challenge --address $(bitbadgeschaind keys show agent-wallet -a) | jq -r .data.message)
+MSG=$(bb auth challenge --address $(bb keys show agent-wallet -a) | jq -r .data.message)
 
 # 2. Sign offline with the chain binary
-SIG_JSON=$(bitbadgeschaind sign-arbitrary agent-wallet "$MSG")
+SIG_JSON=$(bb sign-arbitrary agent-wallet "$MSG")
 
 # 3. Post the signature — stores the session under ~/.bitbadges/auth.json
-bitbadges-cli auth login \
+bb auth login \
   --address    "$(echo "$SIG_JSON" | jq -r .address)" \
   --signature  "$(echo "$SIG_JSON" | jq -r .signature)" \
   --public-key "$(echo "$SIG_JSON" | jq -r .pubKey)" \
   --message    "$MSG"
 
 # 4. Make Full Access requests by adding --with-session
-bitbadges-cli api accounts get-account --body '{"address":"bb1..."}' --with-session
+bb api accounts get-account --body '{"address":"bb1..."}' --with-session
 ```
 
 Multi-account, multi-network. Full reference: [Auth Commands](auth-commands.md).
@@ -19554,10 +19574,10 @@ For AI assistants that speak MCP (Claude, Cursor, etc.), the [BitBadges Builder 
 
 | Use Case | Tool |
 |----------|------|
-| Query data, browse docs, review transactions | **CLI** (`bitbadges-cli`) |
+| Query data, browse docs, review transactions | **CLI** (`bb`) |
 | Build token collections with guided workflows | **BitBadges Builder Tools** |
-| Sign and broadcast transactions | **Chain binary** (`bitbadgeschaind`) or **SDK Signing Client** |
-| Key management | **Chain binary** (`bitbadgeschaind`) |
+| Sign and broadcast transactions | **Chain binary** (`bb` or `bitbadgeschaind`) or **SDK Signing Client** |
+| Key management | **Chain binary** (`bb keys ...`) |
 
 ## Example: Fully Automated Agent Script
 
@@ -19570,7 +19590,7 @@ ADDRESS="bb1..."
 THRESHOLD=10
 
 # Query current balance
-BALANCE=$(bitbadges-cli api tokens get-balance \
+BALANCE=$(bb api tokens get-balance \
   --body "{\"collectionId\":\"$COLLECTION_ID\",\"address\":\"$ADDRESS\"}" \
   --condensed)
 
@@ -19579,12 +19599,12 @@ AMOUNT=$(echo "$BALANCE" | jq -r '.data.balances[0].amount // "0"')
 
 if [ "$AMOUNT" -lt "$THRESHOLD" ]; then
   echo "Balance $AMOUNT below threshold $THRESHOLD, minting..."
-  
+
   # Review the transaction first
-  bitbadges-cli check ./mint-tx.json --testnet
-  
+  bb check ./mint-tx.json --testnet
+
   # If review passes, broadcast
-  bitbadgeschaind tx tokenization transfer-tokens ./mint-tx.json \
+  bb tx tokenization transfer-tokens ./mint-tx.json \
     --from agent-wallet --chain-id bitbadges-2 \
     --node https://lcd-testnet.bitbadges.io:443 \
     --gas auto --fees 10000ubadge
@@ -19612,8 +19632,8 @@ curl -fsSL https://install.bitbadges.io | sh
 ```
 
 This installs:
-1. **`bitbadgeschaind`** — chain binary to `/usr/local/bin/`
-2. **`bitbadges-cli`** — SDK CLI via npm or bun (whichever is available)
+1. **`bitbadgeschaind`** — chain binary to `/usr/local/bin/` (with the `bb` alias)
+2. **`bitbadges-cli`** — SDK CLI via npm or bun (whichever is available). Reachable through the chain binary as `bb <subcmd>`.
 
 ### Options
 
@@ -19667,8 +19687,10 @@ bun install -g bitbadges
 Verify:
 
 ```bash
-bitbadges-cli --help
+bb --help
 ```
+
+> The `bb` examples on every CLI page also work directly as `bitbadges-cli <subcmd>` when only the SDK CLI is installed.
 
 ## Chain Binary Only (From Source)
 
@@ -19689,7 +19711,7 @@ Pre-built binaries are also available on the [GitHub Releases page](https://gith
 Get an API key from the [BitBadges Developer Portal](https://bitbadges.io/developer), then configure it:
 
 ```bash
-bitbadges-cli config set apiKey YOUR_KEY
+bb settings set apiKey YOUR_KEY
 ```
 
 Or use environment variables:
@@ -19704,16 +19726,16 @@ The CLI reads `~/.bitbadges/config.json`. Manage it with:
 
 ```bash
 # Set values
-bitbadges-cli config set apiKey YOUR_KEY
-bitbadges-cli config set apiKeyTestnet YOUR_TESTNET_KEY
-bitbadges-cli config set network testnet
-bitbadges-cli config set url https://custom-api.example.com/api/v0
+bb settings set apiKey YOUR_KEY
+bb settings set apiKeyTestnet YOUR_TESTNET_KEY
+bb settings set network testnet
+bb settings set url https://custom-api.example.com/api/v0
 
 # View current config
-bitbadges-cli config show
+bb settings show
 
 # Remove a value
-bitbadges-cli config unset apiKeyTestnet
+bb settings unset apiKeyTestnet
 ```
 
 Supported keys: `apiKey`, `apiKeyTestnet`, `apiKeyLocal`, `network` (`mainnet` | `testnet` | `local`), `url`.
@@ -19745,13 +19767,13 @@ Supported keys: `apiKey`, `apiKeyTestnet`, `apiKeyLocal`, `network` (`mainnet` |
 
 ```bash
 # Check chain binary
-bitbadgeschaind version
+bb version
 
-# Check SDK CLI
-bitbadges-cli doctor
+# Check SDK CLI health
+bb doctor
 
 # Check API connectivity
-bitbadges-cli doctor --testnet
+bb doctor --testnet
 ```
 
 ## Shell Completion
@@ -19759,7 +19781,7 @@ bitbadges-cli doctor --testnet
 Generate bash/zsh completions for tab-completion:
 
 ```bash
-eval "$(bitbadges-cli completion)"
+eval "$(bb completion)"
 ```
 
 Add that line to your `.bashrc` or `.zshrc` for persistent completions.
@@ -19784,10 +19806,10 @@ The wallet never leaves the browser; the CLI only ever sees the resulting signat
 
 | You have… | Use this |
 |---|---|
-| A Cosmos key in `bitbadgeschaind keys` (or a hardware wallet that signs ADR-36) | Standard [`auth login`](auth-commands.md) flow with `bitbadgeschaind sign-arbitrary` |
+| A Cosmos key in `bb keys` (or a hardware wallet that signs ADR-36) | Standard [`auth login`](auth-commands.md) flow with `bb sign-arbitrary` |
 | Just a browser wallet (Keplr / MetaMask / Phantom) | **Sign bridge** — the commands on this page |
-| A custom programmatic signer (ethers/viem, custodial, hardware over a non-standard transport) | [`gen-tx-payload`](#gen-tx-payload) — emits SignDoc bytes ready to feed your signer |
-| A throwaway wallet that you'll fund from the faucet for one tx | [`deploy --burner`](deploy-commands.md) |
+| A custom programmatic signer (ethers/viem, custodial, hardware over a non-standard transport) | [`bb deploy --gen-payload`](#deploy-gen-payload) — emits SignDoc bytes ready to feed your signer |
+| A throwaway wallet that you'll fund from the faucet for one tx | [`bb deploy --burner`](deploy-commands.md) |
 
 The sign bridge and `--burner` are alternatives — pick one path on `deploy`. `--burner` produces a fresh keypair locally and signs with it; `--browser` hands the message to your real wallet via a browser tab.
 
@@ -19797,9 +19819,9 @@ Every sign-bridge command resolves to one of three URL `mode` values on the `/si
 
 | Mode | Used by | What lands on `/sign` | What comes back |
 |---|---|---|---|
-| `login` | `auth login --browser` | The SIWBB (SIWE) challenge message | Signature → CLI replays it on `/auth/verify` to mint a Full Access session cookie |
-| `msg` | `sign-with-browser` | An arbitrary string to sign | Signature + address (+ pubkey for Cosmos) |
-| `tx` | `deploy --browser`, `build … --deploy-with-browser` | A Cosmos `MsgCreateCollection` (or any single tx). For collection-creation msgs the page runs the same review pipeline as `/builder/preview`, so you see the full Preview / Review Items / Transferability / Permissions / Details / Compatibility / Alternatives sidebar before you sign. | Tx hash (or signed bytes if `--sign-only` is set) |
+| `login` | `bb auth login --browser` | The SIWBB (SIWE) challenge message | Signature → CLI replays it on `/auth/verify` to mint a Full Access session cookie |
+| `msg` | `bb deploy --browser --message <text>` | An arbitrary string to sign | Signature + address (+ pubkey for Cosmos) |
+| `tx` | `bb deploy --browser`, `bb build … --deploy-with-browser` | A Cosmos `MsgCreateCollection` (or any single tx). For collection-creation msgs the page runs the same review pipeline as `/builder/preview`, so you see the full Preview / Review Items / Transferability / Permissions / Details / Compatibility / Alternatives sidebar before you sign. | Tx hash (or signed bytes if `--sign-only` is set) |
 
 ## The `/sign` page
 
@@ -19817,7 +19839,7 @@ The page rejects any redirect target that isn't a `127.0.0.1` or `localhost` URL
 Mint a Full Access session cookie by signing the SIWBB (SIWE) challenge with a browser wallet.
 
 ```bash
-bitbadges-cli auth login --browser \
+bb auth login --browser \
   --address bb1...               # or 0x... for ETH
 ```
 
@@ -19828,7 +19850,7 @@ What happens:
 3. You sign with Keplr or MetaMask.
 4. The CLI replays the captured cookie on `/auth/verify` with the signature, the indexer mints a Full Access session, and the new cookie lands in `~/.bitbadges/auth.json` keyed by network + address.
 
-After this, every `bitbadges-cli api … --with-session` call attaches that cookie automatically — the same shape the headless `auth login --signature …` flow produces.
+After this, every `bb api … --with-session` call attaches that cookie automatically — the same shape the headless `auth login --signature …` flow produces.
 
 | Flag | Description |
 |---|---|
@@ -19842,12 +19864,12 @@ After this, every `bitbadges-cli api … --with-session` call attaches that cook
 
 `--public-key` is **not** required when `--browser` is used; the bridge captures the pubkey from the wallet's signature response (Keplr's ADR-36 reply for Cosmos) and forwards it for you.
 
-## sign-with-browser
+## deploy --browser --message (arbitrary-message sign)
 
 Hand an arbitrary message to the browser wallet and print the signature as JSON. Use this when you need a personal signature for something other than `/auth/verify` — a third-party SIWBB challenge, an attestation message, etc.
 
 ```bash
-bitbadges-cli sign-with-browser \
+bb deploy --browser \
   --message "I authorize XYZ at $(date -u +%FT%TZ)" \
   --expected-address bb1...
 ```
@@ -19881,10 +19903,10 @@ For ETH addresses, `publicKey` is omitted — `personal_sign` signatures are rec
 
 ## deploy --browser
 
-Broadcast a single tx via the user's connected wallet. Parallel to [`deploy --burner`](deploy-commands.md): pick one path.
+Broadcast a single tx via the user's connected wallet. Parallel to [`bb deploy --burner`](deploy-commands.md): pick one path.
 
 ```bash
-bitbadges-cli deploy --browser \
+bb deploy --browser \
   --msg-file collection.json \
   --manager bb1...
 ```
@@ -19918,7 +19940,7 @@ For ETH wallets, the same flow works: the connected MetaMask wallet signs an `Ms
 Add `--sign-only` and the bridge stops right after the wallet signs — no broadcast. The CLI receives base64-encoded TxRaw bytes you can submit on your own schedule.
 
 ```bash
-bitbadges-cli deploy --browser --sign-only \
+bb deploy --browser --sign-only \
   --msg-file collection.json \
   --manager bb1...
 ```
@@ -19946,10 +19968,10 @@ The signed bytes are the same shape as `tx_bytes` for `/api/v0/broadcast`. POST 
 
 ## build … --deploy-with-browser
 
-Compose `bitbadges-cli build <preset>` and `deploy --browser` in one shot, parallel to `--deploy-with-burner`:
+Compose `bb build <preset>` and `bb deploy --browser` in one shot, parallel to `--deploy-with-burner`:
 
 ```bash
-bitbadges-cli build vault \
+bb build vault \
   --name "my-vault" \
   --description "..." \
   --image "https://example.com/img.png" \
@@ -19960,23 +19982,23 @@ bitbadges-cli build vault \
 
 The build runs first, the resulting msg JSON is handed to the bridge, and the wallet signs + broadcasts. `--sign-only` is also accepted here.
 
-## gen-tx-payload
+## deploy --gen-payload
 
-For programmatic signers that aren't a chain binary and aren't a browser wallet — custom EVM wallets (ethers/viem), custodial signers, hardware wallets that take SignDoc bytes directly — `gen-tx-payload` emits a fully-populated payload envelope you can feed into your own signing code.
+For programmatic signers that aren't a chain binary and aren't a browser wallet — custom EVM wallets (ethers/viem), custodial signers, hardware wallets that take SignDoc bytes directly — `bb deploy --gen-payload` emits a fully-populated payload envelope you can feed into your own signing code.
 
 ```bash
 # Cosmos signer (cosmjs / hardware wallet)
-bitbadges-cli build vault … --quiet \
-  | bitbadges-cli gen-tx-payload --from bb1... --gas 600000
+bb build vault … --quiet \
+  | bb deploy --gen-payload --from bb1... --gas 600000
 
 # EVM-only signer (ethers / viem on the BitBadges EVM chain)
-bitbadges-cli gen-tx-payload \
+bb deploy --gen-payload \
   --msg-file collection.json \
   --from 0x39A1F08F4B6da42bcFB8EBC8c92A1D04978ad0bD \
   --gas 600000
 
 # Both, in one envelope
-bitbadges-cli gen-tx-payload \
+bb deploy --gen-payload \
   --msg-file collection.json \
   --from bb1... \
   --with-evm-tx \
@@ -20038,7 +20060,7 @@ Public-key handling: for `--from bb1…` the indexer-fetched pubkey populates `s
 Pass `--no-fetch` with explicit `--account-number`, `--sequence`, and (for Cosmos signing) `--public-key`:
 
 ```bash
-bitbadges-cli gen-tx-payload \
+bb deploy --gen-payload \
   --msg-file collection.json \
   --from bb1... \
   --no-fetch \
@@ -20051,7 +20073,7 @@ Useful when the indexer isn't reachable from the signing host (air-gapped HSM ri
 
 ### Supported message types
 
-`gen-tx-payload` covers every `tokenization.Msg*` type — i.e. every output of `bitbadges-cli build <preset>`. Non-tokenization message types (custom Cosmos modules, IBC, gov) are out of scope; emit those with your existing proto-encoding stack and the rest of this CLI's tooling won't interfere.
+`bb deploy --gen-payload` covers every `tokenization.Msg*` type — i.e. every output of `bb build <preset>`. Non-tokenization message types (custom Cosmos modules, IBC, gov) are out of scope; emit those with your existing proto-encoding stack and the rest of this CLI's tooling won't interfere.
 
 ## Threat model
 
@@ -20068,7 +20090,7 @@ What's deliberately **not** in scope:
 
 - **Untrusted CLI.** If you run an attacker-supplied CLI, the loopback listener is the attacker. The bridge can't help here — the threat model assumes you trust the CLI you ran.
 - **Compromised browser extension.** A malicious wallet extension can lie about what it's signing. That's a wallet-trust question, orthogonal to the bridge.
-- **EVM multi-tx atomicity.** One `/sign` request handles one tx. Multi-tx flows on EVM (e.g., ERC20 approve + transferFrom) become two `deploy --browser` invocations; we don't try to atomic-batch in the browser.
+- **EVM multi-tx atomicity.** One `/sign` request handles one tx. Multi-tx flows on EVM (e.g., ERC20 approve + transferFrom) become two `bb deploy --browser` invocations; we don't try to atomic-batch in the browser.
 
 ## SSH-tunneled dev setups
 
@@ -20086,13 +20108,13 @@ Host trevormil-server
 Then run with `--port 4849`:
 
 ```bash
-bitbadges-cli auth login --browser --address bb1... --port 4849
+bb auth login --browser --address bb1... --port 4849
 ```
 
 **Or run the CLI on the laptop directly** and point it at the remote indexer:
 
 ```bash
-bitbadges-cli auth login --browser --address bb1... \
+bb auth login --browser --address bb1... \
   --frontend-url http://localhost:3000 \
   --url http://localhost:3001/api/v0
 ```
@@ -20121,35 +20143,35 @@ The **create** side of every standard (the manager/creator setting up an auction
 
 ```bash
 # Read
-bb cli auctions list                          # browse active auctions
-bb cli auctions show 42                       # full details for one
-bb cli auctions status 42                     # quick status: bidding / accepting / sold / expired
+bb auctions list                          # browse active auctions
+bb auctions show 42                       # full details for one
+bb auctions status 42                     # quick status: bidding / accepting / sold / expired
 
 # Act (emit + deploy)
-bb cli auctions place-bid 42 \
+bb auctions place-bid 42 \
   --creator bb1... --amount 5000 --denom uusdc \
-  | bb cli deploy --browser --msg-stdin
+  | bb deploy --browser --msg-stdin
 ```
 
-Every action verb emits the universal `{ok, data, ...}` envelope on stdout. Pipe it straight into `bb cli deploy` — deploy unwraps the envelope transparently. Use `--quiet` (or `BB_QUIET=1`) to suppress the human-readable auto-review banner on stderr; standard [build flags](build-commands.md#common-flags) (`--explain`, `--simulate`, `--dry-run`, etc.) all apply.
+Every action verb emits the universal `{ok, data, ...}` envelope on stdout. Pipe it straight into `bb deploy` — deploy unwraps the envelope transparently. Use `--quiet` (or `BB_QUIET=1`) to suppress the human-readable auto-review banner on stderr; standard [build flags](build-commands.md#common-flags) (`--explain`, `--simulate`, `--dry-run`, etc.) all apply.
 
 ## Available Standards
 
 | Standard | Command | What users do |
 | --- | --- | --- |
-| **Auctions** | `bb cli auctions` | `list / show / status / place-bid / cancel-bid / accept-bid / build` |
-| **Bounties** | `bb cli bounties` | `list / show / status / accept / deny / claim-refund / build`. Accept/deny emit a 2-msg envelope (cast-vote + transfer). |
-| **Credit Tokens** | `bb cli credit-tokens` | `list / show / purchase / build`. Tier amounts use `bigint`. |
-| **Crowdfunds** | `bb cli crowdfunds` | `list / show / status / contribute / withdraw / refund / build`. Aliased as `bb cli crowdfund` (singular) for backwards compat. |
-| **Dynamic Stores** | `bb cli dynamic-stores` | On-chain key→bool maps. `create / update / delete / add / remove / set-value / get-value / list-values / search`. |
-| **Intents** | `bb cli intents` | Off-chain OTC swap offers via user outgoing approvals. `list / show / create / fill / cancel`. |
-| **NFTs** (orderbook) | `bb cli nfts` | `bid / list / cancel / buy / sell / orders / history / build`. Orderbook trading on individual badges. |
-| **Payment Requests** | `bb cli pay-requests` | `list / show / status / pay / deny / claim-refund / build`. The no-escrow inverse of bounty — recipient asks payer to approve. |
-| **Prediction Markets** | `bb cli prediction-markets` | `list / show / status / buy / sell / cancel / deposit / redeem / resolve / build`. YES/NO share trading. |
-| **Products** | `bb cli products` | `list / show / purchase / build`. Product-catalog purchase flow. |
-| **Smart Tokens** | `bb cli smart-tokens` | `list / show / status / deposit / withdraw / build`. The unified primitive behind vaults, AI-agent vaults, and tradable wrapped tokens. |
-| **Subscriptions** | `bb cli subscriptions` | `list / status / claim / enable-renewal / cancel / subscribe`. Recurring-payment approvals. |
-| **Swap / DEX** | `bb cli swap` | Cross-chain swap helpers — `assets / chains / balances / estimate / track / activity / intents`. Powered by Skip:Go via the indexer's consolidated `/swap/*` routes. |
+| **Auctions** | `bb auctions` | `list / show / status / place-bid / cancel-bid / accept-bid / build` |
+| **Bounties** | `bb bounties` | `list / show / status / accept / deny / claim-refund / build`. Accept/deny emit a 2-msg envelope (cast-vote + transfer). |
+| **Credit Tokens** | `bb credit-tokens` | `list / show / purchase / build`. Tier amounts use `bigint`. |
+| **Crowdfunds** | `bb crowdfunds` | `list / show / status / contribute / withdraw / refund / build`. Aliased as `bb crowdfund` (singular) for backwards compat. |
+| **Dynamic Stores** | `bb dynamic-stores` | On-chain key→bool maps. `create / update / delete / add / remove / set-value / get-value / list-values / search`. |
+| **Intents** | `bb intents` | Off-chain OTC swap offers via user outgoing approvals. `list / show / create / fill / cancel`. |
+| **NFTs** (orderbook) | `bb nfts` | `bid / list / cancel / buy / sell / orders / history / build`. Orderbook trading on individual badges. |
+| **Payment Requests** | `bb pay-requests` | `list / show / status / pay / deny / claim-refund / build`. The no-escrow inverse of bounty — recipient asks payer to approve. |
+| **Prediction Markets** | `bb prediction-markets` | `list / show / status / buy / sell / cancel / deposit / redeem / resolve / build`. YES/NO share trading. |
+| **Products** | `bb products` | `list / show / purchase / build`. Product-catalog purchase flow. |
+| **Smart Tokens** | `bb smart-tokens` | `list / show / status / deposit / withdraw / build`. The unified primitive behind vaults, AI-agent vaults, and tradable wrapped tokens. |
+| **Subscriptions** | `bb subscriptions` | `list / status / claim / enable-renewal / cancel / subscribe`. Recurring-payment approvals. |
+| **Swap / DEX** | `bb swap` | Cross-chain swap helpers — `assets / chains / balances / estimate / track / activity / intents`. Powered by Skip:Go via the indexer's consolidated `/swap/*` routes. |
 
 ## Status semantics
 
@@ -20170,19 +20192,19 @@ The agentic pattern most users follow:
 
 ```bash
 # 1. Discover what's available
-bb cli auctions list --output json | jq '.[] | {id, status, sellerAddress}'
+bb auctions list --output json | jq '.[] | {id, status, sellerAddress}'
 
 # 2. Drill into one
-bb cli auctions show 42
+bb auctions show 42
 
 # 3. Check it's actionable
-bb cli auctions status 42      # → must be "bidding" before place-bid
+bb auctions status 42      # → must be "bidding" before place-bid
 
 # 4. Emit + sign + broadcast
-bb cli auctions place-bid 42 \
+bb auctions place-bid 42 \
   --creator bb1my... --amount 5000 --denom uusdc \
   --quiet \
-  | bb cli deploy --browser --msg-stdin
+  | bb deploy --browser --msg-stdin
 ```
 
 ## Read commands hit the indexer
@@ -20190,10 +20212,10 @@ bb cli auctions place-bid 42 \
 Every `list / show / status` reads from the BitBadges indexer (`api.bitbadges.io` by default). The CLI accepts the standard network flags inherited from [api-commands](api-commands.md):
 
 ```bash
-bb cli auctions list                    # mainnet (default)
-bb cli auctions list --mainnet          # explicit
-bb cli auctions list --local            # localhost:3001
-bb cli auctions list --url <custom>     # explicit base URL
+bb auctions list                    # mainnet (default)
+bb auctions list --mainnet          # explicit
+bb auctions list --local            # localhost:3001
+bb auctions list --url <custom>     # explicit base URL
 ```
 
 ## Action commands need signing
@@ -20202,16 +20224,16 @@ Every action verb (`place-bid`, `contribute`, `pay`, `purchase`, `redeem`, etc.)
 
 - **Browser wallet** (Keplr / MetaMask):
   ```bash
-  bb cli auctions place-bid 42 ... | bb cli deploy --browser --msg-stdin
+  bb auctions place-bid 42 ... | bb deploy --browser --msg-stdin
   ```
 - **Local keyring** (bitbadgeschaind key):
   ```bash
-  bb cli auctions place-bid 42 ... > /tmp/bid.json
-  bb cli deploy --with-keyring --from mykey --msg-file /tmp/bid.json
+  bb auctions place-bid 42 ... > /tmp/bid.json
+  bb deploy --with-keyring --from mykey --msg-file /tmp/bid.json
   ```
 - **Custom signer** (ethers / viem / HSM): pipe through `gen-tx-payload`:
   ```bash
-  bb cli auctions place-bid 42 ... | bb cli gen-tx-payload --from bb1...
+  bb auctions place-bid 42 ... | bb gen-tx-payload --from bb1...
   ```
 
 See [Deploy Commands](deploy-commands.md) for the full signing-path matrix.
@@ -20221,9 +20243,9 @@ See [Deploy Commands](deploy-commands.md) for the full signing-path matrix.
 Every command has `--help` with the full flag surface. Required vs optional flags are now rendered as separate sections (`Required:` first, then `Options:` with sub-groups for `Metadata`, `Output`, `Network`, `Builder`, `Deploy`):
 
 ```bash
-bb cli auctions place-bid --help
-bb cli crowdfunds contribute --help
-bb cli pay-requests pay --help
+bb auctions place-bid --help
+bb crowdfunds contribute --help
+bb pay-requests pay --help
 ```
 
 
@@ -20233,22 +20255,22 @@ bb cli pay-requests pay --help
 
 The MCP builder tool registry — the same surface Claude Desktop and other MCP clients reach over stdio — is also reachable directly from the CLI as plain function calls. No subprocess, no protocol round-trip.
 
+These are agent-facing surfaces; they live under `bb dev` to keep the top-level `bb --help` focused on the human-facing build/deploy/standards verbs.
+
 | Command | Purpose |
 |---|---|
-| [`tools`](#tools) | List every fine-grained tool with its JSON schema |
-| [`tool <name>`](#tool) | Invoke a single tool by name |
-| [`session list \| show \| reset`](#session) | Inspect, dump, or reset persisted builder sessions |
-| [`resources list \| read`](#resources) | Browse the static resource registry (recipes, skills, error patterns, etc.) |
+| [`bb dev tools list`](#dev-tools-list) | List every fine-grained tool with its JSON schema |
+| [`bb dev tools call <name>`](#dev-tools-call) | Invoke a single tool by name |
+| [`bb session list \| show \| reset`](#session) | Inspect, dump, or reset persisted builder sessions |
+| [`bb dev resources list \| read`](#dev-resources) | Browse the static resource registry (recipes, skills, error patterns, etc.) |
 
-`tool` (singular) invokes; `tools` (plural) lists. Same convention as `kubectl get pod <name>` vs `kubectl get pods`.
-
-## tools
+## dev tools list
 
 Lists every builder tool with its full JSON schema.
 
 ```bash
-bitbadges-cli tools                              # full schemas, as JSON
-bitbadges-cli tools --names                      # just tool names, one per line
+bb dev tools list                              # full schemas, as JSON
+bb dev tools list --names                      # just tool names, one per line
 ```
 
 **Flags:**
@@ -20257,14 +20279,14 @@ bitbadges-cli tools --names                      # just tool names, one per line
 |---|---|
 | `--names` | Print only the tool names |
 
-## tool
+## dev tools call
 
 Invokes a single fine-grained builder tool by name. Args come from `--args` (inline JSON) or `--args-file` (path to a JSON file).
 
 ```bash
-bitbadges-cli tool get_current_timestamp
-bitbadges-cli tool get_skill_instructions --args '{"skillId":"smart-token"}'
-bitbadges-cli tool set_collection_metadata --args-file ./metadata.json --session demo
+bb dev tools call get_current_timestamp
+bb dev tools call get_skill_instructions --args '{"skillId":"smart-token"}'
+bb dev tools call set_collection_metadata --args-file ./metadata.json --session demo
 ```
 
 **Flags:**
@@ -20280,10 +20302,10 @@ Stateful tools (`set_*`, `add_*`, `remove_*`, `get_transaction`, …) read from 
 
 ```bash
 SESSION=demo
-bitbadges-cli tool set_standards --session $SESSION --args '{"standards":["SmartToken"]}'
-bitbadges-cli tool set_collection_metadata --session $SESSION --args-file ./meta.json
-bitbadges-cli tool add_approval --session $SESSION --args-file ./approval.json
-bitbadges-cli tool get_transaction --session $SESSION  # emit final JSON
+bb dev tools call set_standards --session $SESSION --args '{"standards":["SmartToken"]}'
+bb dev tools call set_collection_metadata --session $SESSION --args-file ./meta.json
+bb dev tools call add_approval --session $SESSION --args-file ./approval.json
+bb dev tools call get_transaction --session $SESSION  # emit final JSON
 ```
 
 Unknown tool names exit `1` and print the available tool list on stderr.
@@ -20293,9 +20315,9 @@ Unknown tool names exit `1` and print the available tool list on stderr.
 Persisted builder sessions live under `~/.bitbadges/sessions/<id>.json`. Use the `session` subcommand to inspect or reset them.
 
 ```bash
-bitbadges-cli session list                       # session ids on disk
-bitbadges-cli session show demo                  # snapshot as JSON
-bitbadges-cli session reset demo                 # delete the file
+bb session list                       # session ids on disk
+bb session show demo                  # snapshot as JSON
+bb session reset demo                 # delete the file
 ```
 
 | Subcommand | Purpose |
@@ -20304,14 +20326,14 @@ bitbadges-cli session reset demo                 # delete the file
 | `show <id>` | Print the session snapshot as JSON |
 | `reset <id>` | Delete the session file |
 
-## resources
+## dev resources
 
 Static MCP resources — the bundled token registry, recipes, skills, error patterns, and docs slugs. Same surface the MCP clients see, reachable from the CLI for inspection or scripting.
 
 ```bash
-bitbadges-cli resources list                     # full metadata as JSON
-bitbadges-cli resources list --uris              # just URIs
-bitbadges-cli resources read bitbadges://recipes/all
+bb dev resources list                     # full metadata as JSON
+bb dev resources list --uris              # just URIs
+bb dev resources read bitbadges://recipes/all
 ```
 
 | Subcommand | Flag | Description |
@@ -20330,15 +20352,17 @@ bitbadges-cli resources read bitbadges://recipes/all
 
 # Tx Commands
 
-The `tx` subcommand confirms whether a broadcast transaction landed on chain. It hits the chain's REST/RPC endpoints directly — Cosmos LCD first, with automatic fall-through to the EVM JSON-RPC for `eth_sendRawTransaction`-broadcast hashes. No indexer round-trip.
+The `bb tx status` / `bb tx wait` verbs confirm whether a broadcast transaction landed on chain. They hit the chain's REST/RPC endpoints directly — Cosmos LCD first, with automatic fall-through to the EVM JSON-RPC for `eth_sendRawTransaction`-broadcast hashes. No indexer round-trip.
 
-Use `tx` to close the loop after `bitbadges-cli deploy` (or any external broadcast).
+Use these to close the loop after `bb deploy` (or any external broadcast).
+
+> `bb tx <module>` (chain-binary tx submission) and `bb tx status <hash>` (SDK CLI status fetch) coexist under the same `bb tx` umbrella. The chain-binary tx subcommands live under their module names (`bb tx tokenization …`, `bb tx bank …`); `status` and `wait` are the SDK additions.
 
 ## Subcommands
 
 ```bash
-bitbadges-cli tx status <hash>                 # one-shot status fetch
-bitbadges-cli tx wait   <hash> [--timeout 60s] # poll until committed/failed
+bb tx status <hash>                 # one-shot status fetch
+bb tx wait   <hash> [--timeout 60s] # poll until committed/failed
 ```
 
 ## `tx status <hash>`
@@ -20346,7 +20370,7 @@ bitbadges-cli tx wait   <hash> [--timeout 60s] # poll until committed/failed
 Fetches one transaction by hash. Tries the Cosmos LCD's `/cosmos/tx/v1beta1/txs/{hash}` endpoint first; if the hash isn't recognized there, falls through to the EVM JSON-RPC's `eth_getTransactionReceipt` to handle keccak256 hashes from EVM-routed broadcasts.
 
 ```bash
-bitbadges-cli tx status 0F46899E29754227DE90F702754CDC74FD39EA37527F2C1E307655C15E910D81 --mainnet
+bb tx status 0F46899E29754227DE90F702754CDC74FD39EA37527F2C1E307655C15E910D81 --mainnet
 # {
 #   "ok": true,
 #   "data": {
@@ -20381,9 +20405,9 @@ Pair with `tx wait` (below) when the tx may not be indexed yet.
 Both Cosmos sha256 and EVM keccak256 hashes are accepted, with or without a `0x` prefix, in any case. The CLI normalizes to upper-case hex internally:
 
 ```bash
-bitbadges-cli tx status 0xabcdef...    # works
-bitbadges-cli tx status ABCDEF...      # works
-bitbadges-cli tx status abcdef...      # works
+bb tx status 0xabcdef...    # works
+bb tx status ABCDEF...      # works
+bb tx status abcdef...      # works
 ```
 
 ### Network selection
@@ -20397,7 +20421,7 @@ For EVM hashes, the CLI uses the matching EVM RPC URL from `NETWORK_CONFIGS[netw
 Polls the same endpoints until the transaction is found and committed (or fails). Use after `deploy` when the tx hash is fresh and may not be indexed yet.
 
 ```bash
-bitbadges-cli tx wait $TXHASH --mainnet --timeout 120
+bb tx wait $TXHASH --mainnet --timeout 120
 ```
 
 | Flag | Default | Description |
@@ -20414,7 +20438,7 @@ Same as `tx status`, plus:
 - `2` is also returned on timeout. The error envelope includes `error.code === "timeout"` and a `hint:` pointing at re-running `tx status` later or extending `--timeout`.
 
 ```bash
-bitbadges-cli tx wait 1111111... --mainnet --timeout 5
+bb tx wait 1111111... --mainnet --timeout 5
 # {
 #   "ok": false,
 #   "data": null,
@@ -20433,19 +20457,19 @@ bitbadges-cli tx wait 1111111... --mainnet --timeout 5
 ```bash
 # 1. Build a vault collection. `bb build` writes the envelope directly;
 #    pipe it straight to a file — `bb deploy` unwraps the envelope on read.
-bitbadges-cli build vault --backing-coin USDC --name "My Vault" \
+bb build vault --backing-coin USDC --name "My Vault" \
     --image https://... --description "..." \
     --quiet > vault.json
 
 # 2. Dry-run before spending
-bitbadges-cli deploy vault.json --burner --dry-run --manager bb1... --mainnet
+bb deploy vault.json --burner --dry-run --manager bb1... --mainnet
 
 # 3. Real deploy
-RESULT=$(bitbadges-cli deploy vault.json --burner --manager bb1... --mainnet)
+RESULT=$(bb deploy vault.json --burner --manager bb1... --mainnet)
 TXHASH=$(echo "$RESULT" | jq -r '.data.txHash')
 
 # 4. Wait for it to commit
-bitbadges-cli tx wait "$TXHASH" --mainnet --timeout 60
+bb tx wait "$TXHASH" --mainnet --timeout 60
 ```
 
 ## Why no indexer route?
@@ -20461,28 +20485,30 @@ Catch-all reference for the CLI's smaller utility verbs — discovery, address t
 
 | Command | Purpose |
 |---|---|
-| [`docs [section]`](#docs) | Browse BitBadges documentation locally |
-| [`skills [id]`](#skills) | Shorthand for `docs builder-skills` — list or show Builder skills |
-| [`address convert \| validate`](#address) | Address conversion and validation |
-| [`alias for-ibc-backing \| for-wrapper \| for-mint-escrow`](#alias) | Generate protocol-derived alias addresses |
-| [`lookup [symbol]`](#lookup) | Look up token info by symbol |
-| [`gen-list-id <addresses...>`](#gen-list-id) | Generate a reserved address list ID |
-| [`doctor`](#doctor) | Environment + connectivity health check |
+| [`bb dev docs [section]`](#dev-docs) | Browse BitBadges documentation locally |
+| [`bb dev skills [id]`](#dev-skills) | Shorthand for `bb dev docs builder-skills` — list or show Builder skills |
+| [`bb account convert \| validate`](#account-convert-validate) | Address conversion and validation |
+| [`bb account alias for-ibc-backing \| for-wrapper \| for-mint-escrow`](#account-alias) | Generate protocol-derived alias addresses |
+| [`bb account lookup [symbol]`](#account-lookup) | Look up token info by symbol |
+| [`bb account gen-list-id <addresses...>`](#account-gen-list-id) | Generate a reserved address list ID |
+| [`bb doctor`](#doctor) | Environment + connectivity health check |
 
-## docs
+> All six address / lookup verbs sit under `bb account` so the top-level help is the place to discover anything account-flavored. The `bb account` umbrella also covers `bb account all`, `bb account balances`, `bb account approvals`, etc. — the former `portfolio` aggregator.
+
+## dev docs
 
 Browse BitBadges documentation. Fetched from GitHub on first use, cached locally for 24 hours.
 
 ```bash
-bitbadges-cli docs                               # show section tree
-bitbadges-cli docs all                           # dump full corpus
-bitbadges-cli docs learn                         # specific section
-bitbadges-cli docs learn/approval-criteria       # nested with slash
-bitbadges-cli docs learn/approval-criteria/merkle-challenges
-bitbadges-cli docs --refresh                     # force cache refresh
+bb dev docs                               # show section tree
+bb dev docs all                           # dump full corpus
+bb dev docs learn                         # specific section
+bb dev docs learn/approval-criteria       # nested with slash
+bb dev docs learn/approval-criteria/merkle-challenges
+bb dev docs --refresh                     # force cache refresh
 ```
 
-Partial matching: `bitbadges-cli docs approvals` finds the first section containing "approvals".
+Partial matching: `bb dev docs approvals` finds the first section containing "approvals".
 
 | Flag | Description |
 |---|---|
@@ -20490,25 +20516,25 @@ Partial matching: `bitbadges-cli docs approvals` finds the first section contain
 
 Cache: `~/.bitbadges/docs-cache.json`.
 
-## skills
+## dev skills
 
-Shorthand for `docs builder-skills` — list or show one of the BitBadges Builder skills.
+Shorthand for `bb dev docs builder-skills` — list or show one of the BitBadges Builder skills.
 
 ```bash
-bitbadges-cli skills                             # list all skills
-bitbadges-cli skills smart-token                 # specific skill
+bb dev skills                             # list all skills
+bb dev skills smart-token                 # specific skill
 ```
 
-Equivalent to `docs builder-skills` / `docs builder-skills/<id>`.
+Equivalent to `bb dev docs builder-skills` / `bb dev docs builder-skills/<id>`.
 
-## address
+## account convert / validate
 
 Convert and validate BitBadges addresses.
 
 ```bash
-bitbadges-cli address convert 0x1234...abcd --to bb1
-bitbadges-cli address convert bb1qpzm... --to 0x
-bitbadges-cli address validate bb1qpzm...
+bb account convert 0x1234...abcd --to bb1
+bb account convert bb1qpzm... --to 0x
+bb account validate bb1qpzm...
 # { "valid": true, "chain": "BitBadges", "address": "bb1qpzm..." }
 ```
 
@@ -20519,14 +20545,14 @@ bitbadges-cli address validate bb1qpzm...
 
 `bb1...` ↔ `0x...` is deterministic (same key, two encodings). The CLI handles the bech32/hex math.
 
-## alias
+## account alias
 
 Generate protocol-derived alias addresses — used wherever the chain auto-derives an account from input data (IBC denoms, collection IDs, etc.).
 
 ```bash
-bitbadges-cli alias for-ibc-backing ibc/27394FB092D2ECCD...
-bitbadges-cli alias for-wrapper ubadge
-bitbadges-cli alias for-mint-escrow 42
+bb account alias for-ibc-backing ibc/27394FB092D2ECCD...
+bb account alias for-wrapper ubadge
+bb account alias for-mint-escrow 42
 ```
 
 | Subcommand | Purpose |
@@ -20537,26 +20563,26 @@ bitbadges-cli alias for-mint-escrow 42
 
 These are protocol-controlled addresses with auto-set approvals. Don't try to write to them directly — use the corresponding flow (IBC backing, mint, etc.).
 
-## lookup
+## account lookup
 
 Look up token info by symbol. Returns IBC denom, decimals, supported networks, and backing address (for IBC tokens). Omit the symbol to list every known token.
 
 ```bash
-bitbadges-cli lookup                             # list every token
-bitbadges-cli lookup BADGE                       # specific token
+bb account lookup                             # list every token
+bb account lookup BADGE                       # specific token
 ```
 
 | Flag | Description |
 |---|---|
 | `--output-file <path>` | Write the JSON output to a file |
 
-## gen-list-id
+## account gen-list-id
 
 Generate a reserved address list ID from a set of addresses. Used to deterministically reference an ad-hoc allow/deny list without registering it on-chain first.
 
 ```bash
-bitbadges-cli gen-list-id bb1abc... bb1def...
-bitbadges-cli gen-list-id bb1abc... --blacklist
+bb account gen-list-id bb1abc... bb1def...
+bb account gen-list-id bb1abc... --blacklist
 ```
 
 | Flag | Description |
@@ -20568,10 +20594,10 @@ bitbadges-cli gen-list-id bb1abc... --blacklist
 One-shot environment + connectivity health check. Replaces the old `sdk status` and `builder doctor` commands.
 
 ```bash
-bitbadges-cli doctor                             # six core probes
-bitbadges-cli doctor --testnet                   # probe against testnet
-bitbadges-cli doctor --json                      # machine-readable
-bitbadges-cli doctor --with-preview              # add the preview-roundtrip probe
+bb doctor                             # six core probes
+bb doctor --testnet                   # probe against testnet
+bb doctor --json                      # machine-readable
+bb doctor --with-preview              # add the preview-roundtrip probe
 ```
 
 **Probes:**
@@ -21018,7 +21044,7 @@ const txn = createTransactionPayload(txContext, msgs);
 
 ## Quick Start — Install the CLI
 
-The fastest way to start building. One command installs the chain binary (`bitbadgeschaind`) and the SDK CLI (`bitbadges-cli`) with 104+ API routes, review tools, and built-in docs.
+The fastest way to start building. One command installs the chain binary (`bitbadgeschaind`, exposed as the friendly alias `bb`) with 104+ API routes, review tools, and built-in docs.
 
 ```bash
 curl -fsSL https://install.bitbadges.io | sh
@@ -21029,9 +21055,9 @@ Works on Linux, macOS (Intel + Apple Silicon), and Windows (Git Bash / WSL). See
 After installing, set your API key and start querying:
 
 ```bash
-bitbadges-cli config set apiKey YOUR_KEY    # get one at bitbadges.io/developer
-bitbadges-cli api tokens get-collection 1   # query any collection
-bitbadges-cli docs                          # browse docs from terminal
+bb settings set apiKey YOUR_KEY             # get one at bitbadges.io/developer
+bb api tokens get-collection 1              # query any collection
+bb dev docs                                 # browse docs from terminal
 ```
 
 > **For AI agents:** The CLI is the recommended interface. See [CLI for AI Agents](cli/for-ai-agents.md) for end-to-end workflows, or use the [BitBadges Builder Tools](ai-agents/builder-tools.md) for building tokens with Claude/Cursor.
@@ -37350,7 +37376,7 @@ Bounty has an expire approval to refund escrowed funds back to the submitter onc
 ## Creation Flow (CLI)
 
 ```bash
-bitbadges-cli build payment-request \
+bb build payment-request \
   --amount 10 \
   --denom USDC \
   --payer bb1payer... \
@@ -42741,7 +42767,7 @@ jobs:
 
 ## CLI
 
-- [CLI overview](https://docs.bitbadges.io/for-developers/cli/README) — One binary, two surfaces: `bitbadgeschaind` (chain) + `bitbadgeschaind cli` (SDK forwarder); use `bb` as the friendly alias.
+- [CLI overview](https://docs.bitbadges.io/for-developers/cli/README) — One binary, one flat surface: every chain and SDK verb lives at `bb <verb>` (e.g. `bb build vault`, `bb api tokens ...`, `bb tx tokenization ...`). Old `bb cli <subcmd>` forms still work for one release with a deprecation banner.
 - [CLI for AI agents](https://docs.bitbadges.io/for-developers/cli/for-ai-agents) — Agent-friendly flags (`--help-json`, `--dry-run`, JSON output) and recommended workflows.
 - [Installation](https://docs.bitbadges.io/for-developers/cli/installation) — `curl -fsSL https://install.bitbadges.io | sh`.
 - [Build commands](https://docs.bitbadges.io/for-developers/cli/build-commands) — Flag-driven generators for vault, subscription, bounty, auction, and 14 other token types.
