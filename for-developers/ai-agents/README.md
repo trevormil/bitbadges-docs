@@ -76,7 +76,7 @@ The chain binary + CLI install is the canonical entrypoint for everything below 
 ```bash
 # Step 1 — install the chain binary + CLI (always)
 curl -fsSL https://install.bitbadges.io | sh
-bitbadges-cli config set apiKey YOUR_KEY
+bb settings set apiKey YOUR_KEY
 
 # Step 2 — optionally layer a harness convenience
 # Claude Code:

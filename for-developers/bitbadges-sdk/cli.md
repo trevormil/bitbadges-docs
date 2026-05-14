@@ -2,7 +2,7 @@
 
 > **This page has moved.** The canonical CLI documentation is now at [CLI & Chain Binary](../cli/).
 
-The CLI surface is flat verb-first — every command lives at `bitbadges-cli <verb>`. Start here:
+The CLI surface is flat verb-first — every command lives at `bb <verb>`. The previous `bb cli <subcmd>` infix is deprecated and prints a stderr banner during the migration window; the release after the window removes it. See the [overview](../cli/README.md#deprecation-runway--the-old-bb-cli-and-standalone-names-still-work) for the full mapping. Start here:
 
 - **[Installation](../cli/installation.md)** — install the chain binary + Node CLI in one shot
 - **[Build Commands](../cli/build-commands.md)** — flag-based generators (`build vault`, `build subscription`, `build bounty`, …)

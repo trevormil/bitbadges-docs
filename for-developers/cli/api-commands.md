@@ -1,6 +1,6 @@
 # API Commands
 
-The `api` subcommand provides access to all 104+ indexer API routes, auto-generated from the OpenAPI spec. Routes are grouped by category. Available via both `bitbadges-cli api` and `bitbadgeschaind cli api`.
+The `api` subcommand provides access to all 104+ indexer API routes, auto-generated from the OpenAPI spec. Routes are grouped by category. Invoke as `bb api`.
 
 ## Route Groups
 
@@ -24,7 +24,7 @@ The `api` subcommand provides access to all 104+ indexer API routes, auto-genera
 ## Usage
 
 ```bash
-bitbadges-cli api <group> <route-name> [path-params...] [options]
+bb api <group> <route-name> [path-params...] [options]
 ```
 
 Path parameters are positional arguments. Request bodies can be inline JSON, a file reference with `@`, or `-` for stdin.
@@ -47,21 +47,21 @@ Path parameters are positional arguments. Request bodies can be inline JSON, a f
 
 ```bash
 # GET routes
-bitbadges-cli api tokens get-collection 1
-bitbadges-cli api accounts get-account --body '{"address":"bb1..."}'
+bb api tokens get-collection 1
+bb api accounts get-account --body '{"address":"bb1..."}'
 
 # POST routes (with body)
-bitbadges-cli api accounts get-accounts --body '{"accountsToFetch":[{"address":"bb1..."}]}'
-bitbadges-cli api tx broadcast-tx --body @tx.json
+bb api accounts get-accounts --body '{"accountsToFetch":[{"address":"bb1..."}]}'
+bb api tx broadcast-tx --body @tx.json
 
 # GET routes auto-convert --body to query params
-bitbadges-cli api accounts get-tokens-for-user bb1... --body '{"viewType":"collected"}'
+bb api accounts get-tokens-for-user bb1... --body '{"viewType":"collected"}'
 
 # Testnet with dry-run
-bitbadges-cli api tokens get-collection 1 --testnet --dry-run
+bb api tokens get-collection 1 --testnet --dry-run
 
 # List routes in a group
-bitbadges-cli api tokens --help
+bb api tokens --help
 ```
 
 ## Help and Type Schemas
@@ -69,7 +69,7 @@ bitbadges-cli api tokens --help
 Each route's `--help` includes the HTTP method, path template, SDK type names, key body/query fields, and an SDK code example (where available).
 
 ```bash
-bitbadges-cli api tokens get-collections --help
+bb api tokens get-collections --help
 ```
 
 ## Discovery: `--search` and `--schema`
@@ -81,7 +81,7 @@ Two flags help agents and humans navigate the 100+ routes without grepping the h
 Substring scan over route name, path, tag, and description. Case-insensitive. Always emits the universal envelope on stdout; the matched routes live at `data.matches[]`.
 
 ```bash
-bitbadges-cli api --search balance
+bb api --search balance
 # {
 #   "ok": true,
 #   "data": {
@@ -99,7 +99,7 @@ bitbadges-cli api --search balance
 # }
 
 # Pretty table for humans:
-bitbadges-cli api --search swap | jq -r '.data.matches[] | "\(.name)\t\(.method)\t\(.path)"'
+bb api --search swap | jq -r '.data.matches[] | "\(.name)\t\(.method)\t\(.path)"'
 ```
 
 ### `--schema` (per route)
@@ -107,7 +107,7 @@ bitbadges-cli api --search swap | jq -r '.data.matches[] | "\(.name)\t\(.method)
 Print the route's request body fields, query parameters, and SDK type names without making an API call. Useful for agents that want to construct valid request bodies offline.
 
 ```bash
-bitbadges-cli api tokens get-collection --schema
+bb api tokens get-collection --schema
 # {
 #   "name": "get-collection",
 #   "method": "GET",
@@ -125,9 +125,9 @@ bitbadges-cli api tokens get-collection --schema
 When an `api` call fails with HTTP 401 or 403 (typically a Full Access route called without a session), the CLI emits a one-liner pointing at the recovery action:
 
 ```bash
-bitbadges-cli api accounts get-account --body '{"address":"bb1..."}'
+bb api accounts get-account --body '{"address":"bb1..."}'
 # Error: API error: Unauthorized
-# Hint: This route requires user-scoped auth — run `bitbadges-cli auth login`, then retry with `--with-session`.
+# Hint: This route requires user-scoped auth — run `bb auth login`, then retry with `--with-session`.
 ```
 
 If the call already attached a cookie via `--with-session` and the indexer still refused, the hint suggests a re-login (session likely expired or scoped wrong).

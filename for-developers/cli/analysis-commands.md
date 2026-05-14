@@ -13,14 +13,14 @@ Once you have a transaction JSON in hand (from `build`, the MCP builder tools, o
 
 ## check
 
-`bitbadges-cli check` is the unified analysis entry point. It folds the old `validate`, `review`, and `verify` verbs into one command with a `--depth` dial.
+`bb check` is the unified analysis entry point. It folds the old `validate`, `review`, and `verify` verbs into one command with a `--depth` dial.
 
 ```bash
-bitbadges-cli check tx.json                       # full check (default)
-bitbadges-cli check tx.json --depth structural    # validateTransaction() only
-bitbadges-cli check tx.json --depth review        # reviewCollection() only
-bitbadges-cli check 42 --depth review --testnet   # live collection, design audit
-echo '{"messages":[...]}' | bitbadges-cli check -
+bb check tx.json                       # full check (default)
+bb check tx.json --depth structural    # validateTransaction() only
+bb check tx.json --depth review        # reviewCollection() only
+bb check 42 --depth review --testnet   # live collection, design audit
+echo '{"messages":[...]}' | bb check -
 ```
 
 **Depth levels:**
@@ -49,13 +49,13 @@ Stdout is always the universal `{ok, data, warnings, error}` envelope; the human
 
 ## explain
 
-`bitbadges-cli explain` produces a plain-English summary. Auto-detects whether the input is a transaction or a collection and routes to the right interpreter.
+`bb explain` produces a plain-English summary. Auto-detects whether the input is a transaction or a collection and routes to the right interpreter.
 
 ```bash
-bitbadges-cli explain tx.json
-bitbadges-cli explain '{"messages":[...]}'
-bitbadges-cli explain 42 --testnet           # numeric: fetch collection from indexer
-echo '{"messages":[...]}' | bitbadges-cli explain -
+bb explain tx.json
+bb explain '{"messages":[...]}'
+bb explain 42 --testnet           # numeric: fetch collection from indexer
+echo '{"messages":[...]}' | bb explain -
 ```
 
 **Input detection:**
@@ -78,7 +78,7 @@ echo '{"messages":[...]}' | bitbadges-cli explain -
 `explain` always emits the universal envelope. The prose interpretation lives at `data.fullText`; agents that want a per-message breakdown read `data.messages[]`.
 
 ```bash
-bitbadges-cli explain tx.json
+bb explain tx.json
 # {
 #   "ok": true,
 #   "data": {
@@ -102,13 +102,13 @@ Replaces the old `sdk interpret-tx` and `sdk interpret-collection` commands plus
 
 ## simulate
 
-`bitbadges-cli simulate` dry-runs a transaction against the indexer's `/api/v0/simulate` endpoint. Returns the parsed events, per-address balance changes, and any errors that would have surfaced on-chain.
+`bb simulate` dry-runs a transaction against the indexer's `/api/v0/simulate` endpoint. Returns the parsed events, per-address balance changes, and any errors that would have surfaced on-chain.
 
 ```bash
-bitbadges-cli simulate tx.json
-bitbadges-cli simulate tx.json --creator bb1mysigner...
-bitbadges-cli simulate tx.json --events           # dump full events array
-echo '{"messages":[...]}' | bitbadges-cli simulate -
+bb simulate tx.json
+bb simulate tx.json --creator bb1mysigner...
+bb simulate tx.json --events           # dump full events array
+echo '{"messages":[...]}' | bb simulate -
 ```
 
 **Flags:**
@@ -129,12 +129,12 @@ User-level approval messages (`MsgUpdateUserApprovals`, `MsgSetIncomingApproval`
 
 ## preview
 
-`bitbadges-cli preview` uploads a transaction to the indexer and prints a shareable `bitbadges.io/builder/preview?code=...` URL. Intended for handing a tx off to a non-CLI reviewer for visual inspection without giving them edit/submit rights. Lives 1 hour in the indexer's Redis cache.
+`bb preview` uploads a transaction to the indexer and prints a shareable `bitbadges.io/builder/preview?code=...` URL. Intended for handing a tx off to a non-CLI reviewer for visual inspection without giving them edit/submit rights. Lives 1 hour in the indexer's Redis cache.
 
 ```bash
-bitbadges-cli preview tx.json
-bitbadges-cli preview tx.json --frontend-url https://staging.bitbadges.io
-echo '{"messages":[...]}' | bitbadges-cli preview -
+bb preview tx.json
+bb preview tx.json --frontend-url https://staging.bitbadges.io
+echo '{"messages":[...]}' | bb preview -
 ```
 
 **Flags:**

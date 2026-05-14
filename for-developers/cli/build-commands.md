@@ -1,6 +1,6 @@
 # Build Commands
 
-The `bitbadges-cli build` command provides 18 builders that generate ready-to-sign transaction JSON. Each builder creates a complete collection or approval configuration from simple, human-readable parameters.
+The `bb build` command provides 18 builders that generate ready-to-sign transaction JSON. Each builder creates a complete collection or approval configuration from simple, human-readable parameters.
 
 All build commands accept friendly inputs -- use coin symbols like `USDC` instead of raw IBC denominations, and duration shorthands like `30d` instead of millisecond timestamps. The output is a fully-formed transaction message that can be signed and broadcast using the SDK, the BitBadges frontend, or the chain binary.
 
@@ -33,7 +33,7 @@ These commands generate `MsgUniversalUpdateCollection` transaction JSON for crea
 Create an IBC-backed vault token with optional withdrawal limits, 2FA gating, and emergency recovery.
 
 ```bash
-bitbadges-cli build vault --backing-coin USDC \
+bb build vault --backing-coin USDC \
   --name "My Vault" \
   --symbol vUSDC \
   --daily-withdraw-limit 1000 \
@@ -56,7 +56,7 @@ bitbadges-cli build vault --backing-coin USDC \
 Create a recurring subscription collection with configurable intervals, pricing, and optional multi-tier support.
 
 ```bash
-bitbadges-cli build subscription --interval monthly \
+bb build subscription --interval monthly \
   --price 10 --denom USDC --recipient bb1... \
   --tiers 3 --transferable
 ```
@@ -77,7 +77,7 @@ bitbadges-cli build subscription --interval monthly \
 Create a bounty with escrowed funds, a verifier who approves completion, and a designated recipient.
 
 ```bash
-bitbadges-cli build bounty --amount 500 --denom USDC \
+bb build bounty --amount 500 --denom USDC \
   --verifier bb1... --recipient bb1... --expiration 30d
 ```
 
@@ -95,7 +95,7 @@ bitbadges-cli build bounty --amount 500 --denom USDC \
 Create an agent-initiated payment request — the inverse of `bounty`. The agent (or any address) creates a collection requesting payment from a targeted payer; the payer approves AND pays from their own wallet in a single action. **No escrow up front.**
 
 ```bash
-bitbadges-cli build payment-request \
+bb build payment-request \
   --amount 10 --denom USDC \
   --payer bb1payer... --recipient bb1agent... \
   --expiration 30d --name "Service charge" \
@@ -119,7 +119,7 @@ See the full spec in [skills/payment-request](../../x-tokenization/examples/skil
 Create a crowdfunding collection with a funding goal and deadline.
 
 ```bash
-bitbadges-cli build crowdfund --goal 10000 --denom USDC \
+bb build crowdfund --goal 10000 --denom USDC \
   --crowdfunder bb1... --deadline 30d
 ```
 
@@ -136,7 +136,7 @@ bitbadges-cli build crowdfund --goal 10000 --denom USDC \
 Create an auction collection with configurable bidding and acceptance windows.
 
 ```bash
-bitbadges-cli build auction --bid-deadline 7d --accept-window 7d \
+bb build auction --bid-deadline 7d --accept-window 7d \
   --name "Rare Item" --description "Limited edition collectible" \
   --seller bb1seller...
 ```
@@ -155,7 +155,7 @@ bitbadges-cli build auction --bid-deadline 7d --accept-window 7d \
 Create a product catalog collection with multiple products, each having its own price and optional supply limit.
 
 ```bash
-bitbadges-cli build product-catalog \
+bb build product-catalog \
   --products '[{"name":"Widget","price":25,"denom":"USDC","maxSupply":100}]' \
   --store-address bb1...
 ```
@@ -171,7 +171,7 @@ bitbadges-cli build product-catalog \
 Create a binary prediction market (YES/NO outcome tokens) with a designated resolver.
 
 ```bash
-bitbadges-cli build prediction-market --verifier bb1... \
+bb build prediction-market --verifier bb1... \
   --denom USDC --name "Will X happen by 2027?"
 ```
 
@@ -188,7 +188,7 @@ bitbadges-cli build prediction-market --verifier bb1... \
 Create an IBC-backed smart account with optional trading and AI agent vault support.
 
 ```bash
-bitbadges-cli build smart-account --backing-coin USDC \
+bb build smart-account --backing-coin USDC \
   --symbol sUSDC --tradable --ai-agent-vault
 ```
 
@@ -205,7 +205,7 @@ bitbadges-cli build smart-account --backing-coin USDC \
 Create a credit or prepaid token where users pay to receive a configurable number of tokens.
 
 ```bash
-bitbadges-cli build credit-token --payment-denom USDC \
+bb build credit-token --payment-denom USDC \
   --recipient bb1... --symbol CREDIT --tokens-per-unit 100
 ```
 
@@ -222,7 +222,7 @@ bitbadges-cli build credit-token --payment-denom USDC \
 Create a custom 2FA token collection for use as a second authentication factor in other collections.
 
 ```bash
-bitbadges-cli build custom-2fa --name "My 2FA Token" --burnable
+bb build custom-2fa --name "My 2FA Token" --burnable
 ```
 
 | Flag | Required | Description |
@@ -238,7 +238,7 @@ bitbadges-cli build custom-2fa --name "My 2FA Token" --burnable
 Create a quest or reward collection where users claim token rewards up to a maximum number of claims.
 
 ```bash
-bitbadges-cli build quests --reward 10 --denom USDC --max-claims 1000
+bb build quests --reward 10 --denom USDC --max-claims 1000
 ```
 
 | Flag | Required | Description |
@@ -253,7 +253,7 @@ bitbadges-cli build quests --reward 10 --denom USDC --max-claims 1000
 Create an on-chain address list (not a token collection -- uses a separate message type).
 
 ```bash
-bitbadges-cli build address-list --name "Allowlist" --description "Approved addresses"
+bb build address-list --name "Allowlist" --description "Approved addresses"
 ```
 
 | Flag | Required | Description |
@@ -271,7 +271,7 @@ These commands generate user-level approval messages for marketplace listings, b
 Create an OTC swap intent (user outgoing approval) on the Intent Exchange.
 
 ```bash
-bitbadges-cli build intent --address bb1... \
+bb build intent --address bb1... \
   --collection-id 5 \
   --pay-denom USDC --pay-amount 100 \
   --receive-denom BADGE --receive-amount 500 \
@@ -293,7 +293,7 @@ bitbadges-cli build intent --address bb1... \
 Create a recurring payment approval (user incoming approval) for subscription collections.
 
 ```bash
-bitbadges-cli build recurring-payment --collection-id 10 \
+bb build recurring-payment --collection-id 10 \
   --amount 25 --denom USDC --interval monthly \
   --recipient bb1... --expiration 365d
 ```
@@ -312,7 +312,7 @@ bitbadges-cli build recurring-payment --collection-id 10 \
 Create a marketplace listing (user outgoing approval) to sell tokens from a collection.
 
 ```bash
-bitbadges-cli build listing --address bb1... \
+bb build listing --address bb1... \
   --collection-id 7 --token-ids "1-5" \
   --price 50 --denom USDC --max-sales 1 --expiration 30d
 ```
@@ -332,7 +332,7 @@ bitbadges-cli build listing --address bb1... \
 Create a marketplace bid (user incoming approval) to buy tokens from a collection.
 
 ```bash
-bitbadges-cli build bid --address bb1... \
+bb build bid --address bb1... \
   --collection-id 7 --token-ids "1-5" \
   --price 40 --denom USDC --expiration 7d
 ```
@@ -351,7 +351,7 @@ bitbadges-cli build bid --address bb1... \
 Create a prediction market sell intent (user outgoing approval) to sell outcome tokens.
 
 ```bash
-bitbadges-cli build pm-sell-intent --address bb1... \
+bb build pm-sell-intent --address bb1... \
   --collection-id 12 --token yes \
   --amount 10 --price 50 --denom USDC
 ```
@@ -371,7 +371,7 @@ bitbadges-cli build pm-sell-intent --address bb1... \
 Create a prediction market buy intent (user incoming approval) to buy outcome tokens.
 
 ```bash
-bitbadges-cli build pm-buy-intent --address bb1... \
+bb build pm-buy-intent --address bb1... \
   --collection-id 12 --token no \
   --amount 10 --price 50 --denom USDC
 ```
@@ -392,18 +392,18 @@ This command builds a `MsgTransferTokens` transaction for moving existing tokens
 
 ### `build transfer`
 
-Build a `MsgTransferTokens` with guided approval discovery. Requires `BITBADGES_API_KEY` (env var or `bitbadges-cli config set apiKey ...`) — the walkthrough fetches the collection and per-user approvals from the API.
+Build a `MsgTransferTokens` with guided approval discovery. Requires `BITBADGES_API_KEY` (env var or `bb settings set apiKey ...`) — the walkthrough fetches the collection and per-user approvals from the API.
 
 ```bash
 # Interactive walkthrough — prompts for everything
-bitbadges-cli build transfer
+bb build transfer
 
 # Flag-driven (still prompts for the approval-selection step)
-bitbadges-cli build transfer --collection-id 1 --from bb1abc... --to bb1xyz... --amount 5
+bb build transfer --collection-id 1 --from bb1abc... --to bb1xyz... --amount 5
 
 # Fully non-interactive — picks no prioritized approvals (chain matches),
 # no precalculation, default amount=1, default tokenIds=all valid
-bitbadges-cli build transfer --yes --collection-id 1 --from bb1abc... --to bb1xyz...
+bb build transfer --yes --collection-id 1 --from bb1abc... --to bb1xyz...
 ```
 
 The walkthrough renders a numbered list grouped by approval level (collection / outgoing / incoming) with tags for `predetermined`, `payment`, `must-own`, and `backed`, then asks:
@@ -432,13 +432,13 @@ All commands support `--json` for passing parameters as a JSON object. This is u
 
 ```bash
 # Inline JSON
-bitbadges-cli build vault --json '{"backingCoin":"USDC","name":"My Vault"}'
+bb build vault --json '{"backingCoin":"USDC","name":"My Vault"}'
 
 # From a file
-bitbadges-cli build vault --json ./params.json
+bb build vault --json ./params.json
 
 # From stdin
-echo '{"backingCoin":"USDC"}' | bitbadges-cli build vault --json -
+echo '{"backingCoin":"USDC"}' | bb build vault --json -
 ```
 
 ## Output

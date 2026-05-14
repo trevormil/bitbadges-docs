@@ -2,7 +2,7 @@
 
 ## Quick Start — Install the CLI
 
-The fastest way to start building. One command installs the chain binary (`bitbadgeschaind`) and the SDK CLI (`bitbadges-cli`) with 104+ API routes, review tools, and built-in docs.
+The fastest way to start building. One command installs the chain binary (`bitbadgeschaind`, exposed as the friendly alias `bb`) with 104+ API routes, review tools, and built-in docs.
 
 ```bash
 curl -fsSL https://install.bitbadges.io | sh
@@ -13,9 +13,9 @@ Works on Linux, macOS (Intel + Apple Silicon), and Windows (Git Bash / WSL). See
 After installing, set your API key and start querying:
 
 ```bash
-bitbadges-cli config set apiKey YOUR_KEY    # get one at bitbadges.io/developer
-bitbadges-cli api tokens get-collection 1   # query any collection
-bitbadges-cli docs                          # browse docs from terminal
+bb settings set apiKey YOUR_KEY             # get one at bitbadges.io/developer
+bb api tokens get-collection 1              # query any collection
+bb dev docs                                 # browse docs from terminal
 ```
 
 > **For AI agents:** The CLI is the recommended interface. See [CLI for AI Agents](cli/for-ai-agents.md) for end-to-end workflows, or use the [BitBadges Builder Tools](ai-agents/builder-tools.md) for building tokens with Claude/Cursor.
