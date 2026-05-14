@@ -28,6 +28,17 @@ bb settings set apiKey YOUR_KEY
 bb doctor
 ```
 
+> **Deprecation banner — agent-relevant.** If your harness invokes legacy
+> forms (`bb cli <subcmd>`, `bitbadges-cli sign-with-browser`, `bitbadges-cli
+> gen-tx-payload`, the per-utility top-level names that moved under
+> `bb account` / `bb dev` / `bb settings`), each call prints a one-line
+> deprecation banner to **stderr** during the migration window. Stdout (the
+> JSON envelope) is unaffected. Set `BB_QUIET=1` in the agent's environment
+> if banner noise is breaking line-based stderr parsers — the same flag also
+> suppresses every command's auto-review commentary. The release after the
+> migration window hard-fails the old forms; update prompts and scripts to
+> the short form ahead of that cutover.
+
 > **Heads up — API key vs. session.** The API key is required on every indexer call but is the *app* scope. Anything that mutates an account, manages keys, or publishes signed data also needs a *user* scope: a session cookie obtained via [`auth login`](auth-commands.md). The CLI is wallet-agnostic — pair it with `bb sign-arbitrary` for fully headless Cosmos signing, or paste in a signature from any external wallet.
 
 ## Agent Workflow: Query, Review, Transact
