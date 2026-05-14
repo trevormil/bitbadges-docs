@@ -9,8 +9,8 @@ curl -fsSL https://install.bitbadges.io | sh
 ```
 
 This installs:
-1. **`bitbadgeschaind`** — chain binary to `/usr/local/bin/`
-2. **`bitbadges-cli`** — SDK CLI via npm or bun (whichever is available)
+1. **`bitbadgeschaind`** — chain binary to `/usr/local/bin/` (with the `bb` alias)
+2. **`bitbadges-cli`** — SDK CLI via npm or bun (whichever is available). Reachable through the chain binary as `bb <subcmd>`.
 
 ### Options
 
@@ -64,8 +64,10 @@ bun install -g bitbadges
 Verify:
 
 ```bash
-bitbadges-cli --help
+bb --help
 ```
+
+> The `bb` examples on every CLI page also work directly as `bitbadges-cli <subcmd>` when only the SDK CLI is installed.
 
 ## Chain Binary Only (From Source)
 
@@ -86,7 +88,7 @@ Pre-built binaries are also available on the [GitHub Releases page](https://gith
 Get an API key from the [BitBadges Developer Portal](https://bitbadges.io/developer), then configure it:
 
 ```bash
-bitbadges-cli config set apiKey YOUR_KEY
+bb settings set apiKey YOUR_KEY
 ```
 
 Or use environment variables:
@@ -101,16 +103,16 @@ The CLI reads `~/.bitbadges/config.json`. Manage it with:
 
 ```bash
 # Set values
-bitbadges-cli config set apiKey YOUR_KEY
-bitbadges-cli config set apiKeyTestnet YOUR_TESTNET_KEY
-bitbadges-cli config set network testnet
-bitbadges-cli config set url https://custom-api.example.com/api/v0
+bb settings set apiKey YOUR_KEY
+bb settings set apiKeyTestnet YOUR_TESTNET_KEY
+bb settings set network testnet
+bb settings set url https://custom-api.example.com/api/v0
 
 # View current config
-bitbadges-cli config show
+bb settings show
 
 # Remove a value
-bitbadges-cli config unset apiKeyTestnet
+bb settings unset apiKeyTestnet
 ```
 
 Supported keys: `apiKey`, `apiKeyTestnet`, `apiKeyLocal`, `network` (`mainnet` | `testnet` | `local`), `url`.
@@ -142,13 +144,13 @@ Supported keys: `apiKey`, `apiKeyTestnet`, `apiKeyLocal`, `network` (`mainnet` |
 
 ```bash
 # Check chain binary
-bitbadgeschaind version
+bb version
 
-# Check SDK CLI
-bitbadges-cli doctor
+# Check SDK CLI health
+bb doctor
 
 # Check API connectivity
-bitbadges-cli doctor --testnet
+bb doctor --testnet
 ```
 
 ## Shell Completion
@@ -156,7 +158,7 @@ bitbadges-cli doctor --testnet
 Generate bash/zsh completions for tab-completion:
 
 ```bash
-eval "$(bitbadges-cli completion)"
+eval "$(bb completion)"
 ```
 
 Add that line to your `.bashrc` or `.zshrc` for persistent completions.

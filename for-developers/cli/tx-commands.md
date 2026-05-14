@@ -1,14 +1,16 @@
 # Tx Commands
 
-The `tx` subcommand confirms whether a broadcast transaction landed on chain. It hits the chain's REST/RPC endpoints directly — Cosmos LCD first, with automatic fall-through to the EVM JSON-RPC for `eth_sendRawTransaction`-broadcast hashes. No indexer round-trip.
+The `bb tx status` / `bb tx wait` verbs confirm whether a broadcast transaction landed on chain. They hit the chain's REST/RPC endpoints directly — Cosmos LCD first, with automatic fall-through to the EVM JSON-RPC for `eth_sendRawTransaction`-broadcast hashes. No indexer round-trip.
 
-Use `tx` to close the loop after `bitbadges-cli deploy` (or any external broadcast).
+Use these to close the loop after `bb deploy` (or any external broadcast).
+
+> `bb tx <module>` (chain-binary tx submission) and `bb tx status <hash>` (SDK CLI status fetch) coexist under the same `bb tx` umbrella. The chain-binary tx subcommands live under their module names (`bb tx tokenization …`, `bb tx bank …`); `status` and `wait` are the SDK additions.
 
 ## Subcommands
 
 ```bash
-bitbadges-cli tx status <hash>                 # one-shot status fetch
-bitbadges-cli tx wait   <hash> [--timeout 60s] # poll until committed/failed
+bb tx status <hash>                 # one-shot status fetch
+bb tx wait   <hash> [--timeout 60s] # poll until committed/failed
 ```
 
 ## `tx status <hash>`
@@ -16,7 +18,7 @@ bitbadges-cli tx wait   <hash> [--timeout 60s] # poll until committed/failed
 Fetches one transaction by hash. Tries the Cosmos LCD's `/cosmos/tx/v1beta1/txs/{hash}` endpoint first; if the hash isn't recognized there, falls through to the EVM JSON-RPC's `eth_getTransactionReceipt` to handle keccak256 hashes from EVM-routed broadcasts.
 
 ```bash
-bitbadges-cli tx status 0F46899E29754227DE90F702754CDC74FD39EA37527F2C1E307655C15E910D81 --mainnet
+bb tx status 0F46899E29754227DE90F702754CDC74FD39EA37527F2C1E307655C15E910D81 --mainnet
 # {
 #   "ok": true,
 #   "data": {
@@ -51,9 +53,9 @@ Pair with `tx wait` (below) when the tx may not be indexed yet.
 Both Cosmos sha256 and EVM keccak256 hashes are accepted, with or without a `0x` prefix, in any case. The CLI normalizes to upper-case hex internally:
 
 ```bash
-bitbadges-cli tx status 0xabcdef...    # works
-bitbadges-cli tx status ABCDEF...      # works
-bitbadges-cli tx status abcdef...      # works
+bb tx status 0xabcdef...    # works
+bb tx status ABCDEF...      # works
+bb tx status abcdef...      # works
 ```
 
 ### Network selection
@@ -67,7 +69,7 @@ For EVM hashes, the CLI uses the matching EVM RPC URL from `NETWORK_CONFIGS[netw
 Polls the same endpoints until the transaction is found and committed (or fails). Use after `deploy` when the tx hash is fresh and may not be indexed yet.
 
 ```bash
-bitbadges-cli tx wait $TXHASH --mainnet --timeout 120
+bb tx wait $TXHASH --mainnet --timeout 120
 ```
 
 | Flag | Default | Description |
@@ -84,7 +86,7 @@ Same as `tx status`, plus:
 - `2` is also returned on timeout. The error envelope includes `error.code === "timeout"` and a `hint:` pointing at re-running `tx status` later or extending `--timeout`.
 
 ```bash
-bitbadges-cli tx wait 1111111... --mainnet --timeout 5
+bb tx wait 1111111... --mainnet --timeout 5
 # {
 #   "ok": false,
 #   "data": null,
@@ -103,19 +105,19 @@ bitbadges-cli tx wait 1111111... --mainnet --timeout 5
 ```bash
 # 1. Build a vault collection. `bb build` writes the envelope directly;
 #    pipe it straight to a file — `bb deploy` unwraps the envelope on read.
-bitbadges-cli build vault --backing-coin USDC --name "My Vault" \
+bb build vault --backing-coin USDC --name "My Vault" \
     --image https://... --description "..." \
     --quiet > vault.json
 
 # 2. Dry-run before spending
-bitbadges-cli deploy vault.json --burner --dry-run --manager bb1... --mainnet
+bb deploy vault.json --burner --dry-run --manager bb1... --mainnet
 
 # 3. Real deploy
-RESULT=$(bitbadges-cli deploy vault.json --burner --manager bb1... --mainnet)
+RESULT=$(bb deploy vault.json --burner --manager bb1... --mainnet)
 TXHASH=$(echo "$RESULT" | jq -r '.data.txHash')
 
 # 4. Wait for it to commit
-bitbadges-cli tx wait "$TXHASH" --mainnet --timeout 60
+bb tx wait "$TXHASH" --mainnet --timeout 60
 ```
 
 ## Why no indexer route?

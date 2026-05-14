@@ -11,35 +11,35 @@ The **create** side of every standard (the manager/creator setting up an auction
 
 ```bash
 # Read
-bb cli auctions list                          # browse active auctions
-bb cli auctions show 42                       # full details for one
-bb cli auctions status 42                     # quick status: bidding / accepting / sold / expired
+bb auctions list                          # browse active auctions
+bb auctions show 42                       # full details for one
+bb auctions status 42                     # quick status: bidding / accepting / sold / expired
 
 # Act (emit + deploy)
-bb cli auctions place-bid 42 \
+bb auctions place-bid 42 \
   --creator bb1... --amount 5000 --denom uusdc \
-  | bb cli deploy --browser --msg-stdin
+  | bb deploy --browser --msg-stdin
 ```
 
-Every action verb emits the universal `{ok, data, ...}` envelope on stdout. Pipe it straight into `bb cli deploy` — deploy unwraps the envelope transparently. Use `--quiet` (or `BB_QUIET=1`) to suppress the human-readable auto-review banner on stderr; standard [build flags](build-commands.md#common-flags) (`--explain`, `--simulate`, `--dry-run`, etc.) all apply.
+Every action verb emits the universal `{ok, data, ...}` envelope on stdout. Pipe it straight into `bb deploy` — deploy unwraps the envelope transparently. Use `--quiet` (or `BB_QUIET=1`) to suppress the human-readable auto-review banner on stderr; standard [build flags](build-commands.md#common-flags) (`--explain`, `--simulate`, `--dry-run`, etc.) all apply.
 
 ## Available Standards
 
 | Standard | Command | What users do |
 | --- | --- | --- |
-| **Auctions** | `bb cli auctions` | `list / show / status / place-bid / cancel-bid / accept-bid / build` |
-| **Bounties** | `bb cli bounties` | `list / show / status / accept / deny / claim-refund / build`. Accept/deny emit a 2-msg envelope (cast-vote + transfer). |
-| **Credit Tokens** | `bb cli credit-tokens` | `list / show / purchase / build`. Tier amounts use `bigint`. |
-| **Crowdfunds** | `bb cli crowdfunds` | `list / show / status / contribute / withdraw / refund / build`. Aliased as `bb cli crowdfund` (singular) for backwards compat. |
-| **Dynamic Stores** | `bb cli dynamic-stores` | On-chain key→bool maps. `create / update / delete / add / remove / set-value / get-value / list-values / search`. |
-| **Intents** | `bb cli intents` | Off-chain OTC swap offers via user outgoing approvals. `list / show / create / fill / cancel`. |
-| **NFTs** (orderbook) | `bb cli nfts` | `bid / list / cancel / buy / sell / orders / history / build`. Orderbook trading on individual badges. |
-| **Payment Requests** | `bb cli pay-requests` | `list / show / status / pay / deny / claim-refund / build`. The no-escrow inverse of bounty — recipient asks payer to approve. |
-| **Prediction Markets** | `bb cli prediction-markets` | `list / show / status / buy / sell / cancel / deposit / redeem / resolve / build`. YES/NO share trading. |
-| **Products** | `bb cli products` | `list / show / purchase / build`. Product-catalog purchase flow. |
-| **Smart Tokens** | `bb cli smart-tokens` | `list / show / status / deposit / withdraw / build`. The unified primitive behind vaults, AI-agent vaults, and tradable wrapped tokens. |
-| **Subscriptions** | `bb cli subscriptions` | `list / status / claim / enable-renewal / cancel / subscribe`. Recurring-payment approvals. |
-| **Swap / DEX** | `bb cli swap` | Cross-chain swap helpers — `assets / chains / balances / estimate / track / activity / intents`. Powered by Skip:Go via the indexer's consolidated `/swap/*` routes. |
+| **Auctions** | `bb auctions` | `list / show / status / place-bid / cancel-bid / accept-bid / build` |
+| **Bounties** | `bb bounties` | `list / show / status / accept / deny / claim-refund / build`. Accept/deny emit a 2-msg envelope (cast-vote + transfer). |
+| **Credit Tokens** | `bb credit-tokens` | `list / show / purchase / build`. Tier amounts use `bigint`. |
+| **Crowdfunds** | `bb crowdfunds` | `list / show / status / contribute / withdraw / refund / build`. Aliased as `bb crowdfund` (singular) for backwards compat. |
+| **Dynamic Stores** | `bb dynamic-stores` | On-chain key→bool maps. `create / update / delete / add / remove / set-value / get-value / list-values / search`. |
+| **Intents** | `bb intents` | Off-chain OTC swap offers via user outgoing approvals. `list / show / create / fill / cancel`. |
+| **NFTs** (orderbook) | `bb nfts` | `bid / list / cancel / buy / sell / orders / history / build`. Orderbook trading on individual badges. |
+| **Payment Requests** | `bb pay-requests` | `list / show / status / pay / deny / claim-refund / build`. The no-escrow inverse of bounty — recipient asks payer to approve. |
+| **Prediction Markets** | `bb prediction-markets` | `list / show / status / buy / sell / cancel / deposit / redeem / resolve / build`. YES/NO share trading. |
+| **Products** | `bb products` | `list / show / purchase / build`. Product-catalog purchase flow. |
+| **Smart Tokens** | `bb smart-tokens` | `list / show / status / deposit / withdraw / build`. The unified primitive behind vaults, AI-agent vaults, and tradable wrapped tokens. |
+| **Subscriptions** | `bb subscriptions` | `list / status / claim / enable-renewal / cancel / subscribe`. Recurring-payment approvals. |
+| **Swap / DEX** | `bb swap` | Cross-chain swap helpers — `assets / chains / balances / estimate / track / activity / intents`. Powered by Skip:Go via the indexer's consolidated `/swap/*` routes. |
 
 ## Status semantics
 
@@ -60,19 +60,19 @@ The agentic pattern most users follow:
 
 ```bash
 # 1. Discover what's available
-bb cli auctions list --output json | jq '.[] | {id, status, sellerAddress}'
+bb auctions list --output json | jq '.[] | {id, status, sellerAddress}'
 
 # 2. Drill into one
-bb cli auctions show 42
+bb auctions show 42
 
 # 3. Check it's actionable
-bb cli auctions status 42      # → must be "bidding" before place-bid
+bb auctions status 42      # → must be "bidding" before place-bid
 
 # 4. Emit + sign + broadcast
-bb cli auctions place-bid 42 \
+bb auctions place-bid 42 \
   --creator bb1my... --amount 5000 --denom uusdc \
   --quiet \
-  | bb cli deploy --browser --msg-stdin
+  | bb deploy --browser --msg-stdin
 ```
 
 ## Read commands hit the indexer
@@ -80,10 +80,10 @@ bb cli auctions place-bid 42 \
 Every `list / show / status` reads from the BitBadges indexer (`api.bitbadges.io` by default). The CLI accepts the standard network flags inherited from [api-commands](api-commands.md):
 
 ```bash
-bb cli auctions list                    # mainnet (default)
-bb cli auctions list --mainnet          # explicit
-bb cli auctions list --local            # localhost:3001
-bb cli auctions list --url <custom>     # explicit base URL
+bb auctions list                    # mainnet (default)
+bb auctions list --mainnet          # explicit
+bb auctions list --local            # localhost:3001
+bb auctions list --url <custom>     # explicit base URL
 ```
 
 ## Action commands need signing
@@ -92,16 +92,16 @@ Every action verb (`place-bid`, `contribute`, `pay`, `purchase`, `redeem`, etc.)
 
 - **Browser wallet** (Keplr / MetaMask):
   ```bash
-  bb cli auctions place-bid 42 ... | bb cli deploy --browser --msg-stdin
+  bb auctions place-bid 42 ... | bb deploy --browser --msg-stdin
   ```
 - **Local keyring** (bitbadgeschaind key):
   ```bash
-  bb cli auctions place-bid 42 ... > /tmp/bid.json
-  bb cli deploy --with-keyring --from mykey --msg-file /tmp/bid.json
+  bb auctions place-bid 42 ... > /tmp/bid.json
+  bb deploy --with-keyring --from mykey --msg-file /tmp/bid.json
   ```
 - **Custom signer** (ethers / viem / HSM): pipe through `gen-tx-payload`:
   ```bash
-  bb cli auctions place-bid 42 ... | bb cli gen-tx-payload --from bb1...
+  bb auctions place-bid 42 ... | bb gen-tx-payload --from bb1...
   ```
 
 See [Deploy Commands](deploy-commands.md) for the full signing-path matrix.
@@ -111,7 +111,7 @@ See [Deploy Commands](deploy-commands.md) for the full signing-path matrix.
 Every command has `--help` with the full flag surface. Required vs optional flags are now rendered as separate sections (`Required:` first, then `Options:` with sub-groups for `Metadata`, `Output`, `Network`, `Builder`, `Deploy`):
 
 ```bash
-bb cli auctions place-bid --help
-bb cli crowdfunds contribute --help
-bb cli pay-requests pay --help
+bb auctions place-bid --help
+bb crowdfunds contribute --help
+bb pay-requests pay --help
 ```

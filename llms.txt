@@ -56,7 +56,7 @@
 
 ## CLI
 
-- [CLI overview](https://docs.bitbadges.io/for-developers/cli/README) — One binary, two surfaces: `bitbadgeschaind` (chain) + `bitbadgeschaind cli` (SDK forwarder); use `bb` as the friendly alias.
+- [CLI overview](https://docs.bitbadges.io/for-developers/cli/README) — One binary, one flat surface: every chain and SDK verb lives at `bb <verb>` (e.g. `bb build vault`, `bb api tokens ...`, `bb tx tokenization ...`). Old `bb cli <subcmd>` forms still work for one release with a deprecation banner.
 - [CLI for AI agents](https://docs.bitbadges.io/for-developers/cli/for-ai-agents) — Agent-friendly flags (`--help-json`, `--dry-run`, JSON output) and recommended workflows.
 - [Installation](https://docs.bitbadges.io/for-developers/cli/installation) — `curl -fsSL https://install.bitbadges.io | sh`.
 - [Build commands](https://docs.bitbadges.io/for-developers/cli/build-commands) — Flag-driven generators for vault, subscription, bounty, auction, and 14 other token types.

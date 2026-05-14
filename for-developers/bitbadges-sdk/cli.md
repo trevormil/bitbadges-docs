@@ -2,7 +2,7 @@
 
 > **This page has moved.** The canonical CLI documentation is now at [CLI & Chain Binary](../cli/).
 
-The CLI surface is flat verb-first — every command lives at `bitbadges-cli <verb>`. Start here:
+The CLI surface is flat verb-first — every command lives at `bb <verb>`. Start here:
 
 - **[Installation](../cli/installation.md)** — install the chain binary + Node CLI in one shot
 - **[Build Commands](../cli/build-commands.md)** — flag-based generators (`build vault`, `build subscription`, `build bounty`, …)

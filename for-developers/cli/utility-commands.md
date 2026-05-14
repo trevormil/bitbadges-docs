@@ -4,28 +4,30 @@ Catch-all reference for the CLI's smaller utility verbs — discovery, address t
 
 | Command | Purpose |
 |---|---|
-| [`docs [section]`](#docs) | Browse BitBadges documentation locally |
-| [`skills [id]`](#skills) | Shorthand for `docs builder-skills` — list or show Builder skills |
-| [`address convert \| validate`](#address) | Address conversion and validation |
-| [`alias for-ibc-backing \| for-wrapper \| for-mint-escrow`](#alias) | Generate protocol-derived alias addresses |
-| [`lookup [symbol]`](#lookup) | Look up token info by symbol |
-| [`gen-list-id <addresses...>`](#gen-list-id) | Generate a reserved address list ID |
-| [`doctor`](#doctor) | Environment + connectivity health check |
+| [`bb dev docs [section]`](#dev-docs) | Browse BitBadges documentation locally |
+| [`bb dev skills [id]`](#dev-skills) | Shorthand for `bb dev docs builder-skills` — list or show Builder skills |
+| [`bb account convert \| validate`](#account-convert-validate) | Address conversion and validation |
+| [`bb account alias for-ibc-backing \| for-wrapper \| for-mint-escrow`](#account-alias) | Generate protocol-derived alias addresses |
+| [`bb account lookup [symbol]`](#account-lookup) | Look up token info by symbol |
+| [`bb account gen-list-id <addresses...>`](#account-gen-list-id) | Generate a reserved address list ID |
+| [`bb doctor`](#doctor) | Environment + connectivity health check |
 
-## docs
+> All six address / lookup verbs sit under `bb account` so the top-level help is the place to discover anything account-flavored. The `bb account` umbrella also covers `bb account all`, `bb account balances`, `bb account approvals`, etc. — the former `portfolio` aggregator.
+
+## dev docs
 
 Browse BitBadges documentation. Fetched from GitHub on first use, cached locally for 24 hours.
 
 ```bash
-bitbadges-cli docs                               # show section tree
-bitbadges-cli docs all                           # dump full corpus
-bitbadges-cli docs learn                         # specific section
-bitbadges-cli docs learn/approval-criteria       # nested with slash
-bitbadges-cli docs learn/approval-criteria/merkle-challenges
-bitbadges-cli docs --refresh                     # force cache refresh
+bb dev docs                               # show section tree
+bb dev docs all                           # dump full corpus
+bb dev docs learn                         # specific section
+bb dev docs learn/approval-criteria       # nested with slash
+bb dev docs learn/approval-criteria/merkle-challenges
+bb dev docs --refresh                     # force cache refresh
 ```
 
-Partial matching: `bitbadges-cli docs approvals` finds the first section containing "approvals".
+Partial matching: `bb dev docs approvals` finds the first section containing "approvals".
 
 | Flag | Description |
 |---|---|
@@ -33,25 +35,25 @@ Partial matching: `bitbadges-cli docs approvals` finds the first section contain
 
 Cache: `~/.bitbadges/docs-cache.json`.
 
-## skills
+## dev skills
 
-Shorthand for `docs builder-skills` — list or show one of the BitBadges Builder skills.
+Shorthand for `bb dev docs builder-skills` — list or show one of the BitBadges Builder skills.
 
 ```bash
-bitbadges-cli skills                             # list all skills
-bitbadges-cli skills smart-token                 # specific skill
+bb dev skills                             # list all skills
+bb dev skills smart-token                 # specific skill
 ```
 
-Equivalent to `docs builder-skills` / `docs builder-skills/<id>`.
+Equivalent to `bb dev docs builder-skills` / `bb dev docs builder-skills/<id>`.
 
-## address
+## account convert / validate
 
 Convert and validate BitBadges addresses.
 
 ```bash
-bitbadges-cli address convert 0x1234...abcd --to bb1
-bitbadges-cli address convert bb1qpzm... --to 0x
-bitbadges-cli address validate bb1qpzm...
+bb account convert 0x1234...abcd --to bb1
+bb account convert bb1qpzm... --to 0x
+bb account validate bb1qpzm...
 # { "valid": true, "chain": "BitBadges", "address": "bb1qpzm..." }
 ```
 
@@ -62,14 +64,14 @@ bitbadges-cli address validate bb1qpzm...
 
 `bb1...` ↔ `0x...` is deterministic (same key, two encodings). The CLI handles the bech32/hex math.
 
-## alias
+## account alias
 
 Generate protocol-derived alias addresses — used wherever the chain auto-derives an account from input data (IBC denoms, collection IDs, etc.).
 
 ```bash
-bitbadges-cli alias for-ibc-backing ibc/27394FB092D2ECCD...
-bitbadges-cli alias for-wrapper ubadge
-bitbadges-cli alias for-mint-escrow 42
+bb account alias for-ibc-backing ibc/27394FB092D2ECCD...
+bb account alias for-wrapper ubadge
+bb account alias for-mint-escrow 42
 ```
 
 | Subcommand | Purpose |
@@ -80,26 +82,26 @@ bitbadges-cli alias for-mint-escrow 42
 
 These are protocol-controlled addresses with auto-set approvals. Don't try to write to them directly — use the corresponding flow (IBC backing, mint, etc.).
 
-## lookup
+## account lookup
 
 Look up token info by symbol. Returns IBC denom, decimals, supported networks, and backing address (for IBC tokens). Omit the symbol to list every known token.
 
 ```bash
-bitbadges-cli lookup                             # list every token
-bitbadges-cli lookup BADGE                       # specific token
+bb account lookup                             # list every token
+bb account lookup BADGE                       # specific token
 ```
 
 | Flag | Description |
 |---|---|
 | `--output-file <path>` | Write the JSON output to a file |
 
-## gen-list-id
+## account gen-list-id
 
 Generate a reserved address list ID from a set of addresses. Used to deterministically reference an ad-hoc allow/deny list without registering it on-chain first.
 
 ```bash
-bitbadges-cli gen-list-id bb1abc... bb1def...
-bitbadges-cli gen-list-id bb1abc... --blacklist
+bb account gen-list-id bb1abc... bb1def...
+bb account gen-list-id bb1abc... --blacklist
 ```
 
 | Flag | Description |
@@ -111,10 +113,10 @@ bitbadges-cli gen-list-id bb1abc... --blacklist
 One-shot environment + connectivity health check. Replaces the old `sdk status` and `builder doctor` commands.
 
 ```bash
-bitbadges-cli doctor                             # six core probes
-bitbadges-cli doctor --testnet                   # probe against testnet
-bitbadges-cli doctor --json                      # machine-readable
-bitbadges-cli doctor --with-preview              # add the preview-roundtrip probe
+bb doctor                             # six core probes
+bb doctor --testnet                   # probe against testnet
+bb doctor --json                      # machine-readable
+bb doctor --with-preview              # add the preview-roundtrip probe
 ```
 
 **Probes:**

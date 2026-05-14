@@ -2,22 +2,22 @@
 
 The MCP builder tool registry — the same surface Claude Desktop and other MCP clients reach over stdio — is also reachable directly from the CLI as plain function calls. No subprocess, no protocol round-trip.
 
+These are agent-facing surfaces; they live under `bb dev` to keep the top-level `bb --help` focused on the human-facing build/deploy/standards verbs.
+
 | Command | Purpose |
 |---|---|
-| [`tools`](#tools) | List every fine-grained tool with its JSON schema |
-| [`tool <name>`](#tool) | Invoke a single tool by name |
-| [`session list \| show \| reset`](#session) | Inspect, dump, or reset persisted builder sessions |
-| [`resources list \| read`](#resources) | Browse the static resource registry (recipes, skills, error patterns, etc.) |
+| [`bb dev tools list`](#dev-tools-list) | List every fine-grained tool with its JSON schema |
+| [`bb dev tools call <name>`](#dev-tools-call) | Invoke a single tool by name |
+| [`bb session list \| show \| reset`](#session) | Inspect, dump, or reset persisted builder sessions |
+| [`bb dev resources list \| read`](#dev-resources) | Browse the static resource registry (recipes, skills, error patterns, etc.) |
 
-`tool` (singular) invokes; `tools` (plural) lists. Same convention as `kubectl get pod <name>` vs `kubectl get pods`.
-
-## tools
+## dev tools list
 
 Lists every builder tool with its full JSON schema.
 
 ```bash
-bitbadges-cli tools                              # full schemas, as JSON
-bitbadges-cli tools --names                      # just tool names, one per line
+bb dev tools list                              # full schemas, as JSON
+bb dev tools list --names                      # just tool names, one per line
 ```
 
 **Flags:**
@@ -26,14 +26,14 @@ bitbadges-cli tools --names                      # just tool names, one per line
 |---|---|
 | `--names` | Print only the tool names |
 
-## tool
+## dev tools call
 
 Invokes a single fine-grained builder tool by name. Args come from `--args` (inline JSON) or `--args-file` (path to a JSON file).
 
 ```bash
-bitbadges-cli tool get_current_timestamp
-bitbadges-cli tool get_skill_instructions --args '{"skillId":"smart-token"}'
-bitbadges-cli tool set_collection_metadata --args-file ./metadata.json --session demo
+bb dev tools call get_current_timestamp
+bb dev tools call get_skill_instructions --args '{"skillId":"smart-token"}'
+bb dev tools call set_collection_metadata --args-file ./metadata.json --session demo
 ```
 
 **Flags:**
@@ -49,10 +49,10 @@ Stateful tools (`set_*`, `add_*`, `remove_*`, `get_transaction`, …) read from 
 
 ```bash
 SESSION=demo
-bitbadges-cli tool set_standards --session $SESSION --args '{"standards":["SmartToken"]}'
-bitbadges-cli tool set_collection_metadata --session $SESSION --args-file ./meta.json
-bitbadges-cli tool add_approval --session $SESSION --args-file ./approval.json
-bitbadges-cli tool get_transaction --session $SESSION  # emit final JSON
+bb dev tools call set_standards --session $SESSION --args '{"standards":["SmartToken"]}'
+bb dev tools call set_collection_metadata --session $SESSION --args-file ./meta.json
+bb dev tools call add_approval --session $SESSION --args-file ./approval.json
+bb dev tools call get_transaction --session $SESSION  # emit final JSON
 ```
 
 Unknown tool names exit `1` and print the available tool list on stderr.
@@ -62,9 +62,9 @@ Unknown tool names exit `1` and print the available tool list on stderr.
 Persisted builder sessions live under `~/.bitbadges/sessions/<id>.json`. Use the `session` subcommand to inspect or reset them.
 
 ```bash
-bitbadges-cli session list                       # session ids on disk
-bitbadges-cli session show demo                  # snapshot as JSON
-bitbadges-cli session reset demo                 # delete the file
+bb session list                       # session ids on disk
+bb session show demo                  # snapshot as JSON
+bb session reset demo                 # delete the file
 ```
 
 | Subcommand | Purpose |
@@ -73,14 +73,14 @@ bitbadges-cli session reset demo                 # delete the file
 | `show <id>` | Print the session snapshot as JSON |
 | `reset <id>` | Delete the session file |
 
-## resources
+## dev resources
 
 Static MCP resources — the bundled token registry, recipes, skills, error patterns, and docs slugs. Same surface the MCP clients see, reachable from the CLI for inspection or scripting.
 
 ```bash
-bitbadges-cli resources list                     # full metadata as JSON
-bitbadges-cli resources list --uris              # just URIs
-bitbadges-cli resources read bitbadges://recipes/all
+bb dev resources list                     # full metadata as JSON
+bb dev resources list --uris              # just URIs
+bb dev resources read bitbadges://recipes/all
 ```
 
 | Subcommand | Flag | Description |

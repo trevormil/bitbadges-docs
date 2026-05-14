@@ -1,10 +1,12 @@
 # Deploy Commands
 
-The `bitbadges-cli deploy` command broadcasts a transaction. Pick exactly one signing path:
+The `bb deploy` command broadcasts a transaction. Pick exactly one signing path:
 
 - **`--burner`** — generate a throwaway signer locally, fund it from the faucet, sign one create-collection tx, discard. Zero wallet setup. CREATE-only.
 - **`--browser`** — hand the tx off to your real wallet (Keplr, MetaMask, etc.) via the [Sign Bridge](sign-bridge.md). The CLI opens `/sign`, you confirm in the wallet, the tx hash comes back to your terminal.
-- **`--with-keyring --from <name>`** — sign locally using a key already imported into the chain binary's keyring (`bitbadgeschaind keys add ...`). The CLI prints the equivalent `bitbadgeschaind tx ...` command and executes it. Best for headless scripts where the same long-lived key signs many txs.
+- **`--with-keyring --from <name>`** — sign locally using a key already imported into the chain binary's keyring (`bb keys add ...`). The CLI prints the equivalent `bb tx ...` command and executes it. Best for headless scripts where the same long-lived key signs many txs.
+- **`--gen-payload`** — emit a fully-populated SignDoc/EVM payload for a programmatic signer (ethers/viem, custodial, HSM). Same surface that used to live as the standalone `gen-tx-payload` command.
+- **`--message <text>`** with `--browser` — hand an arbitrary message to the browser wallet and print the signature as JSON (formerly the standalone `sign-with-browser` command). Use this when you need a personal signature for something other than `/auth/verify`.
 
 Both `--burner` and `--browser` paths emit the same JSON envelope on stdout when they succeed; `--with-keyring` prints the chain-binary response verbatim. The rest of this page covers `--burner`; for `--browser` see the [Sign Bridge](sign-bridge.md#deploy-browser) page.
 
@@ -13,14 +15,14 @@ Both `--burner` and `--browser` paths emit the same JSON envelope on stdout when
 Optional on any deploy path. After the tx broadcast succeeds, the CLI polls the indexer until the created collection / dynamic store appears (or `timeout-ms` elapses, default `30000`). Useful in agent scripts that immediately want to `query` the new entity:
 
 ```bash
-bitbadges-cli build vault --name … \
-  | bitbadges-cli deploy --burner --msg-stdin --manager bb1… \
+bb build vault --name … \
+  | bb deploy --burner --msg-stdin --manager bb1… \
       --wait-for-indexer
 ```
 
 Output JSON gains a `waited` field — `{ entity, id, attempts, elapsedMs, ok, body }` on success, `{ ok: false, lastStatus }` on timeout. Without the flag, deploy returns as soon as the tx commits on-chain and indexer catch-up is your problem.
 
-`bitbadges-cli deploy --burner` lets you create a new collection **without bringing your own Cosmos wallet**. The CLI generates a throwaway signer on demand, funds it (via the faucet or manually), signs the create-collection tx, and hands ownership of the new collection to an address you specify. The throwaway signer is discarded right after.
+`bb deploy --burner` lets you create a new collection **without bringing your own Cosmos wallet**. The CLI generates a throwaway signer on demand, funds it (via the faucet or manually), signs the create-collection tx, and hands ownership of the new collection to an address you specify. The throwaway signer is discarded right after.
 
 This is the easiest way for agents, one-shot scripts, and anyone who just wants to try BitBadges without the usual wallet-setup ceremony to ship a collection on-chain.
 
@@ -39,13 +41,13 @@ Do **not** use it for, and do **not** assume it can handle, any of:
 
 The whole flow works because the "manager" field on the transaction is separate from the signer. Every future action on a collection you create this way has to come from the **manager** you passed — i.e. **you**, not the burner. The moment the create transaction lands, the burner is done. The SDK will not pretend otherwise.
 
-**Dust only, never real funds.** Hot wallets are stored in plaintext on disk. They exist for one job: holding just enough to pay for a single broadcast and its fees. That is the entire security model. Do **not** send meaningful amounts to these addresses. Do **not** reuse them as a personal wallet. Do **not** leave the burner directory in a shared or backed-up location you don't fully control. If you ever accidentally fund one with more than dust, immediately sweep the balance out with `bitbadges-cli burner sweep <selector> --to <your-real-address>`.
+**Dust only, never real funds.** Hot wallets are stored in plaintext on disk. They exist for one job: holding just enough to pay for a single broadcast and its fees. That is the entire security model. Do **not** send meaningful amounts to these addresses. Do **not** reuse them as a personal wallet. Do **not** leave the burner directory in a shared or backed-up location you don't fully control. If you ever accidentally fund one with more than dust, immediately sweep the balance out with `bb burner sweep <selector> --to <your-real-address>`.
 
 ## Advantages vs Tradeoffs
 
 **Advantages**
 
-- Zero wallet setup. No keys to generate, no seed phrases to guard, no browser extension, no `bitbadgeschaind keys add`.
+- Zero wallet setup. No keys to generate, no seed phrases to guard, no browser extension, no `bb keys add`.
 - Agents, CI, and one-shot scripts work cleanly. Non-TTY runs skip the wallet picker and use a fresh wallet each time — no interactive prompts to hang on.
 - Collection ownership lives on **your** `--manager` address from the very first block. There is no "transfer ownership" follow-up step to forget about, and nothing is orphaned if the CLI crashes mid-run (state is written to disk before every irreversible action).
 - Unified auth. Faucet calls go through the standard API-key gate on testnet and mainnet, same as every other premium endpoint.
@@ -71,11 +73,11 @@ The burner has **no lasting authority** over the collection it creates. It signs
 Pipe the output of any template that produces a new collection straight into the broadcast command:
 
 ```bash
-bitbadges-cli build subscription \
+bb build subscription \
     --interval monthly --price 10 --denom USDC \
     --recipient bb1your-payout-address... \
     --name "My Subscription" --quiet \
-  | bitbadges-cli deploy --burner \
+  | bb deploy --burner \
     --msg-stdin \
     --manager bb1your-real-address... \
     --local --fund faucet
@@ -155,17 +157,17 @@ Every burner is written to disk **in plaintext** under `~/.bitbadges/burners/` (
 
 Plaintext is an intentional tradeoff. These wallets hold at most a few units of dust, they sign one transaction and are done, and they carry zero authority over the collections they create. The value of being able to recover funds or resume an interrupted broadcast outweighs the value of keystore encryption for keys this disposable. **Do not reuse burners for anything you care about, and do not commit the burner directory to source control.**
 
-Companion commands for managing saved wallets live under `bitbadges-cli burner`:
+Companion commands for managing saved wallets live under `bb burner`:
 
 ```bash
-bitbadges-cli burner list                       # show every saved wallet
-bitbadges-cli burner show <address>             # inspect one (includes mnemonic)
-bitbadges-cli burner resume <address> \
+bb burner list                       # show every saved wallet
+bb burner show <address>             # inspect one (includes mnemonic)
+bb burner resume <address> \
     --msg-file subscription.json --manager bb1... \
     --local                                         # re-enter a paused broadcast
-bitbadges-cli burner sweep <address> \
+bb burner sweep <address> \
     --to bb1your-real-address... --local            # send any remaining dust out
-bitbadges-cli burner forget <address>           # delete the recovery file
+bb burner forget <address>           # delete the recovery file
 ```
 
 ## What Happens If Funding Is Slow
@@ -174,7 +176,7 @@ Zero-fee transactions on a quiet chain usually land in under ten seconds, but th
 
 - **Keep waiting** (default). Polls for another window of the same length.
 - **Retry the faucet**. Sends another request to the indexer faucet endpoint.
-- **Pause and exit**. Writes the recovery file with a `pending` status and quits cleanly. Pick it back up later with `bitbadges-cli burner resume …`.
+- **Pause and exit**. Writes the recovery file with a `pending` status and quits cleanly. Pick it back up later with `bb burner resume …`.
 - **Give up**. Marks the wallet as failed. You can still sweep any dust back out afterwards.
 
 In non-interactive environments (or with `--non-interactive`), the CLI defaults to **pause and exit** so automated callers never hang forever and funds are never lost to a timeout.
@@ -187,7 +189,7 @@ In non-interactive environments (or with `--non-interactive`), the CLI defaults 
 - **Faucet already airdropped to this address** — the faucet dedupes by address. The CLI generates a fresh burner per run, so you'd only hit this by reusing a wallet that already got its dust.
 - **Manual funding never arrives** — the CLI pauses and lets you resume once the funding lands.
 - **Shape mismatch on input** — the CLI expects a single Msg `{typeUrl, value}`, not a tx wrapper `{messages: [...]}`. The error message says exactly what shape was provided so agents don't have to guess.
-- **Insufficient funds at broadcast time** — when the burner came up short on dust (faucet refused, manual funding too small, or the wallet got swept between funding and broadcast), the result envelope includes a `hint` pointing at `bitbadges-cli burner sweep` to recover any remaining dust.
+- **Insufficient funds at broadcast time** — when the burner came up short on dust (faucet refused, manual funding too small, or the wallet got swept between funding and broadcast), the result envelope includes a `hint` pointing at `bb burner sweep` to recover any remaining dust.
 
 In every failure mode, the recovery file captures the state so nothing is silently lost.
 
@@ -196,7 +198,7 @@ In every failure mode, the recovery file captures the state so nothing is silent
 Pass `--dry-run` to preview a deploy without generating a wallet, hitting the faucet, or broadcasting. The CLI runs the transaction through the indexer's simulate endpoint and prints expected gas, balance changes, and any validation errors.
 
 ```bash
-bitbadges-cli deploy vault.json --burner --dry-run --manager bb1... --mainnet
+bb deploy vault.json --burner --dry-run --manager bb1... --mainnet
 ```
 
 If the simulator rejects the transaction (validation error, malformed msg, etc), the command exits non-zero so agents can branch on `success === false` before committing real funds. No state is written to disk.
