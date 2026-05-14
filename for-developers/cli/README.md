@@ -121,8 +121,9 @@ For building token collections with AI assistants (Claude, Cursor, etc.), see th
 
 - [Installation](installation.md) — all install methods and configuration
 - [Build Commands](build-commands.md) — flag-based generators for vault, subscription, bounty, auction, and 14 other token types
+- [Standards Commands](standards-commands.md) — consumer-side `list / show / status / <action>` for every standard (auctions, crowdfunds, payment-requests, intents, swap, ...)
 - [Analysis Commands](analysis-commands.md) — `check`, `explain`, `simulate`, `preview`
-- [Deploy Commands](deploy-commands.md) — ship a create-collection tx without bringing your own wallet
+- [Deploy Commands](deploy-commands.md) — ship a create-collection tx without bringing your own wallet (also covers `--wait-for-indexer` + `--with-keyring`)
 - [Tx Commands](tx-commands.md) — confirm a broadcast tx committed (Cosmos + EVM hash support)
 - [Tool Commands](tool-commands.md) — fine-grained MCP tools (`tool` / `tools`), persisted sessions, static resources
 - [Utility Commands](utility-commands.md) — `docs`, `skills`, `address`, `alias`, `lookup`, `gen-list-id`, `doctor`
