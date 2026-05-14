@@ -1,5 +1,5 @@
 # Gitbook Documentation Compilation
-Generated on Thu May 14 01:30:20 UTC 2026
+Generated on Thu May 14 14:49:38 UTC 2026
 
 
 
@@ -17867,7 +17867,7 @@ bb cli api tokens get-collection 1 --output json
 
 # 3. Authenticated session — wallet-agnostic, headless-friendly
 #    (full reference: for-developers/cli/auth-commands.md)
-MSG=$(bb cli auth challenge --address bb1...)
+MSG=$(bb cli auth challenge --address bb1... | jq -r .data.message)
 SIG_JSON=$(bb sign-arbitrary mykey "$MSG")
 bb cli auth login \
   --address    "$(echo "$SIG_JSON" | jq -r .address)" \
@@ -17926,8 +17926,8 @@ Use whichever you prefer. The chain binary adds key management, transaction sign
 
 The CLI is the recommended interface for AI agents and automation. It provides:
 
-- **Structured JSON output** for every command — easy to parse programmatically
-- **Uniform output envelope** on `--format json` for the agent-facing verbs (`tx`, `explain`, `api --search`): `{ok, data, warnings, hint, error}` — same shape across every command, with hints populated on common failure modes
+- **Structured JSON output** for every data-emitting command — easy to parse programmatically
+- **Uniform output envelope** on stdout for every data-emitting command: `{ok, data, warnings, hint?, meta?, error}` — same shape across the surface, with hints populated on common failure modes. The envelope is the only output mode; `--format` / `--json` / `--human` flags are gone. Universal flags: `--condensed` (single-line) and `--output-file <path>`. `bb build` extends the envelope with a `meta` sidecar carrying validation, review, simulate, and resolved-metadata reports alongside the msg in `data`
 - **`--help-json`** flag that outputs the full command tree as structured JSON for LLM tool discovery
 - **`--dry-run`** on both `simulate` and `deploy` for safe preview before broadcasting
 - **`--quiet`** (or `BB_QUIET=1`) silences stderr commentary across every command — pipe-friendly by default
@@ -17998,12 +17998,14 @@ echo '{"messages":[...]}' | bitbadges-cli check -
 | Flag | Description |
 |---|---|
 | `--depth <level>` | `structural \| review \| full` (default: `full`) |
-| `--json` | Output the structured result as JSON |
 | `--strict` | Exit `1` on warnings (criticals always exit `2`) |
 | `--no-validate`, `--no-review`, `--no-metadata` | Skip the corresponding section in `--depth full` |
-| `--design` | Include the design-decisions section in `--depth full` (informational ✓/✗) |
-| `--output-file <path>` | Write the rendered output to a file (ANSI stripped) |
+| `--design` | Include the design-decisions section in `--depth full`'s envelope payload (informational ✓/✗) |
+| `--condensed` | Single-line JSON envelope (smaller pipe payload) |
+| `--output-file <path>` | Write the envelope to a file instead of stdout |
 | `--testnet`, `--local`, `--url` | Network selection for fetching numeric collection ids |
+
+Stdout is always the universal `{ok, data, warnings, error}` envelope; the human-readable scorecards print to stderr (suppress with `--quiet` / `BB_QUIET=1`).
 
 `check` accepts collection ids on `review` and `full` depths (fetches the collection from the indexer first). `structural` is offline-only and refuses numeric ids — pass tx JSON directly.
 
@@ -18029,16 +18031,16 @@ echo '{"messages":[...]}' | bitbadges-cli explain -
 
 | Flag | Description |
 |---|---|
-| `--output-file <path>` | Write the output to a file instead of stdout |
-| `--format <json\|text>` | `text` (default for TTY) renders prose; `json` returns a structured envelope |
+| `--output-file <path>` | Write the envelope to a file instead of stdout |
+| `--condensed` | Single-line JSON (smaller pipe payload) |
 | `--testnet`, `--local`, `--url` | Network selection for numeric collection-id fetches |
 
-### Structured output: `--format json`
+### Output shape
 
-For agents that want to branch on transaction shape rather than parse prose, `--format json` returns the envelope-wrapped structured findings:
+`explain` always emits the universal envelope. The prose interpretation lives at `data.fullText`; agents that want a per-message breakdown read `data.messages[]`.
 
 ```bash
-bitbadges-cli explain tx.json --format json
+bitbadges-cli explain tx.json
 # {
 #   "ok": true,
 #   "data": {
@@ -18056,7 +18058,7 @@ bitbadges-cli explain tx.json --format json
 # }
 ```
 
-`kind` lets agents discriminate between transactions, raw collections, and bare messages. `messages[]` is empty for raw collection inputs; populated for tx wrappers and bare messages. `fullText` is the same prose `--format text` would print, included so JSON callers don't have to make a second call to get the human-readable version.
+`kind` lets agents discriminate between transactions, raw collections, and bare messages. `messages[]` is empty for raw collection inputs; populated for tx wrappers and bare messages. `fullText` is included so callers that just want the human-readable text can `jq -r .data.fullText` instead of branching on shape.
 
 Replaces the old `sdk interpret-tx` and `sdk interpret-collection` commands plus `builder explain` — one verb, auto-detect, one less mental dimension.
 
@@ -18067,7 +18069,6 @@ Replaces the old `sdk interpret-tx` and `sdk interpret-collection` commands plus
 ```bash
 bitbadges-cli simulate tx.json
 bitbadges-cli simulate tx.json --creator bb1mysigner...
-bitbadges-cli simulate tx.json --json
 bitbadges-cli simulate tx.json --events           # dump full events array
 echo '{"messages":[...]}' | bitbadges-cli simulate -
 ```
@@ -18076,10 +18077,13 @@ echo '{"messages":[...]}' | bitbadges-cli simulate -
 
 | Flag | Description |
 |---|---|
-| `--json` | Output the structured `SimulateResult` as JSON |
 | `--creator <address>` | Override the simulation context address (default: a placeholder) |
 | `--events` | Dump the full raw chain events array (default: just the count) |
+| `--condensed` | Single-line JSON envelope (smaller pipe payload) |
+| `--output-file <path>` | Write the envelope to a file instead of stdout |
 | `--testnet`, `--local`, `--url` | Network selection |
+
+Stdout is the universal envelope wrapping `SimulateResult` in `data`. The terminal-friendly per-message breakdown prints to stderr (suppress with `--quiet`).
 
 Requires `BITBADGES_API_KEY` (or per-network override) on mainnet/testnet. Local indexers usually accept any (or no) key.
 
@@ -18091,7 +18095,6 @@ User-level approval messages (`MsgUpdateUserApprovals`, `MsgSetIncomingApproval`
 
 ```bash
 bitbadges-cli preview tx.json
-bitbadges-cli preview tx.json --json              # structured output
 bitbadges-cli preview tx.json --frontend-url https://staging.bitbadges.io
 echo '{"messages":[...]}' | bitbadges-cli preview -
 ```
@@ -18101,8 +18104,11 @@ echo '{"messages":[...]}' | bitbadges-cli preview -
 | Flag | Description |
 |---|---|
 | `--frontend-url <url>` | Override the bitbadges.io frontend base for the printed URL (default: `https://bitbadges.io`) |
-| `--json` | Output the structured upload result as JSON instead of just the URL |
+| `--condensed` | Single-line JSON envelope |
+| `--output-file <path>` | Write the envelope to a file instead of stdout |
 | `--testnet`, `--local`, `--url` | Network selection — controls which indexer hosts the preview |
+
+Stdout is the universal envelope; the URL lives at `data.url`, expiry at `data.expiresIn`.
 
 The endpoint is intentionally open (no API key required); the unguessable code in the URL is the secret.
 
@@ -18195,17 +18201,28 @@ Two flags help agents and humans navigate the 100+ routes without grepping the h
 
 ### `--search <keyword>`
 
-Substring scan over route name, path, tag, and description. Case-insensitive. Default text columns; pass `--format json` for a parseable list.
+Substring scan over route name, path, tag, and description. Case-insensitive. Always emits the universal envelope on stdout; the matched routes live at `data.matches[]`.
 
 ```bash
-bitbadges-cli api --search swap
-# estimate-swap          POST  /api/{version}/swaps/estimate
-#       Estimate Swap
-# get-swap-activities    GET   /swapActivities
-#       Get Swap Activities
+bitbadges-cli api --search balance
+# {
+#   "ok": true,
+#   "data": {
+#     "search": "balance",
+#     "matches": [
+#       { "name": "get-balance-by-address-specific-token",
+#         "method": "GET",
+#         "path": "/api/{version}/collection/{collectionId}/{tokenId}/balance/{address}",
+#         "tag": "accounts",
+#         "description": "..." }
+#     ]
+#   },
+#   "warnings": [],
+#   "error": null
+# }
 
-bitbadges-cli api --search balance --format json
-# [{"name":"get-balance-by-address-specific-token", ...}, ...]
+# Pretty table for humans:
+bitbadges-cli api --search swap | jq -r '.data.matches[] | "\(.name)\t\(.method)\t\(.path)"'
 ```
 
 ### `--schema` (per route)
@@ -18299,7 +18316,7 @@ The canonical agentic flow is three commands. Each step is independent — the o
 
 ```bash
 # 1. Fetch a challenge. Saves the nonce cookie locally so step 3 can replay it.
-MSG=$(bitbadges-cli auth challenge --address bb1...)
+MSG=$(bitbadges-cli auth challenge --address bb1... | jq -r .data.message)
 
 # 2. Sign the challenge with whatever signer you have. Headless Cosmos example:
 SIG_JSON=$(bitbadgeschaind sign-arbitrary mykey "$MSG")
@@ -18379,16 +18396,24 @@ bitbadges-cli auth login \
 
 ## auth challenge
 
-Fetch a SIWBB challenge for an address. Prints the message your signer must sign and (by default) persists the response cookie locally so a follow-up `auth login` / `auth verify` can replay it.
+Fetch a SIWBB challenge for an address. Emits the message your signer must sign (at `data.message`) and (by default) persists the response cookie locally so a follow-up `auth login` / `auth verify` can replay it.
 
 ```bash
-bitbadges-cli auth challenge --address bb1... [--json] [--no-save-pending]
+bitbadges-cli auth challenge --address bb1... [--no-save-pending]
+# {
+#   "ok": true,
+#   "data": { "message": "...SIWBB challenge text...", "nonce": "..." },
+#   "warnings": [],
+#   "error": null
+# }
+
+# Extract just the message for a downstream signer:
+MSG=$(bitbadges-cli auth challenge --address bb1... | jq -r .data.message)
 ```
 
 | Flag | Description |
 |---|---|
 | `--address <addr>` | Native address (`bb1...` or `0x...`). Required. |
-| `--json` | Output `{message, nonce}` as JSON instead of the bare message. |
 | `--no-save-pending` | Do not persist the challenge cookie locally. Advanced — use only if you intend to re-fetch the challenge yourself before verifying. |
 
 ## auth verify
@@ -19256,12 +19281,14 @@ Pipe the output of any template that produces a new collection straight into the
 bitbadges-cli build subscription \
     --interval monthly --price 10 --denom USDC \
     --recipient bb1your-payout-address... \
-    --name "My Subscription" --json-only \
+    --name "My Subscription" --quiet \
   | bitbadges-cli deploy --burner \
     --msg-stdin \
     --manager bb1your-real-address... \
     --local --fund faucet
 ```
+
+`bb build` emits the universal `{ok, data, ...}` envelope. `bb deploy` unwraps it transparently when reading stdin or `--msg-file`, so the pipe still feeds the msg straight through. `--quiet` just suppresses the human-readable review on stderr — pre-#0398 this flag was `--json-only`, which is still accepted as a deprecated alias.
 
 You'll see:
 
@@ -19503,7 +19530,7 @@ Most read-only API routes work with just the API key, but anything that mutates 
 
 ```bash
 # 1. Fetch a challenge (saves the nonce cookie locally for step 3)
-MSG=$(bitbadges-cli auth challenge --address $(bitbadgeschaind keys show agent-wallet -a))
+MSG=$(bitbadges-cli auth challenge --address $(bitbadgeschaind keys show agent-wallet -a) | jq -r .data.message)
 
 # 2. Sign offline with the chain binary
 SIG_JSON=$(bitbadgeschaind sign-arbitrary agent-wallet "$MSG")
@@ -19547,8 +19574,8 @@ BALANCE=$(bitbadges-cli api tokens get-balance \
   --body "{\"collectionId\":\"$COLLECTION_ID\",\"address\":\"$ADDRESS\"}" \
   --condensed)
 
-# Parse and decide
-AMOUNT=$(echo "$BALANCE" | jq -r '.balances[0].amount // "0"')
+# Parse and decide — bb api emits the envelope; the body lives at .data
+AMOUNT=$(echo "$BALANCE" | jq -r '.data.balances[0].amount // "0"')
 
 if [ "$AMOUNT" -lt "$THRESHOLD" ]; then
   echo "Balance $AMOUNT below threshold $THRESHOLD, minting..."
@@ -19939,7 +19966,7 @@ For programmatic signers that aren't a chain binary and aren't a browser wallet 
 
 ```bash
 # Cosmos signer (cosmjs / hardware wallet)
-bitbadges-cli build vault … --json-only \
+bitbadges-cli build vault … --quiet \
   | bitbadges-cli gen-tx-payload --from bb1... --gas 600000
 
 # EVM-only signer (ethers / viem on the BitBadges EVM chain)
@@ -20104,7 +20131,7 @@ bb cli auctions place-bid 42 \
   | bb cli deploy --browser --msg-stdin
 ```
 
-Every action verb supports `--json-only` to suppress the auto-review banner and emit pure JSON for piping, plus all the standard [build flags](build-commands.md#common-flags) (`--explain`, `--simulate`, `--dry-run`, etc.).
+Every action verb emits the universal `{ok, data, ...}` envelope on stdout. Pipe it straight into `bb cli deploy` — deploy unwraps the envelope transparently. Use `--quiet` (or `BB_QUIET=1`) to suppress the human-readable auto-review banner on stderr; standard [build flags](build-commands.md#common-flags) (`--explain`, `--simulate`, `--dry-run`, etc.) all apply.
 
 ## Available Standards
 
@@ -20154,7 +20181,7 @@ bb cli auctions status 42      # → must be "bidding" before place-bid
 # 4. Emit + sign + broadcast
 bb cli auctions place-bid 42 \
   --creator bb1my... --amount 5000 --denom uusdc \
-  --json-only \
+  --quiet \
   | bb cli deploy --browser --msg-stdin
 ```
 
@@ -20320,31 +20347,22 @@ Fetches one transaction by hash. Tries the Cosmos LCD's `/cosmos/tx/v1beta1/txs/
 
 ```bash
 bitbadges-cli tx status 0F46899E29754227DE90F702754CDC74FD39EA37527F2C1E307655C15E910D81 --mainnet
-# Status:    committed  (code 0)
-# Via:       Cosmos LCD
-# Hash:      0F46899E...
-# Height:    10000000
-# Gas used:  156490 / 237670
-# Timestamp: 2026-05-01T04:54:56Z
+# {
+#   "ok": true,
+#   "data": {
+#     "via": "cosmos",
+#     "hash": "0F46899E...",
+#     "height": "10000000",
+#     "code": 0,
+#     "gasUsed": "156490",
+#     "events": [...]
+#   },
+#   "warnings": [],
+#   "error": null
+# }
 ```
 
-`--format json` returns the full envelope:
-
-```json
-{
-  "ok": true,
-  "data": {
-    "via": "cosmos",
-    "hash": "0F46899E...",
-    "height": "10000000",
-    "code": 0,
-    "gasUsed": "156490",
-    "events": [...]
-  },
-  "warnings": [],
-  "error": null
-}
-```
+Pipe through `jq -r .data.code` (or `.data.hash`, `.data.height`, etc.) for shell-friendly field extraction.
 
 For successful EVM-routed transactions, `via` is `"evm"` and the data shape includes the same fields populated from `eth_getTransactionReceipt`.
 
@@ -20379,14 +20397,15 @@ For EVM hashes, the CLI uses the matching EVM RPC URL from `NETWORK_CONFIGS[netw
 Polls the same endpoints until the transaction is found and committed (or fails). Use after `deploy` when the tx hash is fresh and may not be indexed yet.
 
 ```bash
-bitbadges-cli tx wait $TXHASH --mainnet --timeout 120 --format json
+bitbadges-cli tx wait $TXHASH --mainnet --timeout 120
 ```
 
 | Flag | Default | Description |
 |---|---|---|
 | `--timeout <seconds>` | `60` | Max seconds to wait before exiting non-zero |
 | `--interval <seconds>` | `2` | Polling interval |
-| `--format <json\|text>` | TTY-dependent | Output format |
+| `--condensed` | off | Single-line JSON envelope |
+| `--output-file <path>` | — | Write the envelope to a file instead of stdout |
 
 ### Exit codes
 
@@ -20395,7 +20414,7 @@ Same as `tx status`, plus:
 - `2` is also returned on timeout. The error envelope includes `error.code === "timeout"` and a `hint:` pointing at re-running `tx status` later or extending `--timeout`.
 
 ```bash
-bitbadges-cli tx wait 1111111... --mainnet --timeout 5 --format json
+bitbadges-cli tx wait 1111111... --mainnet --timeout 5
 # {
 #   "ok": false,
 #   "data": null,
@@ -20412,16 +20431,17 @@ bitbadges-cli tx wait 1111111... --mainnet --timeout 5 --format json
 ## Worked example: deploy → wait → confirm
 
 ```bash
-# 1. Build a vault collection
+# 1. Build a vault collection. `bb build` writes the envelope directly;
+#    pipe it straight to a file — `bb deploy` unwraps the envelope on read.
 bitbadges-cli build vault --backing-coin USDC --name "My Vault" \
     --image https://... --description "..." \
-    --json-only > vault.json
+    --quiet > vault.json
 
 # 2. Dry-run before spending
 bitbadges-cli deploy vault.json --burner --dry-run --manager bb1... --mainnet
 
 # 3. Real deploy
-RESULT=$(bitbadges-cli deploy vault.json --burner --manager bb1... --mainnet --format json)
+RESULT=$(bitbadges-cli deploy vault.json --burner --manager bb1... --mainnet)
 TXHASH=$(echo "$RESULT" | jq -r '.data.txHash')
 
 # 4. Wait for it to commit
