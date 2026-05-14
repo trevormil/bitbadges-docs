@@ -131,7 +131,7 @@ bitbadges-cli auth login \
 bitbadges-cli api accounts get-account --body '{"address":"bb1..."}' --with-session
 ```
 
-Multi-account, multi-network, with `--2fa` support. Full reference: [Auth Commands](auth-commands.md).
+Multi-account, multi-network. Full reference: [Auth Commands](auth-commands.md).
 
 ## Combining with BitBadges Builder Tools
 

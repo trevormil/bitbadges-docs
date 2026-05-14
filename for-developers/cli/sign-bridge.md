@@ -4,9 +4,9 @@ The sign bridge is the CLI's way to use a browser-resident wallet (Keplr, MetaMa
 
 It works the same way `gh auth login --web` and `npm login --auth-type=web` do:
 
-1. The CLI starts a tiny HTTP listener on `127.0.0.1:<port>` and prints a one-time PIN.
+1. The CLI starts a tiny HTTP listener on `127.0.0.1:<port>`.
 2. It opens your default browser to `https://bitbadges.io/sign?…` with the request encoded in the URL (or in a Redis-backed short code if the payload is large).
-3. You verify the PIN matches the one in your terminal, review the request, and sign with whatever wallet you have connected.
+3. You review the request and sign with whatever wallet you have connected.
 4. The browser redirects to `127.0.0.1:<port>/callback?…` with the signature or transaction hash. The listener catches it, the CLI completes the flow, and you go back to your terminal.
 
 The wallet never leaves the browser; the CLI only ever sees the resulting signature or tx hash. This is the headlining "I have my wallet in MetaMask, I want my agent on a headless box to act as me" workflow.
@@ -36,11 +36,10 @@ Every sign-bridge command resolves to one of three URL `mode` values on the `/si
 
 What the user sees:
 
-1. **A 6-digit PIN.** The CLI prints this same PIN to stderr; cross-verifying defends against landing on a phishing page that pretends to be from your CLI.
-2. **A "review and trust" warning.** A signature here can authorize transactions, transfer ownership, or grant access on behalf of the connected wallet. The PIN proves the page was launched by your CLI — it does **not** vouch for what's inside.
-3. **The full request.** For login/msg modes, the message is shown verbatim. For tx mode with a single creation msg, the page renders the same StreamlinedBuilderPreview the dashboard uses internally.
-4. **A wallet-mismatch panel** if the connected wallet's address (bb1-converted) doesn't match the address the CLI expected. The Sign button stays disabled until the addresses match. There's an inline **Disconnect this wallet** button so you can switch wallets without leaving the page.
-5. **A single full-width Sign button.** Click → wallet popup (Keplr/MetaMask/etc) → sign. The browser tab redirects back to your loopback listener; the CLI prints the result.
+1. **A "review and trust" warning.** A signature here can authorize transactions, transfer ownership, or grant access on behalf of the connected wallet.
+2. **The full request.** For login/msg modes, the message is shown verbatim. For tx mode with a single creation msg, the page renders the same StreamlinedBuilderPreview the dashboard uses internally.
+3. **A wallet-mismatch panel** if the connected wallet's address (bb1-converted) doesn't match the address the CLI expected. The Sign button stays disabled until the addresses match. There's an inline **Disconnect this wallet** button so you can switch wallets without leaving the page.
+4. **A single full-width Sign button.** Click → wallet popup (Keplr/MetaMask/etc) → sign. The browser tab redirects back to your loopback listener; the CLI prints the result.
 
 The page rejects any redirect target that isn't a `127.0.0.1` or `localhost` URL — RFC 8252 §7.3 native-app loopback exception, same posture `gh` and `gcloud` use.
 
@@ -290,12 +289,11 @@ Useful when the indexer isn't reachable from the signing host (air-gapped HSM ri
 The sign bridge is layered defense:
 
 1. **Loopback-only return URLs.** The `/sign` page rejects any redirect target that isn't `127.0.0.1` or `localhost`. Without this, an attacker could craft a `bitbadges.io/sign?…&return=https://evil.com` link, get a victim to sign, and harvest the signature. Loopback-only means the listener has to be on the same machine as the browser.
-2. **PIN cross-verification.** A 6-digit code shown on both stderr and `/sign`. Defends against the "I have multiple browser tabs open and I'm not sure which one is mine" failure mode, plus phishing where someone DMs a sign URL claiming to be from your CLI.
-3. **Wallet-mismatch block.** The page disables the Sign button (and shows a Disconnect-this-wallet shortcut) when `chain.address` doesn't match the address the CLI declared. Stops the user from signing with the wrong account by accident.
-4. **State nonce.** A random per-request token echoed back on the redirect. Mismatched state → 403 + page rejects.
-5. **Single-shot listener.** The CLI's loopback HTTP server accepts exactly one valid callback. Subsequent requests get `410 Gone`.
-6. **The wallet's own confirmation popup.** For tx mode, the wallet shows the actual tx contents one more time before signing. The user has to click through the wallet popup *and* the page button — two gates, both showing what's actually being signed.
-7. **The "review and trust" warning beneath the PIN.** PIN proves the page came from your CLI. The warning reminds the user that proof of source ≠ proof of safety; review the contents.
+2. **Wallet-mismatch block.** The page disables the Sign button (and shows a Disconnect-this-wallet shortcut) when `chain.address` doesn't match the address the CLI declared. Stops the user from signing with the wrong account by accident.
+3. **State nonce.** A random per-request token echoed back on the redirect. Mismatched state → 403 + page rejects.
+4. **Single-shot listener.** The CLI's loopback HTTP server accepts exactly one valid callback. Subsequent requests get `410 Gone`.
+5. **The wallet's own confirmation popup.** For tx mode, the wallet shows the actual tx contents one more time before signing. The user has to click through the wallet popup *and* the page button — two gates, both showing what's actually being signed.
+6. **The "review and trust" warning.** Reminds the user that the bridge proves origin (loopback callback, state nonce) but doesn't vouch for contents — review what you're signing.
 
 What's deliberately **not** in scope:
 

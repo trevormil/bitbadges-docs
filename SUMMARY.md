@@ -163,6 +163,7 @@
 * [🖥️ CLI & Chain Binary](for-developers/cli/README.md)
   * [Installation](for-developers/cli/installation.md)
   * [Build Commands](for-developers/cli/build-commands.md)
+  * [Standards Commands](for-developers/cli/standards-commands.md)
   * [Analysis Commands](for-developers/cli/analysis-commands.md)
   * [Deploy Commands](for-developers/cli/deploy-commands.md)
   * [Tx Commands](for-developers/cli/tx-commands.md)

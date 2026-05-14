@@ -4,8 +4,21 @@ The `bitbadges-cli deploy` command broadcasts a transaction. Pick exactly one si
 
 - **`--burner`** — generate a throwaway signer locally, fund it from the faucet, sign one create-collection tx, discard. Zero wallet setup. CREATE-only.
 - **`--browser`** — hand the tx off to your real wallet (Keplr, MetaMask, etc.) via the [Sign Bridge](sign-bridge.md). The CLI opens `/sign`, you confirm in the wallet, the tx hash comes back to your terminal.
+- **`--with-keyring --from <name>`** — sign locally using a key already imported into the chain binary's keyring (`bitbadgeschaind keys add ...`). The CLI prints the equivalent `bitbadgeschaind tx ...` command and executes it. Best for headless scripts where the same long-lived key signs many txs.
 
-Both paths emit the same JSON envelope on stdout when they succeed. The rest of this page covers `--burner`; for `--browser` see the [Sign Bridge](sign-bridge.md#deploy-browser) page.
+Both `--burner` and `--browser` paths emit the same JSON envelope on stdout when they succeed; `--with-keyring` prints the chain-binary response verbatim. The rest of this page covers `--burner`; for `--browser` see the [Sign Bridge](sign-bridge.md#deploy-browser) page.
+
+## `--wait-for-indexer [timeout-ms]`
+
+Optional on any deploy path. After the tx broadcast succeeds, the CLI polls the indexer until the created collection / dynamic store appears (or `timeout-ms` elapses, default `30000`). Useful in agent scripts that immediately want to `query` the new entity:
+
+```bash
+bitbadges-cli build vault --name … \
+  | bitbadges-cli deploy --burner --msg-stdin --manager bb1… \
+      --wait-for-indexer
+```
+
+Output JSON gains a `waited` field — `{ entity, id, attempts, elapsedMs, ok, body }` on success, `{ ok: false, lastStatus }` on timeout. Without the flag, deploy returns as soon as the tx commits on-chain and indexer catch-up is your problem.
 
 `bitbadges-cli deploy --burner` lets you create a new collection **without bringing your own Cosmos wallet**. The CLI generates a throwaway signer on demand, funds it (via the faucet or manually), signs the create-collection tx, and hands ownership of the new collection to an address you specify. The throwaway signer is discarded right after.
 

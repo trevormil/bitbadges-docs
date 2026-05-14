@@ -106,7 +106,6 @@ bitbadges-cli auth login \
   --signature <sig> \
   [--public-key <b64>] \
   [--message <text> | --message-file <path>] \
-  [--2fa <totp> | --2fa-backup <code>] \
   [network flags]
 ```
 
@@ -122,13 +121,10 @@ bitbadges-cli auth login \
 | `--no-open` | With `--browser`: print the sign URL instead of auto-launching the browser. |
 | `--port <n>` | With `--browser`: pin the loopback listener port (useful for SSH-tunneled dev). |
 | `--timeout <seconds>` | With `--browser`: how long to wait for the wallet (default 300, max 1800). |
-| `--2fa <code>` | 6-digit TOTP code, if the account has 2FA enabled. |
-| `--2fa-backup <code>` | Backup recovery code (alternative to `--2fa`). |
 
 **Exit codes:**
 - `0` — logged in, cookie stored
 - `1` — signature rejected, network error, or other failure
-- `2` — account requires 2FA and no `--2fa` / `--2fa-backup` was passed
 
 ## auth challenge
 
@@ -153,8 +149,7 @@ bitbadges-cli auth verify \
   --address <addr> \
   --signature <sig> \
   [--public-key <b64>] \
-  [--message <text> | --message-file <path>] \
-  [--2fa <code> | --2fa-backup <code>]
+  [--message <text> | --message-file <path>]
 ```
 
 ## auth status
@@ -260,20 +255,6 @@ bitbadges-cli api accounts update-account-info \
 ```
 
 If the resolved address has no stored session, the call exits 1 with a message pointing you at `auth login`.
-
-## Two-factor authentication
-
-If the account has 2FA enabled, the first `auth login` returns `requires2FA: true` and exits with code `2`. Re-run with the second factor:
-
-```bash
-bitbadges-cli auth login --address bb1... --signature ... --public-key ... \
-  --2fa 123456                # TOTP code from your authenticator app
-# or
-bitbadges-cli auth login --address bb1... --signature ... --public-key ... \
-  --2fa-backup AAAA-BBBB-CCCC # one of the backup codes from setup
-```
-
-The CLI replays the full cookie chain (SIWBB nonce + indexer LB stickiness) through `/api/v0/2fa/offline/verify` for you — no extra setup needed beyond the flag.
 
 ## Notes and limitations
 
