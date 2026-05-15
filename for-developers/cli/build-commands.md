@@ -344,24 +344,31 @@ bb build listing --address bb1... \
 
 Create a marketplace bid (user incoming approval) to buy a token from a
 collection. Emits the **identical** shape to `bb nfts bid` (a
-`MsgSetIncomingApproval`). The build verb is **single-token** — pass one
-token id (a true range errors); for a collection-wide bid use
-`bb nfts bid` without `--token-id`.
+`MsgSetIncomingApproval`). Pass one token id for a single-token bid (a
+true range errors); **omit `--token-ids` for a collection-wide bid** —
+full parity with `bb nfts bid`.
 
 ```bash
+# Single-token bid
 bb build bid --address bb1... \
   --collection-id 7 --token-ids 4 \
   --price 40 --denom USDC --expiration 7d
+
+# Collection-wide bid (any token in the collection)
+bb build bid --address bb1... \
+  --collection-id 7 \
+  --price 40 --denom USDC
 ```
 
 | Flag | Required | Description |
 |------|----------|-------------|
 | `--address <address>` | Yes | Bidder address |
 | `--collection-id <id>` | Yes | Collection ID to bid on |
-| `--token-ids <id>` | Yes | Single token id to bid on (a range errors; use `bb nfts bid` for collection-wide) |
+| `--token-ids <id>` | No | Single token id to bid on (a true range errors). Omit for a collection-wide bid. |
+| `--token-amount <n>` | No | Number of tokens (default: 1) |
 | `--price <n>` | Yes | Bid price in display units |
 | `--denom <symbol>` | Yes | Price coin (USDC, BADGE) |
-| `--expiration <duration>` | No | Bid duration (default: 7d) |
+| `--expiration <when>` | No | Bid expiry: ms-since-epoch or duration (`7d`, `24h`, `monthly`). Default: 7d. |
 
 ### `build pm-sell-intent`
 
