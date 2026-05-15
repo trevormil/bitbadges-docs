@@ -1,12 +1,12 @@
 # Build Commands
 
-The `bb build` command provides 18 builders that generate ready-to-sign transaction JSON. Each builder creates a complete collection or approval configuration from simple, human-readable parameters.
+The `bb build` command provides 17 builders that generate ready-to-sign transaction JSON. Each builder creates a complete collection or approval configuration from simple, human-readable parameters.
 
 All build commands accept friendly inputs -- use coin symbols like `USDC` instead of raw IBC denominations, and duration shorthands like `30d` instead of millisecond timestamps. The output is a fully-formed transaction message that can be signed and broadcast using the SDK, the BitBadges frontend, or the chain binary.
 
 > **Tip — don't want to bring your own wallet?** Pipe the output of any collection builder straight into [`deploy --burner`](deploy-commands.md). The CLI generates a throwaway signer, funds it from the faucet, broadcasts the create-collection tx, and hands ownership to the address you pass as `--manager`. No keys to set up.
 >
-> **Already have a wallet in your browser?** Use `--deploy-with-browser` instead — the build runs, the resulting tx is handed to your connected Keplr / MetaMask via `/sign`, and the hash comes back to your terminal. Add `--sign-only` to skip the broadcast and get signed bytes back for your own submitter. See [Sign Bridge](sign-bridge.md#build--deploy-with-browser).
+> **Already have a wallet in your browser?** Use `--browser` instead — the build runs, the resulting tx is handed to your connected Keplr / MetaMask via `/sign`, and the hash comes back to your terminal. Add `--sign-only` to skip the broadcast and get signed bytes back for your own submitter. See [Sign Bridge](sign-bridge.md#build--browser).
 
 > **No IPFS hosting needed.** Every template accepts metadata in one of two modes per metadata-bearing entity: pass `--uri <pre-hosted-uri>` if you have already hosted the JSON yourself, or pass the per-entity field flags (`--name`, `--image`, `--description`) and the CLI serializes them into the on-chain `customData` field. The indexer, SDK, and frontend parse `customData` on read and surface the result as the resolved metadata, so there is no Pinata account to set up. Approvals are text-only — `--name` + `--description`, no image. The CLI throws a clear error if neither mode is fully satisfied; there are no defaults or placeholders. See [Collection Configuration › Inline metadata via customData](../../token-standard/learn/collection-setup-fields.md#inline-metadata-via-customdata) for the on-chain shape.
 
@@ -127,7 +127,7 @@ bb build crowdfund --goal 10000 --denom USDC \
 |------|----------|-------------|
 | `--goal <n>` | Yes | Funding goal in display units |
 | `--denom <symbol>` | Yes | Coin (USDC, BADGE) |
-| `--crowdfunder <address>` | No | Who receives funds on success |
+| `--crowdfunder <address>` | Yes\* | Who receives funds on success, and the party whose progress balance gates success/refund. \*Falls back to `--creator`; the builder errors if neither is set (it can't build a payout-less crowdfund). |
 | `--deadline <duration>` | No | Deadline duration (default: 30d) |
 | `--name <name>` | No | Collection name (default: "Crowdfund") |
 
@@ -222,14 +222,16 @@ bb build credit-token --payment-denom USDC \
 Create a custom 2FA token collection for use as a second authentication factor in other collections.
 
 ```bash
-bb build custom-2fa --name "My 2FA Token" --burnable
+bb build custom-2fa --name "My 2FA Token" --image ipfs://... \
+  --description "Short-lived 2FA token" --creator bb1manager... --burnable
 ```
 
 | Flag | Required | Description |
 |------|----------|-------------|
-| `--name <name>` | Yes | Token name |
-| `--image <url>` | No | Token image URL |
-| `--description <text>` | No | Description |
+| `--creator <address>` | Yes | Manager address — only this address may mint 2FA tokens (mint is restricted to the manager; the builder errors if omitted) |
+| `--name <name>` | Yes | Token name (with `--image` + `--description`, or pass `--uri`) |
+| `--image <url>` | Yes\* | Token image URL (\*unless `--uri` is used) |
+| `--description <text>` | Yes\* | Description (\*unless `--uri` is used) |
 | `--burnable` | No | Allow burning |
 | `--transferable` | No | Allow post-mint transfers between users |
 
@@ -288,24 +290,12 @@ bb build intent --address bb1... \
 | `--receive-amount <n>` | Yes | Amount you receive in display units |
 | `--expiration <duration>` | No | How long the intent stays open (default: 7d) |
 
-### `build recurring-payment`
-
-Create a recurring payment approval (user incoming approval) for subscription collections.
-
-```bash
-bb build recurring-payment --collection-id 10 \
-  --amount 25 --denom USDC --interval monthly \
-  --recipient bb1... --expiration 365d
-```
-
-| Flag | Required | Description |
-|------|----------|-------------|
-| `--collection-id <id>` | Yes | Subscription collection ID |
-| `--amount <n>` | Yes | Payment amount per interval in display units |
-| `--denom <symbol>` | Yes | Payment coin (USDC, BADGE) |
-| `--interval <duration>` | Yes | Payment interval (daily, monthly, annually) |
-| `--recipient <address>` | Yes | Who receives payments |
-| `--expiration <duration>` | No | How long the subscription lasts (default: 365d) |
+> **Recurring payments?** There is no `bb build recurring-payment` — a
+> subscriber's recurring approval must be derived from the live
+> subscription collection, not built offline. Use
+> [`bb subscriptions claim` / `bb subscriptions subscribe`](standards-commands.md)
+> instead, which read the subscription's faucet approval and emit the
+> correct user recurring approval.
 
 ### `build listing`
 
@@ -424,7 +414,7 @@ If a picked approval requires a coin payment or prerequisite token ownership, th
 | `--token-ids <spec>` | No | Token IDs — `1-5`, `1,3,5`, or `all` (default: prompt; `all` with `--yes`) |
 | `--yes` | No | Skip every prompt. Picks no prioritized approvals (chain matches), no precalc, default amount + tokenIds. For scripts/CI |
 
-The output `MsgTransferTokens` flows through the same `emit()` pipeline as the collection builders, so `--simulate`, `--explain`, `--deploy-with-browser`, and the auto-validate banner all behave identically. The `--deploy-with-burner` path is CREATE-only and will refuse a transfer with its standard error.
+The output `MsgTransferTokens` flows through the same `emit()` pipeline as the collection builders, so `--simulate`, `--explain`, `--browser`, and the auto-validate banner all behave identically. The `--burner` path is CREATE-only and will refuse a transfer with its standard error.
 
 ## JSON Input Mode
 

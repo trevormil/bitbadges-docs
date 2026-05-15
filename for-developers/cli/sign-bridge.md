@@ -30,7 +30,7 @@ Every sign-bridge command resolves to one of three URL `mode` values on the `/si
 |---|---|---|---|
 | `login` | `bb auth login --browser` | The SIWBB (SIWE) challenge message | Signature → CLI replays it on `/auth/verify` to mint a Full Access session cookie |
 | `msg` | `bb deploy --browser --message <text>` | An arbitrary string to sign | Signature + address (+ pubkey for Cosmos) |
-| `tx` | `bb deploy --browser`, `bb build … --deploy-with-browser` | A Cosmos `MsgCreateCollection` (or any single tx). For collection-creation msgs the page runs the same review pipeline as `/builder/preview`, so you see the full Preview / Review Items / Transferability / Permissions / Details / Compatibility / Alternatives sidebar before you sign. | Tx hash (or signed bytes if `--sign-only` is set) |
+| `tx` | `bb deploy --browser`, `bb build … --browser` | A Cosmos `MsgCreateCollection` (or any single tx). For collection-creation msgs the page runs the same review pipeline as `/builder/preview`, so you see the full Preview / Review Items / Transferability / Permissions / Details / Compatibility / Alternatives sidebar before you sign. | Tx hash (or signed bytes if `--sign-only` is set) |
 
 ## The `/sign` page
 
@@ -175,9 +175,9 @@ When this is useful:
 
 The signed bytes are the same shape as `tx_bytes` for `/api/v0/broadcast`. POST with `{"tx_bytes": <bytes>, "mode": "BROADCAST_MODE_SYNC"}`.
 
-## build … --deploy-with-browser
+## build … --browser
 
-Compose `bb build <preset>` and `bb deploy --browser` in one shot, parallel to `--deploy-with-burner`:
+Compose `bb build <preset>` and `bb deploy --browser` in one shot, parallel to `--burner`:
 
 ```bash
 bb build vault \
@@ -186,7 +186,7 @@ bb build vault \
   --image "https://example.com/img.png" \
   --manager bb1... \
   --backing-coin BADGE \
-  --deploy-with-browser
+  --browser
 ```
 
 The build runs first, the resulting msg JSON is handed to the bridge, and the wallet signs + broadcasts. `--sign-only` is also accepted here.
@@ -334,4 +334,4 @@ This is also the realistic prod scenario: the wallet and the CLI live on the sam
 
 - [auth-commands.md](auth-commands.md) — full SIWBB / `auth login` reference
 - [deploy-commands.md](deploy-commands.md) — `--burner` (the alternative to `--browser`)
-- [build-commands.md](build-commands.md) — every `--deploy-with-burner` / `--deploy-with-browser` preset
+- [build-commands.md](build-commands.md) — every `--burner` / `--browser` preset
