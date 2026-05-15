@@ -1,5 +1,5 @@
 # Gitbook Documentation Compilation
-Generated on Fri May 15 15:19:31 UTC 2026
+Generated on Fri May 15 16:14:56 UTC 2026
 
 
 
@@ -18790,6 +18790,24 @@ bb build custom-2fa --name "My 2FA Token" --image ipfs://... \
 | `--burnable` | No | Allow burning |
 | `--transferable` | No | Allow post-mint transfers between users |
 
+After creating the collection, issue tokens with `bb custom-2fa mint`. The
+token lifetime (default 5 minutes) is encoded **at mint time**, so this step
+is required for tokens to expire — broadcasting a raw mint without it
+produces tokens that never expire, silently breaking the 2FA guarantee.
+
+```bash
+bb custom-2fa mint <collection-id> --creator bb1manager... \
+  --to bb1user...,bb1user2... [--expiration 10m] | bb deploy
+```
+
+Add `--browser` or `--burner` to broadcast inline instead of piping to `bb deploy`.
+
+| Flag | Required | Description |
+|------|----------|-------------|
+| `--creator <address>` | Yes | Manager address — only the manager may mint 2FA tokens |
+| `--to <addresses>` | Yes | Recipient bb1... address(es), comma-separated |
+| `--expiration <duration>` | No | Token lifetime: `5m`, `10m`, … or ms-since-epoch (default: 5m). `--expiry` is a deprecated alias. |
+
 ### `build quests`
 
 Create a quest or reward collection where users claim token rewards up to a maximum number of claims.
@@ -20153,6 +20171,7 @@ Every action verb emits the universal `{ok, data, ...}` envelope on stdout. Pipe
 | **Bounties** | `bb bounties` | `list / show / status / accept / deny / claim-refund / build`. Accept/deny emit a 2-msg envelope (cast-vote + transfer). |
 | **Credit Tokens** | `bb credit-tokens` | `list / show / purchase / build`. Tier amounts use `bigint`. |
 | **Crowdfunds** | `bb crowdfunds` | `list / show / status / contribute / withdraw / refund / build`. Aliased as `bb crowdfund` (singular) for backwards compat. |
+| **Custom 2FA** | `bb custom-2fa` | `mint`. Create the collection with `bb build custom-2fa`, then `mint` issues short-lived 2FA tokens (5m default). The lifetime is encoded at mint time — minting without the helper yields tokens that never expire. |
 | **Dynamic Stores** | `bb dynamic-stores` | On-chain key→bool maps. `create / update / delete / add / remove / set-value / get-value / list-values / search`. |
 | **Intents** | `bb intents` | Off-chain OTC swap offers via user outgoing approvals. `list / show / create / fill / cancel`. |
 | **NFTs** (orderbook) | `bb nfts` | `bid / list / cancel / buy / sell / orders / history / build`. Orderbook trading on individual badges. |
