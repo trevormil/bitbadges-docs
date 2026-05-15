@@ -31,6 +31,7 @@ Every action verb emits the universal `{ok, data, ...}` envelope on stdout. Pipe
 | **Bounties** | `bb bounties` | `list / show / status / accept / deny / claim-refund / build`. Accept/deny emit a 2-msg envelope (cast-vote + transfer). |
 | **Credit Tokens** | `bb credit-tokens` | `list / show / purchase / build`. Tier amounts use `bigint`. |
 | **Crowdfunds** | `bb crowdfunds` | `list / show / status / contribute / withdraw / refund / build`. Aliased as `bb crowdfund` (singular) for backwards compat. |
+| **Custom 2FA** | `bb custom-2fa` | `mint`. Create the collection with `bb build custom-2fa`, then `mint` issues short-lived 2FA tokens (5m default). The lifetime is encoded at mint time — minting without the helper yields tokens that never expire. |
 | **Dynamic Stores** | `bb dynamic-stores` | On-chain key→bool maps. `create / update / delete / add / remove / set-value / get-value / list-values / search`. |
 | **Intents** | `bb intents` | Off-chain OTC swap offers via user outgoing approvals. `list / show / create / fill / cancel`. |
 | **NFTs** (orderbook) | `bb nfts` | `bid / list / cancel / buy / sell / orders / history / build`. Orderbook trading on individual badges. |
