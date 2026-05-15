@@ -235,6 +235,24 @@ bb build custom-2fa --name "My 2FA Token" --image ipfs://... \
 | `--burnable` | No | Allow burning |
 | `--transferable` | No | Allow post-mint transfers between users |
 
+After creating the collection, issue tokens with `bb custom-2fa mint`. The
+token lifetime (default 5 minutes) is encoded **at mint time**, so this step
+is required for tokens to expire — broadcasting a raw mint without it
+produces tokens that never expire, silently breaking the 2FA guarantee.
+
+```bash
+bb custom-2fa mint <collection-id> --creator bb1manager... \
+  --to bb1user...,bb1user2... [--expiration 10m] | bb deploy
+```
+
+Add `--browser` or `--burner` to broadcast inline instead of piping to `bb deploy`.
+
+| Flag | Required | Description |
+|------|----------|-------------|
+| `--creator <address>` | Yes | Manager address — only the manager may mint 2FA tokens |
+| `--to <addresses>` | Yes | Recipient bb1... address(es), comma-separated |
+| `--expiration <duration>` | No | Token lifetime: `5m`, `10m`, … or ms-since-epoch (default: 5m). `--expiry` is a deprecated alias. |
+
 ### `build quests`
 
 Create a quest or reward collection where users claim token rewards up to a maximum number of claims.
