@@ -308,7 +308,7 @@ bb build intent --address bb1... \
 | `--pay-amount <n>` | Yes | Amount you send in display units |
 | `--receive-denom <symbol>` | Yes | What you receive |
 | `--receive-amount <n>` | Yes | Amount you receive in display units |
-| `--expiration <duration>` | No | How long the intent stays open (default: 30d, matches `bb intents create`). `--expiry` / `--valid-until` are deprecated aliases. |
+| `--expiration <when>` | No | Intent expiry: ms-since-epoch or duration (`30d`, `24h`, `monthly`). Default: 30d, matches `bb intents create`. `--expiry` / `--valid-until` are deprecated aliases. |
 
 > **Recurring payments?** There is no `bb build recurring-payment` — a
 > subscriber's recurring approval must be derived from the live
@@ -338,7 +338,7 @@ bb build listing --address bb1... \
 | `--price <n>` | Yes | Asking price in display units |
 | `--denom <symbol>` | Yes | Price coin (USDC, BADGE) |
 | `--max-sales <n>` | No | Maximum number of sales (default: 1) |
-| `--expiration <duration>` | No | Listing duration (default: 30d) |
+| `--expiration <when>` | No | Listing expiry: ms-since-epoch or duration (`30d`, `24h`, `monthly`). Default: 30d. |
 
 ### `build bid`
 
@@ -388,7 +388,7 @@ bb build pm-sell-intent --address bb1... \
 | `--amount <n>` | Yes | Number of tokens to sell |
 | `--price <n>` | Yes | Total payment amount in display units |
 | `--denom <symbol>` | Yes | Payment coin (USDC, BADGE) |
-| `--expiration <duration>` | No | How long the intent stays open (default: 7d) |
+| `--expiration <when>` | No | Intent expiry: ms-since-epoch or duration (`24h`, `7d`, `monthly`). Default: 24h, matches `bb prediction-markets buy/sell`. |
 
 ### `build pm-buy-intent`
 
@@ -408,7 +408,7 @@ bb build pm-buy-intent --address bb1... \
 | `--amount <n>` | Yes | Number of tokens to buy |
 | `--price <n>` | Yes | Total payment amount in display units |
 | `--denom <symbol>` | Yes | Payment coin (USDC, BADGE) |
-| `--expiration <duration>` | No | How long the intent stays open (default: 7d) |
+| `--expiration <when>` | No | Intent expiry: ms-since-epoch or duration (`24h`, `7d`, `monthly`). Default: 24h, matches `bb prediction-markets buy/sell`. |
 
 ## Transfer Builder
 
