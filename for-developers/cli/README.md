@@ -71,7 +71,7 @@ bb --help-json | jq '.commands[] | .name'
 | **Create a collection with no wallet setup** | `bb deploy --burner` | `bb build subscription … \| bb deploy --burner --msg-stdin --manager bb1… --local` |
 | **Sign with a browser wallet (Keplr / MetaMask)** | `bb auth login --browser` | `bb auth login --browser --address bb1...` |
 | **Broadcast via your browser wallet** | `bb deploy --browser` | `bb deploy --browser --msg-file col.json --manager bb1...` |
-| **Build + broadcast in one step** | `bb build … --deploy-with-browser` | `bb build vault --name … --deploy-with-browser` |
+| **Build + broadcast in one step** | `bb build … --browser` | `bb build vault --name … --browser` |
 | **Sign now, broadcast later** | `bb deploy --browser --sign-only` | `bb deploy --browser --sign-only --msg-file col.json --manager bb1...` |
 | **Get signable payload for a custom signer (ethers/viem/HSM)** | `bb deploy --gen-payload` | `bb build vault … \| bb deploy --gen-payload --from bb1... --with-evm-tx` |
 | **Confirm a tx landed on chain** | `bb tx wait` | `bb tx wait $TXHASH --mainnet --timeout 60` |
