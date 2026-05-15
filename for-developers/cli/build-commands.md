@@ -253,21 +253,6 @@ Add `--browser` or `--burner` to broadcast inline instead of piping to `bb deplo
 | `--to <addresses>` | Yes | Recipient bb1... address(es), comma-separated |
 | `--expiration <duration>` | No | Token lifetime: `5m`, `10m`, … or ms-since-epoch (default: 5m). `--expiry` is a deprecated alias. |
 
-### `build quests`
-
-Create a quest or reward collection where users claim token rewards up to a maximum number of claims.
-
-```bash
-bb build quests --reward 10 --denom USDC --max-claims 1000
-```
-
-| Flag | Required | Description |
-|------|----------|-------------|
-| `--reward <n>` | Yes | Reward per claim in display units |
-| `--denom <symbol>` | Yes | Reward coin (USDC, BADGE) |
-| `--max-claims <n>` | Yes | Maximum number of claims |
-| `--name <name>` | No | Collection name (default: "Quest") |
-
 ### `build address-list`
 
 Create an on-chain address list (not a token collection -- uses a separate message type).
