@@ -289,13 +289,15 @@ These commands generate user-level approval messages for marketplace listings, b
 ### `build intent`
 
 Create an OTC swap intent (user outgoing approval) on the Intent Exchange.
+Emits the **identical** shape to [`bb intents create`](standards-commands.md)
+(a `MsgSetOutgoingApproval`) — either command works.
 
 ```bash
 bb build intent --address bb1... \
   --collection-id 5 \
   --pay-denom USDC --pay-amount 100 \
   --receive-denom BADGE --receive-amount 500 \
-  --expiration 7d
+  --expiration 30d
 ```
 
 | Flag | Required | Description |
@@ -306,7 +308,7 @@ bb build intent --address bb1... \
 | `--pay-amount <n>` | Yes | Amount you send in display units |
 | `--receive-denom <symbol>` | Yes | What you receive |
 | `--receive-amount <n>` | Yes | Amount you receive in display units |
-| `--expiration <duration>` | No | How long the intent stays open (default: 7d) |
+| `--expiration <duration>` | No | How long the intent stays open (default: 30d, matches `bb intents create`). `--expiry` / `--valid-until` are deprecated aliases. |
 
 > **Recurring payments?** There is no `bb build recurring-payment` — a
 > subscriber's recurring approval must be derived from the live
@@ -317,11 +319,14 @@ bb build intent --address bb1... \
 
 ### `build listing`
 
-Create a marketplace listing (user outgoing approval) to sell tokens from a collection.
+Create a marketplace listing (user outgoing approval) to sell a token from a
+collection. Emits the **identical** shape to `bb nfts list` (a
+`MsgSetOutgoingApproval`). Orderbook listings are **single-token** — pass one
+token id; a true range errors.
 
 ```bash
 bb build listing --address bb1... \
-  --collection-id 7 --token-ids "1-5" \
+  --collection-id 7 --token-ids 4 \
   --price 50 --denom USDC --max-sales 1 --expiration 30d
 ```
 
@@ -329,7 +334,7 @@ bb build listing --address bb1... \
 |------|----------|-------------|
 | `--address <address>` | Yes | Seller address |
 | `--collection-id <id>` | Yes | Collection ID to list from |
-| `--token-ids <range>` | Yes | Token ID range (e.g., "1-5" or "1") |
+| `--token-ids <id>` | Yes | Single token id to list (orderbook listings are single-token; a range errors) |
 | `--price <n>` | Yes | Asking price in display units |
 | `--denom <symbol>` | Yes | Price coin (USDC, BADGE) |
 | `--max-sales <n>` | No | Maximum number of sales (default: 1) |
@@ -337,11 +342,15 @@ bb build listing --address bb1... \
 
 ### `build bid`
 
-Create a marketplace bid (user incoming approval) to buy tokens from a collection.
+Create a marketplace bid (user incoming approval) to buy a token from a
+collection. Emits the **identical** shape to `bb nfts bid` (a
+`MsgSetIncomingApproval`). The build verb is **single-token** — pass one
+token id (a true range errors); for a collection-wide bid use
+`bb nfts bid` without `--token-id`.
 
 ```bash
 bb build bid --address bb1... \
-  --collection-id 7 --token-ids "1-5" \
+  --collection-id 7 --token-ids 4 \
   --price 40 --denom USDC --expiration 7d
 ```
 
@@ -349,7 +358,7 @@ bb build bid --address bb1... \
 |------|----------|-------------|
 | `--address <address>` | Yes | Bidder address |
 | `--collection-id <id>` | Yes | Collection ID to bid on |
-| `--token-ids <range>` | Yes | Token ID range (e.g., "1-5" or "1") |
+| `--token-ids <id>` | Yes | Single token id to bid on (a range errors; use `bb nfts bid` for collection-wide) |
 | `--price <n>` | Yes | Bid price in display units |
 | `--denom <symbol>` | Yes | Price coin (USDC, BADGE) |
 | `--expiration <duration>` | No | Bid duration (default: 7d) |
