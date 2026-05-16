@@ -114,23 +114,6 @@ bb build payment-request \
 
 See the full spec in [skills/payment-request](../../x-tokenization/examples/skills/payment-request.md).
 
-### `build crowdfund`
-
-Create a crowdfunding collection with a funding goal and deadline.
-
-```bash
-bb build crowdfund --goal 10000 --denom USDC \
-  --crowdfunder bb1... --deadline 30d
-```
-
-| Flag | Required | Description |
-|------|----------|-------------|
-| `--goal <n>` | Yes | Funding goal in display units |
-| `--denom <symbol>` | Yes | Coin (USDC, BADGE) |
-| `--crowdfunder <address>` | Yes\* | Who receives funds on success, and the party whose progress balance gates success/refund. \*Falls back to `--creator`; the builder errors if neither is set (it can't build a payout-less crowdfund). |
-| `--deadline <duration>` | No | Deadline duration (default: 30d) |
-| `--name <name>` | No | Collection name (default: "Crowdfund") |
-
 ### `build auction`
 
 Create an auction collection with configurable bidding and acceptance windows.
