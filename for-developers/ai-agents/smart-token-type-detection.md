@@ -38,7 +38,6 @@ Full mapping:
 | `"Quest"` | `quest` |
 | `"Bounty"` | `bounty` |
 | `"PaymentRequest"` | `payment-request` |
-| `"Crowdfund"` | `crowdfund` |
 | `"Auction"` | `auction` |
 | `"Products"` | `product-catalog` |
 | `"Prediction Market"` | `prediction-market` |

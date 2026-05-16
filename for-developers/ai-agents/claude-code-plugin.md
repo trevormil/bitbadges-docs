@@ -44,7 +44,7 @@ Each skill is a guide that routes Claude to the right CLI command, MCP tool, or 
 
 | Skill | What it teaches |
 |---|---|
-| `build` | Meta-guide for constructing any token type (smart-token, fungible, NFT, subscription, vault, claim, quest, auction, payment, crowdfund, prediction-market, …). Discovers via `bb dev skills`, loads canonical instructions via the `get_skill_instructions` MCP tool, then constructs via the per-field MCP session tools. |
+| `build` | Meta-guide for constructing any token type (smart-token, fungible, NFT, subscription, vault, claim, quest, auction, payment, prediction-market, …). Discovers via `bb dev skills`, loads canonical instructions via the `get_skill_instructions` MCP tool, then constructs via the per-field MCP session tools. |
 | `review` | Audit a transaction file or live collection for correctness, standards compliance, foot-guns. Wraps `bb check` and `review_collection`. |
 | `simulate` | Dry-run a transaction. Returns events + balance diffs. Always before broadcast. Wraps `simulate_transaction`. |
 | `explain` | Plain-English description, audience-aware (user / developer / auditor). Wraps `explain_collection` and `bb explain`. |

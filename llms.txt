@@ -48,7 +48,7 @@
 - [NFT Collection](https://docs.bitbadges.io/x-tokenization/examples/skills/nft-collection) — Unique-token-ID issuance.
 - [Subscription](https://docs.bitbadges.io/x-tokenization/examples/skills/subscription) — Recurring time-bounded access tokens.
 - [Payment Protocol](https://docs.bitbadges.io/x-tokenization/examples/skills/payment-protocol) — Pay-to-mint / pay-to-transfer flows.
-- [Auction](https://docs.bitbadges.io/x-tokenization/examples/skills/auction) / [Bounty](https://docs.bitbadges.io/x-tokenization/examples/skills/bounty) / [Crowdfund](https://docs.bitbadges.io/x-tokenization/examples/skills/crowdfund) / [Quest](https://docs.bitbadges.io/x-tokenization/examples/skills/quest) — Marketplace primitives.
+- [Auction](https://docs.bitbadges.io/x-tokenization/examples/skills/auction) / [Bounty](https://docs.bitbadges.io/x-tokenization/examples/skills/bounty) / [Quest](https://docs.bitbadges.io/x-tokenization/examples/skills/quest) — Marketplace primitives.
 - [Liquidity Pools](https://docs.bitbadges.io/x-tokenization/examples/skills/liquidity-pools) — x/gamm-backed AMM pools.
 - [Prediction Market](https://docs.bitbadges.io/x-tokenization/examples/skills/prediction-market) / [Credit Token](https://docs.bitbadges.io/x-tokenization/examples/skills/credit-token) / [Custom 2FA](https://docs.bitbadges.io/x-tokenization/examples/skills/custom-2fa) — Specialty templates.
 - [Address List](https://docs.bitbadges.io/x-tokenization/examples/skills/address-list) — Lightweight membership lists (no token issuance).

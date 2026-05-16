@@ -131,7 +131,6 @@
   * [Prediction Market](x-tokenization/examples/skills/prediction-market.md)
   * [Bounty](x-tokenization/examples/skills/bounty.md)
   * [PaymentRequest](x-tokenization/examples/skills/payment-request.md)
-  * [Crowdfund](x-tokenization/examples/skills/crowdfund.md)
   * [Auction](x-tokenization/examples/skills/auction.md)
   * [Products](x-tokenization/examples/skills/product-catalog.md)
 * [🔒 BB-402](token-standard/bb-402/README.md)

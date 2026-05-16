@@ -1,6 +1,6 @@
 # Standards Commands
 
-End-user surface for every BitBadges standard. Each command group lets you **read** collections of that standard from the indexer and **emit** the right transaction msg for the user-side action — bid on an auction, contribute to a crowdfund, pay a payment-request, redeem a credit-token tier, etc.
+End-user surface for every BitBadges standard. Each command group lets you **read** collections of that standard from the indexer and **emit** the right transaction msg for the user-side action — bid on an auction, pay a payment-request, redeem a credit-token tier, etc.
 
 Two halves to know about:
 
@@ -30,7 +30,6 @@ Every action verb emits the universal `{ok, data, ...}` envelope on stdout. Pipe
 | **Auctions** | `bb auctions` | `list / show / status / place-bid / cancel-bid / accept-bid / build` |
 | **Bounties** | `bb bounties` | `list / show / status / accept / deny / claim-refund / build`. Accept/deny emit a 2-msg envelope (cast-vote + transfer). |
 | **Credit Tokens** | `bb credit-tokens` | `list / show / purchase / build`. Tier amounts use `bigint`. |
-| **Crowdfunds** | `bb crowdfunds` | `list / show / status / contribute / withdraw / refund / build`. Aliased as `bb crowdfund` (singular) for backwards compat. |
 | **Custom 2FA** | `bb custom-2fa` | `mint`. Create the collection with `bb build custom-2fa`, then `mint` issues short-lived 2FA tokens (5m default). The lifetime is encoded at mint time — minting without the helper yields tokens that never expire. |
 | **Dynamic Stores** | `bb dynamic-stores` | On-chain key→bool maps. `create / update / delete / add / remove / set-value / get-value / list-values / search`. |
 | **Intents** | `bb intents` | Off-chain OTC swap offers via user outgoing approvals. `list / show / create / fill / cancel`. |
@@ -44,12 +43,11 @@ Every action verb emits the universal `{ok, data, ...}` envelope on stdout. Pipe
 
 ## Status semantics
 
-Every standard with a lifecycle (`auctions`, `crowdfunds`, `prediction-markets`, `bounties`, `pay-requests`) exposes a `status` subcommand that returns one of a fixed set of values. Read these BEFORE acting — most action verbs throw if the standard isn't in a compatible state.
+Every standard with a lifecycle (`auctions`, `prediction-markets`, `bounties`, `pay-requests`) exposes a `status` subcommand that returns one of a fixed set of values. Read these BEFORE acting — most action verbs throw if the standard isn't in a compatible state.
 
 | Standard | Status values |
 | --- | --- |
 | Auctions | `bidding`, `accepting`, `sold`, `expired` |
-| Crowdfunds | `funding`, `goal-met`, `withdrawn`, `expired` |
 | Bounties | `open`, `accepting`, `accepted`, `denied`, `expired` |
 | Payment Requests | `pending`, `paid`, `denied`, `expired` |
 | Prediction Markets | `active`, `closed`, `resolved`, `canceled` |
@@ -113,6 +111,5 @@ Every command has `--help` with the full flag surface. Required vs optional flag
 
 ```bash
 bb auctions place-bid --help
-bb crowdfunds contribute --help
 bb pay-requests pay --help
 ```
