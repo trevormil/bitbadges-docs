@@ -1,5 +1,5 @@
 # Gitbook Documentation Compilation
-Generated on Fri May 15 22:04:20 UTC 2026
+Generated on Sat May 16 00:46:31 UTC 2026
 
 
 
@@ -1975,7 +1975,6 @@ BitBadges addresses these fundamental issues through core design decisions:
   * [Prediction Market](x-tokenization/examples/skills/prediction-market.md)
   * [Bounty](x-tokenization/examples/skills/bounty.md)
   * [PaymentRequest](x-tokenization/examples/skills/payment-request.md)
-  * [Crowdfund](x-tokenization/examples/skills/crowdfund.md)
   * [Auction](x-tokenization/examples/skills/auction.md)
   * [Products](x-tokenization/examples/skills/product-catalog.md)
 * [🔒 BB-402](token-standard/bb-402/README.md)
@@ -9060,7 +9059,7 @@ Each skill is a guide that routes Claude to the right CLI command, MCP tool, or 
 
 | Skill | What it teaches |
 |---|---|
-| `build` | Meta-guide for constructing any token type (smart-token, fungible, NFT, subscription, vault, claim, quest, auction, payment, crowdfund, prediction-market, …). Discovers via `bb dev skills`, loads canonical instructions via the `get_skill_instructions` MCP tool, then constructs via the per-field MCP session tools. |
+| `build` | Meta-guide for constructing any token type (smart-token, fungible, NFT, subscription, vault, claim, quest, auction, payment, prediction-market, …). Discovers via `bb dev skills`, loads canonical instructions via the `get_skill_instructions` MCP tool, then constructs via the per-field MCP session tools. |
 | `review` | Audit a transaction file or live collection for correctness, standards compliance, foot-guns. Wraps `bb check` and `review_collection`. |
 | `simulate` | Dry-run a transaction. Returns events + balance diffs. Always before broadcast. Wraps `simulate_transaction`. |
 | `explain` | Plain-English description, audience-aware (user / developer / auditor). Wraps `explain_collection` and `bb explain`. |
@@ -10033,7 +10032,6 @@ Full mapping:
 | `"Quest"` | `quest` |
 | `"Bounty"` | `bounty` |
 | `"PaymentRequest"` | `payment-request` |
-| `"Crowdfund"` | `crowdfund` |
 | `"Auction"` | `auction` |
 | `"Products"` | `product-catalog` |
 | `"Prediction Market"` | `prediction-market` |
@@ -17843,7 +17841,7 @@ The flat surface comes with grouped help. Run `bb --help` and you see seven grou
 
 - **Chain node (Cosmos SDK)** — `start`, `init`, `status`, `version`, `tx`, `query`, `keys`, `sign-arbitrary`, `genesis`, `debug`, `config`, `prune`, `snapshots`, `comet` (the BitBadges chain node — distinct from the SDK indexer)
 - **BitBadges SDK — Build & Deploy** — `build`, `check`, `explain`, `simulate`, `preview`, `deploy`
-- **BitBadges SDK — Standards** — the 12 standards (`auctions`, `bounties`, `crowdfunds`, `credit-tokens`, `dynamic-stores`, `intents`, `nfts`, `pay-requests`, `prediction-markets`, `products`, `smart-tokens`, `subscriptions`)
+- **BitBadges SDK — Standards** — the 11 standards (`auctions`, `bounties`, `credit-tokens`, `dynamic-stores`, `intents`, `nfts`, `pay-requests`, `prediction-markets`, `products`, `smart-tokens`, `subscriptions`)
 - **BitBadges SDK — Indexer & Auth** — `api`, `auth`, `account`
 - **BitBadges SDK — Swap / DEX** — `swap`, `pools`, `pairs`, `price`
 - **BitBadges SDK — Dev** — `dev` (per-field MCP tools, resources, docs browser, skills, pubkey utilities)
@@ -17952,7 +17950,7 @@ For building token collections with AI assistants (Claude, Cursor, etc.), see th
 
 - [Installation](installation.md) — all install methods and configuration
 - [Build Commands](build-commands.md) — flag-based generators for vault, subscription, bounty, auction, and 14 other token types
-- [Standards Commands](standards-commands.md) — consumer-side `list / show / status / <action>` for every standard (auctions, crowdfunds, payment-requests, intents, swap, ...)
+- [Standards Commands](standards-commands.md) — consumer-side `list / show / status / <action>` for every standard (auctions, payment-requests, intents, swap, ...)
 - [Analysis Commands](analysis-commands.md) — `check`, `explain`, `simulate`, `preview`
 - [Deploy Commands](deploy-commands.md) — ship a create-collection tx without bringing your own wallet (also covers `--wait-for-indexer` + `--with-keyring`)
 - [Tx Commands](tx-commands.md) — confirm a broadcast tx committed (Cosmos + EVM hash support)
@@ -18668,23 +18666,6 @@ bb build payment-request \
 | `--context <text>` | No | Rationale shown to the payer at approval time (≥100 chars recommended) |
 
 See the full spec in [skills/payment-request](../../x-tokenization/examples/skills/payment-request.md).
-
-### `build crowdfund`
-
-Create a crowdfunding collection with a funding goal and deadline.
-
-```bash
-bb build crowdfund --goal 10000 --denom USDC \
-  --crowdfunder bb1... --deadline 30d
-```
-
-| Flag | Required | Description |
-|------|----------|-------------|
-| `--goal <n>` | Yes | Funding goal in display units |
-| `--denom <symbol>` | Yes | Coin (USDC, BADGE) |
-| `--crowdfunder <address>` | Yes\* | Who receives funds on success, and the party whose progress balance gates success/refund. \*Falls back to `--creator`; the builder errors if neither is set (it can't build a payout-less crowdfund). |
-| `--deadline <duration>` | No | Deadline duration (default: 30d) |
-| `--name <name>` | No | Collection name (default: "Crowdfund") |
 
 ### `build auction`
 
@@ -20141,7 +20122,7 @@ This is also the realistic prod scenario: the wallet and the CLI live on the sam
 
 # Standards Commands
 
-End-user surface for every BitBadges standard. Each command group lets you **read** collections of that standard from the indexer and **emit** the right transaction msg for the user-side action — bid on an auction, contribute to a crowdfund, pay a payment-request, redeem a credit-token tier, etc.
+End-user surface for every BitBadges standard. Each command group lets you **read** collections of that standard from the indexer and **emit** the right transaction msg for the user-side action — bid on an auction, pay a payment-request, redeem a credit-token tier, etc.
 
 Two halves to know about:
 
@@ -20171,7 +20152,6 @@ Every action verb emits the universal `{ok, data, ...}` envelope on stdout. Pipe
 | **Auctions** | `bb auctions` | `list / show / status / place-bid / cancel-bid / accept-bid / build` |
 | **Bounties** | `bb bounties` | `list / show / status / accept / deny / claim-refund / build`. Accept/deny emit a 2-msg envelope (cast-vote + transfer). |
 | **Credit Tokens** | `bb credit-tokens` | `list / show / purchase / build`. Tier amounts use `bigint`. |
-| **Crowdfunds** | `bb crowdfunds` | `list / show / status / contribute / withdraw / refund / build`. Aliased as `bb crowdfund` (singular) for backwards compat. |
 | **Custom 2FA** | `bb custom-2fa` | `mint`. Create the collection with `bb build custom-2fa`, then `mint` issues short-lived 2FA tokens (5m default). The lifetime is encoded at mint time — minting without the helper yields tokens that never expire. |
 | **Dynamic Stores** | `bb dynamic-stores` | On-chain key→bool maps. `create / update / delete / add / remove / set-value / get-value / list-values / search`. |
 | **Intents** | `bb intents` | Off-chain OTC swap offers via user outgoing approvals. `list / show / create / fill / cancel`. |
@@ -20185,12 +20165,11 @@ Every action verb emits the universal `{ok, data, ...}` envelope on stdout. Pipe
 
 ## Status semantics
 
-Every standard with a lifecycle (`auctions`, `crowdfunds`, `prediction-markets`, `bounties`, `pay-requests`) exposes a `status` subcommand that returns one of a fixed set of values. Read these BEFORE acting — most action verbs throw if the standard isn't in a compatible state.
+Every standard with a lifecycle (`auctions`, `prediction-markets`, `bounties`, `pay-requests`) exposes a `status` subcommand that returns one of a fixed set of values. Read these BEFORE acting — most action verbs throw if the standard isn't in a compatible state.
 
 | Standard | Status values |
 | --- | --- |
 | Auctions | `bidding`, `accepting`, `sold`, `expired` |
-| Crowdfunds | `funding`, `goal-met`, `withdrawn`, `expired` |
 | Bounties | `open`, `accepting`, `accepted`, `denied`, `expired` |
 | Payment Requests | `pending`, `paid`, `denied`, `expired` |
 | Prediction Markets | `active`, `closed`, `resolved`, `canceled` |
@@ -20254,7 +20233,6 @@ Every command has `--help` with the full flag surface. Required vs optional flag
 
 ```bash
 bb auctions place-bid --help
-bb crowdfunds contribute --help
 bb pay-requests pay --help
 ```
 
@@ -35009,7 +34987,6 @@ These pages document every guided build skill available in the BitBadges Builder
 - [Prediction Market](prediction-market.md) — Binary prediction market with YES/NO outcome tokens, liquidity pool trading, and vote-based settlement
 - [Bounty](bounty.md) — Escrow-based bounty with verifier arbitration. Submitter escrows coins, verifier accepts (pays recipient) or denies (refunds submitter). Expires if no decision.
 - [PaymentRequest](payment-request.md) — Agent-initiated payment request with no escrow. The agent (or any address) creates a collection requesting payment from a targeted human payer; the payer approves AND pays from their own wallet in a single action. Inverse of Bounty.
-- [Crowdfund](crowdfund.md) — On-chain crowdfunding with goal tracking via mustOwnTokens. Contributors deposit funds, receive refund tokens. Crowdfunder withdraws if goal met, contributors refund if not.
 - [Auction](auction.md) — Single-item auction with intent-based bidding. Seller mints NFT directly to the winning bidder during the accept window.
 - [Products](product-catalog.md) — Multi-product storefront with per-product pricing, supply limits, and optional burn-on-purchase. Each product is a separate token ID.
 
@@ -35928,243 +35905,6 @@ The Credit Token standard has a dedicated view page that shows:
 ## Reference Collections
 
 - [Collection 23](https://bitbadges.io/collections/23)
-
-
-## File: ./x-tokenization/examples/skills/crowdfund.md
-
-# Crowdfund
-
-> On-chain crowdfunding with goal tracking via mustOwnTokens. Contributors deposit funds, receive refund tokens. Crowdfunder withdraws if goal met, contributors refund if not.
-
-**Category:** Token Types
-
-## Summary
-
-Required standards: ["Crowdfund"]
-
-- 2 token IDs: Token 1 = Refund token (contributor holds), Token 2 = Progress token (crowdfunder accumulates)
-- 4 collection-level approvals: deposit-refund, deposit-progress, success (withdraw), refund
-- Contributors deposit coins → receive Token 1 (refund token). Paired approval mints Token 2 to crowdfunder (progress tracking).
-- Success: crowdfunder withdraws if mustOwnTokens confirms they hold >= goal of Token 2 (collectionId: 0 = self-reference)
-- Refund: after deadline, contributors burn Token 1 → escrow pays them back (only if goal NOT met via mustOwnTokens check)
-- allowAmountScaling: true on ALL 4 approvals (contributors choose deposit size, everything scales proportionally)
-- maxScalingMultiplier: MAX_UINT for unrestricted scaling
-- Deposit coinTransfer.to = "Mint" (auto-resolves to escrow)
-- requireToEqualsInitiatedBy: true on deposit-refund (contributor receives their own refund token)
-- invariants: \`noForcefulPostMintTransfers: true\` — the refund approval (non-mint) MUST NOT set \`overridesFromOutgoingApprovals\` or \`overridesToIncomingApprovals\` (both must be false or omitted). It relies on \`defaultBalances.autoApproveSelfInitiatedOutgoingTransfers: true\` for the outgoing side and on the burn destination for the incoming side. The deposit-refund / deposit-progress / success approvals ARE Mint-side and keep \`overridesFromOutgoingApprovals: true\` as the chain requires, with \`overridesToIncomingApprovals: false\`
-- All permissions frozen after creation
-- DON'T use votingChallenges — goal tracking is via mustOwnTokens, not voting
-- DON'T forget allowAmountScaling on ALL 4 approvals
-- DON'T set overrideFromWithApproverAddress on deposit (contributor pays, not escrow)
-- DO set overrideFromWithApproverAddress: true on success and refund (escrow pays out)
-- DO set overrideToWithInitiator: true on refund (contributor receives their own refund)
-- DO use collectionId: "0" in mustOwnTokens for self-reference
-
-## Instructions
-
-## Crowdfund Configuration
-
-### Mental Model
-
-On-chain crowdfunding with automatic goal tracking. Contributors deposit coins and receive refund tokens. A progress token tracks total raised. If the goal is met, the crowdfunder withdraws all funds. If not, contributors burn their refund tokens to get deposits back.
-
-### Collection Structure
-
-- Token ID 1 = Refund token (contributor holds — burn to refund)
-- Token ID 2 = Progress token (crowdfunder accumulates — tracks total raised)
-- Standard: "Crowdfund"
-- validTokenIds: [{ start: "1", end: "2" }]
-- invariants: { noCustomOwnershipTimes: true }
-- All permissions frozen after creation
-
-### 4 Required Approvals
-
-#### 1. Deposit-Refund (contributor pays coins → receives Token 1)
-
-```json
-{
-  "approvalId": "deposit-refund",
-  "fromListId": "Mint",
-  "toListId": "All",
-  "initiatedByListId": "All",
-  "tokenIds": [{ "start": "1", "end": "1" }],
-  "transferTimes": [{ "start": "1", "end": "<DEADLINE_TIMESTAMP>" }],
-  "approvalCriteria": {
-    "overridesFromOutgoingApprovals": true,
-    "overridesToIncomingApprovals": true,
-    "requireToEqualsInitiatedBy": true,
-    "coinTransfers": [{
-      "to": "Mint",
-      "overrideFromWithApproverAddress": false,
-      "overrideToWithInitiator": false,
-      "coins": [{ "amount": "1", "denom": "<DEPOSIT_DENOM>" }]
-    }],
-    "predeterminedBalances": {
-      "incrementedBalances": {
-        "startBalances": [{ "amount": "1", "tokenIds": [{ "start": "1", "end": "1" }], "ownershipTimes": [{ "start": "1", "end": "18446744073709551615" }] }],
-        "allowAmountScaling": true,
-        "maxScalingMultiplier": "18446744073709551615",
-        "incrementTokenIdsBy": "0",
-        "incrementOwnershipTimesBy": "0",
-        "durationFromTimestamp": "0",
-        "allowOverrideTimestamp": false
-      },
-      "orderCalculationMethod": { "useOverallNumTransfers": true }
-    },
-    "maxNumTransfers": { "overallMaxNumTransfers": "0" }
-  }
-}
-```
-
-> **CRITICAL:** `requireToEqualsInitiatedBy: true` ensures the contributor receives their own refund token. `allowAmountScaling: true` lets contributors choose their deposit size — the coin payment and token amount scale together.
-
-#### 2. Deposit-Progress (paired: mints Token 2 to crowdfunder, no coinTransfer)
-
-```json
-{
-  "approvalId": "deposit-progress",
-  "fromListId": "Mint",
-  "toListId": "<CROWDFUNDER_ADDRESS>",
-  "initiatedByListId": "All",
-  "tokenIds": [{ "start": "2", "end": "2" }],
-  "transferTimes": [{ "start": "1", "end": "<DEADLINE_TIMESTAMP>" }],
-  "approvalCriteria": {
-    "overridesFromOutgoingApprovals": true,
-    "overridesToIncomingApprovals": true,
-    "coinTransfers": [],
-    "predeterminedBalances": {
-      "incrementedBalances": {
-        "startBalances": [{ "amount": "1", "tokenIds": [{ "start": "2", "end": "2" }], "ownershipTimes": [{ "start": "1", "end": "18446744073709551615" }] }],
-        "allowAmountScaling": true,
-        "maxScalingMultiplier": "18446744073709551615",
-        "incrementTokenIdsBy": "0",
-        "incrementOwnershipTimesBy": "0",
-        "durationFromTimestamp": "0",
-        "allowOverrideTimestamp": false
-      },
-      "orderCalculationMethod": { "useOverallNumTransfers": true }
-    },
-    "maxNumTransfers": { "overallMaxNumTransfers": "0" }
-  }
-}
-```
-
-> **toListId** is the crowdfunder's specific address (not "All"). No coinTransfer — this is the paired counterpart to deposit-refund.
-
-#### 3. Success / Withdraw (crowdfunder withdraws if goal met)
-
-```json
-{
-  "approvalId": "success-withdraw",
-  "fromListId": "Mint",
-  "toListId": "<BURN_ADDRESS>",
-  "initiatedByListId": "<CROWDFUNDER_ADDRESS>",
-  "tokenIds": [{ "start": "1", "end": "1" }],
-  "transferTimes": [{ "start": "<DEADLINE + 1>", "end": "18446744073709551615" }],
-  "approvalCriteria": {
-    "overridesFromOutgoingApprovals": true,
-    "overridesToIncomingApprovals": true,
-    "coinTransfers": [{
-      "to": "<CROWDFUNDER_ADDRESS>",
-      "overrideFromWithApproverAddress": true,
-      "overrideToWithInitiator": false,
-      "coins": [{ "amount": "1", "denom": "<DEPOSIT_DENOM>" }]
-    }],
-    "mustOwnTokens": [{
-      "collectionId": "0",
-      "tokenIds": [{ "start": "2", "end": "2" }],
-      "amountRange": { "start": "<GOAL_AMOUNT>", "end": "18446744073709551615" },
-      "ownershipCheckParty": "<CROWDFUNDER_ADDRESS>"
-    }],
-    "predeterminedBalances": {
-      "incrementedBalances": {
-        "startBalances": [{ "amount": "1", "tokenIds": [{ "start": "1", "end": "1" }], "ownershipTimes": [{ "start": "1", "end": "18446744073709551615" }] }],
-        "allowAmountScaling": true,
-        "maxScalingMultiplier": "18446744073709551615",
-        "incrementTokenIdsBy": "0",
-        "incrementOwnershipTimesBy": "0",
-        "durationFromTimestamp": "0",
-        "allowOverrideTimestamp": false
-      },
-      "orderCalculationMethod": { "useOverallNumTransfers": true }
-    },
-    "maxNumTransfers": { "overallMaxNumTransfers": "1" }
-  }
-}
-```
-
-> **mustOwnTokens with collectionId: "0"** = self-reference. Checks that the crowdfunder owns >= goal amount of Token 2 (progress token). Only available after deadline.
-
-#### 4. Refund (contributor burns Token 1 → gets deposit back, only if goal NOT met)
-
-```json
-{
-  "approvalId": "refund",
-  "fromListId": "!Mint",
-  "toListId": "<BURN_ADDRESS>",
-  "initiatedByListId": "All",
-  "tokenIds": [{ "start": "1", "end": "1" }],
-  "transferTimes": [{ "start": "<DEADLINE + 1>", "end": "18446744073709551615" }],
-  "approvalCriteria": {
-    "overridesFromOutgoingApprovals": true,
-    "overridesToIncomingApprovals": true,
-    "coinTransfers": [{
-      "to": "",
-      "overrideFromWithApproverAddress": true,
-      "overrideToWithInitiator": true,
-      "coins": [{ "amount": "1", "denom": "<DEPOSIT_DENOM>" }]
-    }],
-    "mustOwnTokens": [{
-      "collectionId": "0",
-      "tokenIds": [{ "start": "2", "end": "2" }],
-      "amountRange": { "start": "0", "end": "<GOAL_AMOUNT - 1>" },
-      "ownershipCheckParty": "<CROWDFUNDER_ADDRESS>"
-    }],
-    "predeterminedBalances": {
-      "incrementedBalances": {
-        "startBalances": [{ "amount": "1", "tokenIds": [{ "start": "1", "end": "1" }], "ownershipTimes": [{ "start": "1", "end": "18446744073709551615" }] }],
-        "allowAmountScaling": true,
-        "maxScalingMultiplier": "18446744073709551615",
-        "incrementTokenIdsBy": "0",
-        "incrementOwnershipTimesBy": "0",
-        "durationFromTimestamp": "0",
-        "allowOverrideTimestamp": false
-      },
-      "orderCalculationMethod": { "useOverallNumTransfers": true }
-    },
-    "maxNumTransfers": {
-      "overallMaxNumTransfers": "18446744073709551615"
-    }
-  }
-}
-```
-
-> Refund uses overrideFromWithApproverAddress: true (escrow pays) + overrideToWithInitiator: true (contributor receives). mustOwnTokens checks crowdfunder has LESS than goal of Token 2 (amountRange.end = goal - 1). allowAmountScaling: true so refund scales with deposit size. maxNumTransfers = MAX_UINT (needs non-zero with overrideFromWithApproverAddress).
-
-### Creation Flow (Tool Calls)
-
-1. \`set_valid_token_ids\` — set [{ start: "1", end: "2" }]
-2. \`set_standards\` — set ["Crowdfund"]
-3. \`set_invariants\` — set { noCustomOwnershipTimes: true }
-4. \`add_approval\` x4 — deposit-refund, deposit-progress, success, refund
-5. \`set_collection_metadata\` — name, description, image
-6. \`set_token_metadata\` x2 — Token 1 (Refund), Token 2 (Progress)
-7. \`set_permissions\` — preset "fully-immutable"
-8. \`validate_transaction\` — verify structure
-9. \`simulate_transaction\` — dry run
-
-### Common Mistakes
-
-- DON'T forget allowAmountScaling: true on ALL 4 approvals — without it, all deposits are fixed at 1 base unit
-- DON'T use votingChallenges — goal tracking uses mustOwnTokens, not voting
-- DON'T forget maxScalingMultiplier: MAX_UINT — without it, scaling is capped at 0 (no scaling)
-- DON'T set overrideFromWithApproverAddress on deposit-refund or deposit-progress (contributor pays, not escrow)
-- DON'T forget requireToEqualsInitiatedBy: true on deposit-refund
-- DON'T forget the paired deposit-progress approval — it tracks total raised
-- DON'T set collectionId to the actual collection ID in mustOwnTokens — use "0" for self-reference
-- DON'T forget that success transferTimes must start AFTER the deadline (deadline + 1)
-- DON'T forget that refund mustOwnTokens amountRange.end = goal - 1 (strictly less than goal)
-- DON'T set maxNumTransfers = 0 on refund approval — overrideFromWithApproverAddress requires non-zero
 
 
 ## File: ./x-tokenization/examples/skills/custom-2fa.md
@@ -42769,7 +42509,7 @@ jobs:
 - [NFT Collection](https://docs.bitbadges.io/x-tokenization/examples/skills/nft-collection) — Unique-token-ID issuance.
 - [Subscription](https://docs.bitbadges.io/x-tokenization/examples/skills/subscription) — Recurring time-bounded access tokens.
 - [Payment Protocol](https://docs.bitbadges.io/x-tokenization/examples/skills/payment-protocol) — Pay-to-mint / pay-to-transfer flows.
-- [Auction](https://docs.bitbadges.io/x-tokenization/examples/skills/auction) / [Bounty](https://docs.bitbadges.io/x-tokenization/examples/skills/bounty) / [Crowdfund](https://docs.bitbadges.io/x-tokenization/examples/skills/crowdfund) / [Quest](https://docs.bitbadges.io/x-tokenization/examples/skills/quest) — Marketplace primitives.
+- [Auction](https://docs.bitbadges.io/x-tokenization/examples/skills/auction) / [Bounty](https://docs.bitbadges.io/x-tokenization/examples/skills/bounty) / [Quest](https://docs.bitbadges.io/x-tokenization/examples/skills/quest) — Marketplace primitives.
 - [Liquidity Pools](https://docs.bitbadges.io/x-tokenization/examples/skills/liquidity-pools) — x/gamm-backed AMM pools.
 - [Prediction Market](https://docs.bitbadges.io/x-tokenization/examples/skills/prediction-market) / [Credit Token](https://docs.bitbadges.io/x-tokenization/examples/skills/credit-token) / [Custom 2FA](https://docs.bitbadges.io/x-tokenization/examples/skills/custom-2fa) — Specialty templates.
 - [Address List](https://docs.bitbadges.io/x-tokenization/examples/skills/address-list) — Lightweight membership lists (no token issuance).
