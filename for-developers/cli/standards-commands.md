@@ -39,7 +39,7 @@ Every action verb emits the universal `{ok, data, ...}` envelope on stdout. Pipe
 | **Products** | `bb products` | `list / show / purchase / build`. Product-catalog purchase flow. |
 | **Smart Tokens** | `bb smart-tokens` | `list / show / status / deposit / withdraw / build`. The unified primitive behind vaults, AI-agent vaults, and tradable wrapped tokens. |
 | **Subscriptions** | `bb subscriptions` | `list / status / claim / enable-renewal / cancel / subscribe`. Recurring-payment approvals. |
-| **Swap / DEX** | `bb swap` | Cross-chain swap helpers — `assets / chains / balances / estimate / track / activity / intents`. Powered by Skip:Go via the indexer's consolidated `/swap/*` routes. |
+| **Swap / DEX** | `bb swap` | Cross-chain swap helpers — `assets / chains / balances / estimate / execute / track / status / activities`. Read-only except `execute`, which signs + broadcasts a BitBadges-only route. Powered by Skip:Go via the indexer's consolidated `/swap/*` routes. |
 
 ## Status semantics
 
@@ -104,6 +104,33 @@ Every action verb (`place-bid`, `contribute`, `pay`, `purchase`, `redeem`, etc.)
   ```
 
 See [Deploy Commands](deploy-commands.md) for the full signing-path matrix.
+
+## Executing a swap (`bb swap execute`)
+
+`bb swap` is read-only except for `execute`. `bb swap execute` (or `bb swap estimate --execute`) takes a `bb swap estimate` result and, **only when the whole route is BitBadges-only** — a single native swap on the BitBadges chain, with no Skip:Go rerouting, no EVM transaction, no IBC-transfer leg, and no WETH redirect — signs + broadcasts it by reusing the standard deploy signing flags. It accepts the estimate JSON on stdin, as `@file.json`, or inline.
+
+```bash
+# BitBadges-only route → emit the signable msg, pipe into bb deploy
+bb swap estimate ubadge uusdc 1000000 | bb swap execute | bb deploy --browser --msg-stdin
+
+# …or sign + broadcast in one step via the /sign handoff
+bb swap estimate ubadge uusdc 1000000 --execute --browser
+
+# seed the activity row after a successful broadcast
+bb swap estimate ubadge uusdc 1000000 --execute --browser --track
+```
+
+- **Default (no deploy flag)** emits the signable message to stdout, so `| bb deploy` and scripting keep working.
+- **`--browser`** signs + broadcasts through the `/sign` page (Keplr / MetaMask). No second/EVM keyring is added to the CLI.
+- **`--track`** auto-calls `bb swap track` after a successful broadcast so the swap activity row is seeded.
+- **`--force`** broadcasts a route flagged for compliance or low liquidity (otherwise refused).
+
+**Cross-chain / EVM / multi-hop routes are not auto-executed.** The estimate is still returned, but the execute path throws an explicit *not-implemented* error — there is no partial execution and no cross-chain orchestrator. Sign the returned estimate in your wallet via the `/sign` page, broadcast the first transaction, then track it:
+
+```bash
+bb swap track <tx-hash> --chain-id <source-chain>
+bb swap status <tx-hash> --chain-id <source-chain>
+```
 
 ## Reference
 

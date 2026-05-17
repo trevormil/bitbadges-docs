@@ -98,3 +98,13 @@ console.log(response.estimate.skipGoMsgs);
 
 // Use the msgs to get user signatures and execute the swap
 ```
+
+## Executing from the CLI
+
+For a **BitBadges-only** route (a single native swap on the BitBadges chain — no Skip:Go rerouting, EVM tx, IBC-transfer leg, or WETH redirect) you can sign + broadcast straight from the CLI without handling `skipGoMsgs` yourself:
+
+```bash
+bb swap estimate ubadge uusdc 1000000 --execute --browser
+```
+
+Cross-chain / EVM / multi-hop routes are returned but not auto-executed: sign the estimate in your wallet, broadcast the first transaction, then `bb swap track`. See [Swap CLI](../cli/standards-commands.md#executing-a-swap-bb-swap-execute).
