@@ -2,6 +2,14 @@
 
 This example demonstrates creating a tradable collection that supports orderbook-style trading.
 
+{% hint style="info" %}
+The orderbook is priced in `ibc/F082B65C...` (`USDC.noble`) — the Noble-routed
+denom that holds all circulating USDC on BitBadges today. The canonical
+Injective-routed `USDC` (`ibc/0E485657...`) is the denom to move to later, but
+it has no supply yet, so a collection priced in it could not be traded. See
+[Supported Denoms](../../../../for-developers/bitbadges-blockchain/supported-denoms.md).
+{% endhint %}
+
 ## Transaction Structure
 
 ```json
@@ -313,7 +321,7 @@ This example demonstrates creating a tradable collection that supports orderbook
         "standards": [
             "NFTMarketplace",
             "NFTs",
-            "NFTPricingDenom:ibc/0E485657AEF4C39D551E7D53463734E4C445A96E6C814DC4C2FF0031470B40BB"
+            "NFTPricingDenom:ibc/F082B65C88E4B6D5EF1DB243CDA1D331D002759E938A0F5CD3FFDC5D53B3E349"
         ],
         "isArchived": false,
         "mintEscrowCoinsToTransfer": [],

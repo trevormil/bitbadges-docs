@@ -25,6 +25,12 @@ right now, no buyer will be able to settle it. Until bridging is live, price in
 `USDC.noble` (`ibc/F082B65C...`) or `ubadge`, which have real circulating
 supply.
 
+Watch the bare symbol. From `bitbadges@0.43.0` on, the symbol `USDC` — in the
+SDK registry, in `bb --denom USDC`, in `"denom": "USDC"` JSON — resolves to the
+canonical `ibc/0E485657...`, not to the liquid Noble route. Spell it
+`USDC.noble` (or pass `ibc/F082B65C...`) when you mean the denom people
+actually hold today.
+
 Bridging instructions for the Injective route are pending and will be published
 on this page. Treat the guidance below as the *target* state to build toward,
 not as something usable today.
@@ -43,8 +49,10 @@ here:
 - **`channel-2` stays open indefinitely.** The Noble-direct route is not being
   closed, and no decommissioning is planned.
 - **Existing balances remain fully usable and spendable.** They are still
-  priced at $1 and stay Skip-supported precisely so holders can swap out of
-  them.
+  priced at $1 and stay Skip-supported. There is nothing to migrate today —
+  the canonical route has no liquidity yet, so no swap out of `USDC.noble`
+  into `USDC` is possible. Skip support stays on so that swap works the day
+  the Injective route goes live.
 - **Collections backed by it cannot move.** A backed path's escrow address is
   derived from the denom string itself, so a collection that declared a backed
   path against `USDC.noble` cannot be repointed without stranding its escrow.
@@ -57,11 +65,12 @@ user today, pick `USDC.noble`; revisit once the canonical route is liquid.
 ## Registry
 
 {% hint style="info" %}
-**Pending SDK release.** The `deprecated` and `deprecationNote` fields on
-`CoinDetails`, and resolving the bare symbol `USDC` to the canonical denom, ship
-with [`bitbadgesjs` #273](https://github.com/BitBadges/bitbadgesjs/pull/273) and
-are **not** in the currently published SDK. The snippet below will not typecheck
-against today's release — drop those two fields if you are copying it now.
+**Ships in `bitbadges` 0.43.0.** The `deprecated` and `deprecationNote` fields
+on `CoinDetails`, and resolving the bare symbol `USDC` to the canonical denom,
+land in **`bitbadges@0.43.0`**
+([`bitbadgesjs` #273](https://github.com/BitBadges/bitbadgesjs/pull/273)). They
+are not present in `0.42.x`. If you are pinned below `0.43.0`, the snippet below
+will not typecheck — drop those two fields.
 {% endhint %}
 
 ```typescript
@@ -91,8 +100,8 @@ export const MAINNET_COINS_REGISTRY: Record<string, CoinDetails> = {
     baseDenom: 'ibc/0E485657AEF4C39D551E7D53463734E4C445A96E6C814DC4C2FF0031470B40BB',
     image: 'https://github.com/cosmos/chain-registry/blob/master/noble/images/USDCoin.png?raw=true'
   },
-  // Legacy Noble-direct USDC. Still supported; still Skip-supported on purpose,
-  // since swapping *out* of it is how a holder converts to canonical USDC.
+  // Legacy Noble-direct USDC. Still supported; still Skip-supported so that
+  // converting *out* of it will work once the canonical route is liquid.
   'ibc/F082B65C88E4B6D5EF1DB243CDA1D331D002759E938A0F5CD3FFDC5D53B3E349': {
     skipGoSupported: true,
     label: 'USDC.noble',
@@ -101,7 +110,7 @@ export const MAINNET_COINS_REGISTRY: Record<string, CoinDetails> = {
     baseDenom: 'ibc/F082B65C88E4B6D5EF1DB243CDA1D331D002759E938A0F5CD3FFDC5D53B3E349',
     image: 'https://github.com/cosmos/chain-registry/blob/master/noble/images/USDCoin.png?raw=true',
     deprecated: true,
-    deprecationNote: 'Legacy Noble-routed USDC. Swap to USDC (via Injective) — balances remain fully usable.'
+    deprecationNote: 'Legacy Noble-routed USDC. Fully usable and staying — new integrations should target canonical USDC (via Injective) once that route is live.'
   },
   'ibc/A4DB47A9D3CF9A068D454513891B526702455D3EF08FB9EB558C561F9DC2B701': {
     skipGoSupported: true,
