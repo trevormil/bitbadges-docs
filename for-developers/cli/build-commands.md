@@ -2,14 +2,14 @@
 
 The `bb build` command provides 17 builders that generate ready-to-sign transaction JSON. Each builder creates a complete collection or approval configuration from simple, human-readable parameters.
 
-All build commands accept friendly inputs -- use coin symbols like `USDC.n` instead of raw IBC denominations, and duration shorthands like `30d` instead of millisecond timestamps. The output is a fully-formed transaction message that can be signed and broadcast using the SDK, the BitBadges frontend, or the chain binary.
+All build commands accept friendly inputs -- use coin symbols like `USDC` instead of raw IBC denominations, and duration shorthands like `30d` instead of millisecond timestamps. The output is a fully-formed transaction message that can be signed and broadcast using the SDK, the BitBadges frontend, or the chain binary.
 
-> **Which USDC?** Examples on this page spell the payment coin `USDC.n`
-> on purpose. From `bitbadges@0.43.0` the bare symbol `USDC` resolves to the
-> canonical Injective-routed denom, which has only a negligible circulating
-> supply so far — a collection priced in it cannot realistically be settled.
-> Use `USDC.n` (or `ubadge`) until canonical liquidity is real. See
-> [Supported Denoms](../bitbadges-blockchain/supported-denoms.md).
+> **Which USDC?** `USDC` is the canonical Injective-routed denom
+> (`ibc/E1116484...`) — use it for everything new. Its token-standard
+> allowlisting ships with governance proposal 45, and early supply is still
+> small (Skip routing is being enabled), so early users may need to bridge
+> via Injective themselves. The legacy `USDC.n` is backwards compatibility
+> only. See [Supported Denoms](../bitbadges-blockchain/supported-denoms.md).
 
 > **Tip — don't want to bring your own wallet?** Pipe the output of any collection builder straight into [`deploy --burner`](deploy-commands.md). The CLI generates a throwaway signer, funds it from the faucet, broadcasts the create-collection tx, and hands ownership to the address you pass as `--manager`. No keys to set up.
 >
@@ -40,7 +40,7 @@ These commands generate `MsgUniversalUpdateCollection` transaction JSON for crea
 Create an IBC-backed vault token with optional withdrawal limits, 2FA gating, and emergency recovery.
 
 ```bash
-bb build vault --backing-coin USDC.n \
+bb build vault --backing-coin USDC \
   --name "My Vault" \
   --symbol vUSDC \
   --daily-withdraw-limit 1000 \
@@ -64,7 +64,7 @@ Create a recurring subscription collection with configurable intervals, pricing,
 
 ```bash
 bb build subscription --interval monthly \
-  --price 10 --denom USDC.n --recipient bb1... \
+  --price 10 --denom USDC --recipient bb1... \
   --tiers 3 --transferable
 ```
 
@@ -84,7 +84,7 @@ bb build subscription --interval monthly \
 Create a bounty with escrowed funds, a verifier who approves completion, and a designated recipient.
 
 ```bash
-bb build bounty --amount 500 --denom USDC.n \
+bb build bounty --amount 500 --denom USDC \
   --verifier bb1... --recipient bb1... --expiration 30d
 ```
 
@@ -103,7 +103,7 @@ Create an agent-initiated payment request — the inverse of `bounty`. The agent
 
 ```bash
 bb build payment-request \
-  --amount 10 --denom USDC.n \
+  --amount 10 --denom USDC \
   --payer bb1payer... --recipient bb1agent... \
   --expiration 30d --name "Service charge" \
   --context "Agent X is requesting payment for completed deliverable Y under approved budget envelope of \$100/month."
@@ -146,7 +146,7 @@ Create a product catalog collection with multiple products, each having its own 
 
 ```bash
 bb build product-catalog \
-  --products '[{"name":"Widget","price":25,"denom":"USDC.n","maxSupply":100}]' \
+  --products '[{"name":"Widget","price":25,"denom":"USDC","maxSupply":100}]' \
   --store-address bb1...
 ```
 
@@ -162,13 +162,13 @@ Create a binary prediction market (YES/NO outcome tokens) with a designated reso
 
 ```bash
 bb build prediction-market --verifier bb1... \
-  --denom USDC.n --name "Will X happen by 2027?"
+  --denom USDC --name "Will X happen by 2027?"
 ```
 
 | Flag | Required | Description |
 |------|----------|-------------|
 | `--verifier <address>` | Yes | Market resolver address |
-| `--denom <symbol>` | No | Payment coin (default: USDC.n) |
+| `--denom <symbol>` | No | Payment coin (default: USDC) |
 | `--name <name>` | No | Market question (default: "Prediction Market") |
 | `--description <text>` | No | Market details |
 | `--image <url>` | No | Market image URL |
@@ -178,7 +178,7 @@ bb build prediction-market --verifier bb1... \
 Create an IBC-backed smart account with optional trading and AI agent vault support.
 
 ```bash
-bb build smart-account --backing-coin USDC.n \
+bb build smart-account --backing-coin USDC \
   --symbol sUSDC --tradable --ai-agent-vault
 ```
 
@@ -195,7 +195,7 @@ bb build smart-account --backing-coin USDC.n \
 Create a credit or prepaid token where users pay to receive a configurable number of tokens.
 
 ```bash
-bb build credit-token --payment-denom USDC.n \
+bb build credit-token --payment-denom USDC \
   --recipient bb1... --symbol CREDIT --tokens-per-unit 100
 ```
 
@@ -270,7 +270,7 @@ Emits the **identical** shape to [`bb intents create`](standards-commands.md)
 ```bash
 bb build intent --address bb1... \
   --collection-id 5 \
-  --pay-denom USDC.n --pay-amount 100 \
+  --pay-denom USDC --pay-amount 100 \
   --receive-denom BADGE --receive-amount 500 \
   --expiration 30d
 ```
@@ -302,7 +302,7 @@ token id; a true range errors.
 ```bash
 bb build listing --address bb1... \
   --collection-id 7 --token-ids 4 \
-  --price 50 --denom USDC.n --max-sales 1 --expiration 30d
+  --price 50 --denom USDC --max-sales 1 --expiration 30d
 ```
 
 | Flag | Required | Description |
@@ -327,12 +327,12 @@ full parity with `bb nfts bid`.
 # Single-token bid
 bb build bid --address bb1... \
   --collection-id 7 --token-ids 4 \
-  --price 40 --denom USDC.n --expiration 7d
+  --price 40 --denom USDC --expiration 7d
 
 # Collection-wide bid (any token in the collection)
 bb build bid --address bb1... \
   --collection-id 7 \
-  --price 40 --denom USDC.n
+  --price 40 --denom USDC
 ```
 
 | Flag | Required | Description |
@@ -352,7 +352,7 @@ Create a prediction market sell intent (user outgoing approval) to sell outcome 
 ```bash
 bb build pm-sell-intent --address bb1... \
   --collection-id 12 --token yes \
-  --amount 10 --price 50 --denom USDC.n
+  --amount 10 --price 50 --denom USDC
 ```
 
 | Flag | Required | Description |
@@ -372,7 +372,7 @@ Create a prediction market buy intent (user incoming approval) to buy outcome to
 ```bash
 bb build pm-buy-intent --address bb1... \
   --collection-id 12 --token no \
-  --amount 10 --price 50 --denom USDC.n
+  --amount 10 --price 50 --denom USDC
 ```
 
 | Flag | Required | Description |
@@ -431,13 +431,13 @@ All commands support `--json` for passing parameters as a JSON object. This is u
 
 ```bash
 # Inline JSON
-bb build vault --json '{"backingCoin":"USDC.n","name":"My Vault"}'
+bb build vault --json '{"backingCoin":"USDC","name":"My Vault"}'
 
 # From a file
 bb build vault --json ./params.json
 
 # From stdin
-echo '{"backingCoin":"USDC.n"}' | bb build vault --json -
+echo '{"backingCoin":"USDC"}' | bb build vault --json -
 ```
 
 ## Output

@@ -21,62 +21,50 @@ Noble voucher forwarded through Injective. The erc20 address in the trace is
 checksummed; the denom hash is case-sensitive.
 
 {% hint style="warning" %}
-**`USDC` is not meaningfully liquid yet.** The route itself is proven — a
-native USDC transfer from Injective over `channel-40` has landed on mainnet and
-minted `ibc/E1116484...` exactly — but circulating supply is a test-sized
-**0.028650 USDC**. In practice, nobody can pay you in it today.
-
-If you price a collection, payment request, or subscription in `ibc/E1116484...`
-right now, no buyer will be able to settle it. Until real liquidity arrives, price in
-`USDC.n` (`ibc/F082B65C...`) or `ubadge`, which have real circulating
-supply.
-
-Watch the bare symbol. From `bitbadges@0.43.0` on, the symbol `USDC` — in the
-SDK registry, in `bb --denom USDC`, in `"denom": "USDC"` JSON — resolves to the
-canonical `ibc/E1116484...`, not to the liquid Noble route. Spell it
-`USDC.n` (or pass `ibc/F082B65C...`) when you mean the denom people
-actually hold today.
-
-Bridging instructions for the Injective route are pending and will be published
-on this page. Chain-side allowlisting of the canonical denom also ships via a
-pending governance proposal (a `tokenization` params update) — IBC transfers
-mint the voucher today, but the token standard does not accept it until that
-proposal passes. Treat the guidance below as the *target* state to build
-toward, not as something usable today.
+**Canonical `USDC` is live but early.** The route is proven — native USDC
+bridged from Injective over `channel-40` mints `ibc/E1116484...` exactly — and
+its token-standard allowlisting ships with governance proposal 45 (an
+expedited `tokenization` params update). Circulating supply is still small and
+Skip Go routing is being enabled (BB-25), so early users may need to bridge
+via Injective themselves: CCTP (or a swap) into native USDC on Injective, then
+one IBC transfer to BitBadges. Bridging instructions will be published on this
+page.
 {% endhint %}
 
 `USDC` — Circle's native USDC on Injective, one hop away — is the canonical
-denom going forward. Once it is liquid, it is the denom to use for anything
-new: pricing, payment requests, subscriptions, prediction markets, pool
-creation. Existing Noble-USDC holders who want the canonical asset convert to
-native USDC on Injective (via CCTP or a swap there) and send it over — or
-simply keep using `USDC.n` on BitBadges, which is unchanged.
+denom. Use it for everything new: pricing, payment requests, subscriptions,
+prediction markets, pool creation, backed collections. From
+`bitbadges@0.43.0`, the bare symbol `USDC` — in the SDK registry, in
+`bb --denom USDC`, in `"denom": "USDC"` JSON — resolves to
+`ibc/E1116484...`. Existing Noble-USDC holders who want the canonical asset
+convert to native USDC on Injective (via CCTP or a swap there) and send it
+over.
 
-`USDC.n` is the original Noble-direct route, and it is where all real USDC
-liquidity on BitBadges lives today. The `.n` suffix is Skip Go's
-ecosystem-wide symbol for the Noble voucher (Skip's `bitbadges-1` registry
-already uses `USDC.n`); earlier drafts spelled it `USDC.noble`, and as of
-`bitbadges@0.43.0` the CLI, SDK builders, and MCP server still accept typed
-input `USDC.noble` as an alias for `USDC.n` (display and output are always
-`USDC.n`). To be precise about what "deprecated" means here:
+## Legacy backwards compatibility: `USDC.n`
 
-- **`USDC.n` is deprecated for new integrations.** New code should target
-  the canonical `USDC` denom once bridging is available.
+`USDC.n` is the original Noble-direct denom. It exists purely as temporary
+backwards compatibility for existing balances and collections — **do not use
+it for anything new**. The `.n` suffix is Skip Go's ecosystem-wide symbol for
+the Noble voucher (Skip's `bitbadges-1` registry already uses `USDC.n`);
+earlier drafts spelled it `USDC.noble`, and as of `bitbadges@0.43.0` the CLI,
+SDK builders, and MCP server still accept typed input `USDC.noble` as an alias
+(display and output are always `USDC.n`).
+
+- **Existing balances remain fully usable and spendable, forever.** They stay
+  priced at $1 and stay Skip-supported so holders can swap out.
 - **`channel-2` stays open indefinitely.** The Noble-direct route is not being
   closed, and no decommissioning is planned.
-- **Existing balances remain fully usable and spendable.** They are still
-  priced at $1 and stay Skip-supported. There is nothing to migrate today —
-  the canonical route has only negligible liquidity so far, so no meaningful
-  swap out of `USDC.n` into `USDC` is possible. Skip support stays on so that
-  swap works once canonical liquidity is real.
-- **Collections backed by it cannot move.** A backed path's escrow address is
-  derived from the denom string itself, so a collection that declared a backed
-  path against `USDC.n` cannot be repointed without stranding its escrow.
-  Those collections stay on `USDC.n` permanently.
+- **The 16 collections with backed paths on it keep working forever.** A
+  backed path's escrow address is derived from the denom string itself, so
+  those collections cannot be repointed and stay on `USDC.n` permanently.
+  This is also why creating a **new** backed collection on `USDC.n` is
+  actively harmful: it would be stuck there permanently too. New backed
+  collections use canonical `USDC`.
+- **Deprecated for everything new.** New pricing, payment requests,
+  subscriptions, pools, and backed collections use canonical `USDC`.
 
 If you are handling balances generically, treat the two as separate denoms with
-separate balances — they do not aggregate. If you are picking a denom for the
-user today, pick `USDC.n`; revisit once the canonical route is liquid.
+separate balances — they do not aggregate.
 
 ## Registry
 
@@ -127,7 +115,7 @@ export const MAINNET_COINS_REGISTRY: Record<string, CoinDetails> = {
     baseDenom: 'ibc/F082B65C88E4B6D5EF1DB243CDA1D331D002759E938A0F5CD3FFDC5D53B3E349',
     image: 'https://github.com/cosmos/chain-registry/blob/master/noble/images/USDCoin.png?raw=true',
     deprecated: true,
-    deprecationNote: 'Legacy Noble-routed USDC. Fully usable and staying — new integrations should target canonical USDC (via Injective) once that route is live.'
+    deprecationNote: 'Legacy Noble-routed USDC. Existing balances stay fully usable — use canonical USDC (via Injective) for everything new.'
   },
   'ibc/A4DB47A9D3CF9A068D454513891B526702455D3EF08FB9EB558C561F9DC2B701': {
     skipGoSupported: true,

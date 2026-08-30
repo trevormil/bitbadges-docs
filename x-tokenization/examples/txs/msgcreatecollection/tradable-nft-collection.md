@@ -3,11 +3,13 @@
 This example demonstrates creating a tradable collection that supports orderbook-style trading.
 
 {% hint style="info" %}
-The orderbook is priced in `ibc/F082B65C...` (`USDC.n`) — the Noble-routed
-denom that holds all circulating USDC on BitBadges today. The canonical
-Injective-routed `USDC` (`ibc/E1116484...`) is the denom to move to later, but
-it has only a test-sized supply so far, so a collection priced in it could not
-realistically be traded. See
+The orderbook is priced in canonical `USDC` — the Injective-routed denom
+`ibc/E1116484...`, the denom to use for all new collections. Its
+token-standard allowlisting ships with governance proposal 45, and early
+supply is still small, so early traders may need to bridge via Injective
+themselves. Do not price new collections in the legacy `USDC.n`
+(`ibc/F082B65C...`) — backed-path escrows derive from the denom string, so a
+collection created on it is stuck there permanently. See
 [Supported Denoms](../../../../for-developers/bitbadges-blockchain/supported-denoms.md).
 {% endhint %}
 
@@ -322,7 +324,7 @@ realistically be traded. See
         "standards": [
             "NFTMarketplace",
             "NFTs",
-            "NFTPricingDenom:ibc/F082B65C88E4B6D5EF1DB243CDA1D331D002759E938A0F5CD3FFDC5D53B3E349"
+            "NFTPricingDenom:ibc/E1116484B327AEE59CDC3DA73D319834781A13DB2A7DFC1F38A30CD45ABF58B8"
         ],
         "isArchived": false,
         "mintEscrowCoinsToTransfer": [],

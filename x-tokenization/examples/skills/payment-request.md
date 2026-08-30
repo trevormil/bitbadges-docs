@@ -88,14 +88,13 @@ Bounty has an expire approval to refund escrowed funds back to the submitter onc
 
 ## Creation Flow (CLI)
 
-> `USDC.n` is the Noble-routed denom that actually circulates today. The
-> bare symbol `USDC` resolves to the canonical Injective route, which has only
-> a negligible supply so far. See [Supported Denoms](../../../for-developers/bitbadges-blockchain/supported-denoms.md).
+> `USDC` is the canonical Injective-routed denom (allowlisted via governance
+> proposal 45). See [Supported Denoms](../../../for-developers/bitbadges-blockchain/supported-denoms.md).
 
 ```bash
 bb build payment-request \
   --amount 10 \
-  --denom USDC.n \
+  --denom USDC \
   --payer bb1payer... \
   --recipient bb1agent... \
   --expiration 30d \
