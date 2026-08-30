@@ -32,8 +32,10 @@ canonical `ibc/0E485657...`, not to the liquid Noble route. Spell it
 actually hold today.
 
 Bridging instructions for the Injective route are pending and will be published
-on this page. Treat the guidance below as the *target* state to build toward,
-not as something usable today.
+on this page. Chain-side allowlisting of the canonical denom also ships via a
+pending governance proposal (a `tokenization` params update), so the chain does
+not accept it yet either. Treat the guidance below as the *target* state to
+build toward, not as something usable today.
 {% endhint %}
 
 `USDC` — routed through Injective — is the canonical denom going forward. Once
@@ -68,8 +70,9 @@ user today, pick `USDC.noble`; revisit once the canonical route is liquid.
 **Ships in `bitbadges` 0.43.0.** The `deprecated` and `deprecationNote` fields
 on `CoinDetails`, and resolving the bare symbol `USDC` to the canonical denom,
 land in **`bitbadges@0.43.0`**
-([`bitbadgesjs` #273](https://github.com/BitBadges/bitbadgesjs/pull/273)). They
-are not present in `0.42.x`. If you are pinned below `0.43.0`, the snippet below
+([`bitbadgesjs` #273](https://github.com/BitBadges/bitbadgesjs/pull/273)).
+`0.43.0` is **not yet published to npm** — the latest release is `0.42.x`,
+which does not have them. If you are pinned below `0.43.0`, the snippet below
 will not typecheck — drop those two fields.
 {% endhint %}
 
