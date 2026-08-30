@@ -4,6 +4,13 @@ The `bb build` command provides 17 builders that generate ready-to-sign transact
 
 All build commands accept friendly inputs -- use coin symbols like `USDC` instead of raw IBC denominations, and duration shorthands like `30d` instead of millisecond timestamps. The output is a fully-formed transaction message that can be signed and broadcast using the SDK, the BitBadges frontend, or the chain binary.
 
+> **Which USDC?** `USDC` is the canonical Injective-routed denom
+> (`ibc/E1116484...`) — use it for everything new. Its token-standard
+> allowlisting ships with governance proposal 45, and early supply is still
+> small (Skip routing is being enabled), so early users may need to bridge
+> via Injective themselves. The legacy `USDC.n` is backwards compatibility
+> only. See [Supported Denoms](../bitbadges-blockchain/supported-denoms.md).
+
 > **Tip — don't want to bring your own wallet?** Pipe the output of any collection builder straight into [`deploy --burner`](deploy-commands.md). The CLI generates a throwaway signer, funds it from the faucet, broadcasts the create-collection tx, and hands ownership to the address you pass as `--manager`. No keys to set up.
 >
 > **Already have a wallet in your browser?** Use `--browser` instead — the build runs, the resulting tx is handed to your connected Keplr / MetaMask via `/sign`, and the hash comes back to your terminal. Add `--sign-only` to skip the broadcast and get signed bytes back for your own submitter. See [Sign Bridge](sign-bridge.md#build--browser).

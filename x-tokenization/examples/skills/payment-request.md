@@ -88,6 +88,9 @@ Bounty has an expire approval to refund escrowed funds back to the submitter onc
 
 ## Creation Flow (CLI)
 
+> `USDC` is the canonical Injective-routed denom (allowlisted via governance
+> proposal 45). See [Supported Denoms](../../../for-developers/bitbadges-blockchain/supported-denoms.md).
+
 ```bash
 bb build payment-request \
   --amount 10 \
