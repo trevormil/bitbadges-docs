@@ -24,11 +24,14 @@ checksummed; the denom hash is case-sensitive.
 **Canonical `USDC` is live but early.** The route is proven — native USDC
 bridged from Injective over `channel-40` mints `ibc/E1116484...` exactly — and
 its token-standard allowlisting ships with governance proposal 45 (an
-expedited `tokenization` params update). Circulating supply is still small and
-Skip Go routing is being enabled (BB-25), so early users may need to bridge
-via Injective themselves: CCTP (or a swap) into native USDC on Injective, then
-one IBC transfer to BitBadges. Bridging instructions will be published on this
-page.
+expedited `tokenization` params update). Circulating supply is still small.
+Skip Go now indexes the canonical denom on `bitbadges-1` automatically (Skip's
+own data labels it `USDC.inj`; the BitBadges app shows it as `USDC`) and can
+route native Injective USDC to BitBadges as a direct transfer — so if you
+hold USDC on Injective, acquisition is a Skip-routed transfer away. Broader
+routes (starting from Noble or Ethereum USDC) are still pending Skip
+swap-venue coverage and pool liquidity; until then, get to native USDC on
+Injective first (via CCTP or a swap there).
 {% endhint %}
 
 `USDC` — Circle's native USDC on Injective, one hop away — is the canonical
@@ -65,6 +68,12 @@ SDK builders, and MCP server still accept typed input `USDC.noble` as an alias
 
 If you are handling balances generically, treat the two as separate denoms with
 separate balances — they do not aggregate.
+
+Other USDC variants — e.g. Osmosis's alloyed `allUSDC` or any bridged voucher
+of it — are **unregistered and unsupported on BitBadges**: they arrive as raw
+`ibc/` denoms, are not allowlisted in `x/tokenization`, carry no rate limits,
+and cannot back collections. The supported routes remain exactly canonical
+`USDC` (via Injective) and legacy `USDC.n`.
 
 ## Registry
 
