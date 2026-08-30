@@ -55,8 +55,10 @@ simply keep using `USDC.n` on BitBadges, which is unchanged.
 `USDC.n` is the original Noble-direct route, and it is where all real USDC
 liquidity on BitBadges lives today. The `.n` suffix is Skip Go's
 ecosystem-wide symbol for the Noble voucher (Skip's `bitbadges-1` registry
-already uses `USDC.n`); earlier drafts spelled it `USDC.noble`. To be precise
-about what "deprecated" means here:
+already uses `USDC.n`); earlier drafts spelled it `USDC.noble`, and as of
+`bitbadges@0.43.0` the CLI, SDK builders, and MCP server still accept typed
+input `USDC.noble` as an alias for `USDC.n` (display and output are always
+`USDC.n`). To be precise about what "deprecated" means here:
 
 - **`USDC.n` is deprecated for new integrations.** New code should target
   the canonical `USDC` denom once bridging is available.
