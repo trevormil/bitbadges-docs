@@ -9,10 +9,16 @@ USDC appears twice, and the difference matters when you write code against it.
 An IBC denom is the hash of the token's full transfer path, so the same
 underlying asset arriving by two different routes has two different denoms:
 
-| Symbol       | Route                                           | Denom             |
-| ------------ | ----------------------------------------------- | ----------------- |
-| `USDC`       | `transfer/channel-40/transfer/channel-148/uusdc` | `ibc/0E485657...` |
-| `USDC.noble` | `transfer/channel-2/uusdc`                       | `ibc/F082B65C...` |
+| Symbol       | Route                                                                  | Denom             |
+| ------------ | ---------------------------------------------------------------------- | ----------------- |
+| `USDC`       | `transfer/channel-40/erc20:0xa00C59fF5a080D2b954d0c75e46E22a0c371235a` | `ibc/E1116484...` |
+| `USDC.noble` | `transfer/channel-2/uusdc`                                             | `ibc/F082B65C...` |
+
+Canonical `USDC` is [Circle's **native** USDC on Injective](https://injective.com/usdc)
+(erc20 contract `0xa00C59fF5a080D2b954d0c75e46E22a0c371235a`, CCTP-enabled),
+sent **one IBC hop** from Injective to BitBadges over `channel-40` — not a
+Noble voucher forwarded through Injective. The erc20 address in the trace is
+checksummed; the denom hash is case-sensitive.
 
 {% hint style="warning" %}
 **`USDC` is not liquid yet.** No USDC has been bridged over the
@@ -20,14 +26,14 @@ Injective route to date — `channel-40` has never carried a transfer packet, an
 the canonical denom's on-chain supply is currently **zero**. Nobody can pay you
 in it today.
 
-If you price a collection, payment request, or subscription in `ibc/0E485657...`
+If you price a collection, payment request, or subscription in `ibc/E1116484...`
 right now, no buyer will be able to settle it. Until bridging is live, price in
 `USDC.noble` (`ibc/F082B65C...`) or `ubadge`, which have real circulating
 supply.
 
 Watch the bare symbol. From `bitbadges@0.43.0` on, the symbol `USDC` — in the
 SDK registry, in `bb --denom USDC`, in `"denom": "USDC"` JSON — resolves to the
-canonical `ibc/0E485657...`, not to the liquid Noble route. Spell it
+canonical `ibc/E1116484...`, not to the liquid Noble route. Spell it
 `USDC.noble` (or pass `ibc/F082B65C...`) when you mean the denom people
 actually hold today.
 
@@ -38,9 +44,12 @@ not accept it yet either. Treat the guidance below as the *target* state to
 build toward, not as something usable today.
 {% endhint %}
 
-`USDC` — routed through Injective — is the canonical denom going forward. Once
-it is liquid, it is the denom to use for anything new: pricing, payment
-requests, subscriptions, prediction markets, pool creation.
+`USDC` — Circle's native USDC on Injective, one hop away — is the canonical
+denom going forward. Once it is liquid, it is the denom to use for anything
+new: pricing, payment requests, subscriptions, prediction markets, pool
+creation. Existing Noble-USDC holders who want the canonical asset convert to
+native USDC on Injective (via CCTP or a swap there) and send it over — or
+simply keep using `USDC.noble` on BitBadges, which is unchanged.
 
 `USDC.noble` is the original Noble-direct route, and it is where all real USDC
 liquidity on BitBadges lives today. To be precise about what "deprecated" means
@@ -94,13 +103,13 @@ export const MAINNET_COINS_REGISTRY: Record<string, CoinDetails> = {
     baseDenom: 'badges:49:chaosnet',
     image: 'https://bitbadges.io/_next/image?url=https%3A%2F%2Fipfs.bitbadges.io%2Fipfs%2FQmdRQUvQBo6p24RQ7AS7RD6srqyUjoHJ5Cjs4p22zie9bQ&w=1920&q=75'
   },
-  // Canonical USDC, routed through Injective.
-  'ibc/0E485657AEF4C39D551E7D53463734E4C445A96E6C814DC4C2FF0031470B40BB': {
+  // Canonical USDC: Circle's native USDC on Injective, one IBC hop away.
+  'ibc/E1116484B327AEE59CDC3DA73D319834781A13DB2A7DFC1F38A30CD45ABF58B8': {
     skipGoSupported: true,
     label: 'USDC',
     symbol: 'USDC',
     decimals: '6',
-    baseDenom: 'ibc/0E485657AEF4C39D551E7D53463734E4C445A96E6C814DC4C2FF0031470B40BB',
+    baseDenom: 'ibc/E1116484B327AEE59CDC3DA73D319834781A13DB2A7DFC1F38A30CD45ABF58B8',
     image: 'https://github.com/cosmos/chain-registry/blob/master/noble/images/USDCoin.png?raw=true'
   },
   // Legacy Noble-direct USDC. Still supported; still Skip-supported so that
