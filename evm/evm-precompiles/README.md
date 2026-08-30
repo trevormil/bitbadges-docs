@@ -66,10 +66,10 @@ Default precompiles from [cosmos/evm](https://github.com/cosmos/evm) for interac
 | Staking | `0x...0800` | Delegate, undelegate, redelegate |
 | Distribution | `0x...0801` | Claim staking rewards |
 | ICS20 | `0x...0802` | IBC token transfers |
-| Vesting | `0x...0803` | Vesting account management |
 | Bank | `0x...0804` | Query balances and supply |
 | Governance | `0x...0805` | Vote on proposals |
 | Slashing | `0x...0806` | Unjail validators |
+| ICS02 | `0x...0807` | IBC light client queries and updates |
 
 [Cosmos SDK Precompiles Documentation →](cosmos-precompiles.md)
 

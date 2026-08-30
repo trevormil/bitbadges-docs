@@ -35,8 +35,10 @@ const txContext: TxContext = {
   testnet: false,
   sender: {
     address: 'bb1...', // BitBadges address (bb-prefixed)
-    sequence: 0,
-    accountNumber: 1,
+    sequence: '0',
+    // Decimal string — real v34 account numbers are hash-derived 64-bit
+    // values that exceed JS safe integers; keep the API's string as-is.
+    accountNumber: '17246720312988307372',
     publicKey: '', // Not needed for EVM transactions
   },
   fee: {
@@ -269,8 +271,8 @@ const txContext: TxContext = {
   testnet: false,
   sender: {
     address: 'bb1...', // BitBadges address (required)
-    sequence: 0, // Required
-    accountNumber: 1, // Required
+    sequence: '0', // Required
+    accountNumber: '17246720312988307372', // Required — decimal string; v34 values exceed JS safe integers
     publicKey: '', // Not needed for EVM (can be empty string)
   },
   fee: {

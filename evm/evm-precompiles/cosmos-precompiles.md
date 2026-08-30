@@ -13,10 +13,10 @@ Unlike BitBadges custom precompiles (which use JSON parameters), these precompil
 | Staking | `0x0000000000000000000000000000000000000800` | Transactions + Queries |
 | Distribution | `0x0000000000000000000000000000000000000801` | Transactions + Queries |
 | ICS20 (IBC) | `0x0000000000000000000000000000000000000802` | Transactions + Queries |
-| Vesting | `0x0000000000000000000000000000000000000803` | Transactions + Queries |
 | Bank | `0x0000000000000000000000000000000000000804` | Queries Only |
 | Governance | `0x0000000000000000000000000000000000000805` | Transactions + Queries |
 | Slashing | `0x0000000000000000000000000000000000000806` | Transactions + Queries |
+| ICS02 (IBC Clients) | `0x0000000000000000000000000000000000000807` | Transactions + Queries |
 
 ---
 
@@ -168,24 +168,6 @@ interface IICS20 {
 
 ---
 
-## Vesting Precompile
-
-**Address:** `0x0000000000000000000000000000000000000803`
-
-Manage vesting accounts.
-
-### Methods
-
-| Method | Description |
-|--------|-------------|
-| `createClawbackVestingAccount(...)` | Create a clawback vesting account |
-| `fundVestingAccount(...)` | Fund a vesting account |
-| `clawback(...)` | Clawback unvested tokens |
-| `updateVestingFunder(...)` | Update the funder address |
-| `convertVestingAccount(...)` | Convert vesting to regular account |
-
----
-
 ## Bank Precompile
 
 **Address:** `0x0000000000000000000000000000000000000804`
@@ -271,6 +253,57 @@ interface ISlashing {
 
 ---
 
+## ICS02 (IBC Light Clients) Precompile
+
+**Address:** `0x0000000000000000000000000000000000000807`
+
+Interact with IBC light clients (ICS-02 client router).
+
+### Transaction Methods
+
+```solidity
+interface ICS02I {
+    /// @notice The result of an update operation
+    enum UpdateResult {
+        Update,
+        Misbehaviour
+    }
+
+    /// @notice Update the client with the given client identifier
+    /// @param updateMsg The encoded update message, e.g. a protobuf Any
+    function updateClient(string calldata clientId, bytes calldata updateMsg) external returns (UpdateResult);
+
+    /// @notice Verify membership of a key-value pair. Not view — may update
+    /// client state for caching. Returns the unix timestamp (seconds) of the
+    /// verification height on the counterparty chain.
+    function verifyMembership(
+        string calldata clientId,
+        bytes calldata proof,
+        Height calldata proofHeight,
+        bytes[] calldata path,
+        bytes calldata value
+    ) external returns (uint256);
+
+    /// @notice Verify non-membership of a key. Not view — may update client
+    /// state for caching. Returns the unix timestamp (seconds) of the
+    /// verification height on the counterparty chain.
+    function verifyNonMembership(
+        string calldata clientId,
+        bytes calldata proof,
+        Height calldata proofHeight,
+        bytes[] calldata path
+    ) external returns (uint256);
+}
+```
+
+### Query Methods
+
+| Method | Description |
+|--------|-------------|
+| `getClientState(string clientId)` | Get the client state (returns raw bytes) |
+
+---
+
 ## Common Types
 
 ```solidity
@@ -310,5 +343,5 @@ enum VoteOption {
 
 ## Resources
 
-- [Cosmos EVM Documentation](https://docs.cosmos.network/evm/v0.5.0/documentation/overview)
-- [Cosmos EVM Precompiles Source](https://github.com/cosmos/evm/tree/v0.5.0/precompiles)
+- [Cosmos EVM Documentation](https://docs.cosmos.network/evm/)
+- [Cosmos EVM Precompiles Source](https://github.com/cosmos/evm/tree/v0.7.2/precompiles)

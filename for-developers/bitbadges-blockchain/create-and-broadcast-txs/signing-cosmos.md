@@ -25,7 +25,10 @@ const signTxn = async (
                 bodyBytes: payload.signDirect.body.toBinary(),
                 authInfoBytes: payload.signDirect.authInfo.toBinary(),
                 chainId: chainId,
-                accountNumber: new Long(sender.accountNumber),
+                // v34+ account numbers are 64-bit hash-derived values above
+                // Number.MAX_SAFE_INTEGER — build the Long from the string,
+                // never from a JS number (`new Long(n)` truncates to 32 bits).
+                accountNumber: Long.fromString(String(sender.accountNumber), true),
             },
             {
                 preferNoSetFee: true,
