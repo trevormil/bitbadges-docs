@@ -1,5 +1,5 @@
 # Gitbook Documentation Compilation
-Generated on Sun Aug 30 15:20:11 UTC 2026
+Generated on Sun Aug 30 17:34:39 UTC 2026
 
 
 
@@ -13116,6 +13116,24 @@ BitBadges offers an L1 delegated proof-of-stake blockchain built with [Cosmos SD
 The source code can be found at [https://github.com/bitbadges/bitbadgeschain](https://github.com/bitbadges/bitbadgeschain).&#x20;
 
 BitBadges defines its official metadata, IBC connections, and more in the Cosmos chain registry at  [https://github.com/cosmos/chain-registry](https://github.com/cosmos/chain-registry).
+
+## IBC Connections
+
+BitBadges (`bitbadges-1`) maintains the following IBC transfer channels, all
+registered in the chain registry's [`_IBC`](https://github.com/cosmos/chain-registry/tree/master/_IBC)
+directory and all ACTIVE:
+
+| Peer chain | BitBadges channel | Peer channel | Connection (BitBadges side) | Notable assets |
+|------------|-------------------|--------------|-----------------------------|----------------|
+| Osmosis | `channel-0` | `channel-104311` | `connection-1` | OSMO; BADGE liquidity on Osmosis |
+| Noble | `channel-2` | `channel-158` | `connection-6` | Legacy `USDC.n` (backwards compatibility only) |
+| Cosmos Hub | `channel-3` | `channel-1420` | `connection-8` | ATOM |
+| Injective | `channel-40` | `channel-464` | `connection-89` | Canonical `USDC` — Circle's native `USDC.inj` (`erc20:0xa00C59fF5a080D2b954d0c75e46E22a0c371235a`), arriving as `ibc/E1116484...` |
+
+The Injective connection ([`_IBC/bitbadges-injective.json`](https://github.com/cosmos/chain-registry/blob/master/_IBC/bitbadges-injective.json))
+carries the canonical USDC denom — one IBC hop from Injective's native USDC.
+See [Supported Denoms](supported-denoms.md) for the full denom table and the
+canonical-vs-legacy USDC policy.
 
 Other Links
 
