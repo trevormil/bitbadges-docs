@@ -440,10 +440,10 @@
 
 #### Parameters
 
-| Name            | Type     |
-| :-------------- | :------- |
-| `collectionId`  | `number` |
-| `accountNumber` | `number` |
+| Name            | Type                             |
+| :-------------- | :------------------------------- |
+| `collectionId`  | `number`                         |
+| `accountNumber` | `number` \| `string` \| `bigint` |
 
 #### Returns
 

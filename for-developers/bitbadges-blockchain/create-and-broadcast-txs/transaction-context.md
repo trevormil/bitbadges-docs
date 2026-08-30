@@ -2,12 +2,22 @@
 
 For the signer, you will need their address, sequence, and account number. This can be done via our API like below or you can query directly via a blockchain node.
 
+{% hint style="warning" %}
+**Account numbers are 64-bit on v34+.** The chain assigns hash-derived account
+numbers larger than `Number.MAX_SAFE_INTEGER` (2^53) to every new account, and
+unordered-tx sequence nonces can be nanosecond timestamps. Never pass either
+through `Number()` — the value silently loses precision and the signature is
+computed for the wrong account. Carry them as strings or bigints end to end;
+`bitbadges@0.43.1+` accepts `number | string | bigint` directly.
+{% endhint %}
+
 ```typescript
 // https://api.bitbadges.io/api/v0/user?address=bb1...
 const res = await BitBadgesApi.getAccount({ address: '...' });
 const account = res.account;
+// Keep accountNumber/sequence as the API's strings — do NOT wrap in Number().
 const { accountNumber, sequence, publicKey } = account;
-if (Number(accountNumber) <= 0) {
+if (BigInt(accountNumber) <= 0n) {
     // The account hasn't interacted with the chain yet — it has no
     // account ID, so the chain can't validate a signed tx from it.
     // Register the account by sending it any non-zero amount of any
