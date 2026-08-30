@@ -1,5 +1,5 @@
 # Gitbook Documentation Compilation
-Generated on Sun Aug 30 03:21:20 UTC 2026
+Generated on Sun Aug 30 15:20:11 UTC 2026
 
 
 
@@ -452,10 +452,10 @@ BitBadges / [Exports](modules.md)
 
 #### Parameters
 
-| Name            | Type     |
-| :-------------- | :------- |
-| `collectionId`  | `number` |
-| `accountNumber` | `number` |
+| Name            | Type                             |
+| :-------------- | :------------------------------- |
+| `collectionId`  | `number`                         |
+| `accountNumber` | `number` \| `string` \| `bigint` |
 
 #### Returns
 
@@ -3027,10 +3027,10 @@ Default precompiles from [cosmos/evm](https://github.com/cosmos/evm) for interac
 | Staking | `0x...0800` | Delegate, undelegate, redelegate |
 | Distribution | `0x...0801` | Claim staking rewards |
 | ICS20 | `0x...0802` | IBC token transfers |
-| Vesting | `0x...0803` | Vesting account management |
 | Bank | `0x...0804` | Query balances and supply |
 | Governance | `0x...0805` | Vote on proposals |
 | Slashing | `0x...0806` | Unjail validators |
+| ICS02 | `0x...0807` | IBC light client queries and updates |
 
 [Cosmos SDK Precompiles Documentation →](cosmos-precompiles.md)
 
@@ -3338,10 +3338,10 @@ Unlike BitBadges custom precompiles (which use JSON parameters), these precompil
 | Staking | `0x0000000000000000000000000000000000000800` | Transactions + Queries |
 | Distribution | `0x0000000000000000000000000000000000000801` | Transactions + Queries |
 | ICS20 (IBC) | `0x0000000000000000000000000000000000000802` | Transactions + Queries |
-| Vesting | `0x0000000000000000000000000000000000000803` | Transactions + Queries |
 | Bank | `0x0000000000000000000000000000000000000804` | Queries Only |
 | Governance | `0x0000000000000000000000000000000000000805` | Transactions + Queries |
 | Slashing | `0x0000000000000000000000000000000000000806` | Transactions + Queries |
+| ICS02 (IBC Clients) | `0x0000000000000000000000000000000000000807` | Transactions + Queries |
 
 ---
 
@@ -3493,24 +3493,6 @@ interface IICS20 {
 
 ---
 
-## Vesting Precompile
-
-**Address:** `0x0000000000000000000000000000000000000803`
-
-Manage vesting accounts.
-
-### Methods
-
-| Method | Description |
-|--------|-------------|
-| `createClawbackVestingAccount(...)` | Create a clawback vesting account |
-| `fundVestingAccount(...)` | Fund a vesting account |
-| `clawback(...)` | Clawback unvested tokens |
-| `updateVestingFunder(...)` | Update the funder address |
-| `convertVestingAccount(...)` | Convert vesting to regular account |
-
----
-
 ## Bank Precompile
 
 **Address:** `0x0000000000000000000000000000000000000804`
@@ -3596,6 +3578,57 @@ interface ISlashing {
 
 ---
 
+## ICS02 (IBC Light Clients) Precompile
+
+**Address:** `0x0000000000000000000000000000000000000807`
+
+Interact with IBC light clients (ICS-02 client router).
+
+### Transaction Methods
+
+```solidity
+interface ICS02I {
+    /// @notice The result of an update operation
+    enum UpdateResult {
+        Update,
+        Misbehaviour
+    }
+
+    /// @notice Update the client with the given client identifier
+    /// @param updateMsg The encoded update message, e.g. a protobuf Any
+    function updateClient(string calldata clientId, bytes calldata updateMsg) external returns (UpdateResult);
+
+    /// @notice Verify membership of a key-value pair. Not view — may update
+    /// client state for caching. Returns the unix timestamp (seconds) of the
+    /// verification height on the counterparty chain.
+    function verifyMembership(
+        string calldata clientId,
+        bytes calldata proof,
+        Height calldata proofHeight,
+        bytes[] calldata path,
+        bytes calldata value
+    ) external returns (uint256);
+
+    /// @notice Verify non-membership of a key. Not view — may update client
+    /// state for caching. Returns the unix timestamp (seconds) of the
+    /// verification height on the counterparty chain.
+    function verifyNonMembership(
+        string calldata clientId,
+        bytes calldata proof,
+        Height calldata proofHeight,
+        bytes[] calldata path
+    ) external returns (uint256);
+}
+```
+
+### Query Methods
+
+| Method | Description |
+|--------|-------------|
+| `getClientState(string clientId)` | Get the client state (returns raw bytes) |
+
+---
+
 ## Common Types
 
 ```solidity
@@ -3635,8 +3668,8 @@ enum VoteOption {
 
 ## Resources
 
-- [Cosmos EVM Documentation](https://docs.cosmos.network/evm/v0.5.0/documentation/overview)
-- [Cosmos EVM Precompiles Source](https://github.com/cosmos/evm/tree/v0.5.0/precompiles)
+- [Cosmos EVM Documentation](https://docs.cosmos.network/evm/)
+- [Cosmos EVM Precompiles Source](https://github.com/cosmos/evm/tree/v0.7.2/precompiles)
 
 
 ## File: ./evm/evm-precompiles/developer-guide.md
@@ -12054,7 +12087,10 @@ const signTxn = async (
                 bodyBytes: payload.signDirect.body.toBinary(),
                 authInfoBytes: payload.signDirect.authInfo.toBinary(),
                 chainId: chainId,
-                accountNumber: new Long(sender.accountNumber),
+                // v34+ account numbers are 64-bit hash-derived values above
+                // Number.MAX_SAFE_INTEGER — build the Long from the string,
+                // never from a JS number (`new Long(n)` truncates to 32 bits).
+                accountNumber: Long.fromString(String(sender.accountNumber), true),
             },
             {
                 preferNoSetFee: true,
@@ -12119,8 +12155,10 @@ const txContext: TxContext = {
   testnet: false,
   sender: {
     address: 'bb1...', // BitBadges address (bb-prefixed)
-    sequence: 0,
-    accountNumber: 1,
+    sequence: '0',
+    // Decimal string — real v34 account numbers are hash-derived 64-bit
+    // values that exceed JS safe integers; keep the API's string as-is.
+    accountNumber: '17246720312988307372',
     publicKey: '', // Not needed for EVM transactions
   },
   fee: {
@@ -12353,8 +12391,8 @@ const txContext: TxContext = {
   testnet: false,
   sender: {
     address: 'bb1...', // BitBadges address (required)
-    sequence: 0, // Required
-    accountNumber: 1, // Required
+    sequence: '0', // Required
+    accountNumber: '17246720312988307372', // Required — decimal string; v34 values exceed JS safe integers
     publicKey: '', // Not needed for EVM (can be empty string)
   },
   fee: {
@@ -12483,12 +12521,22 @@ function useEthereumSigning() {
 
 For the signer, you will need their address, sequence, and account number. This can be done via our API like below or you can query directly via a blockchain node.
 
+{% hint style="warning" %}
+**Account numbers are 64-bit on v34+.** The chain assigns hash-derived account
+numbers larger than `Number.MAX_SAFE_INTEGER` (2^53) to every new account, and
+unordered-tx sequence nonces can be nanosecond timestamps. Never pass either
+through `Number()` — the value silently loses precision and the signature is
+computed for the wrong account. Carry them as strings or bigints end to end;
+`bitbadges@0.43.1+` accepts `number | string | bigint` directly.
+{% endhint %}
+
 ```typescript
 // https://api.bitbadges.io/api/v0/user?address=bb1...
 const res = await BitBadgesApi.getAccount({ address: '...' });
 const account = res.account;
+// Keep accountNumber/sequence as the API's strings — do NOT wrap in Number().
 const { accountNumber, sequence, publicKey } = account;
-if (Number(accountNumber) <= 0) {
+if (BigInt(accountNumber) <= 0n) {
     // The account hasn't interacted with the chain yet — it has no
     // account ID, so the chain can't validate a signed tx from it.
     // Register the account by sending it any non-zero amount of any
