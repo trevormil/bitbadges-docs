@@ -3,10 +3,11 @@
 This example demonstrates creating a tradable collection that supports orderbook-style trading.
 
 {% hint style="info" %}
-The orderbook is priced in `ibc/F082B65C...` (`USDC.noble`) — the Noble-routed
+The orderbook is priced in `ibc/F082B65C...` (`USDC.n`) — the Noble-routed
 denom that holds all circulating USDC on BitBadges today. The canonical
 Injective-routed `USDC` (`ibc/E1116484...`) is the denom to move to later, but
-it has no supply yet, so a collection priced in it could not be traded. See
+it has only a test-sized supply so far, so a collection priced in it could not
+realistically be traded. See
 [Supported Denoms](../../../../for-developers/bitbadges-blockchain/supported-denoms.md).
 {% endhint %}
 

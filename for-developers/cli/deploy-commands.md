@@ -74,7 +74,7 @@ Pipe the output of any template that produces a new collection straight into the
 
 ```bash
 bb build subscription \
-    --interval monthly --price 10 --denom USDC.noble \
+    --interval monthly --price 10 --denom USDC.n \
     --recipient bb1your-payout-address... \
     --name "My Subscription" --quiet \
   | bb deploy --burner \

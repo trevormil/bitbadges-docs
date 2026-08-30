@@ -12,7 +12,7 @@ underlying asset arriving by two different routes has two different denoms:
 | Symbol       | Route                                                                  | Denom             |
 | ------------ | ---------------------------------------------------------------------- | ----------------- |
 | `USDC`       | `transfer/channel-40/erc20:0xa00C59fF5a080D2b954d0c75e46E22a0c371235a` | `ibc/E1116484...` |
-| `USDC.noble` | `transfer/channel-2/uusdc`                                             | `ibc/F082B65C...` |
+| `USDC.n` | `transfer/channel-2/uusdc`                                             | `ibc/F082B65C...` |
 
 Canonical `USDC` is [Circle's **native** USDC on Injective](https://injective.com/usdc)
 (erc20 contract `0xa00C59fF5a080D2b954d0c75e46E22a0c371235a`, CCTP-enabled),
@@ -21,27 +21,28 @@ Noble voucher forwarded through Injective. The erc20 address in the trace is
 checksummed; the denom hash is case-sensitive.
 
 {% hint style="warning" %}
-**`USDC` is not liquid yet.** No USDC has been bridged over the
-Injective route to date — `channel-40` has never carried a transfer packet, and
-the canonical denom's on-chain supply is currently **zero**. Nobody can pay you
-in it today.
+**`USDC` is not meaningfully liquid yet.** The route itself is proven — a
+native USDC transfer from Injective over `channel-40` has landed on mainnet and
+minted `ibc/E1116484...` exactly — but circulating supply is a test-sized
+**0.028650 USDC**. In practice, nobody can pay you in it today.
 
 If you price a collection, payment request, or subscription in `ibc/E1116484...`
-right now, no buyer will be able to settle it. Until bridging is live, price in
-`USDC.noble` (`ibc/F082B65C...`) or `ubadge`, which have real circulating
+right now, no buyer will be able to settle it. Until real liquidity arrives, price in
+`USDC.n` (`ibc/F082B65C...`) or `ubadge`, which have real circulating
 supply.
 
 Watch the bare symbol. From `bitbadges@0.43.0` on, the symbol `USDC` — in the
 SDK registry, in `bb --denom USDC`, in `"denom": "USDC"` JSON — resolves to the
 canonical `ibc/E1116484...`, not to the liquid Noble route. Spell it
-`USDC.noble` (or pass `ibc/F082B65C...`) when you mean the denom people
+`USDC.n` (or pass `ibc/F082B65C...`) when you mean the denom people
 actually hold today.
 
 Bridging instructions for the Injective route are pending and will be published
 on this page. Chain-side allowlisting of the canonical denom also ships via a
-pending governance proposal (a `tokenization` params update), so the chain does
-not accept it yet either. Treat the guidance below as the *target* state to
-build toward, not as something usable today.
+pending governance proposal (a `tokenization` params update) — IBC transfers
+mint the voucher today, but the token standard does not accept it until that
+proposal passes. Treat the guidance below as the *target* state to build
+toward, not as something usable today.
 {% endhint %}
 
 `USDC` — Circle's native USDC on Injective, one hop away — is the canonical
@@ -49,29 +50,31 @@ denom going forward. Once it is liquid, it is the denom to use for anything
 new: pricing, payment requests, subscriptions, prediction markets, pool
 creation. Existing Noble-USDC holders who want the canonical asset convert to
 native USDC on Injective (via CCTP or a swap there) and send it over — or
-simply keep using `USDC.noble` on BitBadges, which is unchanged.
+simply keep using `USDC.n` on BitBadges, which is unchanged.
 
-`USDC.noble` is the original Noble-direct route, and it is where all real USDC
-liquidity on BitBadges lives today. To be precise about what "deprecated" means
-here:
+`USDC.n` is the original Noble-direct route, and it is where all real USDC
+liquidity on BitBadges lives today. The `.n` suffix is Skip Go's
+ecosystem-wide symbol for the Noble voucher (Skip's `bitbadges-1` registry
+already uses `USDC.n`); earlier drafts spelled it `USDC.noble`. To be precise
+about what "deprecated" means here:
 
-- **`USDC.noble` is deprecated for new integrations.** New code should target
+- **`USDC.n` is deprecated for new integrations.** New code should target
   the canonical `USDC` denom once bridging is available.
 - **`channel-2` stays open indefinitely.** The Noble-direct route is not being
   closed, and no decommissioning is planned.
 - **Existing balances remain fully usable and spendable.** They are still
   priced at $1 and stay Skip-supported. There is nothing to migrate today —
-  the canonical route has no liquidity yet, so no swap out of `USDC.noble`
-  into `USDC` is possible. Skip support stays on so that swap works the day
-  the Injective route goes live.
+  the canonical route has only negligible liquidity so far, so no meaningful
+  swap out of `USDC.n` into `USDC` is possible. Skip support stays on so that
+  swap works once canonical liquidity is real.
 - **Collections backed by it cannot move.** A backed path's escrow address is
   derived from the denom string itself, so a collection that declared a backed
-  path against `USDC.noble` cannot be repointed without stranding its escrow.
-  Those collections stay on `USDC.noble` permanently.
+  path against `USDC.n` cannot be repointed without stranding its escrow.
+  Those collections stay on `USDC.n` permanently.
 
 If you are handling balances generically, treat the two as separate denoms with
 separate balances — they do not aggregate. If you are picking a denom for the
-user today, pick `USDC.noble`; revisit once the canonical route is liquid.
+user today, pick `USDC.n`; revisit once the canonical route is liquid.
 
 ## Registry
 
@@ -116,8 +119,8 @@ export const MAINNET_COINS_REGISTRY: Record<string, CoinDetails> = {
   // converting *out* of it will work once the canonical route is liquid.
   'ibc/F082B65C88E4B6D5EF1DB243CDA1D331D002759E938A0F5CD3FFDC5D53B3E349': {
     skipGoSupported: true,
-    label: 'USDC.noble',
-    symbol: 'USDC.noble',
+    label: 'USDC.n',
+    symbol: 'USDC.n',
     decimals: '6',
     baseDenom: 'ibc/F082B65C88E4B6D5EF1DB243CDA1D331D002759E938A0F5CD3FFDC5D53B3E349',
     image: 'https://github.com/cosmos/chain-registry/blob/master/noble/images/USDCoin.png?raw=true',

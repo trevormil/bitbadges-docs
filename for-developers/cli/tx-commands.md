@@ -105,7 +105,7 @@ bb tx wait 1111111... --mainnet --timeout 5
 ```bash
 # 1. Build a vault collection. `bb build` writes the envelope directly;
 #    pipe it straight to a file — `bb deploy` unwraps the envelope on read.
-bb build vault --backing-coin USDC.noble --name "My Vault" \
+bb build vault --backing-coin USDC.n --name "My Vault" \
     --image https://... --description "..." \
     --quiet > vault.json
 
